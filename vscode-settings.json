@@ -1,0 +1,17 @@
+{
+    "editor.dragAndDrop": true,
+    "editor.fontFamily": "\"Droid Sans Mono\", \"Courier New\", monospace",
+    "editor.insertSpaces": true,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 2,
+    "editor.wordWrap": "off",
+    "files.defaultLanguage": "markdown",
+    "git.confirmSync": false,
+    "terminal.integrated.shell.windows": "powershell.exe",
+    "window.restoreWindows": "none",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.startupEditor": "newUntitledFile",
+    "extensions.ignoreRecommendations": false
+}

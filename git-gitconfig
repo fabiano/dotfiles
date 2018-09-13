@@ -1,0 +1,31 @@
+[user]
+	email = fabiano.franca@gmail.com
+	name  = Fabiano França
+[alias]
+	aco    = !git add --all && git commit --message
+	boom   = !git reset --hard HEAD && git clean -fd
+	br     = "!f() { if [ -z ${1+x} ]; then git branch --all; else git branch $@; fi }; f"
+	bugfix = checkout bugfix
+	ch     = "!f() { if [ -z ${1+x} ]; then git checkout master; else git checkout $@; fi }; f"
+	co     = commit
+	coa    = commit --amend
+	com    = commit --message
+	feat   = "!f() { git checkout feature/${1}; }; f"
+	friday = !git add --all && git commit --message "It's Friday 🎉! https://www.youtube.com/watch?v=kfVsfOSbJY0"
+	ll     = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	llb    = log master.. --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	ls     = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	lsb    = log master.. --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	lt     = describe --tags --abbrev=0
+	me     = merge
+	pur    = pull --rebase
+	re     = "!f() { if [ -z ${1+x} ]; then git rebase master; else git rebase $@; fi }; f"
+	st     = status --short
+	unco   = reset --mixed HEAD~
+	wip    = !git add --all && git commit --message "🕕"
+[pull]
+	ff = only
+[merge]
+	ff = only
+[winUpdater]
+	recentlySeenVersion = 2.18.0.windows.1
