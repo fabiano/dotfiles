@@ -1,0 +1,53 @@
+if has("win32")
+  set runtimepath+=~/.vim
+endif
+
+set backspace=indent,eol,start
+set colorcolumn=+1
+set encoding=utf8
+set nobackup
+set nocompatible
+set noswapfile
+set nowrap
+set nowritebackup
+set number
+set numberwidth=3
+set spell
+set textwidth=120
+
+" tabs
+set autoindent
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+
+" whitespace characters
+set listchars=space:·,tab:»\ ,trail:·
+set list
+
+" syntax highlighting
+syntax on
+filetype plugin indent on
+
+" vim-plug
+" https://github.com/junegunn/vim-plug
+
+call plug#begin('~/.vim/plug-plugins')
+
+Plug 'altercation/vim-colors-solarized'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
+Plug 'pangloss/vim-javascript'
+
+call plug#end()
+
+" gVim
+if has('gui_running')
+  set background=dark
+  set guifont=Droid\ Sans\ Mono:h14
+  set lines=25 columns=100
+
+  colorscheme solarized
+endif
