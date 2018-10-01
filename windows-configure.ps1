@@ -1,5 +1,8 @@
 ﻿#Requires -RunAsAdministrator
 
+$ErrorActionPreference = "Stop"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 function New-SymbolicLink ($Path, $Value) {
   $Parent = Split-Path -Path $Path
 
@@ -29,9 +32,9 @@ function Configure-Hyper {
 }
 
 function Configure-PowerShell {
-  PowerShellGet\Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
-
   New-SymbolicLink -Path $PROFILE -Value (Get-Item powershell-profile.ps1).FullName
+
+  PowerShellGet\Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
 }
 
 function Configure-Vim {
@@ -56,13 +59,16 @@ function Configure-VsCode {
 }
 
 function Copy-Fonts {
+  Invoke-WebRequest -Uri "https://github.com/aosp-mirror/platform_frameworks_base/raw/master/data/fonts/DroidSansMono.ttf" -Outfile fonts\droid-sans-mono.ttf | Out-Null
+  Invoke-WebRequest -Uri "https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Regular.ttf" -Outfile fonts\firacode-regular.ttf | Out-Null
+
   $SA = New-Object -ComObject Shell.Application
   $Fonts = $SA.NameSpace(0x14)
 
-  Get-ChildItem "fonts\*.ttf" | %{ $Fonts.CopyHere($_.FullName) }
-}
+  Get-ChildItem fonts\*.ttf | %{ $Fonts.CopyHere($_.FullName) }
 
-$ErrorActionPreference = "Stop"
+  Remove-Item -Recurse fonts | Out-Null
+}
 
 Clear-Host
 

@@ -1,17 +1,19 @@
 {
     "editor.dragAndDrop": true,
-    "editor.fontFamily": "\"Droid Sans Mono\", \"Courier New\", monospace",
+    "editor.fontFamily": "\"Fira Code\", \"Droid Sans Mono\", \"Courier New\", monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
     "editor.insertSpaces": true,
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all",
     "editor.tabSize": 2,
     "editor.wordWrap": "off",
+    "extensions.ignoreRecommendations": false,
     "files.defaultLanguage": "markdown",
     "git.confirmSync": false,
     "terminal.integrated.shell.windows": "powershell.exe",
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Solarized Dark",
-    "workbench.startupEditor": "newUntitledFile",
-    "extensions.ignoreRecommendations": false
+    "workbench.startupEditor": "newUntitledFile"
 }

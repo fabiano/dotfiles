@@ -21,6 +21,7 @@
 	pur    = pull --rebase
 	re     = "!f() { if [ -z ${1+x} ]; then git rebase master; else git rebase $@; fi }; f"
 	st     = status --short
+	t      = tag
 	unco   = reset --mixed HEAD~
 	wip    = !git add --all && git commit --message "🕕"
 [pull]
@@ -28,4 +29,4 @@
 [merge]
 	ff = only
 [winUpdater]
-	recentlySeenVersion = 2.18.0.windows.1
+	recentlySeenVersion = 2.19.0.windows.1

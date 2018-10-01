@@ -1,7 +1,4 @@
-﻿# environment variables
-[Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
-
-# functions
+﻿# functions
 function Delete-History {
   # https://blogs.msdn.microsoft.com/stevelasker/2016/03/25/clear-history-powershell-doesnt-clear-the-history-3/
   Remove-Item (Get-PSReadlineOption).HistorySavePath
