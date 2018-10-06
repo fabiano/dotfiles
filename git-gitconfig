@@ -20,6 +20,7 @@
 	me     = merge
 	pur    = pull --rebase
 	re     = "!f() { if [ -z ${1+x} ]; then git rebase master; else git rebase $@; fi }; f"
+	sq     = "rebase --interactive"
 	st     = status --short
 	t      = tag
 	unco   = reset --mixed HEAD~
