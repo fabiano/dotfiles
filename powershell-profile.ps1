@@ -9,6 +9,7 @@ function Open ($ProjectName) {
 }
 
 # posh-git
+# https://github.com/dahlbyk/posh-git
 Import-Module posh-git
 
 $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
@@ -17,3 +18,7 @@ $GitPromptSettings.DefaultPromptPrefix.Text = '`n'
 $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
 $GitPromptSettings.DefaultPromptSuffix.ForegroundColor = [ConsoleColor]::DarkMagenta
 $GitPromptSettings.DefaultPromptSuffix.Text = '❯ '
+
+# PSColor
+# https://github.com/Davlind/PSColor
+Import-Module PSColor
