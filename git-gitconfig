@@ -30,4 +30,4 @@
 [merge]
 	ff = only
 [winUpdater]
-	recentlySeenVersion = 2.19.0.windows.1
+	recentlySeenVersion = 2.19.1.windows.1

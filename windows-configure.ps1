@@ -35,6 +35,7 @@ function Configure-PowerShell {
   New-SymbolicLink -Path $PROFILE -Value (Get-Item powershell-profile.ps1).FullName
 
   PowerShellGet\Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
+  PowerShellGet\Install-Module PSColor -Scope CurrentUser -AllowPrerelease -Force | Out-Null
 }
 
 function Configure-Vim {
