@@ -34,8 +34,9 @@ function Configure-Hyper {
 function Configure-PowerShell {
   New-SymbolicLink -Path $PROFILE -Value (Get-Item powershell-profile.ps1).FullName
 
-  PowerShellGet\Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
-  PowerShellGet\Install-Module PSColor -Scope CurrentUser -AllowPrerelease -Force | Out-Null
+  PowerShellGet\Install-Module -Name PowerShellGet -Force | Out-Null
+  PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
+  PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force | Out-Null
 }
 
 function Configure-Vim {
@@ -60,6 +61,8 @@ function Configure-VsCode {
 }
 
 function Copy-Fonts {
+  New-Item -ItemType Directory -Path fonts | Out-Null
+
   Invoke-WebRequest -Uri "https://github.com/aosp-mirror/platform_frameworks_base/raw/master/data/fonts/DroidSansMono.ttf" -Outfile fonts\droid-sans-mono.ttf | Out-Null
   Invoke-WebRequest -Uri "https://github.com/tonsky/FiraCode/raw/master/distr/ttf/FiraCode-Regular.ttf" -Outfile fonts\firacode-regular.ttf | Out-Null
 
