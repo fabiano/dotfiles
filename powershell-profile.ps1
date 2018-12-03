@@ -4,8 +4,8 @@ function Delete-History {
   Remove-Item (Get-PSReadlineOption).HistorySavePath
 }
 
-function Open ($ProjectName) {
-  Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$ProjectName" $HOME | select -ExpandProperty FullName | Set-Location
+function x ($Name) {
+  Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$Name" $HOME | select -ExpandProperty FullName | Set-Location
 }
 
 # posh-git
