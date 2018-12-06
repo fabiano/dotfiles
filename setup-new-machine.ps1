@@ -21,6 +21,14 @@ function Configure-EnvVars {
   [Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
 }
 
+function Configure-PowerShell {
+  New-SymbolicLink -Path $PROFILE -Value (Get-Item powershell-profile.ps1).FullName
+
+  PowerShellGet\Install-Module -Name PowerShellGet -Force | Out-Null
+  PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
+  PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force | Out-Null
+}
+
 function Install-Git {
   if(Test-Path "${env:PROGRAMFILES}\Git\bin\git.exe") {
     return
@@ -53,14 +61,6 @@ function Configure-Hyper {
   New-SymbolicLink -Path $HOME\.hyper.js -Value (Get-Item hyper.js).FullName
 
   hyper install hyper-snazzy | Out-Null
-}
-
-function Configure-PowerShell {
-  New-SymbolicLink -Path $PROFILE -Value (Get-Item powershell-profile.ps1).FullName
-
-  PowerShellGet\Install-Module -Name PowerShellGet -Force | Out-Null
-  PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
-  PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force | Out-Null
 }
 
 function Install-Vim {
