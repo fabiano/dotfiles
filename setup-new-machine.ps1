@@ -17,12 +17,36 @@ function New-SymbolicLink ($Path, $Value) {
   New-Item -ItemType SymbolicLink -Path $Path -Value $Value | Out-Null
 }
 
-function Configure-EnvVars() {
+function Configure-EnvVars {
   [Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
+}
+
+function Install-Git {
+  if(Test-Path "${env:PROGRAMFILES}\Git\bin\git.exe") {
+    return
+  }
+
+  Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.19.0.windows.1/Git-2.19.0-64-bit.exe" -Outfile "f-git.exe" | Out-Null
+
+  .\f-git.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /COMPONENTS="gitlfs,autoupdate" /LOG="f-git.log" | Out-Null
+
+  Remove-Item f-git.exe | Out-Null
 }
 
 function Configure-Git {
   New-SymbolicLink -Path $HOME\.gitconfig -Value (Get-Item git-gitconfig).FullName
+}
+
+function Install-Hyper {
+  if(Test-Path "${env:LOCALAPPDATA}\hyper\Hyper.exe") {
+    return
+  }
+
+  Invoke-WebRequest -Uri "https://releases.hyper.is/download/win" -Outfile "f-hyper.exe" | Out-Null
+
+  .\f-hyper.exe --silent | Out-Null
+
+  Remove-Item f-hyper.exe | Out-Null
 }
 
 function Configure-Hyper {
@@ -39,6 +63,18 @@ function Configure-PowerShell {
   PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force | Out-Null
 }
 
+function Install-Vim {
+  if(Test-Path "${env:PROGRAMFILES(x86)}\Vim\vim81\vim.exe") {
+    return
+  }
+
+  Invoke-WebRequest -Uri "ftp://ftp.vim.org/pub/vim/pc/gvim81.exe" -Outfile "f-gvim.exe" | Out-Null
+
+  .\f-gvim.exe | Out-Null
+
+  Remove-Item f-gvim.exe | Out-Null
+}
+
 function Configure-Vim {
   New-SymbolicLink -Path $HOME\.vimrc -Value (Get-Item vim-vimrc).FullName
 
@@ -47,7 +83,20 @@ function Configure-Vim {
   }
 
   Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -Outfile $HOME/.vim/autoload/plug.vim | Out-Null
+
   vim -c "PlugInstall" -c "qa!"
+}
+
+function Install-VsCode {
+  if(Test-Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.exe") {
+    return
+  }
+
+  Invoke-WebRequest -Uri "https://aka.ms/win32-x64-user-stable" -Outfile "f-vscode.exe" | Out-Null
+
+  .\f-vscode.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /TASKS="addcontextmenufiles,addcontextmenufolders,addtopath" /LOG="f-vscode.log" | Out-Null
+
+  Remove-Item f-vscode.exe | Out-Null
 }
 
 function Configure-VsCode {
@@ -80,24 +129,28 @@ Write-Host "» Configure Environment Variables"
 
 Configure-EnvVars
 
-Write-Host "» Configure Git"
-
-Configure-Git
-
-Write-Host "» Configure Hyper"
-
-Configure-Hyper
-
 Write-Host "» Configure PowerShell"
 
 Configure-PowerShell
 
+Write-Host "» Configure Git"
+
+Install-Git
+Configure-Git
+
+Write-Host "» Configure Hyper"
+
+Install-Hyper
+Configure-Hyper
+
 Write-Host "» Configure Vim"
 
+Install-Vim
 Configure-Vim
 
 Write-Host "» Configure Visual Studio Code"
 
+Install-VsCode
 Configure-VsCode
 
 Write-Host "» Copy Fonts"
