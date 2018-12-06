@@ -12,7 +12,6 @@ set nowrap
 set nowritebackup
 set number
 set numberwidth=3
-set spell
 set textwidth=120
 
 " tabs
