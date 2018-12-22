@@ -27,7 +27,5 @@
 	wip    = !git add --all && git commit --message "🕕"
 [pull]
 	ff = only
-[merge]
-	ff = only
 [winUpdater]
-	recentlySeenVersion = 2.19.1.windows.1
+	recentlySeenVersion = 2.20.1.windows.1
