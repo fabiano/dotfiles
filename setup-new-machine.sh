@@ -28,6 +28,12 @@ brew cleanup
 rm $HOME/.zshrc
 ln -s $PWD/zsh-zshrc $HOME/.zshrc
 
+if ! grep -q /usr/local/bin/zsh /etc/shells; then
+  echo /usr/local/bin/zsh | sudo tee -a /etc/shells
+fi
+
+chsh -s /usr/local/bin/zsh
+
 # configure pure
 rm -rf $HOME/.pure
 git clone https://github.com/sindresorhus/pure.git $HOME/.pure
