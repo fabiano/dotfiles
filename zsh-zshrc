@@ -1,8 +1,13 @@
 # pure
-fpath=( "$HOME/.pure" $fpath )
+fpath=("$HOME/.pure" $fpath)
 
 autoload -U promptinit; promptinit
 prompt pure
+
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+autoload -U compinit; compinit -i
 
 # zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
