@@ -14,3 +14,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # alias
 alias ls="ls -G"
+
+# golang
+export GOPATH="$HOME/Code/Go"
