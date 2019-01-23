@@ -17,7 +17,13 @@ $GitPromptSettings.DefaultPromptPath.ForegroundColor = [ConsoleColor]::DarkBlue
 $GitPromptSettings.DefaultPromptPrefix.Text = '`n'
 $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
 $GitPromptSettings.DefaultPromptSuffix.ForegroundColor = [ConsoleColor]::DarkMagenta
-$GitPromptSettings.DefaultPromptSuffix.Text = '❯ '
+
+if ($env:HYPER -Eq "1") {
+  $GitPromptSettings.DefaultPromptSuffix.Text = '❯❯ '
+}
+else {
+  $GitPromptSettings.DefaultPromptSuffix.Text = '» '
+}
 
 # PSColor
 # https://github.com/Davlind/PSColor
