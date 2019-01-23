@@ -1,10 +1,14 @@
 ﻿module.exports = {
   config: {
     copyOnSelect: true,
+    env: {
+      HYPER: "1"
+    },
     fontSize: 18,
     fontFamily: '"Fira Code", "Droid Sans Mono", "Courier New", monospace',
-    shell: "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    shell: "C:\\Program Files\\PowerShell\\6\\pwsh.exe",
     shellArgs: [],
+    scrollback: 5000,
     windowSize: [1500, 900],
   },
 

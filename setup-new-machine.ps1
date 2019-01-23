@@ -3,82 +3,103 @@
 $ErrorActionPreference = "Stop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-function New-SymbolicLink ($Path, $Value) {
-  $Parent = Split-Path -Path $Path
+Clear-Host
 
-  if(-not (Test-Path $Parent)) {
-    New-Item -ItemType Directory -Path $Parent | Out-Null
-  }
+Write-Host "» Configure Environment Variables"
 
-  if(Test-Path $Path) {
-    Remove-Item $Path | Out-Null
-  }
+Configure-EnvVars
 
-  New-Item -ItemType SymbolicLink -Path $Path -Value $Value | Out-Null
-}
+Write-Host "» Configure Command Prompt"
+
+Configure-CmdPrompt
+
+Write-Host "» Configure PowerShell"
+
+Configure-PowerShell
+
+Write-Host "» Configure Git"
+
+Configure-Git
+
+Write-Host "» Configure Hyper"
+
+Configure-Hyper
+
+Write-Host "» Configure Vim"
+
+Configure-Vim
+
+Write-Host "» Configure Visual Studio Code"
+
+Configure-VsCode
+
+Write-Host "» Copy Fonts"
+
+Copy-Fonts
+
+Write-Host "» Finished"
 
 function Configure-EnvVars {
-  [Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
+  [Environment]::SetEnvironmentVariable("GIT_SSH", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
+}
+
+function Configure-CmdPrompt {
+  .\colortool.exe --both colortool-snazzy.ini
 }
 
 function Configure-PowerShell {
-  New-SymbolicLink -Path $PROFILE -Value (Get-Item powershell-profile.ps1).FullName
+  if (-Not (Test-Path "${env:PROGRAMFILES}\PowerShell\6\pwsh.exe")) {
+    Invoke-WebRequest -Uri "https://github.com/PowerShell/PowerShell/releases/download/v6.1.2/PowerShell-6.1.2-win-x64.msi" -Outfile "f-pwsh.msi" | Out-Null
 
-  PowerShellGet\Install-Module -Name PowerShellGet -Force | Out-Null
+    .\f-pwsh.msi /qn /norestart /l*v "f-pwsh.log" ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 | Out-Null
+
+    Remove-Item f-pwsh.exe | Out-Null
+  }
+
+  New-SymbolicLink -Path "$HOME\Documents\PowerShell\Profile.ps1" -Value (Get-Item powershell-profile.ps1).FullName
+
   PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force | Out-Null
   PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force | Out-Null
 }
 
-function Install-Git {
-  if(Test-Path "${env:PROGRAMFILES}\Git\bin\git.exe") {
-    return
+function Configure-Git {
+  if (-Not (Test-Path "${env:PROGRAMFILES}\Git\bin\git.exe")) {
+    Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.19.0.windows.1/Git-2.19.0-64-bit.exe" -Outfile "f-git.exe" | Out-Null
+
+    .\f-git.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /COMPONENTS="gitlfs,autoupdate" /LOG="f-git.log" | Out-Null
+
+    Remove-Item f-git.exe | Out-Null
   }
 
-  Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.19.0.windows.1/Git-2.19.0-64-bit.exe" -Outfile "f-git.exe" | Out-Null
-
-  .\f-git.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /COMPONENTS="gitlfs,autoupdate" /LOG="f-git.log" | Out-Null
-
-  Remove-Item f-git.exe | Out-Null
-}
-
-function Configure-Git {
   New-SymbolicLink -Path $HOME\.gitconfig -Value (Get-Item git-gitconfig).FullName
 }
 
-function Install-Hyper {
-  if(Test-Path "${env:LOCALAPPDATA}\hyper\Hyper.exe") {
-    return
+function Configure-Hyper {
+  if (-Not (Test-Path "${env:LOCALAPPDATA}\hyper\Hyper.exe")) {
+    Invoke-WebRequest -Uri "https://releases.hyper.is/download/win" -Outfile "f-hyper.exe" | Out-Null
+
+    .\f-hyper.exe --silent | Out-Null
+
+    Remove-Item f-hyper.exe | Out-Null
   }
 
-  Invoke-WebRequest -Uri "https://releases.hyper.is/download/win" -Outfile "f-hyper.exe" | Out-Null
-
-  .\f-hyper.exe --silent | Out-Null
-
-  Remove-Item f-hyper.exe | Out-Null
-}
-
-function Configure-Hyper {
   New-SymbolicLink -Path $HOME\.hyper.js -Value (Get-Item hyper.js).FullName
 
   hyper install hyper-snazzy | Out-Null
 }
 
-function Install-Vim {
-  if(Test-Path "${env:PROGRAMFILES(x86)}\Vim\vim81\vim.exe") {
-    return
+function Configure-Vim {
+  if (-Not (Test-Path "${env:PROGRAMFILES(x86)}\Vim\vim81\vim.exe")) {
+    Invoke-WebRequest -Uri "ftp://ftp.vim.org/pub/vim/pc/gvim81.exe" -Outfile "f-gvim.exe" | Out-Null
+
+    .\f-gvim.exe | Out-Null
+
+    Remove-Item f-gvim.exe | Out-Null
   }
 
-  Invoke-WebRequest -Uri "ftp://ftp.vim.org/pub/vim/pc/gvim81.exe" -Outfile "f-gvim.exe" | Out-Null
-
-  .\f-gvim.exe | Out-Null
-
-  Remove-Item f-gvim.exe | Out-Null
-}
-
-function Configure-Vim {
   New-SymbolicLink -Path $HOME\.vimrc -Value (Get-Item vim-vimrc).FullName
 
-  if(-not (Test-Path $HOME/.vim/autoload)) {
+  if (-Not (Test-Path $HOME/.vim/autoload)) {
     New-Item -ItemType Directory -Path $HOME/.vim/autoload | Out-Null
   }
 
@@ -87,19 +108,15 @@ function Configure-Vim {
   vim -c "PlugInstall" -c "qa!"
 }
 
-function Install-VsCode {
-  if(Test-Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.exe") {
-    return
+function Configure-VsCode {
+  if (-Not (Test-Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.exe")) {
+    Invoke-WebRequest -Uri "https://aka.ms/win32-x64-user-stable" -Outfile "f-vscode.exe" | Out-Null
+
+    .\f-vscode.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /TASKS="addcontextmenufiles,addcontextmenufolders,addtopath" /LOG="f-vscode.log" | Out-Null
+
+    Remove-Item f-vscode.exe | Out-Null
   }
 
-  Invoke-WebRequest -Uri "https://aka.ms/win32-x64-user-stable" -Outfile "f-vscode.exe" | Out-Null
-
-  .\f-vscode.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /TASKS="addcontextmenufiles,addcontextmenufolders,addtopath" /LOG="f-vscode.log" | Out-Null
-
-  Remove-Item f-vscode.exe | Out-Null
-}
-
-function Configure-VsCode {
   New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value (Get-Item vscode-settings.json).FullName
 
   code --install-extension coenraads.bracket-pair-colorizer | Out-Null
@@ -123,38 +140,16 @@ function Copy-Fonts {
   Remove-Item -Recurse fonts | Out-Null
 }
 
-Clear-Host
+function New-SymbolicLink ($Path, $Value) {
+  $Parent = Split-Path -Path $Path
 
-Write-Host "» Configure Environment Variables"
+  if (-Not (Test-Path $Parent)) {
+    New-Item -ItemType Directory -Path $Parent | Out-Null
+  }
 
-Configure-EnvVars
+  if (Test-Path $Path) {
+    Remove-Item $Path | Out-Null
+  }
 
-Write-Host "» Configure PowerShell"
-
-Configure-PowerShell
-
-Write-Host "» Configure Git"
-
-Install-Git
-Configure-Git
-
-Write-Host "» Configure Hyper"
-
-Install-Hyper
-Configure-Hyper
-
-Write-Host "» Configure Vim"
-
-Install-Vim
-Configure-Vim
-
-Write-Host "» Configure Visual Studio Code"
-
-Install-VsCode
-Configure-VsCode
-
-Write-Host "» Copy Fonts"
-
-Copy-Fonts
-
-Write-Host "» Finished"
+  New-Item -ItemType SymbolicLink -Path $Path -Value $Value | Out-Null
+}
