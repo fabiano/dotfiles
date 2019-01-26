@@ -1,0 +1,11 @@
+coenraads.bracket-pair-colorizer
+dbaeumer.vscode-eslint
+dotjoshjohnson.xml
+ionide.ionide-fake
+ionide.ionide-fsharp
+ionide.ionide-paket
+ms-vscode.csharp
+ms-vscode.go
+octref.vetur
+peterjausovec.vscode-docker
+robinbentley.sass-indented
