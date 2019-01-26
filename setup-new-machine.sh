@@ -65,9 +65,5 @@
   # configure visual studio code
   rm ~/Library/Application\ Support/Code/User/settings.json
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-  code --install-extension coenraads.bracket-pair-colorizer
-  code --install-extension dbaeumer.vscode-eslint
-  code --install-extension dotjoshjohnson.xml
-  code --install-extension ms-vscode.csharp
-  code --install-extension robinbentley.sass-indented
+  IFS=$'\r\n'; for line in `cat vscode-extensions.txt`; do code --install-extension ${line}; done
 }
