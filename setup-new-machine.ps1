@@ -1,43 +1,8 @@
 ﻿#Requires -RunAsAdministrator
 
 $ErrorActionPreference = "Stop"
+
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
-Clear-Host
-
-Write-Host "» Configure Environment Variables"
-
-Configure-EnvVars
-
-Write-Host "» Configure Command Prompt"
-
-Configure-CmdPrompt
-
-Write-Host "» Configure PowerShell"
-
-Configure-PowerShell
-
-Write-Host "» Configure Git"
-
-Configure-Git
-
-Write-Host "» Configure Hyper"
-
-Configure-Hyper
-
-Write-Host "» Configure Vim"
-
-Configure-Vim
-
-Write-Host "» Configure Visual Studio Code"
-
-Configure-VsCode
-
-Write-Host "» Copy Fonts"
-
-Copy-Fonts
-
-Write-Host "» Finished"
 
 function Configure-EnvVars {
   [Environment]::SetEnvironmentVariable("GIT_SSH", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
@@ -153,3 +118,39 @@ function New-SymbolicLink ($Path, $Value) {
 
   New-Item -ItemType SymbolicLink -Path $Path -Value $Value | Out-Null
 }
+
+Clear-Host
+
+Write-Host "» Configure Environment Variables"
+
+Configure-EnvVars
+
+Write-Host "» Configure Command Prompt"
+
+Configure-CmdPrompt
+
+Write-Host "» Configure PowerShell"
+
+Configure-PowerShell
+
+Write-Host "» Configure Git"
+
+Configure-Git
+
+Write-Host "» Configure Hyper"
+
+Configure-Hyper
+
+Write-Host "» Configure Vim"
+
+Configure-Vim
+
+Write-Host "» Configure Visual Studio Code"
+
+Configure-VsCode
+
+Write-Host "» Copy Fonts"
+
+Copy-Fonts
+
+Write-Host "» Finished"
