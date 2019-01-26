@@ -1,11 +1,13 @@
 coenraads.bracket-pair-colorizer
 dbaeumer.vscode-eslint
 dotjoshjohnson.xml
+editorconfig.editorconfig
 ionide.ionide-fake
 ionide.ionide-fsharp
 ionide.ionide-paket
 ms-vscode.csharp
 ms-vscode.go
+ms-vscode.powershell
 octref.vetur
 peterjausovec.vscode-docker
 robinbentley.sass-indented

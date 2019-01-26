@@ -10,6 +10,7 @@
     "editor.wordWrap": "off",
     "extensions.ignoreRecommendations": false,
     "files.defaultLanguage": "markdown",
+    "FSharp.fsacRuntime": "netcore",
     "git.confirmSync": false,
     "terminal.integrated.shell.windows": "powershell.exe",
     "window.restoreWindows": "none",
