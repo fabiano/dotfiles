@@ -10,6 +10,7 @@
 
   # install dependencies
   brew tap homebrew/cask-fonts
+  brew tap homebrew/cask-versions
   brew update
   brew upgrade
   brew install bash
@@ -20,9 +21,13 @@
   brew install youtube-dl
   brew install zsh
   brew install zsh-syntax-highlighting
+  brew cask install caffeine
+  brew cask install dotnet-sdk-preview
   brew cask install firefox
   brew cask install font-fira-code
   brew cask install google-chrome
+  brew cask install the-unarchiver
+  brew cask install tuxera-ntfs
   brew cask install visual-studio-code
   brew cleanup
 
