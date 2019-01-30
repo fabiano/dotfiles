@@ -8,6 +8,10 @@ function Set-EnvVars {
   [Environment]::SetEnvironmentVariable("GIT_SSH", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
 }
 
+function Start-SshAgentService {
+  Set-Service -Name ssh-agent -StartupType Automatic -Status Running
+}
+
 function Set-CmdPrompt {
   .\colortool.exe --both colortool-snazzy.ini
 }
@@ -120,6 +124,10 @@ Clear-Host
 Write-Host "» Set Environment Variables"
 
 Set-EnvVars
+
+Write-Host "» Start SSH Agent service"
+
+Start-SshAgentService
 
 Write-Host "» Set Command Prompt"
 
