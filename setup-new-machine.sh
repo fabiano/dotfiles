@@ -16,13 +16,12 @@
   brew install bash
   brew install bash-completion
   brew install git
-  brew install go
   brew install vim
   brew install youtube-dl
   brew install zsh
   brew install zsh-syntax-highlighting
+  brew cask install 1password
   brew cask install caffeine
-  brew cask install dotnet-sdk-preview
   brew cask install firefox
   brew cask install font-fira-code
   brew cask install google-chrome
