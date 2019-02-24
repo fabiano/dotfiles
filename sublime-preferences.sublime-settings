@@ -1,0 +1,13 @@
+{
+	"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",
+	"draw_white_space": "all",
+	"font_face": "Fira Code",
+	"font_size": 18,
+	"ignored_packages":
+	[
+		"Rust",
+		"Vintage"
+	],
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": false
+}

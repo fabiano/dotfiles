@@ -1,0 +1,10 @@
+# bash-completions@2
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+# alias
+alias ..="cd .."
+alias ~="cd ~"
+alias ls="ls -G"
+
+# prompt
+PS1="\n\w\n\033[0;35m❯\033[0m "
