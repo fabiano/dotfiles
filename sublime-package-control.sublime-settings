@@ -6,11 +6,18 @@
 	"installed_packages":
 	[
 		"A File Icon",
+		"Babel",
 		"BracketHighlighter",
+		"EditorConfig",
+		"Git",
 		"OmniSharp",
 		"Package Control",
 		"PowerShell",
 		"Rust Enhanced",
-		"Solarized Color Scheme"
+		"Sass",
+		"SideBarEnhancements",
+		"Solarized Color Scheme",
+		"SublimeLinter",
+		"SublimeLinter-eslint"
 	]
 }
