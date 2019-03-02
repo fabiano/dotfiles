@@ -65,6 +65,14 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Sublime Text 3\sublime_text.exe")
   Remove-Item -Path f-sublime.exe
 }
 
+if (-Not (Test-Path -Path "${env:PROGRAMFILES(x86)}\Google\Chrome\Application\chrome.exe")) {
+  Invoke-WebRequest -Uri "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" -Outfile "f-chrome.msi"
+
+  .\f-chrome.msi /quiet /norestart /l*v "f-chrome.log"
+
+  Remove-Item -Path f-chrome.msi
+}
+
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 
