@@ -41,14 +41,6 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\PowerShell\6\pwsh.exe")) {
   Remove-Item -Path f-pwsh.msi
 }
 
-if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\hyper\Hyper.exe")) {
-  Invoke-WebRequest -Uri "https://releases.hyper.is/download/win" -Outfile "f-hyper.exe"
-
-  .\f-hyper.exe --silent
-
-  Remove-Item -Path f-hyper.exe
-}
-
 if (-Not (Test-Path -Path "${env:PROGRAMFILES(x86)}\Vim\vim81\vim.exe")) {
   Invoke-WebRequest -Uri "ftp://ftp.vim.org/pub/vim/pc/gvim81.exe" -Outfile "f-gvim.exe"
 
@@ -75,7 +67,7 @@ $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [En
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # clone repository
-if ((Test-Path -Path $DOTFILES_INSTALL_DIR)) {
+if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
   Remove-Item -Path $DOTFILES_INSTALL_DIR -Recurse
 }
 
@@ -90,13 +82,9 @@ New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconf
 # configure powershell core
 New-SymbolicLink -Path "$HOME\Documents\PowerShell\Profile.ps1" -Value $DOTFILES_INSTALL_DIR\powershell-profile.ps1
 
-PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force
-PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force
-
-# configure hyper
-New-SymbolicLink -Path $HOME\.hyper.js -Value $DOTFILES_INSTALL_DIR\hyper.js
-
-hyper install hyper-snazzy
+& ${env:PROGRAMFILES}\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+& ${env:PROGRAMFILES}\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force"
+& ${env:PROGRAMFILES}\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force"
 
 # configure vim
 New-SymbolicLink -Path $HOME\.vimrc -Value $DOTFILES_INSTALL_DIR\vim-vimrc
