@@ -65,6 +65,9 @@ if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.e
   Remove-Item -Path f-vscode.exe
 }
 
+# reload path
+$env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
+
 # set environment variables
 [Environment]::SetEnvironmentVariable("GIT_SSH", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
 
@@ -72,12 +75,14 @@ if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.e
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # clone repository
-Remove-Item -Path $DOTFILES_INSTALL_DIR -Recurse
+if ((Test-Path -Path $DOTFILES_INSTALL_DIR)) {
+  Remove-Item -Path $DOTFILES_INSTALL_DIR -Recurse
+}
 
 git clone git@github.com:fabiano/dotfiles.git $DOTFILES_INSTALL_DIR
 
 # update command prompt colors
-$DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
+& $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
 
 # configure git
 New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconfig
