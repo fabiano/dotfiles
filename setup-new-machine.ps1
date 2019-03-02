@@ -73,6 +73,14 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES(x86)}\Google\Chrome\Application\ch
   Remove-Item -Path f-chrome.msi
 }
 
+if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\1Password\app\7\1Password.exe")) {
+  Invoke-WebRequest -Uri "https://app-updates.agilebits.com/download/OPW7" -Outfile "f-1password.exe"
+
+  .\f-1password.exe -s
+
+  Remove-Item -Path f-1password.exe
+}
+
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 
