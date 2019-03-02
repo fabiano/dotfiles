@@ -1,5 +1,6 @@
 # curl -o- https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-machine.sh | bash
 {
+  # dotfiles folder
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install homebrew
