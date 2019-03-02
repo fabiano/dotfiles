@@ -57,6 +57,14 @@ if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.e
   Remove-Item -Path f-vscode.exe
 }
 
+if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Sublime Text 3\sublime_text.exe")) {
+  Invoke-WebRequest -Uri "https://download.sublimetext.com/Sublime%20Text%20Build%203176%20x64%20Setup.exe" -Outfile "f-sublime.exe"
+
+  .\f-sublime.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /TASKS="contextentry" /LOG="f-sublime.log"
+
+  Remove-Item -Path f-sublime.exe
+}
+
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 
@@ -101,6 +109,16 @@ vim -c "PlugInstall" -c "qa!"
 New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOTFILES_INSTALL_DIR\vscode-settings.json
 
 Get-Content -Path $DOTFILES_INSTALL_DIR\vscode-extensions.txt | ForEach-Object { code --install-extension $_ }
+
+# configure sublime text
+New-SymbolicLink -Path "$HOME\AppData\Roaming\Sublime Text 3\Packages\User\Preferences.sublime-settings" -Value $DOTFILES_INSTALL_DIR\sublime-preferences.sublime-settings
+New-SymbolicLink -Path "$HOME\AppData\Roaming\Sublime Text 3\Packages\User\Package Control.sublime-settings" -Value $DOTFILES_INSTALL_DIR\sublime-package-control.sublime-settings
+
+if (-Not (Test-Path -Path "$HOME\AppData\Roaming\Sublime Text 3\Installed Packages")) {
+  New-Item -ItemType Directory -Path "$HOME\AppData\Roaming\Sublime Text 3\Installed Packages"
+}
+
+Invoke-WebRequest -Uri "https://packagecontrol.io/Package%20Control.sublime-package" -Outfile "$HOME\AppData\Roaming\Sublime Text 3\Installed Packages\Package Control.sublime-package"
 
 # copy fonts
 Invoke-WebRequest -Uri "https://github.com/aosp-mirror/platform_frameworks_base/raw/master/data/fonts/DroidSansMono.ttf" -Outfile font-droid-sans-mono.ttf
