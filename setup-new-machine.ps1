@@ -1,4 +1,4 @@
-﻿#Requires -RunAsAdministrator
+#Requires -RunAsAdministrator
 
 # stop on first error
 $ErrorActionPreference = "Stop"
@@ -28,7 +28,7 @@ $DOTFILES_INSTALL_DIR="$HOME\.dotfiles"
 if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Git\bin\git.exe")) {
   Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.19.0.windows.1/Git-2.19.0-64-bit.exe" -Outfile "f-git.exe"
 
-  .\f-git.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /COMPONENTS="gitlfs,autoupdate" /LOG="f-git.log"
+  .\f-git.exe /SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS="gitlfs,autoupdate" /LOG="f-git.log"
 
   Remove-Item -Path f-git.exe
 }
@@ -36,7 +36,7 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Git\bin\git.exe")) {
 if (-Not (Test-Path -Path "${env:PROGRAMFILES}\PowerShell\6\pwsh.exe")) {
   Invoke-WebRequest -Uri "https://github.com/PowerShell/PowerShell/releases/download/v6.1.2/PowerShell-6.1.2-win-x64.msi" -Outfile "f-pwsh.msi"
 
-  .\f-pwsh.msi /qn /norestart /l*v "f-pwsh.log" ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1
+  .\f-pwsh.msi /passive /norestart /l*v "f-pwsh.log" ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1
 
   Remove-Item -Path f-pwsh.msi
 }
@@ -52,7 +52,7 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES(x86)}\Vim\vim81\vim.exe")) {
 if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.exe")) {
   Invoke-WebRequest -Uri "https://aka.ms/win32-x64-user-stable" -Outfile "f-vscode.exe"
 
-  .\f-vscode.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /TASKS="addcontextmenufiles,addcontextmenufolders,addtopath" /LOG="f-vscode.log"
+  .\f-vscode.exe /SP- /SILENT /SUPPRESSMSGBOXES /TASKS="addcontextmenufiles,addcontextmenufolders,addtopath" /LOG="f-vscode.log"
 
   Remove-Item -Path f-vscode.exe
 }
@@ -60,7 +60,7 @@ if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\Code.e
 if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Sublime Text 3\sublime_text.exe")) {
   Invoke-WebRequest -Uri "https://download.sublimetext.com/Sublime%20Text%20Build%203176%20x64%20Setup.exe" -Outfile "f-sublime.exe"
 
-  .\f-sublime.exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /TASKS="contextentry" /LOG="f-sublime.log"
+  .\f-sublime.exe /SP- /SILENT /SUPPRESSMSGBOXES /TASKS="contextentry" /LOG="f-sublime.log"
 
   Remove-Item -Path f-sublime.exe
 }
@@ -68,7 +68,7 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Sublime Text 3\sublime_text.exe")
 if (-Not (Test-Path -Path "${env:PROGRAMFILES(x86)}\Google\Chrome\Application\chrome.exe")) {
   Invoke-WebRequest -Uri "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" -Outfile "f-chrome.msi"
 
-  .\f-chrome.msi /quiet /norestart /l*v "f-chrome.log"
+  .\f-chrome.msi /passive /norestart /l*v "f-chrome.log"
 
   Remove-Item -Path f-chrome.msi
 }
@@ -79,6 +79,14 @@ if (-Not (Test-Path -Path "${env:LOCALAPPDATA}\1Password\app\7\1Password.exe")) 
   .\f-1password.exe -s
 
   Remove-Item -Path f-1password.exe
+}
+
+if (-Not (Test-Path -Path "${env:PROGRAMFILES}\nodejs\node.exe")) {
+  Invoke-WebRequest -Uri "https://nodejs.org/dist/v11.10.1/node-v11.10.1-x64.msi" -Outfile "f-node.msi"
+
+  .\f-node.msi /passive /norestart /l*v "f-node.log"
+
+  Remove-Item -Path f-node.msi
 }
 
 # reload path
