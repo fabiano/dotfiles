@@ -1,8 +1,13 @@
 {
+	"caret_extra_bottom": 0,
+	"caret_extra_top": 0,
+	"caret_extra_width": 1,
+	"caret_style": "phase",
 	"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",
 	"draw_white_space": "all",
 	"font_face": "Fira Code",
 	"font_size": 18,
+	"highlight_line": true,
 	"ignored_packages":
 	[
 		"Rust",
