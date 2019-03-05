@@ -1,5 +1,9 @@
 #Requires -RunAsAdministrator
 
+# dotfiles settings
+$DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
+$DOTFILES_INSTALL_DIR = "$HOME\.dotfiles"
+
 # stop on first error
 $ErrorActionPreference = "Stop"
 
@@ -20,9 +24,6 @@ function New-SymbolicLink ($Path, $Value) {
 
   New-Item -ItemType SymbolicLink -Path $Path -Value $Value
 }
-
-# dotfiles folder
-$DOTFILES_INSTALL_DIR="$HOME\.dotfiles"
 
 # install dependencies
 if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Git\bin\git.exe")) {
@@ -89,6 +90,22 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\nodejs\node.exe")) {
   Remove-Item -Path f-node.msi
 }
 
+if (-Not (Test-Path -Path "${env:PROGRAMFILES(x86)}\Microsoft\Remote Desktop Connection Manager\RDCMan.exe")) {
+  Invoke-WebRequest -Uri "https://download.microsoft.com/download/A/F/0/AF0071F3-B198-4A35-AA90-C68D103BDCCF/rdcman.msi" -Outfile "f-rdcman.msi"
+
+  .\f-rdcman.msi /passive /norestart /l*v "f-rdcman.log"
+
+  Remove-Item -Path f-rdcman.msi
+}
+
+if (-Not (Test-Path -Path "${env:PROGRAMFILES}\7-Zip\7z.exe")) {
+  Invoke-WebRequest -Uri "https://www.7-zip.org/a/7z1900-x64.exe" -Outfile "f-7zip.exe"
+
+  .\f-7zip.exe /S
+
+  Remove-Item -Path f-7zip.exe
+}
+
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 
@@ -98,12 +115,15 @@ $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [En
 # start ssh-agent service
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
+# add private key to the ssh-agent
+ssh-add $HOME\.ssh\id_rsa
+
 # clone repository
 if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
   Remove-Item -Path $DOTFILES_INSTALL_DIR -Recurse
 }
 
-git clone git@github.com:fabiano/dotfiles.git $DOTFILES_INSTALL_DIR
+git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
 # update command prompt colors
 & $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
@@ -114,9 +134,9 @@ New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconf
 # configure powershell core
 New-SymbolicLink -Path "$HOME\Documents\PowerShell\Profile.ps1" -Value $DOTFILES_INSTALL_DIR\powershell-profile.ps1
 
-& ${env:PROGRAMFILES}\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
-& ${env:PROGRAMFILES}\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force"
-& ${env:PROGRAMFILES}\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force"
+& $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+& $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name posh-git -Scope CurrentUser -AllowPrerelease -Force"
+& $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSColor -Scope CurrentUser -AllowPrerelease -Force"
 
 # configure vim
 New-SymbolicLink -Path $HOME\.vimrc -Value $DOTFILES_INSTALL_DIR\vim-vimrc

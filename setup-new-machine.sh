@@ -1,6 +1,7 @@
 # curl -o- https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-machine.sh | bash
 {
-  # dotfiles folder
+  # dotfiles settings
+  DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install homebrew
@@ -38,7 +39,7 @@
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
-  git clone git@github.com:fabiano/dotfiles.git $DOTFILES_INSTALL_DIR
+  git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
   # configure bash
   rm -f $HOME/.bashrc
