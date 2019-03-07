@@ -25,9 +25,25 @@ function New-SymbolicLink ($Path, $Value) {
   New-Item -ItemType SymbolicLink -Path $Path -Value $Value
 }
 
+# remove windows 10 built-in apps
+Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
+Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
+Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
+Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
+Get-AppxPackage Microsoft.Microsoft.BingWeather | Remove-AppxPackage
+Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
+Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
+Get-AppxPackage Microsoft.People | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
+
 # install dependencies
 if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Git\bin\git.exe")) {
-  Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.19.0.windows.1/Git-2.19.0-64-bit.exe" -Outfile "f-git.exe"
+  Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.21.0.windows.1/Git-2.21.0-64-bit.exe" -Outfile "f-git.exe"
 
   .\f-git.exe /SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS="gitlfs,autoupdate" /LOG="f-git.log"
 

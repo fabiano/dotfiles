@@ -1,4 +1,3 @@
-# curl -o- https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-machine.sh | bash
 {
   # dotfiles settings
   DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
