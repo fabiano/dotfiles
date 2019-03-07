@@ -28,4 +28,4 @@
 [pull]
 	ff = only
 [winUpdater]
-	recentlySeenVersion = 2.20.1.windows.1
+	recentlySeenVersion = 2.21.0.windows.1
