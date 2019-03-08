@@ -122,6 +122,14 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\7-Zip\7z.exe")) {
   Remove-Item -Path f-7zip.exe
 }
 
+if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Mozilla Firefox\firefox.exe")) {
+  Invoke-WebRequest -Uri "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -Outfile "f-firefox.exe"
+
+  .\f-firefox.exe -ms
+
+  Remove-Item -Path f-firefox.exe
+}
+
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 
