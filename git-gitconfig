@@ -1,7 +1,7 @@
 [user]
-	name  = Fabiano França
+	name = Fabiano França
 	useConfigOnly = true
-	email = fabiano.franca@gmail.com
+	email = 
 [alias]
 	aco    = !git add --all && git commit --message
 	boom   = !git reset --hard HEAD && git clean -fd
