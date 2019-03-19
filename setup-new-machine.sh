@@ -28,7 +28,10 @@
   brew cask install caffeine
   brew cask install firefox
   brew cask install font-fira-code
+  brew cask install gimp
+  brew cask install github
   brew cask install google-chrome
+  brew cask install licecap
   brew cask install sublime-text
   brew cask install the-unarchiver
   brew cask install transmission
