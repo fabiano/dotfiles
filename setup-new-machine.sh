@@ -10,6 +10,7 @@
   fi
 
   # install dependencies
+  brew tap homebrew/cask-drivers
   brew tap homebrew/cask-fonts
   brew tap homebrew/cask-versions
   brew update
@@ -31,7 +32,9 @@
   brew cask install gimp
   brew cask install github
   brew cask install google-chrome
+  brew cask install jabra-direct
   brew cask install licecap
+  brew cask install steelseries-engine
   brew cask install sublime-text
   brew cask install the-unarchiver
   brew cask install transmission
