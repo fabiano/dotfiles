@@ -5,37 +5,21 @@ function Clear-History {
 }
 
 function x ($Name) {
-  Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$Name" $HOME | Select-Object -ExpandProperty FullName | Set-Location
+  Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$Name" $HOME `
+    | Select-Object -ExpandProperty FullName `
+    | Set-Location
 }
 
-if ($env:HYPER -Eq "1") {
-  # posh-git
-  # https://github.com/dahlbyk/posh-git
-  Import-Module posh-git
+function Prompt {
+  Write-Host ""
+  Write-Host $PWD -ForegroundColor DarkBlue
 
-  $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
-  $GitPromptSettings.DefaultPromptPath.ForegroundColor = [ConsoleColor]::DarkBlue
-  $GitPromptSettings.DefaultPromptPrefix.Text = '`n'
-  $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
-  $GitPromptSettings.DefaultPromptSuffix.ForegroundColor = [ConsoleColor]::DarkMagenta
-  $GitPromptSettings.DefaultPromptSuffix.Text = '❯❯ '
-
-  # PSColor
-  # https://github.com/Davlind/PSColor
-  Import-Module PSColor
-}
-else {
-  function Prompt {
-    Write-Host ""
-    Write-Host $PWD -ForegroundColor DarkBlue
-  
-    if ($env:HYPER -Eq "1") {
-      Write-Host "❯❯" -NoNewLine -ForegroundColor DarkMagenta
-    }
-    else {
-      Write-Host "»" -NoNewLine -ForegroundColor DarkMagenta
-    }
-  
-    return " "
+  if ($env:HYPER -Eq "1") {
+    Write-Host "❯❯" -NoNewLine -ForegroundColor DarkMagenta
   }
+  else {
+    Write-Host "»" -NoNewLine -ForegroundColor DarkMagenta
+  }
+
+  return " "
 }
