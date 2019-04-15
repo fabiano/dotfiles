@@ -23,3 +23,10 @@ function Prompt {
 
   return " "
 }
+
+function MoveUp {
+  cd ..
+}
+
+# alias
+New-Alias -Name ".." -Value MoveUp
