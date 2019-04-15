@@ -12,6 +12,7 @@
     "files.defaultLanguage": "markdown",
     "FSharp.fsacRuntime": "netcore",
     "git.confirmSync": false,
+    "markdown.preview.fontSize": 16,
     "terminal.integrated.fontFamily": "\"Fira Code\", \"Droid Sans Mono\", \"Courier New\", monospace",
     "terminal.integrated.fontSize": 18,
     "window.restoreWindows": "none",
