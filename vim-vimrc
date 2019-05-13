@@ -12,7 +12,7 @@ set nowrap
 set nowritebackup
 set number
 set numberwidth=3
-set textwidth=80
+set textwidth=256
 
 " tabs
 set autoindent
@@ -55,7 +55,9 @@ colorscheme solarized
 " gVim
 if has('gui_running')
   set guifont=Fira\ Code:h18
-  set lines=25 columns=100
+  set lines=25
+  set columns=100
+  set renderoptions=type:directx
 endif
 
 " NERDTree
