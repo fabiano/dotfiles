@@ -12,7 +12,7 @@ set nowrap
 set nowritebackup
 set number
 set numberwidth=3
-set textwidth=120
+set textwidth=256
 
 " tabs
 set autoindent
@@ -31,22 +31,39 @@ filetype plugin indent on
 
 " vim-plug
 " https://github.com/junegunn/vim-plug
-
 call plug#begin('~/.vim/plug-plugins')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
+" solarized dark
+set background=dark
+
+colorscheme solarized
+
 " gVim
 if has('gui_running')
-  set background=dark
-  set guifont=Droid\ Sans\ Mono:h14
+  set guifont=Fira\ Code:h18
   set lines=25 columns=100
-
-  colorscheme solarized
 endif
+
+" NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'NERDTreeFocus' | exe 'cd '.argv()[0] | endif
+autocmd BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
+
+map <C-n> :NERDTreeToggle<CR>
+
+" airline
+let g:airline_solarized_bg='dark'
