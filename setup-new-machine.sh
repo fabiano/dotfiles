@@ -33,6 +33,7 @@
   brew cask install gimp
   brew cask install github
   brew cask install google-chrome
+  brew cask install iterm2
   brew cask install jabra-direct
   brew cask install licecap
   brew cask install steelseries-engine
