@@ -2,7 +2,7 @@
     "editor.dragAndDrop": true,
     "editor.fontFamily": "\"Fira Code\", \"Droid Sans Mono\", \"Courier New\", monospace",
     "editor.fontLigatures": true,
-    "editor.fontSize": 22,
+    "editor.fontSize": 20,
     "editor.insertSpaces": true,
     "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "ctrlCmd",
@@ -14,9 +14,10 @@
     "git.confirmSync": false,
     "markdown.preview.fontSize": 16,
     "terminal.integrated.fontFamily": "\"Fira Code\", \"Droid Sans Mono\", \"Courier New\", monospace",
-    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.fontSize": 12,
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Solarized Dark",
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "git.autofetch": true,
 }
