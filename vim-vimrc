@@ -37,10 +37,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elzr/vim-json'
-Plug 'pangloss/vim-javascript'
-Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
@@ -50,7 +48,13 @@ call plug#end()
 " solarized dark
 set background=dark
 
-colorscheme solarized
+if has('gui_win32')
+  colorscheme solarized
+elseif has('win32')
+  colorscheme default
+else
+  colorscheme solarized
+endif
 
 " gVim
 if has('gui_running')
@@ -67,7 +71,10 @@ autocmd BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isT
 
 map <C-n> :NERDTreeToggle<CR>
 
+let NERDTreeShowHidden=1
+
 " airline
+let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 
 " syntastic
