@@ -59,7 +59,7 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\PowerShell\6\pwsh.exe")) {
 }
 
 if (-Not (Test-Path -Path "${env:PROGRAMFILES(x86)}\Vim\vim81\vim.exe")) {
-  Invoke-WebRequest -Uri "ftp://ftp.vim.org/pub/vim/pc/gvim81.exe" -Outfile "f-gvim.exe"
+  Invoke-WebRequest -Uri "https://github.com/vim/vim-win32-installer/releases/download/v8.1.1329/gvim_8.1.1329_x64.exe" -Outfile "f-gvim.exe"
 
   .\f-gvim.exe
 
