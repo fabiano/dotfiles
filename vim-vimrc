@@ -34,9 +34,12 @@ filetype plugin indent on
 call plug#begin('~/.vim/plug-plugins')
 
 Plug 'altercation/vim-colors-solarized'
+Plug 'bagrat/vim-buffet'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
+Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
@@ -44,6 +47,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
 
 call plug#end()
+
+" ctrlp.vim
+let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
 
 " solarized dark
 set background=dark
