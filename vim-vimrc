@@ -49,6 +49,7 @@ call plug#begin('~/.vim/plug-plugins')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'connorholyday/vim-snazzy'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
@@ -61,19 +62,30 @@ call plug#end()
 
 " theme
 set background=dark
-colorscheme solarized
+
+if has('win32')
+  colorscheme snazzy
+else
+  colorscheme solarized
+endif
 
 " ctrlp.vim
 let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
 
 " lightline
-let g:lightline = {
-  \ 'colorscheme': 'solarized',
-  \ }
+if has('win32')
+  let g:lightline = {
+    \ 'colorscheme': 'snazzy'
+    \ }
+else
+  let g:lightline = {
+    \ 'colorscheme': 'solarized'
+    \ }
+endif
 
 let g:lightline.enable = {
   \ 'statusline': 1,
-  \ 'tabline': 0
+  \ 'tabline': 1
   \ }
 
 " nerdtree
