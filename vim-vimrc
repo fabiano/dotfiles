@@ -31,6 +31,10 @@ set list
 syntax on
 filetype plugin indent on
 
+" remaps
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+
 " gvim
 if has('gui_running')
   set guifont=Fira\ Code:h18
@@ -39,21 +43,11 @@ if has('gui_running')
   set renderoptions=type:directx
 endif
 
-" buffet
-function! g:BuffetSetCustomColors()
-    hi! BuffetCurrentBuffer cterm=NONE ctermbg=1 ctermfg=0
-    hi! BuffetActiveBuffer cterm=NONE ctermbg=1 ctermfg=0
-    hi! BuffetBuffer cterm=NONE ctermbg=0 ctermfg=10
-    hi! BuffetTrunc cterm=bold ctermbg=0 ctermfg=10
-    hi! BuffetTab cterm=NONE ctermbg=0 ctermfg=10
-endfunction
-
 " vim-plug
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plug-plugins')
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'bagrat/vim-buffet'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -69,18 +63,6 @@ call plug#end()
 set background=dark
 colorscheme solarized
 
-" airline
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-
-" buffet
-let g:buffet_separator=''
-
-noremap <Tab> :bn<CR>
-noremap <S-Tab> :bp<CR>
-noremap <Leader><Tab> :Bw<CR>
-noremap <Leader><S-Tab> :Bw!<CR>
-
 " ctrlp.vim
 let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
 
@@ -92,11 +74,6 @@ let g:lightline = {
 let g:lightline.enable = {
   \ 'statusline': 1,
   \ 'tabline': 0
-  \ }
-
-let g:lightline.tabline = {
-  \ 'left': [ [ 'tabs' ] ],
-  \ 'right': [ [ ] ]
   \ }
 
 " nerdtree
