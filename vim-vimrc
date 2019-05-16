@@ -5,8 +5,10 @@ endif
 set backspace=indent,eol,start
 set colorcolumn=+1
 set encoding=utf8
+set laststatus=2
 set nobackup
 set nocompatible
+set noshowmode
 set noswapfile
 set nowrap
 set nowritebackup
@@ -29,6 +31,23 @@ set list
 syntax on
 filetype plugin indent on
 
+" gvim
+if has('gui_running')
+  set guifont=Fira\ Code:h18
+  set lines=25
+  set columns=100
+  set renderoptions=type:directx
+endif
+
+" buffet
+function! g:BuffetSetCustomColors()
+    hi! BuffetCurrentBuffer cterm=NONE ctermbg=1 ctermfg=0
+    hi! BuffetActiveBuffer cterm=NONE ctermbg=1 ctermfg=0
+    hi! BuffetBuffer cterm=NONE ctermbg=0 ctermfg=10
+    hi! BuffetTrunc cterm=bold ctermbg=0 ctermfg=10
+    hi! BuffetTab cterm=NONE ctermbg=0 ctermfg=10
+endfunction
+
 " vim-plug
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plug-plugins')
@@ -37,40 +56,50 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bagrat/vim-buffet'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
+" theme
+set background=dark
+colorscheme solarized
+
+" airline
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
+" buffet
+let g:buffet_separator=''
+
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+noremap <Leader><Tab> :Bw<CR>
+noremap <Leader><S-Tab> :Bw!<CR>
+
 " ctrlp.vim
 let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
 
-" solarized dark
-set background=dark
+" lightline
+let g:lightline = {
+  \ 'colorscheme': 'solarized',
+  \ }
 
-if has('gui_win32')
-  colorscheme solarized
-elseif has('win32')
-  colorscheme default
-else
-  colorscheme solarized
-endif
+let g:lightline.enable = {
+  \ 'statusline': 1,
+  \ 'tabline': 0
+  \ }
 
-" gVim
-if has('gui_running')
-  set guifont=Fira\ Code:h18
-  set lines=25
-  set columns=100
-  set renderoptions=type:directx
-endif
+let g:lightline.tabline = {
+  \ 'left': [ [ 'tabs' ] ],
+  \ 'right': [ [ ] ]
+  \ }
 
-" NERDTree
+" nerdtree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'NERDTreeFocus' | exe 'cd '.argv()[0] | endif
 autocmd BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
@@ -78,10 +107,6 @@ autocmd BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isT
 map <C-n> :NERDTreeToggle<CR>
 
 let NERDTreeShowHidden=1
-
-" airline
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
 
 " syntastic
 set statusline+=%#warningmsg#
