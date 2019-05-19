@@ -35,6 +35,7 @@ filetype plugin indent on
 " remaps
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
+noremap <C-W> :bd<CR>
 
 " gvim
 if has('gui_running')
@@ -77,15 +78,15 @@ let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
 
 " lightline
 if has('win32')
-  let g:lightline = { 'colorscheme': 'snazzy' }
+  let g:lightline={'colorscheme': 'snazzy'}
 else
-  let g:lightline = { 'colorscheme': 'solarized' }
+  let g:lightline={'colorscheme': 'solarized'}
 endif
 
-let g:lightline.enable = { 'statusline': 1, 'tabline': 1 }
-let g:lightline.tabline = { 'left': [[ 'buffers' ]], 'right': [[]] }
-let g:lightline.component_expand = { 'buffers': 'lightline#bufferline#buffers' }
-let g:lightline.component_type   = { 'buffers': 'tabsel' }
+let g:lightline.enable={'statusline': 1, 'tabline': 1}
+let g:lightline.tabline={'left': [['buffers']], 'right': [[]]}
+let g:lightline.component_expand={'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type={'buffers': 'tabsel'}
 
 " nerdtree
 autocmd StdinReadPre * let s:std_in=1
