@@ -23,6 +23,7 @@
   brew install vim
   brew install youtube-dl
   brew install zsh
+  brew install zsh-autosuggestions
   brew install zsh-syntax-highlighting
   brew cask install 1password
   brew cask install android-file-transfer
