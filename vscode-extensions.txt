@@ -1,8 +1,7 @@
-coenraads.bracket-pair-colorizer
+oenraadS.bracket-pair-colorizer
 dbaeumer.vscode-eslint
-dotjoshjohnson.xml
-editorconfig.editorconfig
-ionide.ionide-fsharp
+DotJoshJohnson.xml
+EditorConfig.EditorConfig
 ms-vscode.csharp
 ms-vscode.powershell
 robinbentley.sass-indented
