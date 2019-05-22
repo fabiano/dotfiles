@@ -75,6 +75,7 @@ endif
 
 " ctrlp.vim
 let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
+let g:ctrlp_show_hidden=1
 
 " lightline
 if has('win32')
