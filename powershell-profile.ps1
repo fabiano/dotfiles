@@ -4,8 +4,8 @@ function Clear-History {
   Remove-Item (Get-PSReadlineOption).HistorySavePath
 }
 
-function x ($Name) {
-  Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$Name" $HOME `
+function X ($Name) {
+  Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$Name" -Path $HOME `
     | Select-Object -ExpandProperty FullName `
     | Set-Location
 }
@@ -24,9 +24,20 @@ function Prompt {
   return " "
 }
 
+function Home {
+  Set-Location -Path $HOME
+}
+
 function MoveUp {
-  cd ..
+  Set-Location -Path ..
 }
 
 # alias
+New-Alias -Name "~" -Value Home
 New-Alias -Name ".." -Value MoveUp
+
+# https://github.com/lzybkr/PSReadLine
+Import-Module PSReadLine
+
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
