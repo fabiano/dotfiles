@@ -19,7 +19,6 @@
   brew install bash-completion@2
   brew install git
   brew install node
-  brew install rust
   brew install vim
   brew install youtube-dl
   brew install zsh
@@ -40,7 +39,6 @@
   brew cask install steelseries-engine
   brew cask install sublime-text
   brew cask install the-unarchiver
-  brew cask install transmission
   brew cask install tuxera-ntfs
   brew cask install visual-studio-code
   brew cleanup
