@@ -197,3 +197,6 @@ $Fonts = $SA.NameSpace(0x14)
 Get-ChildItem -Path font-*.ttf | ForEach-Object { $Fonts.CopyHere($_.FullName) }
 
 Remove-Item -Path font-*.ttf -Recurse
+
+# Disable Bing search results from start menu
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
