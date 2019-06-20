@@ -1,4 +1,4 @@
-oenraadS.bracket-pair-colorizer
+coenraads.bracket-pair-colorizer-2
 dbaeumer.vscode-eslint
 DotJoshJohnson.xml
 EditorConfig.EditorConfig
