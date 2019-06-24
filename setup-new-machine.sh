@@ -29,6 +29,7 @@
   brew cask install caffeine
   brew cask install firefox
   brew cask install font-fira-code
+  brew cask install font-iosevka
   brew cask install forklift
   brew cask install gimp
   brew cask install github
