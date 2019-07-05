@@ -1,7 +1,10 @@
-coenraads.bracket-pair-colorizer-2
+CoenraadS.bracket-pair-colorizer-2
 dbaeumer.vscode-eslint
 DotJoshJohnson.xml
 EditorConfig.EditorConfig
+ms-azuretools.vscode-docker
 ms-vscode.csharp
 ms-vscode.powershell
+PKief.material-icon-theme
 robinbentley.sass-indented
+teabyii.ayu
