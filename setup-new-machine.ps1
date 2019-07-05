@@ -134,7 +134,7 @@ if (-Not (Test-Path -Path "${env:PROGRAMFILES}\Mozilla Firefox\firefox.exe")) {
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 
 # set environment variables
-[Environment]::SetEnvironmentVariable("GIT_SSH", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
+[Environment]::SetEnvironmentVariable("GIT_SSH", "C:\Windows\System32\OpenSSH\ssh.exe", "User")
 
 # start ssh-agent service
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
