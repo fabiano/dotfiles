@@ -1,4 +1,4 @@
-if has("win32")
+if has('win32')
   set runtimepath+=~/.vim
 endif
 
@@ -34,7 +34,7 @@ filetype plugin indent on
 
 " gvim
 if has('gui_running')
-  set guifont=Fira\ Code:h18
+  set guifont=Iosevka:h16
   set guioptions-=e
   set lines=25
   set columns=100
@@ -60,25 +60,22 @@ Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 " theme
-set background=dark
+let s:colorscheme='solarized'
 
 if has('win32')
-  colorscheme snazzy
-else
-  colorscheme solarized
+  let s:colorscheme='snazzy'
 endif
+
+set background=dark
+execute 'colorscheme ' . s:colorscheme
 
 " ctrlp.vim
 let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
 let g:ctrlp_show_hidden=1
 
 " lightline
-if has('win32')
-  let g:lightline={'colorscheme': 'snazzy'}
-else
-  let g:lightline={'colorscheme': 'solarized'}
-endif
-
+let g:lightline={}
+let g:lightline.colorscheme=s:colorscheme
 let g:lightline.enable={'statusline': 1, 'tabline': 1}
 let g:lightline.tabline={'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand={'buffers': 'lightline#bufferline#buffers'}
