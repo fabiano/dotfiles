@@ -63,7 +63,7 @@ function Prompt {
 
   Write-Host ""
 
-  if ($env:HYPER -Eq "1") {
+  if ($env:HYPER -Eq "1" -Or $env:WT_SESSION) {
     Write-Host "❯❯" -NoNewLine -ForegroundColor DarkMagenta
   }
   else {
