@@ -3,7 +3,7 @@
     "editor.dragAndDrop": true,
     "editor.fontFamily": "Iosevka",
     "editor.fontLigatures": true,
-    "editor.fontSize": 22,
+    "editor.fontSize": 20,
     "editor.insertSpaces": true,
     "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "ctrlCmd",
@@ -18,7 +18,7 @@
     "terminal.integrated.fontSize": 16,
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
-    "workbench.colorTheme": "Ayu Light Bordered",
+    "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile"
 }
