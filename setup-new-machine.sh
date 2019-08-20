@@ -98,8 +98,4 @@
   ln -s $DOTFILES_INSTALL_DIR/sublime-preferences.sublime-settings $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
   ln -s $DOTFILES_INSTALL_DIR/sublime-package-control.sublime-settings $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
   curl -fLo $HOME/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/Package\ Control.sublime-package --create-dirs https://packagecontrol.io/Package%20Control.sublime-package
-
-  # π
-  mkdir -p $HOME/Library/Mobile\ Documents/com\~apple\~CloudDocs/π
-  ln -s $HOME/Library/Mobile\ Documents/com\~apple\~CloudDocs/π $HOME/π
 }
