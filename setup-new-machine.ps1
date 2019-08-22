@@ -36,6 +36,7 @@ choco install github-desktop --confirm
 choco install googlechrome --confirm
 choco install insomnia-rest-api-client --confirm
 choco install jabra-direct --confirm
+choco install microsoft-windows-terminal --confirm
 choco install nodejs --confirm
 choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
 choco install python --confirm
@@ -86,6 +87,9 @@ vim -c "PlugInstall" -c "qa!"
 New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOTFILES_INSTALL_DIR\vscode-settings.json
 
 Get-Content -Path $DOTFILES_INSTALL_DIR\vscode-extensions.txt | ForEach-Object { code --install-extension $_ }
+
+# configure windows terminal
+New-SymbolicLink -Path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\profiles.json -Value $DOTFILES_INSTALL_DIR\win-terminal-profiles.json
 
 # install fonts
 $SA = New-Object -ComObject Shell.Application
