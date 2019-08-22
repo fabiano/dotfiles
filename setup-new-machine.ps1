@@ -63,7 +63,7 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
 git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
 # update command prompt colors
-& $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy
+& $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
 
 # configure git
 New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconfig
