@@ -38,7 +38,6 @@
   brew cask install jabra-direct
   brew cask install licecap
   brew cask install steelseries-engine
-  brew cask install sublime-text
   brew cask install the-unarchiver
   brew cask install tuxera-ntfs
   brew cask install visual-studio-code
@@ -91,11 +90,4 @@
   mkdir -p $HOME/Library/Application\ Support/Code/User
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/Library/Application\ Support/Code/User/settings.json
   IFS=$'\r\n'; for line in `cat $DOTFILES_INSTALL_DIR/vscode-extensions.txt`; do code --install-extension ${line}; done
-
-  # configure sublime text
-  rm -rf $HOME/Library/Application\ Support/Sublime\ Text\ 3
-  mkdir -p $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-  ln -s $DOTFILES_INSTALL_DIR/sublime-preferences.sublime-settings $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-  ln -s $DOTFILES_INSTALL_DIR/sublime-package-control.sublime-settings $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
-  curl -fLo $HOME/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/Package\ Control.sublime-package --create-dirs https://packagecontrol.io/Package%20Control.sublime-package
 }
