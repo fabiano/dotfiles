@@ -34,10 +34,12 @@ choco install firefox --confirm
 choco install git --confirm --params "/GitOnlyOnPath /WindowsTerminal /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration"
 choco install github-desktop --confirm
 choco install googlechrome --confirm
+choco install insomnia-rest-api-client --confirm
+choco install jabra-direct --confirm
 choco install nodejs --confirm
 choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
+choco install python --confirm
 choco install rdcman --confirm
-choco install sublimetext3 --confirm
 choco install vim --confirm
 choco install vscode --confirm --params "/NoDesktopIcon /NoQuicklaunchIcon"
 
@@ -88,16 +90,6 @@ New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOT
 
 Get-Content -Path $DOTFILES_INSTALL_DIR\vscode-extensions.txt | ForEach-Object { code --install-extension $_ }
 
-# configure sublime text
-New-SymbolicLink -Path "$HOME\AppData\Roaming\Sublime Text 3\Packages\User\Preferences.sublime-settings" -Value $DOTFILES_INSTALL_DIR\sublime-preferences.sublime-settings
-New-SymbolicLink -Path "$HOME\AppData\Roaming\Sublime Text 3\Packages\User\Package Control.sublime-settings" -Value $DOTFILES_INSTALL_DIR\sublime-package-control.sublime-settings
-
-if (-Not (Test-Path -Path "$HOME\AppData\Roaming\Sublime Text 3\Installed Packages")) {
-  New-Item -ItemType Directory -Path "$HOME\AppData\Roaming\Sublime Text 3\Installed Packages"
-}
-
-Invoke-WebRequest -Uri "https://packagecontrol.io/Package%20Control.sublime-package" -Outfile "$HOME\AppData\Roaming\Sublime Text 3\Installed Packages\Package Control.sublime-package"
-
 # install fonts
 $SA = New-Object -ComObject Shell.Application
 $Fonts = $SA.NameSpace(0x14)
@@ -120,5 +112,5 @@ Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
 
-# disable Bing search results from start menu
+# disable bing search results from start menu
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
