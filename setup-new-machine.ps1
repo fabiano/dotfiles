@@ -62,9 +62,6 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
 
 git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
-# update command prompt colors
-& $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
-
 # configure git
 New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconfig
 
@@ -114,3 +111,9 @@ Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
 
 # disable bing search results from start menu
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
+
+# update command prompt
+REG DELETE HKEY_CURRENT_USER\Console /va /f
+REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
+
+& $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
