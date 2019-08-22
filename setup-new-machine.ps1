@@ -29,17 +29,17 @@ function New-SymbolicLink ($Path, $Value) {
 iex ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/install.ps1"))
 
 # install dependencies
-choco install 1password
-choco install 7zip
-choco install firefox
-choco install git --params "/GitOnlyOnPath /WindowsTerminal /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration"
-choco install googlechrome
-choco install nodejs
-choco install powershell-core --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
-choco install rdcman
-choco install sublimetext3
-choco install vim
-choco install vscode --params "/NoDesktopIcon /NoQuicklaunchIcon"
+choco install 1password --confirm
+choco install 7zip --confirm
+choco install firefox --confirm
+choco install git --confirm --params "/GitOnlyOnPath /WindowsTerminal /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration"
+choco install googlechrome --confirm
+choco install nodejs --confirm
+choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
+choco install rdcman --confirm
+choco install sublimetext3 --confirm
+choco install vim --confirm
+choco install vscode --confirm --params "/NoDesktopIcon /NoQuicklaunchIcon"
 
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
