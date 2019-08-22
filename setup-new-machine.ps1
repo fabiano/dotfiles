@@ -26,7 +26,7 @@ function New-SymbolicLink ($Path, $Value) {
 }
 
 # install chocolatey
-iex ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/install.ps1"))
+Invoke-Expression -Command ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/install.ps1"))
 
 # install dependencies
 choco install 7zip --confirm
