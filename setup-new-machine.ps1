@@ -29,7 +29,6 @@ function New-SymbolicLink ($Path, $Value) {
 iex ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/install.ps1"))
 
 # install dependencies
-choco install 1password --confirm
 choco install 7zip --confirm
 choco install firefox --confirm
 choco install git --confirm --params "/GitOnlyOnPath /WindowsTerminal /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration"
