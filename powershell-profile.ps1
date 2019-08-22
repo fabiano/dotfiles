@@ -81,6 +81,10 @@ function MoveUp {
   Set-Location -Path ..
 }
 
+function Start-HttpServer ($Port) {
+  & python -m http.server $Port
+}
+
 # alias
 New-Alias -Name "~" -Value Home
 New-Alias -Name ".." -Value MoveUp
