@@ -32,6 +32,7 @@ iex ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/in
 choco install 7zip --confirm
 choco install firefox --confirm
 choco install git --confirm --params "/GitOnlyOnPath /WindowsTerminal /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration"
+choco install github-desktop --confirm
 choco install googlechrome --confirm
 choco install nodejs --confirm
 choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
