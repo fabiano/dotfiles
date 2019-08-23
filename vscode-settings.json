@@ -14,6 +14,7 @@
     "git.autofetch": true,
     "git.confirmSync": false,
     "markdown.preview.fontSize": 16,
+    "powershell.integratedConsole.showOnStartup": false,
     "terminal.integrated.fontFamily": "Iosevka",
     "terminal.integrated.fontSize": 16,
     "window.restoreWindows": "none",
