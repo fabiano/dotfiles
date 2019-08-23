@@ -35,7 +35,6 @@ choco install git --confirm --params "/GitOnlyOnPath /WindowsTerminal /NoShellIn
 choco install github-desktop --confirm
 choco install googlechrome --confirm
 choco install insomnia-rest-api-client --confirm
-choco install jabra-direct --confirm
 choco install microsoft-windows-terminal --confirm
 choco install nodejs --confirm
 choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
