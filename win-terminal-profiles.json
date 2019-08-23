@@ -2,8 +2,8 @@
     "globals": {
         "alwaysShowTabs": true,
         "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-        "initialCols": 150,
-        "initialRows": 30,
+        "initialCols": 120,
+        "initialRows": 25,
         "keybindings": [
             {
                 "command": "closeTab",
