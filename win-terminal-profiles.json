@@ -1,287 +1,256 @@
 {
-  "globals" : 
-  {
-      "alwaysShowTabs" : true,
-      "defaultProfile" : "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-      "initialCols" : 150,
-      "initialRows" : 30,
-      "keybindings" : 
-      [
-          {
-              "command" : "closeTab",
-              "keys" : 
-              [
-                  "ctrl+w"
-              ]
-          },
-          {
-              "command" : "newTab",
-              "keys" : 
-              [
-                  "ctrl+t"
-              ]
-          },
-          {
-              "command" : "newTabProfile0",
-              "keys" : 
-              [
-                  "ctrl+shift+1"
-              ]
-          },
-          {
-              "command" : "newTabProfile1",
-              "keys" : 
-              [
-                  "ctrl+shift+2"
-              ]
-          },
-          {
-              "command" : "newTabProfile2",
-              "keys" : 
-              [
-                  "ctrl+shift+3"
-              ]
-          },
-          {
-              "command" : "newTabProfile3",
-              "keys" : 
-              [
-                  "ctrl+shift+4"
-              ]
-          },
-          {
-              "command" : "newTabProfile4",
-              "keys" : 
-              [
-                  "ctrl+shift+5"
-              ]
-          },
-          {
-              "command" : "newTabProfile5",
-              "keys" : 
-              [
-                  "ctrl+shift+6"
-              ]
-          },
-          {
-              "command" : "newTabProfile6",
-              "keys" : 
-              [
-                  "ctrl+shift+7"
-              ]
-          },
-          {
-              "command" : "newTabProfile7",
-              "keys" : 
-              [
-                  "ctrl+shift+8"
-              ]
-          },
-          {
-              "command" : "newTabProfile8",
-              "keys" : 
-              [
-                  "ctrl+shift+9"
-              ]
-          },
-          {
-              "command" : "nextTab",
-              "keys" : 
-              [
-                  "ctrl+tab"
-              ]
-          },
-          {
-              "command" : "openSettings",
-              "keys" : 
-              [
-                  "ctrl+,"
-              ]
-          },
-          {
-              "command" : "prevTab",
-              "keys" : 
-              [
-                  "ctrl+shift+tab"
-              ]
-          },
-          {
-              "command" : "scrollDown",
-              "keys" : 
-              [
-                  "ctrl+shift+down"
-              ]
-          },
-          {
-              "command" : "scrollDownPage",
-              "keys" : 
-              [
-                  "ctrl+shift+pgdn"
-              ]
-          },
-          {
-              "command" : "scrollUp",
-              "keys" : 
-              [
-                  "ctrl+shift+up"
-              ]
-          },
-          {
-              "command" : "scrollUpPage",
-              "keys" : 
-              [
-                  "ctrl+shift+pgup"
-              ]
-          },
-          {
-              "command" : "switchToTab0",
-              "keys" : 
-              [
-                  "alt+1"
-              ]
-          },
-          {
-              "command" : "switchToTab1",
-              "keys" : 
-              [
-                  "alt+2"
-              ]
-          },
-          {
-              "command" : "switchToTab2",
-              "keys" : 
-              [
-                  "alt+3"
-              ]
-          },
-          {
-              "command" : "switchToTab3",
-              "keys" : 
-              [
-                  "alt+4"
-              ]
-          },
-          {
-              "command" : "switchToTab4",
-              "keys" : 
-              [
-                  "alt+5"
-              ]
-          },
-          {
-              "command" : "switchToTab5",
-              "keys" : 
-              [
-                  "alt+6"
-              ]
-          },
-          {
-              "command" : "switchToTab6",
-              "keys" : 
-              [
-                  "alt+7"
-              ]
-          },
-          {
-              "command" : "switchToTab7",
-              "keys" : 
-              [
-                  "alt+8"
-              ]
-          },
-          {
-              "command" : "switchToTab8",
-              "keys" : 
-              [
-                  "alt+9"
-              ]
-          }
-      ],
-      "requestedTheme" : "system",
-      "showTabsInTitlebar" : true,
-      "showTerminalTitleInTitlebar" : true,
-      "wordDelimiters" : " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502"
-  },
-  "profiles" : 
-  [
-      {
-          "acrylicOpacity" : 0.5,
-          "closeOnExit" : true,
-          "colorScheme" : "Snazzy",
-          "commandline" : "C:\\Program Files\\PowerShell\\6\\pwsh.exe",
-          "cursorColor" : "#FFFFFF",
-          "cursorShape" : "emptyBox",
-          "fontFace" : "Iosevka",
-          "fontSize" : 16,
-          "guid" : "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-          "historySize" : 9001,
-          "icon" : "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
-          "name" : "PowerShell Core",
-          "padding" : "10, 10, 10, 10",
-          "snapOnInput" : true,
-          "startingDirectory" : "%USERPROFILE%",
-          "useAcrylic" : false
-      },
-      {
-          "acrylicOpacity" : 0.5,
-          "background" : "#012456",
-          "closeOnExit" : true,
-          "colorScheme" : "Snazzy",
-          "commandline" : "powershell.exe",
-          "cursorColor" : "#FFFFFF",
-          "cursorShape" : "emptyBox",
-          "fontFace" : "Iosevka",
-          "fontSize" : 16,
-          "guid" : "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-          "historySize" : 9001,
-          "icon" : "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-          "name" : "Windows PowerShell",
-          "padding" : "10, 10, 10, 10",
-          "snapOnInput" : true,
-          "startingDirectory" : "%USERPROFILE%",
-          "useAcrylic" : false
-      },
-      {
-          "acrylicOpacity" : 0.75,
-          "closeOnExit" : true,
-          "colorScheme" : "Snazzy",
-          "commandline" : "cmd.exe",
-          "cursorColor" : "#FFFFFF",
-          "cursorShape" : "emptyBox",
-          "fontFace" : "Iosevka",
-          "fontSize" : 16,
-          "guid" : "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-          "historySize" : 9001,
-          "icon" : "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
-          "name" : "Command Prompt",
-          "padding" : "10, 10, 10, 10",
-          "snapOnInput" : true,
-          "startingDirectory" : "%USERPROFILE%",
-          "useAcrylic" : true
-      }
-  ],
-  "schemes" : 
-  [
-      {
-          "background" : "#282A36",
-          "black" : "#282A36",
-          "blue" : "#57C7FF",
-          "brightBlack" : "#686868",
-          "brightBlue" : "#57C7FF",
-          "brightCyan" : "#9AEDFE",
-          "brightGreen" : "#5AF78E",
-          "brightPurple" : "#FF6AC1",
-          "brightRed" : "#FF5C57",
-          "brightWhite" : "#EFF0EB",
-          "brightYellow" : "#F3F99D",
-          "cyan" : "#9AEDFE",
-          "foreground" : "#EFF0EB",
-          "green" : "#5AF78E",
-          "name" : "Snazzy",
-          "purple" : "#FF6AC1",
-          "red" : "#FF5C57",
-          "white" : "#F1F1F0",
-          "yellow" : "#F3F99D"
-      }
-  ]
+    "globals": {
+        "alwaysShowTabs": true,
+        "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "initialCols": 150,
+        "initialRows": 30,
+        "keybindings": [
+            {
+                "command": "closeTab",
+                "keys": [
+                    "ctrl+w"
+                ]
+            },
+            {
+                "command": "newTab",
+                "keys": [
+                    "ctrl+t"
+                ]
+            },
+            {
+                "command": "newTabProfile0",
+                "keys": [
+                    "ctrl+shift+1"
+                ]
+            },
+            {
+                "command": "newTabProfile1",
+                "keys": [
+                    "ctrl+shift+2"
+                ]
+            },
+            {
+                "command": "newTabProfile2",
+                "keys": [
+                    "ctrl+shift+3"
+                ]
+            },
+            {
+                "command": "newTabProfile3",
+                "keys": [
+                    "ctrl+shift+4"
+                ]
+            },
+            {
+                "command": "newTabProfile4",
+                "keys": [
+                    "ctrl+shift+5"
+                ]
+            },
+            {
+                "command": "newTabProfile5",
+                "keys": [
+                    "ctrl+shift+6"
+                ]
+            },
+            {
+                "command": "newTabProfile6",
+                "keys": [
+                    "ctrl+shift+7"
+                ]
+            },
+            {
+                "command": "newTabProfile7",
+                "keys": [
+                    "ctrl+shift+8"
+                ]
+            },
+            {
+                "command": "newTabProfile8",
+                "keys": [
+                    "ctrl+shift+9"
+                ]
+            },
+            {
+                "command": "nextTab",
+                "keys": [
+                    "ctrl+tab"
+                ]
+            },
+            {
+                "command": "openSettings",
+                "keys": [
+                    "ctrl+,"
+                ]
+            },
+            {
+                "command": "prevTab",
+                "keys": [
+                    "ctrl+shift+tab"
+                ]
+            },
+            {
+                "command": "scrollDown",
+                "keys": [
+                    "ctrl+shift+down"
+                ]
+            },
+            {
+                "command": "scrollDownPage",
+                "keys": [
+                    "ctrl+shift+pgdn"
+                ]
+            },
+            {
+                "command": "scrollUp",
+                "keys": [
+                    "ctrl+shift+up"
+                ]
+            },
+            {
+                "command": "scrollUpPage",
+                "keys": [
+                    "ctrl+shift+pgup"
+                ]
+            },
+            {
+                "command": "switchToTab0",
+                "keys": [
+                    "alt+1"
+                ]
+            },
+            {
+                "command": "switchToTab1",
+                "keys": [
+                    "alt+2"
+                ]
+            },
+            {
+                "command": "switchToTab2",
+                "keys": [
+                    "alt+3"
+                ]
+            },
+            {
+                "command": "switchToTab3",
+                "keys": [
+                    "alt+4"
+                ]
+            },
+            {
+                "command": "switchToTab4",
+                "keys": [
+                    "alt+5"
+                ]
+            },
+            {
+                "command": "switchToTab5",
+                "keys": [
+                    "alt+6"
+                ]
+            },
+            {
+                "command": "switchToTab6",
+                "keys": [
+                    "alt+7"
+                ]
+            },
+            {
+                "command": "switchToTab7",
+                "keys": [
+                    "alt+8"
+                ]
+            },
+            {
+                "command": "switchToTab8",
+                "keys": [
+                    "alt+9"
+                ]
+            }
+        ],
+        "requestedTheme": "system",
+        "showTabsInTitlebar": true,
+        "showTerminalTitleInTitlebar": true,
+        "wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502"
+    },
+    "profiles": [
+        {
+            "acrylicOpacity": 0.5,
+            "closeOnExit": true,
+            "colorScheme": "Snazzy",
+            "commandline": "C:\\Program Files\\PowerShell\\6\\pwsh.exe",
+            "cursorColor": "#FFFFFF",
+            "cursorShape": "emptyBox",
+            "fontFace": "Iosevka",
+            "fontSize": 16,
+            "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+            "historySize": 9001,
+            "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
+            "name": "PowerShell Core",
+            "padding": "10, 10, 10, 10",
+            "snapOnInput": true,
+            "startingDirectory": "%USERPROFILE%",
+            "useAcrylic": false
+        },
+        {
+            "acrylicOpacity": 0.5,
+            "background": "#012456",
+            "closeOnExit": true,
+            "colorScheme": "Snazzy",
+            "commandline": "powershell.exe",
+            "cursorColor": "#FFFFFF",
+            "cursorShape": "emptyBox",
+            "fontFace": "Iosevka",
+            "fontSize": 16,
+            "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+            "historySize": 9001,
+            "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+            "name": "Windows PowerShell",
+            "padding": "10, 10, 10, 10",
+            "snapOnInput": true,
+            "startingDirectory": "%USERPROFILE%",
+            "useAcrylic": false
+        },
+        {
+            "acrylicOpacity": 0.75,
+            "closeOnExit": true,
+            "colorScheme": "Snazzy",
+            "commandline": "cmd.exe",
+            "cursorColor": "#FFFFFF",
+            "cursorShape": "emptyBox",
+            "fontFace": "Iosevka",
+            "fontSize": 16,
+            "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+            "historySize": 9001,
+            "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+            "name": "Command Prompt",
+            "padding": "10, 10, 10, 10",
+            "snapOnInput": true,
+            "startingDirectory": "%USERPROFILE%",
+            "useAcrylic": true
+        }
+    ],
+    "schemes": [
+        {
+            "background": "#282A36",
+            "black": "#282A36",
+            "blue": "#57C7FF",
+            "brightBlack": "#686868",
+            "brightBlue": "#57C7FF",
+            "brightCyan": "#9AEDFE",
+            "brightGreen": "#5AF78E",
+            "brightPurple": "#FF6AC1",
+            "brightRed": "#FF5C57",
+            "brightWhite": "#EFF0EB",
+            "brightYellow": "#F3F99D",
+            "cyan": "#9AEDFE",
+            "foreground": "#EFF0EB",
+            "green": "#5AF78E",
+            "name": "Snazzy",
+            "purple": "#FF6AC1",
+            "red": "#FF5C57",
+            "white": "#F1F1F0",
+            "yellow": "#F3F99D"
+        }
+    ]
 }
