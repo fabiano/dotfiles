@@ -117,7 +117,7 @@ Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
 
 # update command prompt
-REG DELETE HKEY_CURRENT_USER\Console /va /f
+REG DELETE HKEY_CURRENT_USER\Console /f
 REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
 
 & $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
