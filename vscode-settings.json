@@ -18,7 +18,7 @@
     "terminal.integrated.fontFamily": "Iosevka",
     "terminal.integrated.fontSize": 16,
     "window.restoreWindows": "none",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile"
