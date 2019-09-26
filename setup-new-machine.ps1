@@ -88,7 +88,7 @@ New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOT
 Get-Content -Path $DOTFILES_INSTALL_DIR\vscode-extensions.txt | ForEach-Object { code --install-extension $_ }
 
 # configure windows terminal
-New-SymbolicLink -Path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\profiles.json -Value $DOTFILES_INSTALL_DIR\win-terminal-profiles.json
+New-SymbolicLink -Path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json -Value $DOTFILES_INSTALL_DIR\win-terminal-profiles.json
 
 # install fonts
 $SA = New-Object -ComObject Shell.Application
