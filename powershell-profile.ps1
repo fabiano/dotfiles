@@ -32,7 +32,7 @@ function Prompt {
         continue
       }
 
-      "^## (?<branchName>\S+?)(\.\.\.(?<upstream>\S+))(.*)?$" {
+      "^##\s(?<branchName>\S+?)(\.{3}(?<upstream>\S+?))?$" {
         $branchName = $matches["branchName"]
 
         continue
