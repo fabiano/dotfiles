@@ -32,8 +32,22 @@ function Prompt {
         continue
       }
 
-      "^##\s(?<branchName>\S+?)(\.{3}(?<upstream>\S+?))?$" {
+      <#
+        ## master
+        ## master...origin/master
+        ## master...origin/master [ahead 1]
+        ## master...origin/master [behind 1]
+        ## master...origin/master [ahead 1, behind 1]
+        ## feature/ping
+        ## feature/ping...origin/feature/ping
+        ## feature/ping...origin/feature/ping [ahead 1]
+        ## feature/ping...origin/feature/ping [behind 1]
+        ## feature/ping...origin/feature/ping [ahead 1, behind 1]
+      #>
+      "^##\s(?<branchName>\S+?)(\.{3}(?<upstream>\S+?))?(\s\[(ahead\s(?<ahead>\d*))?((,\s)?behind\s(?<behind>\d*))?\])?$" {
         $branchName = $matches["branchName"]
+        $ahead = $matches["ahead"]
+        $behind = $matches["behind"]
 
         continue
       }
@@ -54,6 +68,17 @@ function Prompt {
     }
 
     Write-Host -NoNewLine " $branchName" -ForegroundColor DarkGray
+
+    if ($ahead -And $behind) {
+      Write-Host -NoNewLine " $ahead↕$behind" -ForegroundColor DarkGray
+    } elseif ($ahead) {
+      Write-Host -NoNewLine " ↑$ahead" -ForegroundColor DarkGray
+    } elseif ($behind) {
+      Write-Host -NoNewLine " ↓$behind" -ForegroundColor DarkGray
+    } else {
+      Write-Host -NoNewLine " ≡" -ForegroundColor DarkGray
+    }
+
     Write-Host -NoNewLine " ?$($changes.untracked)" -ForegroundColor DarkGray
     Write-Host -NoNewLine " +$($changes.added)" -ForegroundColor DarkGray
     Write-Host -NoNewLine " ~$($changes.modified)" -ForegroundColor DarkGray
