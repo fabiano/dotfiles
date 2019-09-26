@@ -6,7 +6,7 @@ function Clear-History {
 
 function X ($Name) {
   Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$Name" -Path $HOME `
-    | Select-Object -ExpandProperty FullName `
+    | Select-Object -ExpandProperty FullName -First 1 `
     | Set-Location
 }
 
@@ -32,7 +32,7 @@ function Prompt {
         continue
       }
 
-      "^## (?<branchName>\S+?)(\.\.\.(?<upstream>\S+))?$" {
+      "^## (?<branchName>\S+?)(\.\.\.(?<upstream>\S+))(.*)?$" {
         $branchName = $matches["branchName"]
 
         continue
