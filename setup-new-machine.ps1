@@ -30,6 +30,7 @@ Invoke-Expression -Command ((New-Object System.Net.WebClient).DownloadString("ht
 
 # install dependencies
 choco install 7zip --confirm
+choco install docker-desktop --confirm
 choco install firefox --confirm
 choco install git --confirm --params "/GitOnlyOnPath /WindowsTerminal /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration"
 choco install github-desktop --confirm
@@ -40,6 +41,7 @@ choco install nodejs --confirm
 choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
 choco install python --confirm
 choco install rdcman --confirm
+choco install telegram --confirm
 choco install vim --confirm
 choco install vscode --confirm --params "/NoDesktopIcon /NoQuicklaunchIcon"
 
