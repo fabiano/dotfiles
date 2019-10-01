@@ -62,7 +62,9 @@ call plug#end()
 " theme
 let s:colorscheme='solarized'
 
-if has('win32')
+if has('gui_running')
+  let s:colorscheme='solarized'
+elseif has('win32')
   let s:colorscheme='snazzy'
 endif
 
