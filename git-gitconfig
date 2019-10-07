@@ -4,7 +4,7 @@
 [alias]
 	aco    = !git add --all && git commit --message
 	boom   = !git reset --hard HEAD && git clean -fd
-	br     = "!f() { if [ -z ${1+x} ]; then git branch --all; else git branch $@; fi }; f"
+	br     = "!f() { if [ -z ${1+x} ]; then git branch; else git branch $@; fi }; f"
 	bugfix = checkout bugfix
 	ch     = "!f() { if [ -z ${1+x} ]; then git checkout master; else git checkout $@; fi }; f"
 	co     = commit
@@ -25,8 +25,6 @@
 	t      = tag
 	unco   = reset --mixed HEAD~
 	wip    = !git add --all && git commit --message "🕕"
-[pull]
-	ff = only
 [winUpdater]
 	recentlySeenVersion = 2.23.0.windows.1
 [filter "lfs"]
