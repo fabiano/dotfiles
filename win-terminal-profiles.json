@@ -11,7 +11,7 @@
             "colorScheme": "Snazzy",
             "cursorShape": "emptyBox",
             "fontFace": "Iosevka",
-            "fontSize": 16,
+            "fontSize": 14,
             "padding": "10, 10, 10, 10"
         },
         {
@@ -21,7 +21,7 @@
             "colorScheme": "Snazzy",
             "cursorShape": "emptyBox",
             "fontFace": "Iosevka",
-            "fontSize": 16,
+            "fontSize": 14,
             "padding": "10, 10, 10, 10"
         },
         {
@@ -31,7 +31,7 @@
             "colorScheme": "Snazzy",
             "cursorShape": "emptyBox",
             "fontFace": "Iosevka",
-            "fontSize": 16,
+            "fontSize": 14,
             "padding": "10, 10, 10, 10"
         },
         {
@@ -41,7 +41,7 @@
             "colorScheme": "Snazzy",
             "cursorShape": "emptyBox",
             "fontFace": "Iosevka",
-            "fontSize": 16,
+            "fontSize": 14,
             "padding": "10, 10, 10, 10"
         }
     ],
