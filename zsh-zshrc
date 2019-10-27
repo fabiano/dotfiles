@@ -22,4 +22,4 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias ..="cd .."
 alias ~="cd ~"
 alias ls="ls -G"
-alias http-s="python3 -m http.server"
+alias start-httpserver="python3 -m http.server"
