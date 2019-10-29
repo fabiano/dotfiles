@@ -40,7 +40,6 @@ choco install microsoft-windows-terminal --confirm
 choco install nodejs --confirm
 choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
 choco install python --confirm
-choco install rdcman --confirm
 choco install telegram --confirm
 choco install vim --confirm
 choco install vscode --confirm --params "/NoDesktopIcon /NoQuicklaunchIcon"
