@@ -26,7 +26,6 @@
   brew install zsh-syntax-highlighting
   brew cask install 1password
   brew cask install android-file-transfer
-  brew cask install caffeine
   brew cask install firefox
   brew cask install font-fira-code
   brew cask install font-iosevka
@@ -34,6 +33,7 @@
   brew cask install gimp
   brew cask install github
   brew cask install google-chrome
+  brew cask install intelliscape-caffeine
   brew cask install iterm2
   brew cask install jabra-direct
   brew cask install licecap
