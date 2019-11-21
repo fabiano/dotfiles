@@ -47,6 +47,7 @@
     ],
     "schemes": [
         {
+            "name": "Snazzy",
             "background": "#282A36",
             "black": "#282A36",
             "blue": "#57C7FF",
@@ -61,12 +62,18 @@
             "cyan": "#9AEDFE",
             "foreground": "#EFF0EB",
             "green": "#5AF78E",
-            "name": "Snazzy",
             "purple": "#FF6AC1",
             "red": "#FF5C57",
             "white": "#F1F1F0",
             "yellow": "#F3F99D"
         }
     ],
-    "keybindings": []
+    "keybindings": [
+        { "keys": ["ctrl+p"], "command": "splitHorizontal" },
+        { "keys": ["ctrl+shift+p"], "command": "splitVertical" },
+        { "keys": ["ctrl+up"], "command": "moveFocusUp" },
+        { "keys": ["ctrl+right"], "command": "moveFocusRight" },
+        { "keys": ["ctrl+down"], "command": "moveFocusDown" },
+        { "keys": ["ctrl+left"], "command": "moveFocusLeft" }
+    ]
 }
