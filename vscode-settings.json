@@ -13,6 +13,7 @@
     "files.defaultLanguage": "markdown",
     "git.autofetch": true,
     "git.confirmSync": false,
+    "gitlens.hovers.currentLine.over": "line",
     "markdown.preview.fontSize": 16,
     "powershell.integratedConsole.showOnStartup": false,
     "terminal.integrated.fontFamily": "Iosevka",
@@ -22,5 +23,4 @@
     "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
-    "gitlens.hovers.currentLine.over": "line"
 }
