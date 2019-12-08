@@ -25,24 +25,82 @@ function New-SymbolicLink ($Path, $Value) {
   New-Item -ItemType SymbolicLink -Path $Path -Value $Value
 }
 
-# install chocolatey
-Invoke-Expression -Command ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/install.ps1"))
+# install app function
+function Install-App ($URL, $Outfile, $Arguments) {
+  Invoke-WebRequest -Uri $URL -Outfile $Outfile
+
+  $Process = Start-Process -FilePath $Outfile -ArgumentList $arguments -Wait -PassThru
+
+  if (-Not ($Process.ExitCode -eq 0)) {
+    throw "${URL} installation has failed"
+  }
+}
 
 # install dependencies
-choco install 7zip --confirm
-choco install docker-desktop --confirm
-choco install firefox --confirm
-choco install git --confirm --params "/GitOnlyOnPath /WindowsTerminal /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration"
-choco install github-desktop --confirm
-choco install googlechrome --confirm
-choco install insomnia-rest-api-client --confirm
-choco install microsoft-windows-terminal --confirm
-choco install nodejs --confirm
-choco install powershell-core --confirm --install-arguments='"ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"'
-choco install python --confirm
-choco install telegram --confirm
-choco install vim --confirm
-choco install vscode --confirm --params "/NoDesktopIcon /NoQuicklaunchIcon"
+Install-App `
+  -URL "https://www.7-zip.org/a/7z1900-x64.exe" `
+  -OutFile "7z.exe" `
+  -Arguments @("/S")
+
+Install-App `
+  -URL "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" `
+  -OutFile "firefox.exe" `
+  -Arguments @("-ms")
+
+Install-App `
+  -URL "https://github.com/git-for-windows/git/releases/download/v2.21.0.windows.1/Git-2.21.0-64-bit.exe" `
+  -OutFile "git.exe" `
+  -Arguments @(
+    "/SP-"
+    "/SILENT"
+    "/SUPPRESSMSGBOXES"
+    "/COMPONENTS=""gitlfs,autoupdate"""
+    "/LOG=""git.log"""
+  )
+
+Install-App `
+  -URL "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" `
+  -OutFile "chrome.msi" `
+  -Arguments @("/passive", "/norestart", "/l*v ""chrome.log""")
+
+Install-App `
+  -URL "https://nodejs.org/dist/v12.13.1/node-v12.13.1-x64.msi" `
+  -OutFile "node.msi" `
+  -Arguments @("/passive", "/norestart", "/l*v ""node.log""")
+
+Install-App `
+  -URL "https://github.com/PowerShell/PowerShell/releases/download/v6.2.3/PowerShell-6.2.3-win-x64.msi" `
+  -OutFile "pwsh.msi" `
+  -Arguments @(
+    "/passive"
+    "/norestart"
+    "/l*v ""pwsh.log"""
+    "ADD_PATH=1"
+    "REGISTER_MANIFEST=1"
+    "ENABLE_PSREMOTING=0"
+    "ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+  )
+
+Install-App `
+  -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.1.2384/gvim_8.1.2384_x86.exe" `
+  -OutFile "gvim.exe" `
+  -Arguments @("")
+
+Install-App `
+  -URL "https://aka.ms/win32-x64-user-stable" `
+  -OutFile "vscode.exe" `
+  -Arguments @(
+    "/SP-"
+    "/SILENT"
+    "/SUPPRESSMSGBOXES"
+    "/TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
+    "/LOG=""vscode.log"""
+  )
+
+Install-App `
+  -URL "https://ufpr.dl.sourceforge.net/project/windirstat/windirstat/1.1.2%20installer%20re-release%20%28more%20languages%21%29/windirstat1_1_2_setup.exe" `
+  -OutFile "windirstat.exe" `
+  -Arguments @("/S")
 
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
