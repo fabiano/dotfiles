@@ -123,7 +123,7 @@ $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [En
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # add private key to the ssh-agent
-& $env:PROGRAMFILES\Git\usr\bin\ssh-add.exe $HOME\.ssh\id_rsa
+& $env:PROGRAMW6432\Git\usr\bin\ssh-add.exe $HOME\.ssh\id_rsa
 
 # clone repository
 if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
@@ -138,8 +138,8 @@ New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconf
 # configure powershell core
 New-SymbolicLink -Path $HOME\Documents\PowerShell\Profile.ps1 -Value $DOTFILES_INSTALL_DIR\powershell-profile.ps1
 
-& $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
-& $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+& $env:PROGRAMW6432\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+& $env:PROGRAMW6432\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
 
 # configure vim
 New-SymbolicLink -Path $HOME\.vimrc -Value $DOTFILES_INSTALL_DIR\vim-vimrc
