@@ -41,8 +41,6 @@ function Install-App ($URL, $Outfile, $Arguments) {
   if (-Not ($Process.ExitCode -eq 0)) {
     throw "${URL} installation has failed"
   }
-
-  Remove-Item -Path $Outfile
 }
 
 # install dependencies
