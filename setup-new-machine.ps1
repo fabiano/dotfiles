@@ -93,7 +93,7 @@ Install-App `
 Install-App `
   -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.1.2384/gvim_8.1.2384_x86.exe" `
   -OutFile "gvim.exe" `
-  -Arguments @("")
+  -Arguments @()
 
 Install-App `
   -URL "https://aka.ms/win32-x64-user-stable" `
