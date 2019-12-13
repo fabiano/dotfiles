@@ -123,7 +123,7 @@ $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [En
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # add private key to the ssh-agent
-ssh-add $HOME\.ssh\id_rsa
+& $env:WINDIR\System32\OpenSSH\ssh-add.exe $HOME\.ssh\id_rsa
 
 # clone repository
 if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
