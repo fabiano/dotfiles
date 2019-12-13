@@ -28,7 +28,11 @@ function New-SymbolicLink ($Path, $Value) {
 # install app function
 function Install-App ($URL, $Outfile, $Arguments) {
   if (-Not (Test-Path $Outfile)) {
+    $ProgressPreference = "SilentlyContinue"
+
     Invoke-WebRequest -Uri $URL -Outfile $Outfile
+
+    $ProgressPreference = "Continue"
   }
 
   if ($Arguments.Count -eq 0) {
