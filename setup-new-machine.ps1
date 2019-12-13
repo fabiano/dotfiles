@@ -156,7 +156,7 @@ if (-Not (Test-Path -Path $HOME/.vim/autoload)) {
 
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -Outfile $HOME/.vim/autoload/plug.vim
 
-& ${env:PROGRAMFILES(x86)}\Vim\vim.exe -c "PlugInstall" -c "qa!"
+# & ${env:PROGRAMFILES(x86)}\Vim\vim.exe -c "PlugInstall" -c "qa!"
 
 # configure visual studio code
 New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOTFILES_INSTALL_DIR\vscode-settings.json
