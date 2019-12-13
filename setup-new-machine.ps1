@@ -27,13 +27,22 @@ function New-SymbolicLink ($Path, $Value) {
 
 # install app function
 function Install-App ($URL, $Outfile, $Arguments) {
-  Invoke-WebRequest -Uri $URL -Outfile $Outfile
+  if (-Not (Test-Path $Outfile)) {
+    Invoke-WebRequest -Uri $URL -Outfile $Outfile
+  }
 
-  $Process = Start-Process -FilePath $Outfile -ArgumentList $arguments -Wait -PassThru
+  if ($Arguments.Count -eq 0) {
+    $Process = Start-Process -FilePath $Outfile -Wait -PassThru
+  }
+  else {
+    $Process = Start-Process -FilePath $Outfile -ArgumentList $Arguments -Wait -PassThru
+  }
 
   if (-Not ($Process.ExitCode -eq 0)) {
     throw "${URL} installation has failed"
   }
+
+  Remove-Item -Path $Outfile
 }
 
 # install dependencies
