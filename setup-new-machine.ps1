@@ -14,11 +14,11 @@ $ErrorActionPreference = "Stop"
 function New-SymbolicLink ($Path, $Value) {
   $Parent = Split-Path -Path $Path
 
-  if (-Not (Test-Path $Parent)) {
+  if (-Not (Test-Path -Path $Parent)) {
     New-Item -ItemType Directory -Path $Parent
   }
 
-  if (Test-Path $Path) {
+  if (Test-Path -Path $Path) {
     Remove-Item -Path $Path
   }
 
@@ -27,7 +27,11 @@ function New-SymbolicLink ($Path, $Value) {
 
 # install app function
 function Install-App ($URL, $Outfile, $Arguments) {
-  if (-Not (Test-Path $Outfile)) {
+  if (Test-Path -Path "${Outfile}.skip") {
+    return
+  }
+
+  if (-Not (Test-Path -Path $Outfile)) {
     $ProgressPreference = "SilentlyContinue"
 
     Invoke-WebRequest -Uri $URL -Outfile $Outfile
@@ -45,6 +49,8 @@ function Install-App ($URL, $Outfile, $Arguments) {
   if (-Not ($Process.ExitCode -eq 0)) {
     throw "${URL} installation has failed"
   }
+
+  Set-Content -Path "${Outfile}.skip" -Value "skip"
 }
 
 # install dependencies
@@ -123,7 +129,7 @@ $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [En
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # add private key to the ssh-agent
-& $env:PROGRAMW6432\Git\usr\bin\ssh-add.exe $HOME\.ssh\id_rsa
+ssh-add $HOME\.ssh\id_rsa
 
 # clone repository
 if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
