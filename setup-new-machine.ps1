@@ -144,8 +144,8 @@ New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconf
 # configure powershell core
 New-SymbolicLink -Path $HOME\Documents\PowerShell\Profile.ps1 -Value $DOTFILES_INSTALL_DIR\powershell-profile.ps1
 
-& $env:PROGRAMW6432\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
-& $env:PROGRAMW6432\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+& $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+& $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
 
 # configure vim
 New-SymbolicLink -Path $HOME\.vimrc -Value $DOTFILES_INSTALL_DIR\vim-vimrc
@@ -156,7 +156,7 @@ if (-Not (Test-Path -Path $HOME/.vim/autoload)) {
 
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -Outfile $HOME/.vim/autoload/plug.vim
 
-& $env:PROGRAMFILES\Vim\vim.exe -c "PlugInstall" -c "qa!"
+& ${env:PROGRAMFILES(x86)}\Vim\vim.exe -c "PlugInstall" -c "qa!"
 
 # configure visual studio code
 New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOTFILES_INSTALL_DIR\vscode-settings.json
