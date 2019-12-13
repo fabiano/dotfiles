@@ -10,6 +10,9 @@ $ErrorActionPreference = "Stop"
 # set tls version to 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+# disable invoke-request progress bar
+$ProgressPreference = "SilentlyContinue"
+
 # new symbolic link function
 function New-SymbolicLink ($Path, $Value) {
   $Parent = Split-Path -Path $Path
@@ -32,11 +35,7 @@ function Install-App ($URL, $Outfile, $Arguments) {
   }
 
   if (-Not (Test-Path -Path $Outfile)) {
-    $ProgressPreference = "SilentlyContinue"
-
     Invoke-WebRequest -Uri $URL -Outfile $Outfile
-
-    $ProgressPreference = "Continue"
   }
 
   if ($Arguments.Count -eq 0) {
@@ -156,8 +155,6 @@ if (-Not (Test-Path -Path $HOME/.vim/autoload)) {
 
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -Outfile $HOME/.vim/autoload/plug.vim
 
-# & ${env:PROGRAMFILES(x86)}\Vim\vim.exe -c "PlugInstall" -c "qa!"
-
 # configure visual studio code
 New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOTFILES_INSTALL_DIR\vscode-settings.json
 
@@ -197,3 +194,6 @@ REG DELETE HKEY_CURRENT_USER\Console /f
 REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
 
 & $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
+
+# enable invoke-request progress bar
+$ProgressPreference = "Continue"
