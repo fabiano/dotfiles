@@ -30,14 +30,11 @@
   brew cask install font-fira-code
   brew cask install font-iosevka
   brew cask install forklift
-  brew cask install gimp
   brew cask install github
   brew cask install google-chrome
   brew cask install intelliscape-caffeine
   brew cask install iterm2
   brew cask install jabra-direct
-  brew cask install licecap
-  brew cask install steelseries-engine
   brew cask install the-unarchiver
   brew cask install tuxera-ntfs
   brew cask install visual-studio-code
