@@ -46,7 +46,7 @@ function Install-App ($URL, $Outfile, $Arguments) {
   }
 
   if (-Not ($Process.ExitCode -eq 0)) {
-    throw "${URL} installation has failed"
+    throw "${Outfile} installation has failed"
   }
 
   Set-Content -Path "${Outfile}.skip" -Value "skip"
@@ -57,6 +57,11 @@ Install-App `
   -URL "https://www.7-zip.org/a/7z1900-x64.exe" `
   -OutFile "7z.exe" `
   -Arguments @("/S")
+
+Install-App `
+  -URL "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?ProductreleaseID=Edge&platform=Default&version=Edge&source=EdgeInsiderPage&Channel=Canary&language=en&Consent=0" `
+  -OutFile "edge.exe" `
+  -Arguments @()
 
 Install-App `
   -URL "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" `
@@ -77,12 +82,20 @@ Install-App `
 Install-App `
   -URL "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" `
   -OutFile "chrome.msi" `
-  -Arguments @("/passive", "/norestart", "/l*v ""chrome.log""")
+  -Arguments @(
+    "/passive"
+    "/norestart"
+    "/l*v ""chrome.log"""
+  )
 
 Install-App `
   -URL "https://nodejs.org/dist/v12.13.1/node-v12.13.1-x64.msi" `
   -OutFile "node.msi" `
-  -Arguments @("/passive", "/norestart", "/l*v ""node.log""")
+  -Arguments @(
+    "/passive"
+    "/norestart"
+    "/l*v ""node.log"""
+  )
 
 Install-App `
   -URL "https://github.com/PowerShell/PowerShell/releases/download/v6.2.3/PowerShell-6.2.3-win-x64.msi" `
@@ -117,6 +130,18 @@ Install-App `
   -URL "https://ufpr.dl.sourceforge.net/project/windirstat/windirstat/1.1.2%20installer%20re-release%20%28more%20languages%21%29/windirstat1_1_2_setup.exe" `
   -OutFile "windirstat.exe" `
   -Arguments @("/S")
+
+Install-App `
+  -URL "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe" `
+  -OutFile "office-deployment-tool.exe" `
+  -Arguments @(
+    "/extract:office-deployment-tool"
+    "/passive"
+    "/norestart"
+  )
+
+& office-deployment-tool\setup.exe /download $HOME\.dotfiles\office-deployment-tool-office365.xml
+& office-deployment-tool\setup.exe /configure $HOME\.dotfiles\office-deployment-tool-office365.xml
 
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
@@ -178,13 +203,16 @@ Get-AppxPackage Microsoft.Microsoft.BingWeather | Remove-AppxPackage
 Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
 Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
 Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage
 Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
 Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
 Get-AppxPackage Microsoft.People | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
 Get-AppxPackage Microsoft.XboxApp | Remove-AppxPackage
+Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
 
 # disable bing search results from start menu
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
