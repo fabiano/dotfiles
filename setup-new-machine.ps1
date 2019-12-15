@@ -46,7 +46,7 @@ function Install-App ($URL, $Outfile, $Arguments) {
   }
 
   if (-Not ($Process.ExitCode -eq 0)) {
-    throw "${Outfile} installation has failed"
+    throw "${Outfile} installation has failed. Exit code is ${Process.ExitCode}."
   }
 
   Set-Content -Path "${Outfile}.skip" -Value "skip"
@@ -59,6 +59,15 @@ Install-App `
   -Arguments @("/S")
 
 Install-App `
+  -URL "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" `
+  -OutFile "chrome.msi" `
+  -Arguments @(
+    "/passive"
+    "/norestart"
+    "/l*v ""chrome.log"""
+  )
+
+Install-App `
   -URL "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?ProductreleaseID=Edge&platform=Default&version=Edge&source=EdgeInsiderPage&Channel=Canary&language=en&Consent=0" `
   -OutFile "edge.exe" `
   -Arguments @()
@@ -67,6 +76,11 @@ Install-App `
   -URL "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" `
   -OutFile "firefox.exe" `
   -Arguments @("-ms")
+
+Install-App `
+  -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.1.2384/gvim_8.1.2384_x86.exe" `
+  -OutFile "gvim.exe" `
+  -Arguments @()
 
 Install-App `
   -URL "https://github.com/git-for-windows/git/releases/download/v2.21.0.windows.1/Git-2.21.0-64-bit.exe" `
@@ -80,13 +94,14 @@ Install-App `
   )
 
 Install-App `
-  -URL "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" `
-  -OutFile "chrome.msi" `
-  -Arguments @(
-    "/passive"
-    "/norestart"
-    "/l*v ""chrome.log"""
-  )
+  -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_1.10.110.exe" `
+  -OutFile "logi-capture.exe" `
+  -Arguments @()
+
+Install-App `
+  -URL "https://download01.logi.com/web/ftp/pub/techsupport/options/Options_8.0.863.exe" `
+  -OutFile "logi-options.exe" `
+  -Arguments @()
 
 Install-App `
   -URL "https://nodejs.org/dist/v12.13.1/node-v12.13.1-x64.msi" `
@@ -111,9 +126,14 @@ Install-App `
   )
 
 Install-App `
-  -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.1.2384/gvim_8.1.2384_x86.exe" `
-  -OutFile "gvim.exe" `
-  -Arguments @()
+  -URL "https://www.python.org/ftp/python/3.8.0/python-3.8.0.exe" `
+  -OutFile "python38.exe" `
+  -Arguments @(
+    "/passive"
+    "AssociateFiles=0"
+    "Shortcuts=0"
+    "PrependPath=1"
+  )
 
 Install-App `
   -URL "https://aka.ms/win32-x64-user-stable" `
