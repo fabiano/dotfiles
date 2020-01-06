@@ -59,6 +59,17 @@ Install-App `
   -Arguments @("/S")
 
 Install-App `
+  -URL "https://go.microsoft.com/fwlink/?linkid=2109256" `
+  -OutFile "azuredatastudio.exe" `
+  -Arguments @(
+    "/SP-"
+    "/SILENT"
+    "/SUPPRESSMSGBOXES"
+    "/TASKS=""addtopath"""
+    "/LOG=""azuredatastudio.log"""
+  )
+
+Install-App `
   -URL "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" `
   -OutFile "chrome.msi" `
   -Arguments @(
@@ -68,8 +79,21 @@ Install-App `
   )
 
 Install-App `
+  -URL "https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe" `
+  -OutFile "dbeaver.exe" `
+  -Arguments @(
+    "/allusers"
+    "/S"
+  )
+
+Install-App `
+  -URL "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?ProductreleaseID=Edge&platform=Default&version=Edge&source=EdgeInsiderPage&Channel=Beta&language=en&Consent=0" `
+  -OutFile "edge-beta.exe" `
+  -Arguments @()
+
+Install-App `
   -URL "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?ProductreleaseID=Edge&platform=Default&version=Edge&source=EdgeInsiderPage&Channel=Canary&language=en&Consent=0" `
-  -OutFile "edge.exe" `
+  -OutFile "edge-canary.exe" `
   -Arguments @()
 
 Install-App `
@@ -91,6 +115,16 @@ Install-App `
     "/SUPPRESSMSGBOXES"
     "/COMPONENTS=""gitlfs,autoupdate"""
     "/LOG=""git.log"""
+  )
+
+Install-App `
+  -URL "https://jabraxpressonlineprdstor.blob.core.windows.net/jdo/JabraDirectSetup.exe" `
+  -OutFile "jabra-direct.exe" `
+  -Arguments @(
+    "/install"
+    "/passive"
+    "/norestart"
+    "/log jabra-direct.log"
   )
 
 Install-App `
