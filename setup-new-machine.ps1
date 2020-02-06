@@ -79,14 +79,6 @@ Install-App `
   )
 
 Install-App `
-  -URL "https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe" `
-  -OutFile "dbeaver.exe" `
-  -Arguments @(
-    "/allusers"
-    "/S"
-  )
-
-Install-App `
   -URL "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?ProductreleaseID=Edge&platform=Default&version=Edge&source=EdgeInsiderPage&Channel=Beta&language=en&Consent=0" `
   -OutFile "edge-beta.exe" `
   -Arguments @()
@@ -115,6 +107,13 @@ Install-App `
     "/SUPPRESSMSGBOXES"
     "/COMPONENTS=""gitlfs,autoupdate"""
     "/LOG=""git.log"""
+  )
+
+Install-App `
+  -URL "https://updates.insomnia.rest/downloads/windows/latest" `
+  -OutFile "insomnia.exe" `
+  -Arguments @(
+    "--silent"
   )
 
 Install-App `
@@ -167,6 +166,17 @@ Install-App `
     "AssociateFiles=0"
     "Shortcuts=0"
     "PrependPath=1"
+  )
+
+Install-App `
+  -URL "https://telegram.org/dl/desktop/win" `
+  -OutFile "telegram.exe" `
+  -Arguments @(
+    "/SP-"
+    "/SILENT"
+    "/SUPPRESSMSGBOXES"
+    "/TASKS="""""
+    "/LOG=""telegram.log"""
   )
 
 Install-App `
