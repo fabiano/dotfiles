@@ -107,7 +107,7 @@ function MoveUp {
 }
 
 function Start-HttpServer ($Port) {
-  & npx http-server . --port $Port
+  & npx http-server . -p $Port -c-1 -o
 }
 
 # alias
