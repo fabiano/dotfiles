@@ -1,9 +1,9 @@
-CoenraadS.bracket-pair-colorizer-2
+coenraads.bracket-pair-colorizer-2
 dbaeumer.vscode-eslint
-DotJoshJohnson.xml
-EditorConfig.EditorConfig
-ms-azuretools.vscode-docker
-ms-vscode.csharp
-ms-vscode.powershell
-PKief.material-icon-theme
+dotjoshjohnson.xml
+eamodio.gitlens
+editorconfig.editorconfig
+msjsdiag.debugger-for-edge
+octref.vetur
+pkief.material-icon-theme
 syler.sass-indented
