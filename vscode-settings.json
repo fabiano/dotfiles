@@ -23,5 +23,6 @@
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "extensions.ignoreRecommendations": true
 }
