@@ -146,7 +146,7 @@ Install-App `
   )
 
 Install-App `
-  -URL "https://github.com/PowerShell/PowerShell/releases/download/v6.2.3/PowerShell-6.2.3-win-x64.msi" `
+  -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/PowerShell-7.0.0-win-x64.msi" `
   -OutFile "pwsh.msi" `
   -Arguments @(
     "/passive"
