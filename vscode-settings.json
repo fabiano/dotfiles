@@ -10,10 +10,12 @@
     "editor.renderWhitespace": "all",
     "editor.tabSize": 2,
     "editor.wordWrap": "off",
+    "extensions.ignoreRecommendations": true,
     "files.defaultLanguage": "markdown",
     "git.autofetch": true,
     "git.confirmSync": false,
     "gitlens.hovers.currentLine.over": "line",
+    "go.useLanguageServer": true,
     "markdown.preview.fontSize": 16,
     "powershell.integratedConsole.showOnStartup": false,
     "terminal.integrated.fontFamily": "Iosevka",
@@ -23,6 +25,5 @@
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile",
-    "extensions.ignoreRecommendations": true
+    "workbench.startupEditor": "newUntitledFile"
 }
