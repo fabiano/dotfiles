@@ -64,6 +64,9 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
+" solarized theme
+let g:solarized_visibility='low'
+
 " theme
 let s:colorscheme='solarized'
 
