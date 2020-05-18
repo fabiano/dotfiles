@@ -10,7 +10,7 @@
             "commandline": "cmd.exe",
             "colorScheme": "Snazzy",
             "cursorShape": "emptyBox",
-            "fontFace": "Iosevka",
+            "fontFace": "Iosevka Term",
             "fontSize": 14,
             "padding": "10, 10, 10, 10"
         },
@@ -20,7 +20,7 @@
             "source": "Windows.Terminal.PowershellCore",
             "colorScheme": "Snazzy",
             "cursorShape": "emptyBox",
-            "fontFace": "Iosevka",
+            "fontFace": "Iosevka Term",
             "fontSize": 14,
             "padding": "10, 10, 10, 10"
         },
