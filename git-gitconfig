@@ -10,21 +10,19 @@
 	co     = commit
 	coa    = commit --amend
 	com    = commit --message
-	feat   = "!f() { git checkout feature/${1}; }; f"
-	friday = !git add --all && git commit --message "It's Friday 🎉! https://www.youtube.com/watch?v=kfVsfOSbJY0"
-	ll     = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-	llb    = log master.. --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 	ls     = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	lsb    = log master.. --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-	lt     = describe --tags --abbrev=0
 	me     = merge
+	pusu   = "!git push --set-upstream origin $(git symbolic-ref --short HEAD)"
 	pur    = pull --rebase
 	re     = "!f() { if [ -z ${1+x} ]; then git rebase master; else git rebase $@; fi }; f"
 	sq     = "rebase --interactive"
-	st     = status --short
+	st     = status
+	sts    = status --short
 	t      = tag
 	unco   = reset --mixed HEAD~
 	wip    = !git add --all && git commit --message "🕕"
+	up     = !git checkout master && git pull --rebase && git checkout - && git rebase master
 [winUpdater]
 	recentlySeenVersion = 2.25.0.windows.1
 [filter "lfs"]
