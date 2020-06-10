@@ -9,21 +9,38 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.renderWhitespace": "all",
     "editor.tabSize": 2,
+    "editor.tokenColorCustomizations": {
+        "[Tokyo Night Storm]": {
+            "textMateRules": [{
+                "scope": [
+                    "comment",
+                    "meta.var.expr storage.type",
+                    "keyword.control.flow",
+                    "meta.directive.vue punctuation.separator.key-value.html",
+                    "meta.directive.vue entity.other.attribute-name.html",
+                    "tag.decorator.js entity.name.tag.js",
+                    "tag.decorator.js punctuation.definition.tag.js",
+                    "storage.modifier"
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }]
+        }
+    },
     "editor.wordWrap": "off",
     "extensions.ignoreRecommendations": true,
     "files.defaultLanguage": "markdown",
     "git.autofetch": true,
     "git.confirmSync": false,
     "gitlens.hovers.currentLine.over": "line",
-    "go.useLanguageServer": true,
     "markdown.preview.fontSize": 16,
-    "powershell.integratedConsole.showOnStartup": false,
-    "terminal.integrated.fontFamily": "Iosevka",
-    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontFamily": "Iosevka Term",
+    "terminal.integrated.fontSize": 18,
     "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/6/pwsh.exe",
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "Tokyo Night Storm",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile"
 }
