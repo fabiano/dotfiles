@@ -169,6 +169,17 @@ Install-App `
   )
 
 Install-App `
+  -URL "https://github.com/tibold/svg-explorer-extension/releases/download/v1.1.0/svg_see_x64.exe" `
+  -OutFile "svg-explorer-extension.exe" `
+  -Arguments @(
+    "/SP-"
+    "/SILENT"
+    "/SUPPRESSMSGBOXES"
+    "/TASKS="""""
+    "/LOG=""svg-explorer-extension.log"""
+  )
+
+Install-App `
   -URL "https://telegram.org/dl/desktop/win" `
   -OutFile "telegram.exe" `
   -Arguments @(
