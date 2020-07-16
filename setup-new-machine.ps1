@@ -127,6 +127,17 @@ Install-App `
   )
 
 Install-App `
+  -URL "https://www.linqpad.net/GetFile.aspx?LINQPad6Setup.exe" `
+  -OutFile "linqpad6.exe" `
+  -Arguments @(
+    "/SP-"
+    "/SILENT"
+    "/SUPPRESSMSGBOXES"
+    "/TASKS=""lprunpath"""
+    "/LOG=""linqpad6.log"""
+  )
+
+Install-App `
   -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_1.10.110.exe" `
   -OutFile "logi-capture.exe" `
   -Arguments @()
@@ -146,7 +157,7 @@ Install-App `
   )
 
 Install-App `
-  -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/PowerShell-7.0.0-win-x64.msi" `
+  -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.0.3/PowerShell-7.0.3-win-x64.msi" `
   -OutFile "pwsh.msi" `
   -Arguments @(
     "/passive"
