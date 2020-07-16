@@ -113,6 +113,7 @@ function Start-HttpServer ($Port) {
 # alias
 New-Alias -Name "~" -Value Home
 New-Alias -Name ".." -Value MoveUp
+New-Alias -Name "g" -Value git
 
 # https://github.com/lzybkr/PSReadLine
 Import-Module PSReadLine
