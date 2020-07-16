@@ -64,19 +64,19 @@
             "command": { "action": "splitPane", "split": "vertical", "splitMode": "duplicate" }
         },
         {
-            "keys": ["ctrl+up"],
+            "keys": ["ctrl+alt+up"],
             "command": { "action": "moveFocus", "direction": "up" }
         },
         {
-            "keys": ["ctrl+right"],
+            "keys": ["ctrl+alt+right"],
             "command": { "action": "moveFocus", "direction": "right" }
         },
         {
-            "keys": ["ctrl+down"],
+            "keys": ["ctrl+alt+down"],
             "command": { "action": "moveFocus", "direction": "down" }
         },
         {
-            "keys": ["ctrl+left"],
+            "keys": ["ctrl+alt+left"],
             "command": { "action": "moveFocus", "direction": "left" }
         }
     ]
