@@ -1,6 +1,6 @@
+bodil.file-browser
 coenraads.bracket-pair-colorizer-2
 dotjoshjohnson.xml
 eamodio.gitlens
 editorconfig.editorconfig
-enkia.tokyo-night
 pkief.material-icon-theme
