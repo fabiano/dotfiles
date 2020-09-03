@@ -18,10 +18,11 @@
     "markdown.preview.fontSize": 16,
     "terminal.integrated.fontFamily": "Iosevka Term",
     "terminal.integrated.fontSize": 18,
-    "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/6/pwsh.exe",
+    "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "GitHub Dark",
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorCustomizations": {},
+    "workbench.colorTheme": "Visual Studio Dark"
 }
