@@ -106,6 +106,12 @@ function MoveUp {
   Set-Location -Path ..
 }
 
+function MoveTo($Path) {
+  Set-Location -Path $Path
+
+  $host.UI.RawUI.WindowTitle = Get-Location
+}
+
 function Start-HttpServer ($Port) {
   & npx http-server . -p $Port -c-1 -o
 }
@@ -114,6 +120,8 @@ function Start-HttpServer ($Port) {
 New-Alias -Name "~" -Value Home
 New-Alias -Name ".." -Value MoveUp
 New-Alias -Name "g" -Value git
+
+Set-Alias -Name "cd" -Value MoveTo -Option AllScope
 
 # https://github.com/lzybkr/PSReadLine
 Import-Module PSReadLine
