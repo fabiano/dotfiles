@@ -1,0 +1,331 @@
+# new symbolic link function
+function New-SymbolicLink ($Path, $Value) {
+  $Parent = Split-Path -Path $Path
+
+  if (-Not (Test-Path -Path $Parent)) {
+    New-Item -ItemType Directory -Path $Parent
+  }
+
+  if (Test-Path -Path $Path) {
+    Remove-Item -Path $Path
+  }
+
+  New-Item -ItemType SymbolicLink -Path $Path -Value $Value
+}
+
+# install app function
+function Install-App ($URL, $Outfile, $Arguments) {
+  if (Test-Path -Path "${Outfile}.skip") {
+    return
+  }
+
+  if (-Not (Test-Path -Path $Outfile)) {
+    Invoke-WebRequest -Uri $URL -OutFile $Outfile
+  }
+
+  if ($Arguments.Count -eq 0) {
+    $Process = Start-Process -FilePath $Outfile -Wait -PassThru
+  }
+  else {
+    $Process = Start-Process -FilePath $Outfile -ArgumentList $Arguments -Wait -PassThru
+  }
+
+  if (-Not ($Process.ExitCode -eq 0)) {
+    Write-Error "${Outfile} installation has failed. Exit code is ${Process.ExitCode}."
+
+    return
+  }
+
+  Set-Content -Path "${Outfile}.skip" -Value "skip"
+}
+
+# install 7-zip
+function Install-7Zip {
+  Install-App `
+    -URL "https://www.7-zip.org/a/7z1900-x64.exe" `
+    -OutFile "setup-7z.exe" `
+    -Arguments @("/S")
+}
+
+# install chrome
+function Install-Chrome {
+  Install-App `
+    -URL "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" `
+    -OutFile "setup-chrome.msi" `
+    -Arguments @(
+      "/passive"
+      "/norestart"
+      "/l*v ""setup-chrome.log"""
+    )
+}
+
+# install edge
+function Install-Edge {
+  Install-App `
+    -URL "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?ProductreleaseID=Edge&platform=Default&version=Edge&source=EdgeStablePage&Channel=Stable&language=en" `
+    -OutFile "setup-edge.exe" `
+    -Arguments @()
+}
+
+# install firefox
+function Install-Firefox {
+  Install-App `
+    -URL "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" `
+    -OutFile "setup-firefox.exe" `
+    -Arguments @("-ms")
+}
+
+# install vim
+function Install-GVim {
+  Install-App `
+    -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.2.2316/gvim_8.2.2316_x86.exe" `
+    -OutFile "setup-gvim.exe" `
+    -Arguments @()
+}
+
+# install git
+function Install-Git {
+  Install-App `
+    -URL "https://github.com/git-for-windows/git/releases/download/v2.30.0.windows.1/Git-2.30.0-64-bit.exe" `
+    -OutFile "setup-git.exe" `
+    -Arguments @(
+      "/SP-"
+      "/SILENT"
+      "/SUPPRESSMSGBOXES"
+      "/COMPONENTS=""gitlfs,autoupdate"""
+      "/LOG=""setup-git.log"""
+    )
+}
+
+# install insomnia
+function Install-Insomnia {
+  Install-App `
+    -URL "https://updates.insomnia.rest/downloads/windows/latest" `
+    -OutFile "setup-insomnia.exe" `
+    -Arguments @(
+      "--silent"
+    )
+}
+
+# install jabra direct
+function Install-JabraDirect {
+  Install-App `
+    -URL "https://jabraxpressonlineprdstor.blob.core.windows.net/jdo/JabraDirectSetup.exe" `
+    -OutFile "setup-jabra-direct.exe" `
+    -Arguments @(
+      "/install"
+      "/passive"
+      "/norestart"
+      "/log setup-jabra-direct.log"
+    )
+}
+
+# install logitech capture
+function Install-LogitechCapture {
+  Install-App `
+    -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_2.04.13.exe" `
+    -OutFile "setup-logitech-capture.exe" `
+    -Arguments @()
+}
+
+# install logitech options
+function Install-LogitechOptions {
+  Install-App `
+    -URL "https://download01.logi.com/web/ftp/pub/techsupport/options/Options_8.36.86.exe" `
+    -OutFile "setup-logitech-options.exe" `
+    -Arguments @()
+}
+
+# install node
+function Install-Node {
+  Install-App `
+    -URL "https://nodejs.org/dist/v14.15.4/node-v14.15.4-x64.msi" `
+    -OutFile "setup-node.msi" `
+    -Arguments @(
+      "/passive"
+      "/norestart"
+      "/l*v ""setup-node.log"""
+    )
+}
+
+# install powershell
+function Install-PowerShell {
+  Install-App `
+    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/PowerShell-7.1.0-win-x64.msi" `
+    -OutFile "setup-powershell.msi" `
+    -Arguments @(
+      "/passive"
+      "/norestart"
+      "/l*v ""setup-powershell.log"""
+      "ADD_PATH=1"
+      "REGISTER_MANIFEST=1"
+      "ENABLE_PSREMOTING=0"
+      "ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+    )
+}
+
+# install python
+function Install-Python {
+  Install-App `
+    -URL "https://www.python.org/ftp/python/3.9.1/python-3.9.1-amd64.exe" `
+    -OutFile "setup-python.exe" `
+    -Arguments @(
+      "/passive"
+      "AssociateFiles=0"
+      "Shortcuts=0"
+      "PrependPath=1"
+    )
+}
+
+# install svg explorer extension
+function Install-SvgExplorerExtension {
+  Install-App `
+    -URL "https://github.com/tibold/svg-explorer-extension/releases/download/v1.1.0/svg_see_x64.exe" `
+    -OutFile "setup-svg-explorer-extension.exe" `
+    -Arguments @(
+      "/SP-"
+      "/SILENT"
+      "/SUPPRESSMSGBOXES"
+      "/TASKS="""""
+      "/LOG=""setup-svg-explorer-extension.log"""
+    )
+}
+
+# install visual studio code
+function Install-VSCode {
+  Install-App `
+    -URL "https://aka.ms/win32-x64-user-stable" `
+    -OutFile "setup-vscode.exe" `
+    -Arguments @(
+      "/SP-"
+      "/SILENT"
+      "/SUPPRESSMSGBOXES"
+      "/TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
+      "/LOG=""setup-vscode.log"""
+    )
+}
+
+# install windirstat
+function Install-WinDirStat {
+  Install-App `
+    -URL "https://ufpr.dl.sourceforge.net/project/windirstat/windirstat/1.1.2%20installer%20re-release%20%28more%20languages%21%29/windirstat1_1_2_setup.exe" `
+    -OutFile "setup-windirstat.exe" `
+    -Arguments @("/S")
+}
+
+# install office 365
+function Install-Office365 {
+  Install-App `
+    -URL "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe" `
+    -OutFile "setup-office-deployment-tool.exe" `
+    -Arguments @(
+      "/extract:office-deployment-tool"
+      "/passive"
+      "/norestart"
+    )
+
+  & office-deployment-tool\setup.exe /download $HOME\.dotfiles\office-deployment-tool-office365.xml
+  & office-deployment-tool\setup.exe /configure $HOME\.dotfiles\office-deployment-tool-office365.xml
+}
+
+# install typora
+function Install-Typora {
+  Install-App `
+    -URL "https://typora.io/windows/typora-setup-x64.exe" `
+    -OutFile "setup-typora.exe" `
+    -Arguments @(
+      "/SP-"
+      "/SILENT"
+      "/SUPPRESSMSGBOXES"
+      "/TASKS="""""
+      "/LOG=""setup-typora.log"""
+    )
+}
+
+# install visual studio community
+function Install-VSCommunity {
+  Install-App `
+    -URL "https://download.visualstudio.microsoft.com/download/pr/9b3476ff-6d0a-4ff8-956d-270147f21cd4/76e39c746d9e2fc3eadd003b5b11440bcf926f3948fb2df14d5938a1a8b2b32f/vs_Community.exe" `
+    -OutFile "setup-vs-community.exe" `
+    -Arguments @()
+}
+
+# install windows terminal
+function Install-WindowsTerminal {
+  Invoke-WebRequest `
+    -Uri "https://github.com/microsoft/terminal/releases/download/v1.4.3243.0/Microsoft.WindowsTerminal_1.4.3243.0_8wekyb3d8bbwe.msixbundle" `
+    -OutFile "setup-windows-terminal.msixbundle"
+
+  Import-Module Appx -UseWindowsPowerShell
+
+  Add-AppxPackage -Path setup-windows-terminal.msixbundle
+}
+
+# configure git
+function Configure-Git {
+  New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconfig
+}
+
+# configure powershell
+function Configure-PowerShell {
+  New-SymbolicLink -Path $HOME\Documents\PowerShell\Profile.ps1 -Value $DOTFILES_INSTALL_DIR\powershell-profile.ps1
+
+  & $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+  & $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+  & $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+}
+
+# configure vim
+function Configure-Vim {
+  New-SymbolicLink -Path $HOME\.vimrc -Value $DOTFILES_INSTALL_DIR\vim-vimrc
+
+  if (-Not (Test-Path -Path $HOME/.vim/autoload)) {
+    New-Item -ItemType Directory -Path $HOME/.vim/autoload
+  }
+
+  Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -OutFile $HOME/.vim/autoload/plug.vim
+}
+
+# configure visual studio code
+function Configure-VSCode {
+  New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOTFILES_INSTALL_DIR\vscode-settings.json
+
+  Get-Content -Path $DOTFILES_INSTALL_DIR\vscode-extensions.txt | ForEach-Object { code --install-extension $_ }
+}
+
+# configure windows terminal
+function Configure-WindowsTerminal {
+  New-SymbolicLink -Path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json -Value $DOTFILES_INSTALL_DIR\win-terminal-profiles.json
+}
+
+# install essential apps
+function Install-Apps {
+  Install-7Zip
+  Install-Chrome
+  Install-Edge
+  Install-Firefox
+  Install-JabraDirect
+  Install-LogitechCapture
+  Install-LogitechOptions
+  Install-SvgExplorerExtension
+  Install-WinDirStat
+  Install-Office365
+}
+
+# install dev tools
+function Install-DevTools {
+  Install-Git
+  Install-PowerShell
+  Install-Node
+  Install-Python
+  Install-VSCode
+  Install-VSCommunity
+  Install-WindowsTerminal
+  Install-Insomnia
+  Install-Typora
+
+  Configure-Git
+  Configure-PowerShell
+  Configure-VSCode
+  Configure-WindowsTerminal
+}
