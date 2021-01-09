@@ -1,4 +1,11 @@
-﻿# functions
+﻿# dotfiles settings
+$DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
+$DOTFILES_INSTALL_DIR = "$HOME\.dotfiles"
+
+# import helper functions module
+Import-Module -Name $DOTFILES_INSTALL_DIR\powershell-functions.ps1
+
+# functions
 function Clear-History {
   # https://blogs.msdn.microsoft.com/stevelasker/2016/03/25/clear-history-powershell-doesnt-clear-the-history-3/
   Remove-Item (Get-PSReadlineOption).HistorySavePath
