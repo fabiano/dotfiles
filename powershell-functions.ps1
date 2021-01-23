@@ -1,3 +1,8 @@
+# reload path function
+function Reload-Path () {
+  $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
+}
+
 # new symbolic link function
 function New-SymbolicLink ($Path, $Value) {
   $Parent = Split-Path -Path $Path
@@ -25,8 +30,7 @@ function Install-App ($URL, $Outfile, $Arguments) {
 
   if ($Arguments.Count -eq 0) {
     $Process = Start-Process -FilePath $Outfile -Wait -PassThru
-  }
-  else {
+  } else {
     $Process = Start-Process -FilePath $Outfile -ArgumentList $Arguments -Wait -PassThru
   }
 
@@ -256,7 +260,11 @@ function Install-WindowsTerminal {
     -Uri "https://github.com/microsoft/terminal/releases/download/v1.4.3243.0/Microsoft.WindowsTerminal_1.4.3243.0_8wekyb3d8bbwe.msixbundle" `
     -OutFile "setup-windows-terminal.msixbundle"
 
-  Import-Module Appx -UseWindowsPowerShell
+  if ($PSVersionTable.PSEdition -eq "Core") {
+    Import-Module Appx -UseWindowsPowerShell
+  } else {
+    Import-Module Appx
+  }
 
   Add-AppxPackage -Path setup-windows-terminal.msixbundle
 }
@@ -302,7 +310,6 @@ function Configure-WindowsTerminal {
 function Install-Apps {
   Install-7Zip
   Install-Chrome
-  Install-Edge
   Install-Firefox
   Install-JabraDirect
   Install-LogitechCapture
@@ -310,11 +317,12 @@ function Install-Apps {
   Install-SvgExplorerExtension
   Install-WinDirStat
   Install-Office365
+
+  Reload-Path
 }
 
 # install dev tools
 function Install-DevTools {
-  Install-Git
   Install-PowerShell
   Install-Node
   Install-VSCode
@@ -322,6 +330,8 @@ function Install-DevTools {
   Install-WindowsTerminal
   Install-Insomnia
   Install-Typora
+
+  Reload-Path
 
   Configure-Git
   Configure-PowerShell
