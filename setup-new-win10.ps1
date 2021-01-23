@@ -13,9 +13,6 @@ $ProgressPreference = "SilentlyContinue"
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
 $DOTFILES_INSTALL_DIR = "$HOME\.dotfiles"
 
-# import functions module
-Import-Module -Name $DOTFILES_INSTALL_DIR\powershell-functions.ps1
-
 # install git
 Install-Git
 
@@ -81,9 +78,6 @@ REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
 
 # install essential apps
 Install-Apps
-
-# install and configure dev tools
-Install-DevTools
 
 # enable invoke-request progress bar
 $ProgressPreference = "Continue"
