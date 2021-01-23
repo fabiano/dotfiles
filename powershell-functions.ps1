@@ -151,7 +151,7 @@ function Install-Node {
 # install powershell
 function Install-PowerShell {
   Install-App `
-    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/PowerShell-7.1.0-win-x64.msi" `
+    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.1.1/PowerShell-7.1.1-win-x64.msi" `
     -OutFile "setup-powershell.msi" `
     -Arguments @(
       "/passive"
