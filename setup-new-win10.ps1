@@ -13,11 +13,14 @@ $ProgressPreference = "SilentlyContinue"
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
 $DOTFILES_INSTALL_DIR = "$HOME\.dotfiles"
 
+# import functions module
+iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/fabiano/dotfiles/master/powershell-functions.ps1"))
+
 # install git
 Install-Git
 
 # reload path
-$env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
+Reload-Path
 
 # set environment variables
 [Environment]::SetEnvironmentVariable("GIT_SSH", "C:\Windows\System32\OpenSSH\ssh.exe", "User")
