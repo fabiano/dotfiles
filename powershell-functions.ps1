@@ -139,7 +139,7 @@ function Install-LogitechOptions {
 # install node
 function Install-Node {
   Install-App `
-    -URL "https://nodejs.org/dist/v14.15.4/node-v14.15.4-x64.msi" `
+    -URL "https://nodejs.org/dist/v13.14.0/node-v13.14.0-x64.msi" `
     -OutFile "setup-node.msi" `
     -Arguments @(
       "/passive"
@@ -317,7 +317,6 @@ function Install-DevTools {
   Install-Git
   Install-PowerShell
   Install-Node
-  Install-Python
   Install-VSCode
   Install-VSCommunity
   Install-WindowsTerminal
