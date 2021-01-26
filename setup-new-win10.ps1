@@ -51,23 +51,7 @@ $Fonts = $SA.NameSpace(0x14)
 Get-ChildItem -Path $DOTFILES_INSTALL_DIR\font-*.ttf | ForEach-Object { $Fonts.CopyHere($_.FullName) }
 
 # remove windows 10 built-in apps
-Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
-Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
-Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
-Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
-Get-AppxPackage Microsoft.Microsoft.BingWeather | Remove-AppxPackage
-Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
-Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
-Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
-Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage
-Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
-Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
-Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
-Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
-Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
-Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
-Get-AppxPackage Microsoft.XboxApp | Remove-AppxPackage
-Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
+Remove-BuiltInApps
 
 # disable bing search results from start menu
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0

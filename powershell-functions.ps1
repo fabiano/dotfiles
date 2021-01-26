@@ -278,9 +278,9 @@ function Configure-Git {
 function Configure-PowerShell {
   New-SymbolicLink -Path $HOME\Documents\PowerShell\Profile.ps1 -Value $DOTFILES_INSTALL_DIR\powershell-profile.ps1
 
-  & $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
-  & $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
-  & $env:PROGRAMFILES\PowerShell\6\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
 }
 
 # configure vim
@@ -337,4 +337,24 @@ function Install-DevTools {
   Configure-PowerShell
   Configure-VSCode
   Configure-WindowsTerminal
+}
+
+function Remove-BuiltInApps {
+  Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
+  Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
+  Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
+  Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
+  Get-AppxPackage Microsoft.Microsoft.BingWeather | Remove-AppxPackage
+  Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
+  Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
+  Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+  Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage
+  Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
+  Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
+  Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
+  Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
+  Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
+  Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
+  Get-AppxPackage Microsoft.XboxApp | Remove-AppxPackage
+  Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
 }
