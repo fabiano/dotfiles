@@ -1,5 +1,5 @@
 # reload path function
-function Reload-Path () {
+function Reload-Path {
   $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 }
 
