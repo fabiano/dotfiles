@@ -340,6 +340,11 @@ function Install-DevTools {
 }
 
 function Remove-BuiltInApps {
+  Get-AppxPackage 5A894077.McAfeeSecurity | Remove-AppxPackage
+  Get-AppxPackage C27EB4BA.DropboxOEM | Remove-AppxPackage
+  Get-AppxPackage DellInc.DellCustomerConnect | Remove-AppxPackage
+  Get-AppxPackage DellInc.DellDigitalDelivery | Remove-AppxPackage
+  Get-AppxPackage DellInc.PartnerPromo | Remove-AppxPackage
   Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
   Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
   Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
@@ -349,12 +354,18 @@ function Remove-BuiltInApps {
   Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
   Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
   Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage
+  Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage
+  Get-AppxPackage Microsoft.MSPaint | Remove-AppxPackage
   Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
   Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
+  Get-AppxPackage Microsoft.SkypeApp | Remove-AppxPackage
   Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
   Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
   Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
   Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
+  Get-AppxPackage Microsoft.WindowsSoundRecorder | Remove-AppxPackage
   Get-AppxPackage Microsoft.XboxApp | Remove-AppxPackage
   Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
+  Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
+  Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
 }
