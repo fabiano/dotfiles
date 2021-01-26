@@ -62,7 +62,6 @@ Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
 Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage
 Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
 Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
-Get-AppxPackage Microsoft.People | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
