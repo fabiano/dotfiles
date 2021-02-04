@@ -25,7 +25,13 @@ function Install-App ($URL, $Outfile, $Arguments) {
   }
 
   if (-Not (Test-Path -Path $Outfile)) {
+    # disable invoke-webrequest progress bar
+    $ProgressPreference = "SilentlyContinue"
+
     Invoke-WebRequest -Uri $URL -OutFile $Outfile
+
+    # enable invoke-webrequest progress bar
+    $ProgressPreference = "Continue"
   }
 
   if ($Arguments.Count -eq 0) {
