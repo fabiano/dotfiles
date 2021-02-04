@@ -5,18 +5,20 @@ $DOTFILES_INSTALL_DIR = "$HOME\.dotfiles"
 # import helper functions module
 Import-Module -Name $DOTFILES_INSTALL_DIR\powershell-functions.ps1
 
-# functions
+# clear history
 function Clear-History {
   # https://blogs.msdn.microsoft.com/stevelasker/2016/03/25/clear-history-powershell-doesnt-clear-the-history-3/
   Remove-Item (Get-PSReadlineOption).HistorySavePath
 }
 
+# move to folder
 function X ($Name) {
   Get-ChildItem -Directory -Recurse -Depth 3 -Filter "$Name" -Path $HOME `
     | Select-Object -ExpandProperty FullName -First 1 `
     | Set-Location
 }
 
+# custom prompt
 function Prompt {
   Write-Host ""
   Write-Host $PWD -NoNewLine -ForegroundColor DarkBlue
@@ -105,20 +107,17 @@ function Prompt {
   return " "
 }
 
+# move to home folder
 function Home {
   Set-Location -Path $HOME
 }
 
+# move to parent folder
 function MoveUp {
   Set-Location -Path ..
 }
 
-function MoveTo($Path) {
-  Set-Location -Path $Path
-
-  $host.UI.RawUI.WindowTitle = Get-Location
-}
-
+# start http server on the current folder
 function Start-HttpServer ($Port) {
   & npx http-server . -p $Port -c-1 -o
 }
@@ -128,10 +127,13 @@ New-Alias -Name "~" -Value Home
 New-Alias -Name ".." -Value MoveUp
 New-Alias -Name "g" -Value git
 
-Set-Alias -Name "cd" -Value MoveTo -Option AllScope
-
+# enable psreadline
 # https://github.com/lzybkr/PSReadLine
 Import-Module PSReadLine
 
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# set oh my posh theme
+# https://ohmyposh.dev
+Set-PoshPrompt -Theme pure
