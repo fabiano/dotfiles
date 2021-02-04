@@ -60,8 +60,8 @@
   "schemes": [
     {
       "name": "Snazzy",
-      "background": "#1C1D25",
-      "black": "#1C1D25",
+      "background": "#20212B",
+      "black": "#20212B",
       "blue": "#57C7FF",
       "brightBlack": "#686868",
       "brightBlue": "#57C7FF",
