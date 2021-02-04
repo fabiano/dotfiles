@@ -6,9 +6,6 @@ $ErrorActionPreference = "Stop"
 # set tls version to 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# disable invoke-request progress bar
-$ProgressPreference = "SilentlyContinue"
-
 # dotfiles settings
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
 $DOTFILES_INSTALL_DIR = "$HOME\.dotfiles"
@@ -64,6 +61,3 @@ REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
 
 # install essential apps
 Install-Apps
-
-# enable invoke-request progress bar
-$ProgressPreference = "Continue"
