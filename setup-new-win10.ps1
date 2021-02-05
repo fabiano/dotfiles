@@ -42,10 +42,7 @@ Configure-Git
 $ErrorActionPreference = "Continue"
 
 # install fonts
-$SA = New-Object -ComObject Shell.Application
-$Fonts = $SA.NameSpace(0x14)
-
-Get-ChildItem -Path $DOTFILES_INSTALL_DIR\font-*.ttf | ForEach-Object { $Fonts.CopyHere($_.FullName) }
+Install-DevFonts
 
 # remove windows 10 built-in apps
 Remove-BuiltInApps
@@ -54,10 +51,7 @@ Remove-BuiltInApps
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
 
 # update command prompt
-REG DELETE HKEY_CURRENT_USER\Console /f
-REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
-
-& $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
+Update-CommandPrompt
 
 # install essential apps
 Install-Apps

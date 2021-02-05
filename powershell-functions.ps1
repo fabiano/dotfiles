@@ -346,6 +346,7 @@ function Install-DevTools {
   Configure-WindowsTerminal
 }
 
+# remove built-in windows 10 apps
 function Remove-BuiltInApps {
   Get-AppxPackage 5A894077.McAfeeSecurity | Remove-AppxPackage
   Get-AppxPackage C27EB4BA.DropboxOEM | Remove-AppxPackage
@@ -375,4 +376,20 @@ function Remove-BuiltInApps {
   Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
   Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
   Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
+}
+
+# update command prompt
+function Update-CommandPrompt {
+  REG DELETE HKEY_CURRENT_USER\Console /f
+  REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
+
+  & $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
+}
+
+# install fonts
+function Install-DevFonts {
+  $SA = New-Object -ComObject Shell.Application
+  $Fonts = $SA.NameSpace(0x14)
+
+  Get-ChildItem -Path $DOTFILES_INSTALL_DIR\font-*.ttf | ForEach-Object { $Fonts.CopyHere($_.FullName) }
 }
