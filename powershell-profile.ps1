@@ -33,10 +33,15 @@ function Start-HttpServer ($Port) {
   & npx http-server . -p $Port -c-1 -o
 }
 
+# reload profile
+function Reload-Profile {
+  . $DOTFILES_INSTALL_DIR\powershell-profile.ps1
+}
+
 # alias
-New-Alias -Name "~" -Value Home
-New-Alias -Name ".." -Value MoveUp
-New-Alias -Name "g" -Value git
+New-Alias -Name "~" -Value Home -Force
+New-Alias -Name ".." -Value MoveUp -Force
+New-Alias -Name "g" -Value git -Force
 
 # enable psreadline
 # https://github.com/lzybkr/PSReadLine

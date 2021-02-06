@@ -18,6 +18,17 @@ function New-SymbolicLink ($Path, $Value) {
   New-Item -ItemType SymbolicLink -Path $Path -Value $Value
 }
 
+# add folder to user path function
+function Add-FolderToUserPath ($Folder) {
+  $Path = [Environment]::GetEnvironmentVariable("Path", "User")
+
+  if ($Path -like "*${Folder}*") {
+    return
+  }
+
+  [Environment]::SetEnvironmentVariable("Path", $Path + ";" + $Folder, "User")
+}
+
 # install app function
 function Install-App ($URL, $Outfile, $Arguments) {
   if (Test-Path -Path "${Outfile}.skip") {
@@ -47,6 +58,39 @@ function Install-App ($URL, $Outfile, $Arguments) {
   }
 
   Set-Content -Path "${Outfile}.skip" -Value "skip"
+}
+
+# install portable app function
+function Install-PortableApp ($URL, $Outfile, $DestinationPath) {
+  if (Test-Path -Path "${Outfile}.skip") {
+    return
+  }
+
+  if (-Not (Test-Path -Path $Outfile)) {
+    # disable invoke-webrequest progress bar
+    $ProgressPreference = "SilentlyContinue"
+
+    Invoke-WebRequest -Uri $URL -OutFile $Outfile
+
+    # enable invoke-webrequest progress bar
+    $ProgressPreference = "Continue"
+  }
+
+  if ($Outfile -like "*.zip") {
+    Expand-Archive -LiteralPath $Outfile -DestinationPath $DestinationPath -Force
+  } else {
+    Copy-Item -Path $Outfile -Destination $DestinationPath -Force
+  }
+
+  Set-Content -Path "${Outfile}.skip" -Value "skip"
+}
+
+# create shortcut function
+function Create-Shortcut ($Name, $Path) {
+  $Shell = New-Object -ComObject "WScript.Shell"
+  $Shortcut = $Shell.CreateShortcut("${env:USERPROFILE}\Start Menu\Programs\${Name}.lnk")
+  $Shortcut.TargetPath = $Path
+  $Shortcut.Save()
 }
 
 # install 7-zip
@@ -87,10 +131,12 @@ function Install-Firefox {
 
 # install vim
 function Install-GVim {
-  Install-App `
-    -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.2.2316/gvim_8.2.2316_x86.exe" `
-    -OutFile "setup-gvim.exe" `
-    -Arguments @()
+  Install-PortableApp `
+    -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.2.2467/gvim_8.2.2467_x64.zip" `
+    -OutFile "setup-gvim.zip" `
+    -DestinationPath "${HOME}\.bin"
+
+  Add-FolderToUserPath -Folder "${HOME}\.bin\vim\vim82"
 }
 
 # install git
@@ -234,8 +280,8 @@ function Install-Office365 {
       "/norestart"
     )
 
-  & office-deployment-tool\setup.exe /download $HOME\.dotfiles\office-deployment-tool-office365.xml
-  & office-deployment-tool\setup.exe /configure $HOME\.dotfiles\office-deployment-tool-office365.xml
+  & office-deployment-tool\setup.exe /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+  & office-deployment-tool\setup.exe /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
 }
 
 # install typora
@@ -272,17 +318,47 @@ function Install-WindowsTerminal {
     Import-Module Appx
   }
 
-  Add-AppxPackage -Path setup-windows-terminal.msixbundle
+  Add-AppxPackage -Path "setup-windows-terminal.msixbundle"
+}
+
+# install screen to gif
+function Install-ScreenToGif {
+  Install-PortableApp `
+    -URL "https://github.com/NickeManarin/ScreenToGif/releases/download/2.27.3/ScreenToGif.2.27.3.Portable.zip" `
+    -OutFile "setup-screentogif.zip" `
+    -DestinationPath "${HOME}\.bin"
+
+  Create-Shortcut -Name "Screen To Gif" -Path "${HOME}\.bin\ScreenToGif.exe"
+}
+
+# install nuget
+function Install-NuGet {
+  Install-PortableApp `
+    -URL "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" `
+    -OutFile "setup-nuget.exe" `
+    -DestinationPath "${HOME}\.bin\nuget.exe"
+}
+
+# install youtube-dl
+function Install-YouTubeDL {
+  Install-PortableApp `
+    -URL "https://youtube-dl.org/downloads/latest/youtube-dl.exe" `
+    -OutFile "setup-youtube-dl.exe" `
+    -DestinationPath "${HOME}\.bin\youtube-dl.exe"
 }
 
 # configure git
 function Configure-Git {
-  New-SymbolicLink -Path $HOME\.gitconfig -Value $DOTFILES_INSTALL_DIR\git-gitconfig
+  New-SymbolicLink `
+    -Path "${HOME}\.gitconfig"
+    -Value "${DOTFILES_INSTALL_DIR}\git-gitconfig"
 }
 
 # configure powershell
 function Configure-PowerShell {
-  New-SymbolicLink -Path $HOME\Documents\PowerShell\Profile.ps1 -Value $DOTFILES_INSTALL_DIR\powershell-profile.ps1
+  New-SymbolicLink `
+    -Path "${HOME}\Documents\PowerShell\Profile.ps1"
+    -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
 
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
@@ -292,25 +368,33 @@ function Configure-PowerShell {
 
 # configure vim
 function Configure-Vim {
-  New-SymbolicLink -Path $HOME\.vimrc -Value $DOTFILES_INSTALL_DIR\vim-vimrc
+  New-SymbolicLink `
+    -Path "${HOME}\.vimrc"
+    -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
 
-  if (-Not (Test-Path -Path $HOME/.vim/autoload)) {
-    New-Item -ItemType Directory -Path $HOME/.vim/autoload
+  if (-Not (Test-Path -Path "${HOME}/.vim/autoload")) {
+    New-Item -ItemType Directory -Path "${HOME}\.vim\autoload"
   }
 
-  Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -OutFile $HOME/.vim/autoload/plug.vim
+  Invoke-WebRequest `
+    -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    -OutFile "${HOME}\.vim\autoload\plug.vim"
 }
 
 # configure visual studio code
 function Configure-VSCode {
-  New-SymbolicLink -Path $HOME\AppData\Roaming\Code\User\settings.json -Value $DOTFILES_INSTALL_DIR\vscode-settings.json
+  New-SymbolicLink `
+    -Path "${HOME}\AppData\Roaming\Code\User\settings.json"
+    -Value "${DOTFILES_INSTALL_DIR}\vscode-settings.json"
 
-  Get-Content -Path $DOTFILES_INSTALL_DIR\vscode-extensions.txt | ForEach-Object { code --install-extension $_ }
+  Get-Content -Path "${DOTFILES_INSTALL_DIR}\vscode-extensions.txt" | ForEach-Object { code --install-extension $_ }
 }
 
 # configure windows terminal
 function Configure-WindowsTerminal {
-  New-SymbolicLink -Path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json -Value $DOTFILES_INSTALL_DIR\win-terminal-profiles.json
+  New-SymbolicLink `
+    -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json"
+    -Value "${DOTFILES_INSTALL_DIR}\win-terminal-profiles.json"
 }
 
 # install essential apps
@@ -328,20 +412,29 @@ function Install-Apps {
   Reload-Path
 }
 
+# install portable apps
+function Install-PortableApps {
+  Install-ScreenToGif
+  Install-YouTubeDL
+}
+
 # install dev tools
 function Install-DevTools {
   Install-PowerShell
   Install-Node
+  Install-GVim
   Install-VSCode
   Install-VSCommunity
   Install-WindowsTerminal
   Install-Insomnia
   Install-Typora
+  Install-NuGet
 
   Reload-Path
 
   Configure-Git
   Configure-PowerShell
+  Configure-GVim
   Configure-VSCode
   Configure-WindowsTerminal
 }
@@ -391,5 +484,5 @@ function Install-DevFonts {
   $SA = New-Object -ComObject Shell.Application
   $Fonts = $SA.NameSpace(0x14)
 
-  Get-ChildItem -Path $DOTFILES_INSTALL_DIR\font-*.ttf | ForEach-Object { $Fonts.CopyHere($_.FullName) }
+  Get-ChildItem -Path "${DOTFILES_INSTALL_DIR}\font-*.ttf" | ForEach-Object { $Fonts.CopyHere($_.FullName) }
 }
