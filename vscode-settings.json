@@ -1,5 +1,6 @@
 {
     "breadcrumbs.enabled": false,
+    "editor.accessibilitySupport": "off",
     "editor.dragAndDrop": true,
     "editor.fontFamily": "Iosevka",
     "editor.fontLigatures": true,
@@ -19,11 +20,11 @@
     "terminal.integrated.fontFamily": "Iosevka Term",
     "terminal.integrated.fontSize": 18,
     "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
+    "terminal.integrated.shellArgs.windows": ["-nologo"],
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.iconTheme": "material-icon-theme",
     "workbench.colorCustomizations": {},
     "workbench.colorTheme": "Visual Studio Dark",
-    "editor.accessibilitySupport": "off"
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile"
 }
