@@ -41,6 +41,9 @@ Configure-Git
 # disable stop on first error
 $ErrorActionPreference = "Continue"
 
+# add .bin folder to user path
+Add-FolderToUserPath -Folder "${HOME}\.bin"
+
 # install fonts
 Install-DevFonts
 
