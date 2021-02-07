@@ -20,6 +20,7 @@
   sudo apt-get -y install zsh-completions
   sudo apt-get -y install zsh-autosuggestions
   sudo apt-get -y install zsh-syntax-highlighting
+  sudo apt-get -y install keychain
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
