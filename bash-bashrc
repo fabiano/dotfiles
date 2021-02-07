@@ -13,4 +13,8 @@ alias ~="cd ~"
 alias ls="ls --no-group --color=auto"
 
 # prompt
-PS1="\n\w\n\033[0;35m❯\033[0m "
+PS1="\n\w\n\033[0;35m❯❯\033[0m "
+
+# keychain
+eval `keychain --eval --agents ssh id_rsa --quiet`
+
