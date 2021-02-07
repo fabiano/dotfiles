@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 # dotfiles settings
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
-$DOTFILES_INSTALL_DIR = "$HOME\.dotfiles"
+$DOTFILES_INSTALL_DIR = "${HOME}\.dotfiles"
 
 # import functions module
 iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/fabiano/dotfiles/master/powershell-functions.ps1"))
