@@ -10,7 +10,7 @@ fi
 # alias
 alias ..="cd .."
 alias ~="cd ~"
-alias ls="ls -G"
+alias ls="ls --no-group --color=auto"
 
 # prompt
 PS1="\n\w\n\033[0;35m❯\033[0m "
