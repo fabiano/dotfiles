@@ -45,7 +45,6 @@ endif
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plug-plugins')
 
-Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'connorholyday/vim-snazzy'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -64,20 +63,8 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
-" solarized theme
-let g:solarized_visibility='low'
-
 " theme
-let s:colorscheme='solarized'
-
-if has('gui_running')
-  let s:colorscheme='solarized'
-elseif has('win32')
-  let s:colorscheme='snazzy'
-endif
-
-set background=dark
-execute 'colorscheme ' . s:colorscheme
+colorscheme snazzy
 
 " ctrlp.vim
 let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
@@ -85,7 +72,7 @@ let g:ctrlp_show_hidden=1
 
 " lightline
 let g:lightline={}
-let g:lightline.colorscheme=s:colorscheme
+let g:lightline.colorscheme='snazzy'
 let g:lightline.enable={'statusline': 1, 'tabline': 1}
 let g:lightline.tabline={'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand={'buffers': 'lightline#bufferline#buffers'}

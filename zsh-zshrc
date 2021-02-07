@@ -5,6 +5,9 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 fpath=("$HOME/.pure" $fpath)
 
 autoload -U promptinit; promptinit
+
+PURE_PROMPT_SYMBOL=❯❯
+
 prompt pure
 
 # zsh-syntax-highlighting
@@ -29,3 +32,4 @@ fi
 alias ..="cd .."
 alias ~="cd ~"
 alias ls="ls --no-group --color=auto"
+alias g="git"
