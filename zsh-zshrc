@@ -28,4 +28,4 @@ fi
 # alias
 alias ..="cd .."
 alias ~="cd ~"
-alias ls="ls -G"
+alias ls="ls --no-group --color=auto"
