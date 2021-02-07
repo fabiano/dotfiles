@@ -1,5 +1,11 @@
 # bash-completions@2
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+if [ -f "/usr/local/etc/profile.d/bash_completion.sh" ] ; then
+  source /usr/local/etc/profile.d/bash_completion.sh
+fi
+
+if [ -f "/etc/profile.d/bash_completion.sh" ] ; then
+  source /etc/profile.d/bash_completion.sh
+fi
 
 # alias
 alias ..="cd .."
