@@ -35,5 +35,5 @@ alias ls="ls --no-group --color=auto"
 alias g="git"
 
 # keychain
-eval `keychain --eval --agents ssh id_rsa --quiet`
+eval `keychain --eval --agents ssh id_ed25519 --quiet`
 
