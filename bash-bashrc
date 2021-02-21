@@ -16,5 +16,5 @@ alias ls="ls --no-group --color=auto"
 PS1="\n\w\n\033[0;35m❯❯\033[0m "
 
 # keychain
-eval `keychain --eval --agents ssh id_rsa --quiet`
+eval `keychain --eval --agents ssh id_ed25519 --quiet`
 
