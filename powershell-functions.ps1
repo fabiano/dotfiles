@@ -446,6 +446,11 @@ function Remove-BuiltInApps {
   Get-AppxPackage DellInc.DellCustomerConnect | Remove-AppxPackage
   Get-AppxPackage DellInc.DellDigitalDelivery | Remove-AppxPackage
   Get-AppxPackage DellInc.PartnerPromo | Remove-AppxPackage
+  Get-AppxPackage DolbyLaboratories.DolbyAccess | Remove-AppxPackage
+  Get-AppxPackage DolbyLaboratories.DolbyVisionAccess | Remove-AppxPackage
+  Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
+  Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
+  Get-AppxPackage WavesAudio.MaxxAudioProforDell2020 | Remove-AppxPackage
   Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
   Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
   Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
