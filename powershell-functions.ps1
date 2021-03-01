@@ -309,7 +309,7 @@ function Install-VSCommunity {
 # install windows terminal
 function Install-WindowsTerminal {
   Invoke-WebRequest `
-    -Uri "https://github.com/microsoft/terminal/releases/download/v1.5.10411.0/Microsoft.WindowsTerminal_1.5.10411.0_8wekyb3d8bbwe.msixbundle" `
+    -Uri "https://github.com/microsoft/terminal/releases/download/v1.6.10571.0/Microsoft.WindowsTerminal_1.6.10571.0_8wekyb3d8bbwe.msixbundle" `
     -OutFile "setup-windows-terminal.msixbundle"
 
   if ($PSVersionTable.PSEdition -eq "Core") {
@@ -350,14 +350,14 @@ function Install-YouTubeDL {
 # configure git
 function Configure-Git {
   New-SymbolicLink `
-    -Path "${HOME}\.gitconfig"
+    -Path "${HOME}\.gitconfig" `
     -Value "${DOTFILES_INSTALL_DIR}\git-gitconfig"
 }
 
 # configure powershell
 function Configure-PowerShell {
   New-SymbolicLink `
-    -Path "${HOME}\Documents\PowerShell\Profile.ps1"
+    -Path "${HOME}\Documents\PowerShell\Profile.ps1" `
     -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
 
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
@@ -369,7 +369,7 @@ function Configure-PowerShell {
 # configure vim
 function Configure-Vim {
   New-SymbolicLink `
-    -Path "${HOME}\.vimrc"
+    -Path "${HOME}\.vimrc" `
     -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
 
   if (-Not (Test-Path -Path "${HOME}/.vim/autoload")) {
@@ -377,23 +377,30 @@ function Configure-Vim {
   }
 
   Invoke-WebRequest `
-    -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim `
     -OutFile "${HOME}\.vim\autoload\plug.vim"
 }
 
 # configure visual studio code
 function Configure-VSCode {
   New-SymbolicLink `
-    -Path "${HOME}\AppData\Roaming\Code\User\settings.json"
+    -Path "${HOME}\AppData\Roaming\Code\User\settings.json" `
     -Value "${DOTFILES_INSTALL_DIR}\vscode-settings.json"
 
   Get-Content -Path "${DOTFILES_INSTALL_DIR}\vscode-extensions.txt" | ForEach-Object { code --install-extension $_ }
 }
 
+# configure azure data studio
+function Configure-AzureDataStudio {
+  New-SymbolicLink `
+    -Path "${HOME}\AppData\Roaming\azuredatastudio\User\settings.json" `
+    -Value "${DOTFILES_INSTALL_DIR}\azuredatastudio-settings.json"
+}
+
 # configure windows terminal
 function Configure-WindowsTerminal {
   New-SymbolicLink `
-    -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json"
+    -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json" `
     -Value "${DOTFILES_INSTALL_DIR}\win-terminal-profiles.json"
 }
 
@@ -437,6 +444,7 @@ function Install-DevTools {
   Configure-GVim
   Configure-VSCode
   Configure-WindowsTerminal
+  Configure-AzureDataStudio
 }
 
 # remove built-in windows 10 apps

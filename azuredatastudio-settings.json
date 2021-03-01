@@ -1,0 +1,79 @@
+{
+  "datasource.connectionGroups": [
+      {
+          "name": "ROOT",
+          "id": "C777F06B-202E-4480-B475-FA416154D458"
+      }
+  ],
+
+  "datasource.connections": [
+      {
+          "options": {
+              "connectionName": "",
+              "server": "DESKTOP-9A92VGO",
+              "database": "Cobalt",
+              "authenticationType": "Integrated",
+              "user": "",
+              "password": "",
+              "applicationName": "azdata",
+              "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+              "databaseDisplayName": ""
+          },
+          "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+          "providerName": "MSSQL",
+          "savePassword": true,
+          "id": "5cadbf46-1439-484b-a6d5-543d1f4045e6"
+      },
+      {
+          "options": {
+              "connectionName": "",
+              "server": "DESKTOP-8E5A5K1",
+              "database": "Cobalt",
+              "authenticationType": "Integrated",
+              "user": "",
+              "password": "",
+              "applicationName": "azdata",
+              "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+              "databaseDisplayName": ""
+          },
+          "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+          "providerName": "MSSQL",
+          "savePassword": true,
+          "id": "555eadfe-a944-4038-9189-b1f59c934aea"
+      },
+      {
+          "options": {
+              "connectionName": "",
+              "server": "dgacmucss-gdoc-qat.database.windows.net",
+              "database": "Cobalt",
+              "authenticationType": "AzureMFA",
+              "user": "Fabiano Franca - Fabiano.Franca@dgacmucss.onmicrosoft.com",
+              "password": "",
+              "connectTimeout": 30,
+              "applicationName": "azdata",
+              "azureTenantId": "10976151-7acc-47b3-a050-e1d9f938b086",
+              "azureAccount": "bb847cfb-eb23-4190-9058-36603f09c18d",
+              "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+              "databaseDisplayName": "Cobalt"
+          },
+          "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+          "providerName": "MSSQL",
+          "savePassword": true,
+          "id": "580d6316-b51c-4c07-93ba-3f0a969b13d0"
+      }
+  ],
+
+  "editor.accessibilitySupport": "off",
+  "editor.dragAndDrop": true,
+  "editor.fontFamily": "Iosevka",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 18,
+  "editor.insertSpaces": true,
+  "editor.minimap.enabled": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "workbench.enablePreviewFeatures": true,
+  "workbench.startupEditor": "welcomePage"
+}
