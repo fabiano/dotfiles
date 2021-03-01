@@ -26,7 +26,7 @@ Reload-Path
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # add private key to the ssh-agent
-ssh-add $HOME\.ssh\id_rsa
+ssh-add $HOME\.ssh\id_ed25519
 
 # clone repository
 if (Test-Path -Path $DOTFILES_INSTALL_DIR) {

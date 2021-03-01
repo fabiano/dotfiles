@@ -42,5 +42,5 @@ bindkey "^[[1;5C" forward-word  # ctrl + right arrow
 bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
 # keychain
-eval `keychain --eval --agents ssh id_rsa --quiet`
+eval `keychain --eval --agents ssh id_ed25519 --quiet`
 
