@@ -1,6 +1,9 @@
 # brew
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+# go
+export PATH=$PATH:/usr/local/go/bin
+
 # pure
 fpath=("$HOME/.pure" $fpath)
 
@@ -33,6 +36,10 @@ alias ..="cd .."
 alias ~="cd ~"
 alias ls="ls --no-group --color=auto"
 alias g="git"
+
+# keys
+bindkey "^[[1;5C" forward-word  # ctrl + right arrow
+bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
 # keychain
 eval `keychain --eval --agents ssh id_rsa --quiet`
