@@ -207,7 +207,7 @@ function Install-Node {
 # install powershell
 function Install-PowerShell {
   Install-App `
-    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.1.1/PowerShell-7.1.1-win-x64.msi" `
+    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.1.2/PowerShell-7.1.2-win-x64.msi" `
     -OutFile "setup-powershell.msi" `
     -Arguments @(
       "/passive"
@@ -309,7 +309,7 @@ function Install-VSCommunity {
 # install windows terminal
 function Install-WindowsTerminal {
   Invoke-WebRequest `
-    -Uri "https://github.com/microsoft/terminal/releases/download/v1.4.3243.0/Microsoft.WindowsTerminal_1.4.3243.0_8wekyb3d8bbwe.msixbundle" `
+    -Uri "https://github.com/microsoft/terminal/releases/download/v1.5.10411.0/Microsoft.WindowsTerminal_1.5.10411.0_8wekyb3d8bbwe.msixbundle" `
     -OutFile "setup-windows-terminal.msixbundle"
 
   if ($PSVersionTable.PSEdition -eq "Core") {
@@ -446,6 +446,10 @@ function Remove-BuiltInApps {
   Get-AppxPackage DellInc.DellCustomerConnect | Remove-AppxPackage
   Get-AppxPackage DellInc.DellDigitalDelivery | Remove-AppxPackage
   Get-AppxPackage DellInc.PartnerPromo | Remove-AppxPackage
+  Get-AppxPackage DolbyLaboratories.DolbyAccess | Remove-AppxPackage
+  Get-AppxPackage DolbyLaboratories.DolbyVisionAccess | Remove-AppxPackage
+  Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
+  Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
   Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
   Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
   Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
