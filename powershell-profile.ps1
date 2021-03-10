@@ -42,6 +42,7 @@ function Reload-Profile {
 New-Alias -Name "~" -Value Home -Force
 New-Alias -Name ".." -Value MoveUp -Force
 New-Alias -Name "g" -Value git -Force
+New-Alias -Name "d" -Value dotnet -Force
 
 # enable psreadline
 # https://github.com/lzybkr/PSReadLine
