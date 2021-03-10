@@ -22,7 +22,6 @@
     "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
     "terminal.integrated.shellArgs.windows": ["-nologo"],
     "window.restoreWindows": "none",
-    "window.zoomLevel": 0,
     "workbench.colorCustomizations": {},
     "workbench.colorTheme": "Visual Studio Dark",
     "workbench.iconTheme": "material-icon-theme",
