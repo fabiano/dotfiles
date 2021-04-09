@@ -83,7 +83,7 @@
   ],
   "keybindings": [
     {
-      "keys": [ "ctrl+p" ],
+      "keys": [ "ctrl+shift+h" ],
       "command": {
         "action": "splitPane",
         "split": "horizontal",
@@ -91,7 +91,7 @@
       }
     },
     {
-      "keys": [ "ctrl+shift+p" ],
+      "keys": [ "ctrl+shift+v" ],
       "command": {
         "action": "splitPane",
         "split": "vertical",
