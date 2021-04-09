@@ -207,7 +207,7 @@ function Install-Node {
 # install powershell
 function Install-PowerShell {
   Install-App `
-    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.1.2/PowerShell-7.1.2-win-x64.msi" `
+    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.1.3/PowerShell-7.1.3-win-x64.msi" `
     -OutFile "setup-powershell.msi" `
     -Arguments @(
       "/passive"
@@ -364,6 +364,7 @@ function Configure-PowerShell {
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name oh-my-posh -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Terminal-Icons -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
 }
 
 # configure vim
