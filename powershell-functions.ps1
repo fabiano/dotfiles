@@ -486,8 +486,14 @@ function Remove-BuiltInApps {
 
 # update command prompt
 function Update-CommandPrompt {
-  REG DELETE HKEY_CURRENT_USER\Console /f
-  REG IMPORT $DOTFILES_INSTALL_DIR\command-prompt.reg
+  Remove-ItemProperty -Path HKCU:\Console -Name *
+
+  Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "Iosevka NF"
+  Set-ItemProperty -Path "HKCU:\Console" -Name "FontFamily" -Value "54" -Type "DWord"
+  Set-ItemProperty -Path "HKCU:\Console" -Name "FontSize" -Value "1179648" -Type "DWord"
+  Set-ItemProperty -Path "HKCU:\Console" -Name "ScreenBufferSize" -Value "589889696" -Type "DWord"
+  Set-ItemProperty -Path "HKCU:\Console" -Name "WindowSize" -Value "1966240" -Type "DWord"
+  Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" -Name "000" -Value "Iosevka NF"
 
   & $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
 }
