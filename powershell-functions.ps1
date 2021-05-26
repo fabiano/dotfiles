@@ -309,7 +309,7 @@ function Install-VSCommunity {
 # install windows terminal
 function Install-WindowsTerminal {
   Invoke-WebRequest `
-    -Uri "https://github.com/microsoft/terminal/releases/download/v1.7.1033.0/Microsoft.WindowsTerminal_1.7.1033.0_8wekyb3d8bbwe.msixbundle" `
+    -Uri "https://github.com/microsoft/terminal/releases/download/v1.8.1444.0/Microsoft.WindowsTerminal_1.8.1444.0_8wekyb3d8bbwe.msixbundle" `
     -OutFile "setup-windows-terminal.msixbundle"
 
   if ($PSVersionTable.PSEdition -eq "Core") {
