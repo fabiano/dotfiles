@@ -23,7 +23,7 @@
     "terminal.integrated.shellArgs.windows": ["-nologo"],
     "window.restoreWindows": "none",
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Monokai Dimmed",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile"
 }
