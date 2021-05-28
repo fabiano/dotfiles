@@ -3,9 +3,27 @@
     {
       "name": "ROOT",
       "id": "C777F06B-202E-4480-B475-FA416154D458"
+    }
+  ],
+  "datasource.connections": [
+    {
+      "options": {
+        "connectionName": "",
+        "server": "localhost",
+        "database": "Cobalt",
+        "authenticationType": "Integrated",
+        "user": "",
+        "password": "",
+        "applicationName": "azdata",
+        "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+        "databaseDisplayName": "Cobalt"
+      },
+      "groupId": "C777F06B-202E-4480-B475-FA416154D458",
+      "providerName": "MSSQL",
+      "savePassword": true,
+      "id": "5cadbf46-1439-484b-a6d5-543d1f4045e6"
     },
   ],
-  "datasource.connections": [],
   "editor.accessibilitySupport": "off",
   "editor.dragAndDrop": true,
   "editor.fontFamily": "Iosevka",
