@@ -25,12 +25,12 @@
   brew install zsh-autosuggestions
   brew install zsh-syntax-highlighting
   brew install --cask 1password
+  brew install --cask caffeine
   brew install --cask firefox
   brew install --cask font-fira-code
   brew install --cask font-iosevka
   brew install --cask forklift
   brew install --cask google-chrome
-  brew install --cask intelliscape-caffeine
   brew install --cask iterm2
   brew install --cask jabra-direct
   brew install --cask microsoft-edge
