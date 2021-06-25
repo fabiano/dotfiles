@@ -24,20 +24,19 @@
   brew install zsh
   brew install zsh-autosuggestions
   brew install zsh-syntax-highlighting
-  brew cask install 1password
-  brew cask install android-file-transfer
-  brew cask install firefox
-  brew cask install font-fira-code
-  brew cask install font-iosevka
-  brew cask install forklift
-  brew cask install github
-  brew cask install google-chrome
-  brew cask install intelliscape-caffeine
-  brew cask install iterm2
-  brew cask install jabra-direct
-  brew cask install the-unarchiver
-  brew cask install tuxera-ntfs
-  brew cask install visual-studio-code
+  brew install --cask 1password
+  brew install --cask firefox
+  brew install --cask font-fira-code
+  brew install --cask font-iosevka
+  brew install --cask forklift
+  brew install --cask google-chrome
+  brew install --cask intelliscape-caffeine
+  brew install --cask iterm2
+  brew install --cask jabra-direct
+  brew install --cask microsoft-edge
+  brew install --cask the-unarchiver
+  brew install --cask tuxera-ntfs
+  brew install --cask visual-studio-code
   brew cleanup
 
   # clone repository
