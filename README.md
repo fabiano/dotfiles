@@ -9,5 +9,5 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 ## Mac OS
 
 ```bash
-curl -o- https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-macos.sh | bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-macos.sh)"
 ```
