@@ -22,7 +22,7 @@
       "providerName": "MSSQL",
       "savePassword": true,
       "id": "5cadbf46-1439-484b-a6d5-543d1f4045e6"
-    },
+    }
   ],
   "editor.accessibilitySupport": "off",
   "editor.dragAndDrop": true,
