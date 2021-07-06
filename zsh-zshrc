@@ -34,7 +34,7 @@ fi
 # alias
 alias ..="cd .."
 alias ~="cd ~"
-alias ls="ls --no-group --color=auto"
+alias ls="ls -G"
 alias g="git"
 
 # keys
@@ -42,5 +42,6 @@ bindkey "^[[1;5C" forward-word  # ctrl + right arrow
 bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
 # keychain
-eval `keychain --eval --agents ssh id_ed25519 --quiet`
-
+if [ -f "/usr/bin/keychain" ] ; then
+  eval `keychain --eval --agents ssh id_ed25519 --quiet`
+fi
