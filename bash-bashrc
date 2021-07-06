@@ -10,11 +10,12 @@ fi
 # alias
 alias ..="cd .."
 alias ~="cd ~"
-alias ls="ls --no-group --color=auto"
+alias ls="ls -G"
 
 # prompt
 PS1="\n\w\n\033[0;35m❯❯\033[0m "
 
 # keychain
-eval `keychain --eval --agents ssh id_ed25519 --quiet`
-
+if [ -f "/usr/bin/keychain" ] ; then
+  eval `keychain --eval --agents ssh id_ed25519 --quiet`
+fi
