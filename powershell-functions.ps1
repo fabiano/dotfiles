@@ -503,5 +503,5 @@ function Install-DevFonts {
   $SA = New-Object -ComObject Shell.Application
   $Fonts = $SA.NameSpace(0x14)
 
-  Get-ChildItem -Path "${DOTFILES_INSTALL_DIR}\font-*.ttf" | ForEach-Object { $Fonts.CopyHere($_.FullName) }
+  Get-ChildItem -Path "${DOTFILES_INSTALL_DIR}\*" -Include @("*.ttf", "*.ttc") | ForEach-Object { $Fonts.CopyHere($_.FullName) }
 }
