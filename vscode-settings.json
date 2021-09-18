@@ -25,5 +25,6 @@
     "workbench.colorCustomizations": {},
     "workbench.colorTheme": "Default Light+",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "go.toolsManagement.autoUpdate": true
 }
