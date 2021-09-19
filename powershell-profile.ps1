@@ -54,7 +54,3 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 # set oh my posh theme
 # https://ohmyposh.dev
 Set-PoshPrompt -Theme "${DOTFILES_INSTALL_DIR}\ohmyposh-theme.json"
-
-# enable terminal icons
-# https://github.com/devblackops/Terminal-Icons
-Import-Module -Name Terminal-Icons
