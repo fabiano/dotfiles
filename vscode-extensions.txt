@@ -1,14 +1,5 @@
 bodil.file-browser
-CoenraadS.bracket-pair-colorizer-2
-dbaeumer.vscode-eslint
-denoland.vscode-deno
 DotJoshJohnson.xml
 eamodio.gitlens
 EditorConfig.EditorConfig
-golang.go
-ms-dotnettools.csharp
-msjsdiag.debugger-for-chrome
-msjsdiag.debugger-for-edge
-octref.vetur
 PKief.material-icon-theme
-syler.sass-indented
