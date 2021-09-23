@@ -409,11 +409,6 @@ function Install-Apps {
   Install-7Zip
   Install-Chrome
   Install-Firefox
-  Install-JabraDirect
-  Install-LogitechCapture
-  Install-LogitechOptions
-  Install-SvgExplorerExtension
-  Install-WinDirStat
   Install-Office365
 
   Reload-Path
@@ -434,7 +429,6 @@ function Install-DevTools {
   Install-VSCommunity
   Install-WindowsTerminal
   Install-Insomnia
-  Install-Typora
   Install-NuGet
 
   Reload-Path
