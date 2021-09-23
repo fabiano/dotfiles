@@ -32,7 +32,6 @@
   brew install --cask forklift
   brew install --cask google-chrome
   brew install --cask iterm2
-  brew install --cask jabra-direct
   brew install --cask microsoft-edge
   brew install --cask the-unarchiver
   brew install --cask tuxera-ntfs
