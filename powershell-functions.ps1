@@ -347,6 +347,20 @@ function Install-YouTubeDL {
     -DestinationPath "${HOME}\.bin\youtube-dl.exe"
 }
 
+# install sublime text
+function Install-SublimeText {
+  Install-App `
+    -URL "https://download.sublimetext.com/sublime_text_build_4113_x64_setup.exe" `
+    -OutFile "setup-sublimetext.exe" `
+    -Arguments @(
+      "/SP-"
+      "/SILENT"
+      "/SUPPRESSMSGBOXES"
+      "/TASKS=""contextentry"""
+      "/LOG=""setup-sublimetext.log"""
+    )
+}
+
 # configure git
 function Configure-Git {
   New-SymbolicLink `
@@ -404,6 +418,25 @@ function Configure-WindowsTerminal {
     -Value "${DOTFILES_INSTALL_DIR}\win-terminal-profiles.json"
 }
 
+# configure sublime text
+function Configure-SublimeText {
+  New-SymbolicLink `
+    -Path "${HOME}\AppData\Roaming\Sublime Text\Packages\User\Preferences.sublime-settings" `
+    -Value "${DOTFILES_INSTALL_DIR}\sublime-preferences.sublime-settings"
+
+  New-SymbolicLink `
+    -Path "${HOME}\AppData\Roaming\Sublime Text\Packages\User\Package Control.sublime-settings" `
+    -Value "${DOTFILES_INSTALL_DIR}\sublime-package-control.sublime-settings"
+
+  if (-Not (Test-Path -Path "${HOME}\AppData\Roaming\Sublime Text\Installed Packages")) {
+    New-Item -ItemType Directory -Path "${HOME}\AppData\Roaming\Sublime Text\Installed Packages"
+  }
+
+  Invoke-WebRequest `
+    -Uri "https://packagecontrol.io/Package%20Control.sublime-package" `
+    -Outfile "${HOME}\AppData\Roaming\Sublime Text\Installed Packages\Package Control.sublime-package"
+}
+
 # install essential apps
 function Install-Apps {
   Install-7Zip
@@ -430,6 +463,7 @@ function Install-DevTools {
   Install-WindowsTerminal
   Install-Insomnia
   Install-NuGet
+  Install-SublimeText
 
   Reload-Path
 
@@ -439,6 +473,7 @@ function Install-DevTools {
   Configure-VSCode
   Configure-WindowsTerminal
   Configure-AzureDataStudio
+  Configure-SublimeText
 }
 
 # remove built-in windows 10 apps

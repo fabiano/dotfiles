@@ -10,12 +10,12 @@
 		"BracketHighlighter",
 		"EditorConfig",
 		"Git",
-		"OmniSharp",
 		"Package Control",
+		"PowerShell",
 		"Sass",
 		"SideBarEnhancements",
-		"Solarized Color Scheme",
 		"SublimeLinter",
-		"SublimeLinter-eslint"
-	]
+		"SublimeLinter-eslint",
+		"Vue Syntax Highlight",
+	],
 }
