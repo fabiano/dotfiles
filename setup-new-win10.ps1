@@ -51,7 +51,9 @@ Install-DevFonts
 Remove-BuiltInApps
 
 # disable bing search results from start menu
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
+Set-ItemProperty `
+  -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" `
+  -Name "BingSearchEnabled" -Type DWord -Value 0
 
 # update command prompt
 Update-CommandPrompt
