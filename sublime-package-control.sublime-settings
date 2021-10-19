@@ -9,6 +9,7 @@
 		"Babel",
 		"BracketHighlighter",
 		"EditorConfig",
+		"Fmt",
 		"Git",
 		"Package Control",
 		"PowerShell",
@@ -16,6 +17,7 @@
 		"SideBarEnhancements",
 		"SublimeLinter",
 		"SublimeLinter-eslint",
+		"SublimeLinter-golangcilint",
 		"Vue Syntax Highlight",
 	],
 }
