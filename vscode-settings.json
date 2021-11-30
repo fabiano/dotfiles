@@ -1,10 +1,11 @@
 {
     "breadcrumbs.enabled": false,
+    "diffEditor.ignoreTrimWhitespace": false,
     "editor.accessibilitySupport": "off",
     "editor.dragAndDrop": true,
     "editor.fontFamily": "Iosevka",
     "editor.fontLigatures": true,
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     "editor.insertSpaces": true,
     "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "ctrlCmd",
@@ -18,13 +19,17 @@
     "gitlens.hovers.currentLine.over": "line",
     "markdown.preview.fontSize": 18,
     "terminal.integrated.fontFamily": "Iosevka Term",
-    "terminal.integrated.fontSize": 18,
-    "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
-    "terminal.integrated.shellArgs.windows": ["-nologo"],
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "path": "pwsh.exe",
+            "args": [ "-nologo", "-noexit" ]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
     "window.restoreWindows": "none",
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "Visual Studio Light",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile",
-    "go.toolsManagement.autoUpdate": true
+    "workbench.startupEditor": "newUntitledFile"
 }

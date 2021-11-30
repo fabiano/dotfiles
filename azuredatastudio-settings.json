@@ -10,13 +10,14 @@
       "options": {
         "connectionName": "",
         "server": "localhost",
-        "database": "Cobalt",
+        "database": "master",
         "authenticationType": "Integrated",
         "user": "",
         "password": "",
         "applicationName": "azdata",
+        "originalDatabase": "master",
         "groupId": "C777F06B-202E-4480-B475-FA416154D458",
-        "databaseDisplayName": "Cobalt"
+        "databaseDisplayName": "master"
       },
       "groupId": "C777F06B-202E-4480-B475-FA416154D458",
       "providerName": "MSSQL",
