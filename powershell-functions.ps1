@@ -179,7 +179,7 @@ function Install-JabraDirect {
 # install logitech capture
 function Install-LogitechCapture {
   Install-App `
-    -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_2.04.13.exe" `
+    -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_2.08.11.exe" `
     -OutFile "setup-logitech-capture.exe" `
     -Arguments @()
 }
@@ -187,7 +187,7 @@ function Install-LogitechCapture {
 # install logitech options
 function Install-LogitechOptions {
   Install-App `
-    -URL "https://download01.logi.com/web/ftp/pub/techsupport/options/Options_8.36.86.exe" `
+    -URL "https://download01.logi.com/web/ftp/pub/techsupport/options/options_installer.exe" `
     -OutFile "setup-logitech-options.exe" `
     -Arguments @()
 }
@@ -358,6 +358,17 @@ function Install-SublimeText {
       "/SUPPRESSMSGBOXES"
       "/TASKS=""contextentry"""
       "/LOG=""setup-sublimetext.log"""
+    )
+}
+
+# install dbeaver
+function Install-DBeaver {
+  Install-App `
+    -URL "https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe" `
+    -OutFile "setup-dbeaver.exe" `
+    -Arguments @(
+      "/S"
+      "/allusers"
     )
 }
 
