@@ -29,7 +29,7 @@
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "window.restoreWindows": "none",
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Visual Studio Light",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Visual Studio Dark"
 }
