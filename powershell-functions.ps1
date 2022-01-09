@@ -113,14 +113,6 @@ function Install-Chrome {
     )
 }
 
-# install edge
-function Install-Edge {
-  Install-App `
-    -URL "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?ProductreleaseID=Edge&platform=Default&version=Edge&source=EdgeStablePage&Channel=Stable&language=en" `
-    -OutFile "setup-edge.exe" `
-    -Arguments @()
-}
-
 # install firefox
 function Install-Firefox {
   Install-App `
@@ -358,17 +350,6 @@ function Install-SublimeText {
       "/SUPPRESSMSGBOXES"
       "/TASKS=""contextentry"""
       "/LOG=""setup-sublimetext.log"""
-    )
-}
-
-# install dbeaver
-function Install-DBeaver {
-  Install-App `
-    -URL "https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe" `
-    -OutFile "setup-dbeaver.exe" `
-    -Arguments @(
-      "/S"
-      "/allusers"
     )
 }
 
