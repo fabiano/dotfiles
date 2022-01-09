@@ -425,8 +425,8 @@ function Configure-AzureDataStudio {
 # configure windows terminal
 function Configure-WindowsTerminal {
   New-SymbolicLink `
-    -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json" `
-    -Value "${DOTFILES_INSTALL_DIR}\win-terminal-profiles.json"
+    -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" `
+    -Value "${DOTFILES_INSTALL_DIR}\win-terminal-settings.json"
 }
 
 # configure sublime text
