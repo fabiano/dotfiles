@@ -38,6 +38,25 @@ function Reload-Profile {
   . "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
 }
 
+# caffeine
+function Start-Caffeine {
+  Add-Type -AssemblyName System.Windows.Forms
+
+  while (1 -eq 1 ) {
+    $message = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
+
+    Write-Host ${message}: Pressing F16
+
+    [System.Windows.Forms.SendKeys]::SendWait("{F16}")
+
+    Start-Sleep -Seconds 59
+  }
+}
+
+function Kill-ChromeDriver {
+  Get-Process -Name chromedriver | Stop-Process
+}
+
 # alias
 New-Alias -Name "~" -Value Home -Force
 New-Alias -Name ".." -Value MoveUp -Force
