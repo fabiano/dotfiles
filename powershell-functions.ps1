@@ -480,7 +480,7 @@ function Install-DevTools {
 
   Configure-Git
   Configure-PowerShell
-  Configure-GVim
+  Configure-Vim
   Configure-VSCode
   Configure-WindowsTerminal
   Configure-AzureDataStudio
