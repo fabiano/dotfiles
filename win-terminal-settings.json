@@ -29,7 +29,7 @@
       "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
       "name": "Ubuntu",
       "commandline": "wsl -d Ubuntu",
-      "startingDirectory": "//wsl$/Ubuntu/home/fabiano",
+      "startingDirectory": "\\\\wsl.localhost\\Ubuntu\\home\\fabiano",
       "colorScheme": "Snazzy",
       "cursorShape": "emptyBox",
       "fontFace": "Iosevka Term",
