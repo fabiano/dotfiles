@@ -316,7 +316,7 @@ function Install-WindowsTerminal {
 # install screen to gif
 function Install-ScreenToGif {
   Install-PortableApp `
-    -URL "https://github.com/NickeManarin/ScreenToGif/releases/download/2.27.3/ScreenToGif.2.27.3.Portable.zip" `
+    -URL "https://github.com/NickeManarin/ScreenToGif/releases/download/2.36/ScreenToGif.2.36.Portable.x64.zip" `
     -OutFile "setup-screentogif.zip" `
     -DestinationPath "${HOME}\.bin"
 
