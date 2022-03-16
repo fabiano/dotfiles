@@ -53,8 +53,9 @@ function Start-Caffeine {
   }
 }
 
-function Kill-ChromeDriver {
-  Get-Process -Name chromedriver | Stop-Process
+# kill process
+function Kill-Process ($Name) {
+  taskkill /IM $Name /F
 }
 
 # alias
