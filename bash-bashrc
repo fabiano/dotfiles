@@ -16,6 +16,6 @@ alias ls="ls -G"
 PS1="\n\w\n\033[0;35m❯❯\033[0m "
 
 # keychain
-if [ -f "/usr/bin/keychain" ] ; then
+if  [ -t 1 ] && [ -f "/usr/bin/keychain" ] ; then
   eval `keychain --eval --agents ssh id_ed25519 --quiet`
 fi
