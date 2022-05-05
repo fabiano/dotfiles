@@ -8,13 +8,16 @@ $ErrorActionPreference = "Stop"
 
 # dotfiles settings
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
+$DOTFILES_REPOSITORY_HTTP = "https://github.com/fabiano/dotfiles.git"
 $DOTFILES_INSTALL_DIR = "${HOME}\.dotfiles"
 
 # import functions module
 iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/fabiano/dotfiles/master/powershell-functions.ps1"))
 
 # install git
-Install-Git
+if (-Not (Test-Path -Path "${$env:PROGRAMFILES}\Git\bin\git.exe")) {
+  Install-Git
+}
 
 # reload path
 Reload-Path
@@ -26,14 +29,22 @@ Reload-Path
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # add private key to the ssh-agent
-ssh-add $HOME\.ssh\id_ed25519
+$PrivateKeyFileName = $HOME\.ssh\id_ed25519
+
+if (Test-Path -Path $PrivateKeyFileName) {
+  ssh-add $PrivateKeyFileName
+}
 
 # clone repository
 if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
   Remove-Item -Path $DOTFILES_INSTALL_DIR -Recurse
 }
 
-git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
+if (Test-Path -Path $PrivateKeyFileName) {
+  git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
+} else {
+  git clone $DOTFILES_REPOSITORY_HTTP $DOTFILES_INSTALL_DIR
+}
 
 # configure git
 Configure-Git
@@ -44,9 +55,6 @@ $ErrorActionPreference = "Continue"
 # add .bin folder to user path
 Add-FolderToUserPath -Folder "${HOME}\.bin"
 
-# install fonts
-Install-DevFonts
-
 # remove windows 10 built-in apps
 Remove-BuiltInApps
 
@@ -55,8 +63,8 @@ Set-ItemProperty `
   -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" `
   -Name "BingSearchEnabled" -Type DWord -Value 0
 
+# install fonts
+Install-Fonts
+
 # update command prompt
 Update-CommandPrompt
-
-# install essential apps
-Install-Apps

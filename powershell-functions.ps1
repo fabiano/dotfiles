@@ -96,7 +96,7 @@ function Create-Shortcut ($Name, $Path) {
 # install 7-zip
 function Install-7Zip {
   Install-App `
-    -URL "https://www.7-zip.org/a/7z1900-x64.exe" `
+    -URL "https://www.7-zip.org/a/7z2107-x64.exe" `
     -OutFile "setup-7z.exe" `
     -Arguments @("/S")
 }
@@ -124,7 +124,7 @@ function Install-Firefox {
 # install vim
 function Install-GVim {
   Install-PortableApp `
-    -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.2.2467/gvim_8.2.2467_x64.zip" `
+    -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.2.4868/gvim_8.2.4868_x64.zip" `
     -OutFile "setup-gvim.zip" `
     -DestinationPath "${HOME}\.bin"
 
@@ -134,7 +134,7 @@ function Install-GVim {
 # install git
 function Install-Git {
   Install-App `
-    -URL "https://github.com/git-for-windows/git/releases/download/v2.30.0.windows.1/Git-2.30.0-64-bit.exe" `
+    -URL "https://github.com/git-for-windows/git/releases/download/v2.36.0.windows.1/Git-2.36.0-64-bit.exe" `
     -OutFile "setup-git.exe" `
     -Arguments @(
       "/SP-"
@@ -171,7 +171,7 @@ function Install-JabraDirect {
 # install logitech capture
 function Install-LogitechCapture {
   Install-App `
-    -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_2.08.11.exe" `
+    -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_2.00.226.exe" `
     -OutFile "setup-logitech-capture.exe" `
     -Arguments @()
 }
@@ -199,7 +199,7 @@ function Install-Node {
 # install powershell
 function Install-PowerShell {
   Install-App `
-    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/PowerShell-7.2.1-win-x64.msi" `
+    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x64.msi" `
     -OutFile "setup-powershell.msi" `
     -Arguments @(
       "/passive"
@@ -209,19 +209,6 @@ function Install-PowerShell {
       "REGISTER_MANIFEST=1"
       "ENABLE_PSREMOTING=0"
       "ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
-    )
-}
-
-# install python
-function Install-Python {
-  Install-App `
-    -URL "https://www.python.org/ftp/python/3.9.1/python-3.9.1-amd64.exe" `
-    -OutFile "setup-python.exe" `
-    -Arguments @(
-      "/passive"
-      "AssociateFiles=0"
-      "Shortcuts=0"
-      "PrependPath=1"
     )
 }
 
@@ -293,7 +280,7 @@ function Install-Typora {
 # install visual studio community
 function Install-VSCommunity {
   Install-App `
-    -URL "https://aka.ms/vs/17/release/vs_community.exe" `
+    -URL "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=community&channel=Release&version=VS2022&source=VSLandingPage&includeRecommended=true&cid=2030" `
     -OutFile "setup-vs-community.exe" `
     -Arguments @()
 }
@@ -301,7 +288,7 @@ function Install-VSCommunity {
 # install windows terminal
 function Install-WindowsTerminal {
   Invoke-WebRequest `
-    -Uri "https://github.com/microsoft/terminal/releases/download/v1.11.2921.0/Microsoft.WindowsTerminal_1.11.2921.0_8wekyb3d8bbwe.msixbundle" `
+    -Uri "https://github.com/microsoft/terminal/releases/download/v1.12.10982.0/Microsoft.WindowsTerminal_Win10_1.12.10982.0_8wekyb3d8bbwe.msixbundle" `
     -OutFile "setup-windows-terminal.msixbundle"
 
   if ($PSVersionTable.PSEdition -eq "Core") {
@@ -316,7 +303,7 @@ function Install-WindowsTerminal {
 # install screen to gif
 function Install-ScreenToGif {
   Install-PortableApp `
-    -URL "https://github.com/NickeManarin/ScreenToGif/releases/download/2.36/ScreenToGif.2.36.Portable.x64.zip" `
+    -URL "https://github.com/NickeManarin/ScreenToGif/releases/download/2.37/ScreenToGif.2.37.Portable.x64.zip" `
     -OutFile "setup-screentogif.zip" `
     -DestinationPath "${HOME}\.bin"
 
@@ -342,7 +329,7 @@ function Install-YouTubeDL {
 # install sublime text
 function Install-SublimeText {
   Install-App `
-    -URL "https://download.sublimetext.com/sublime_text_build_4113_x64_setup.exe" `
+    -URL "https://download.sublimetext.com/sublime_text_build_4126_x64_setup.exe" `
     -OutFile "setup-sublimetext.exe" `
     -Arguments @(
       "/SP-"
@@ -468,7 +455,7 @@ function Install-DevTools {
   Configure-SublimeText
 }
 
-# remove built-in windows 10 apps
+# remove built-in windows 10/11 apps
 function Remove-BuiltInApps {
   Get-AppxPackage 5A894077.McAfeeSecurity | Remove-AppxPackage
   Get-AppxPackage C27EB4BA.DropboxOEM | Remove-AppxPackage
@@ -508,7 +495,7 @@ function Remove-BuiltInApps {
 function Update-CommandPrompt {
   Remove-ItemProperty -Path HKCU:\Console -Name *
 
-  Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "Iosevka NF"
+  Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "Iosevka Term"
   Set-ItemProperty -Path "HKCU:\Console" -Name "FontFamily" -Value "54" -Type "DWord"
   Set-ItemProperty -Path "HKCU:\Console" -Name "FontSize" -Value "1179648" -Type "DWord"
   Set-ItemProperty -Path "HKCU:\Console" -Name "ScreenBufferSize" -Value "589889696" -Type "DWord"
@@ -519,7 +506,7 @@ function Update-CommandPrompt {
 }
 
 # install fonts
-function Install-DevFonts {
+function Install-Fonts {
   $SA = New-Object -ComObject Shell.Application
   $Fonts = $SA.NameSpace(0x14)
 
