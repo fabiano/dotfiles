@@ -73,4 +73,4 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 # set oh my posh theme
 # https://ohmyposh.dev
-Set-PoshPrompt -Theme "${DOTFILES_INSTALL_DIR}\ohmyposh-theme.json"
+oh-my-posh init pwsh --config "${DOTFILES_INSTALL_DIR}\ohmyposh-theme.json" | Invoke-Expression

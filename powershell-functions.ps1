@@ -95,30 +95,23 @@ function Create-Shortcut ($Name, $Path) {
 
 # install 7-zip
 function Install-7Zip {
-  Install-App `
-    -URL "https://www.7-zip.org/a/7z2107-x64.exe" `
-    -OutFile "setup-7z.exe" `
-    -Arguments @("/S")
+  winget install  `
+    --id 7zip.7zip `
+    --exact
 }
 
 # install chrome
 function Install-Chrome {
-  Install-App `
-    -URL "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi" `
-    -OutFile "setup-chrome.msi" `
-    -Arguments @(
-      "/passive"
-      "/norestart"
-      "/l*v ""setup-chrome.log"""
-    )
+  winget install  `
+    --id Google.Chrome `
+    --exact
 }
 
 # install firefox
 function Install-Firefox {
-  Install-App `
-    -URL "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" `
-    -OutFile "setup-firefox.exe" `
-    -Arguments @("-ms")
+  winget install `
+    --id Mozilla.Firefox `
+    --exact
 }
 
 # install vim
@@ -133,26 +126,17 @@ function Install-GVim {
 
 # install git
 function Install-Git {
-  Install-App `
-    -URL "https://github.com/git-for-windows/git/releases/download/v2.36.0.windows.1/Git-2.36.0-64-bit.exe" `
-    -OutFile "setup-git.exe" `
-    -Arguments @(
-      "/SP-"
-      "/SILENT"
-      "/SUPPRESSMSGBOXES"
-      "/COMPONENTS=""gitlfs,autoupdate"""
-      "/LOG=""setup-git.log"""
-    )
+  winget install `
+    --id Git.Git `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"" /LOG=""setup-git.log"""
 }
 
 # install insomnia
 function Install-Insomnia {
-  Install-App `
-    -URL "https://updates.insomnia.rest/downloads/windows/latest" `
-    -OutFile "setup-insomnia.exe" `
-    -Arguments @(
-      "--silent"
-    )
+  winget install `
+    --id Insomnia.Insomnia `
+    --exact
 }
 
 # install jabra direct
@@ -198,54 +182,26 @@ function Install-Node {
 
 # install powershell
 function Install-PowerShell {
-  Install-App `
-    -URL "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x64.msi" `
-    -OutFile "setup-powershell.msi" `
-    -Arguments @(
-      "/passive"
-      "/norestart"
-      "/l*v ""setup-powershell.log"""
-      "ADD_PATH=1"
-      "REGISTER_MANIFEST=1"
-      "ENABLE_PSREMOTING=0"
-      "ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
-    )
+  winget install `
+    --id Microsoft.PowerShell `
+    --exact `
+    --override "/passive /norestart /l*v ""setup-powershell.log"" ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
 }
 
 # install svg explorer extension
 function Install-SvgExplorerExtension {
-  Install-App `
-    -URL "https://github.com/tibold/svg-explorer-extension/releases/download/v1.1.0/svg_see_x64.exe" `
-    -OutFile "setup-svg-explorer-extension.exe" `
-    -Arguments @(
-      "/SP-"
-      "/SILENT"
-      "/SUPPRESSMSGBOXES"
-      "/TASKS="""""
-      "/LOG=""setup-svg-explorer-extension.log"""
-    )
+  winget install `
+    --id SVGExplorerExtension.SVGExplorerExtension `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""" /LOG=""setup-svg-explorer-extension.log"""
 }
 
 # install visual studio code
 function Install-VSCode {
-  Install-App `
-    -URL "https://aka.ms/win32-x64-user-stable" `
-    -OutFile "setup-vscode.exe" `
-    -Arguments @(
-      "/SP-"
-      "/SILENT"
-      "/SUPPRESSMSGBOXES"
-      "/TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
-      "/LOG=""setup-vscode.log"""
-    )
-}
-
-# install windirstat
-function Install-WinDirStat {
-  Install-App `
-    -URL "https://ufpr.dl.sourceforge.net/project/windirstat/windirstat/1.1.2%20installer%20re-release%20%28more%20languages%21%29/windirstat1_1_2_setup.exe" `
-    -OutFile "setup-windirstat.exe" `
-    -Arguments @("/S")
+  winget install `
+    --id Microsoft.VisualStudioCode `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"" /LOG=""setup-vscode.log"""
 }
 
 # install office 365
@@ -265,39 +221,22 @@ function Install-Office365 {
 
 # install typora
 function Install-Typora {
-  Install-App `
-    -URL "https://typora.io/windows/typora-setup-x64.exe" `
-    -OutFile "setup-typora.exe" `
-    -Arguments @(
-      "/SP-"
-      "/SILENT"
-      "/SUPPRESSMSGBOXES"
-      "/TASKS="""""
-      "/LOG=""setup-typora.log"""
-    )
+  winget install `
+    --id Typora.Typora `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""" /LOG=""setup-typora.log"""
 }
 
 # install visual studio community
 function Install-VSCommunity {
-  Install-App `
-    -URL "https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?sku=community&channel=Release&version=VS2022&source=VSLandingPage&includeRecommended=true&cid=2030" `
-    -OutFile "setup-vs-community.exe" `
-    -Arguments @()
+  winget install `
+    --id Microsoft.VisualStudio.2022.Community `
+    --exact
 }
 
-# install windows terminal
-function Install-WindowsTerminal {
-  Invoke-WebRequest `
-    -Uri "https://github.com/microsoft/terminal/releases/download/v1.12.10982.0/Microsoft.WindowsTerminal_Win10_1.12.10982.0_8wekyb3d8bbwe.msixbundle" `
-    -OutFile "setup-windows-terminal.msixbundle"
-
-  if ($PSVersionTable.PSEdition -eq "Core") {
-    Import-Module Appx -UseWindowsPowerShell
-  } else {
-    Import-Module Appx
-  }
-
-  Add-AppxPackage -Path "setup-windows-terminal.msixbundle"
+# install oh my posh
+function Install-OhMyPosh {
+  winget install oh-my-posh
 }
 
 # install screen to gif
@@ -328,16 +267,10 @@ function Install-YouTubeDL {
 
 # install sublime text
 function Install-SublimeText {
-  Install-App `
-    -URL "https://download.sublimetext.com/sublime_text_build_4126_x64_setup.exe" `
-    -OutFile "setup-sublimetext.exe" `
-    -Arguments @(
-      "/SP-"
-      "/SILENT"
-      "/SUPPRESSMSGBOXES"
-      "/TASKS=""contextentry"""
-      "/LOG=""setup-sublimetext.log"""
-    )
+  winget install `
+    --id SublimeHQ.SublimeText.4 `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""contextentry"" /LOG=""setup-sublimetext.log"""
 }
 
 # configure git
@@ -356,7 +289,6 @@ function Configure-PowerShell {
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
-  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name oh-my-posh -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
 }
 
 # configure vim
@@ -426,31 +358,21 @@ function Install-Apps {
   Reload-Path
 }
 
-# install portable apps
-function Install-PortableApps {
-  Install-ScreenToGif
-  Install-YouTubeDL
-}
-
 # install dev tools
 function Install-DevTools {
-  Install-PowerShell
   Install-Node
   Install-GVim
   Install-VSCode
   Install-VSCommunity
-  Install-WindowsTerminal
   Install-Insomnia
   Install-NuGet
+  Install-ScreenToGif
   Install-SublimeText
 
   Reload-Path
 
-  Configure-Git
-  Configure-PowerShell
   Configure-Vim
   Configure-VSCode
-  Configure-WindowsTerminal
   Configure-AzureDataStudio
   Configure-SublimeText
 }
@@ -462,11 +384,12 @@ function Remove-BuiltInApps {
   Get-AppxPackage DellInc.DellCustomerConnect | Remove-AppxPackage
   Get-AppxPackage DellInc.DellDigitalDelivery | Remove-AppxPackage
   Get-AppxPackage DellInc.PartnerPromo | Remove-AppxPackage
+  Get-AppxPackage Disney.37853FC22B2CE | Remove-AppxPackage
   Get-AppxPackage DolbyLaboratories.DolbyAccess | Remove-AppxPackage
   Get-AppxPackage DolbyLaboratories.DolbyVisionAccess | Remove-AppxPackage
-  Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
-  Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
+  Get-AppxPackage FACEBOOK.FACEBOOK | Remove-AppxPackage
   Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
+  Get-AppxPackage Microsoft.BingNews | Remove-AppxPackage
   Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
   Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
   Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
@@ -480,6 +403,7 @@ function Remove-BuiltInApps {
   Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
   Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
   Get-AppxPackage Microsoft.SkypeApp | Remove-AppxPackage
+  Get-AppxPackage Microsoft.Todos | Remove-AppxPackage
   Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
   Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
   Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
@@ -489,6 +413,9 @@ function Remove-BuiltInApps {
   Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
   Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
   Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
+  Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
+  Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
+  Get-AppxPackage SpotifyAB.SpotifyMusic | Remove-AppxPackage
 }
 
 # update command prompt
