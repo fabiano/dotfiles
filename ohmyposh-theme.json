@@ -1,78 +1,70 @@
 {
-  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh3/main/themes/schema.json",
-  "console_title": true,
-  "console_title_style": "template",
-  "console_title_template": "{{.Path}}",
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
-      {
-          "type": "newline"
-      },
-      {
-          "type": "prompt",
-          "alignment": "left",
-          "segments": [
-              {
-                  "type": "path",
-                  "style": "plain",
-                  "foreground": "#57C7FF",
-                  "properties": {
-                      "prefix": "",
-                      "style": "full"
-                  }
-              }
-          ]
-      },
-      {
-          "type": "prompt",
-          "alignment": "left",
-          "segments": [
-              {
-                  "type": "git",
-                  "style": "plain",
-                  "foreground": "darkGray",
-                  "properties": {
-                      "branch_icon": "",
-                      "branch_identical_icon": "≡",
-                      "branch_ahead_icon": "↑",
-                      "branch_behind_icon": "↓",
-                      "branch_gone_icon": "≢",
-                      "display_status": true,
-                      "display_status_detail": true,
-                      "display_stash_count": false,
-                      "status_separator_icon": " |",
-                      "local_working_icon": "",
-                      "local_staged_icon": "",
-                      "stash_count_icon": "",
-                      "commit_icon": "",
-                      "tag_icon": "",
-                      "rebase_icon": "",
-                      "cherry_pick_icon": "",
-                      "merge_icon": "",
-                      "no_commits_icon": "",
-                      "display_upstream_icon": false
-                  }
-              }
-          ]
-      },
-      {
-          "type": "newline"
-      },
-      {
-          "alignment": "left",
-          "type": "prompt",
-          "segments": [
-              {
-                  "type": "exit",
-                  "style": "plain",
-                  "foreground": "#FF6AC1",
-                  "properties": {
-                      "prefix": "❯❯",
-                      "display_exit_code": false,
-                      "error_color": "#FF5C57",
-                      "always_enabled": true
-                  }
-              }
-          ]
-      }
-  ]
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#57C7FF",
+          "properties": {
+            "style": "full"
+          },
+          "style": "plain",
+          "template": "{{ .Path }} ",
+          "type": "path"
+        }
+      ],
+      "type": "prompt",
+      "newline": true
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "darkGray",
+          "properties": {
+            "branch_ahead_icon": "\u2191",
+            "branch_behind_icon": "\u2193",
+            "branch_gone_icon": "\u2262",
+            "branch_icon": "",
+            "branch_identical_icon": "\u2261",
+            "cherry_pick_icon": "",
+            "commit_icon": "",
+            "fetch_stash_count": false,
+            "fetch_status": true,
+            "fetch_upstream_icon": false,
+            "merge_icon": "",
+            "no_commits_icon": "",
+            "rebase_icon": "",
+            "tag_icon": ""
+          },
+          "style": "plain",
+          "template": " {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }}{{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}{{ .Staging.String }}{{ end }}{{ if gt .StashCount 0}}{{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}} \uf1bb {{ .WorktreeCount }}{{ end }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#FF6AC1",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#FF5C57{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "\u276f\u276f ",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt",
+      "newline": true
+    }
+  ],
+  "console_title_template": "{{.PWD}}",
+  "version": 2
 }

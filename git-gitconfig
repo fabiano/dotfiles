@@ -28,3 +28,5 @@
 	required = true
 [init]
 	defaultBranch = main
+[safe]
+	directory = C:/Users/Fabiano/.dotfiles

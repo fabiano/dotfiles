@@ -66,5 +66,13 @@ Set-ItemProperty `
 # install fonts
 Install-Fonts
 
+# install powershell
+Install-PowerShell
+Install-OhMyPosh
+
+# configure powershell and windows terminal
+Configure-PowerShell
+Configure-WindowsTerminal
+
 # update command prompt
 Update-CommandPrompt
