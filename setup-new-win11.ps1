@@ -29,7 +29,7 @@ Reload-Path
 Set-Service -Name ssh-agent -StartupType Automatic -Status Running
 
 # add private key to the ssh-agent
-$PrivateKeyFileName = $HOME\.ssh\id_ed25519
+$PrivateKeyFileName = "${HOME}\.ssh\id_ed25519"
 
 if (Test-Path -Path $PrivateKeyFileName) {
   ssh-add $PrivateKeyFileName
