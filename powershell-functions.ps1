@@ -129,7 +129,7 @@ function Install-Git {
   winget install `
     --id Git.Git `
     --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"" /LOG=""setup-git.log"""
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
 }
 
 # install insomnia
@@ -141,15 +141,9 @@ function Install-Insomnia {
 
 # install jabra direct
 function Install-JabraDirect {
-  Install-App `
-    -URL "https://jabraxpressonlineprdstor.blob.core.windows.net/jdo/JabraDirectSetup.exe" `
-    -OutFile "setup-jabra-direct.exe" `
-    -Arguments @(
-      "/install"
-      "/passive"
-      "/norestart"
-      "/log setup-jabra-direct.log"
-    )
+   winget install `
+    --id Jabra.Direct `
+    --exact
 }
 
 # install logitech capture
@@ -162,22 +156,16 @@ function Install-LogitechCapture {
 
 # install logitech options
 function Install-LogitechOptions {
-  Install-App `
-    -URL "https://download01.logi.com/web/ftp/pub/techsupport/options/options_installer.exe" `
-    -OutFile "setup-logitech-options.exe" `
-    -Arguments @()
+  winget install `
+    --id Logitech.Options `
+    --exact
 }
 
 # install node
 function Install-Node {
-  Install-App `
-    -URL "https://nodejs.org/dist/v13.14.0/node-v13.14.0-x64.msi" `
-    -OutFile "setup-node.msi" `
-    -Arguments @(
-      "/passive"
-      "/norestart"
-      "/l*v ""setup-node.log"""
-    )
+  winget install `
+    --id OpenJS.NodeJS `
+    --exact
 }
 
 # install powershell
@@ -185,7 +173,7 @@ function Install-PowerShell {
   winget install `
     --id Microsoft.PowerShell `
     --exact `
-    --override "/passive /norestart /l*v ""setup-powershell.log"" ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+    --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
 }
 
 # install svg explorer extension
@@ -193,7 +181,7 @@ function Install-SvgExplorerExtension {
   winget install `
     --id SVGExplorerExtension.SVGExplorerExtension `
     --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""" /LOG=""setup-svg-explorer-extension.log"""
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""""
 }
 
 # install visual studio code
@@ -201,22 +189,17 @@ function Install-VSCode {
   winget install `
     --id Microsoft.VisualStudioCode `
     --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"" /LOG=""setup-vscode.log"""
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
 }
 
 # install office 365
 function Install-Office365 {
-  Install-App `
-    -URL "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe" `
-    -OutFile "setup-office-deployment-tool.exe" `
-    -Arguments @(
-      "/extract:office-deployment-tool"
-      "/passive"
-      "/norestart"
-    )
+  winget install `
+    --id Microsoft.OfficeDeploymentTool `
+    --exact
 
-  & office-deployment-tool\setup.exe /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
-  & office-deployment-tool\setup.exe /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+  & "C:\Program Files\OfficeDeploymentTool\setup.exe" /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+  & "C:\Program Files\OfficeDeploymentTool\setup.exe" /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
 }
 
 # install typora
@@ -224,7 +207,7 @@ function Install-Typora {
   winget install `
     --id Typora.Typora `
     --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""" /LOG=""setup-typora.log"""
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""""
 }
 
 # install visual studio community
@@ -270,7 +253,7 @@ function Install-SublimeText {
   winget install `
     --id SublimeHQ.SublimeText.4 `
     --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""contextentry"" /LOG=""setup-sublimetext.log"""
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""contextentry"""
 }
 
 # configure git
