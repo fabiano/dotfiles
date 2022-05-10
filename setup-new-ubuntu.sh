@@ -4,22 +4,10 @@
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install dependencies
-  echo "deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_19.10/ /" | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
-  curl -fsSL https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/xUbuntu_19.10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-completions.gpg > /dev/null
-  
-  echo "deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-autosuggestions/xUbuntu_19.10/ /" | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-autosuggestions.list
-  curl -fsSL https://download.opensuse.org/repositories/shells:zsh-users:zsh-autosuggestions/xUbuntu_19.10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-autosuggestions.gpg > /dev/null
-
-  echo "deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-syntax-highlighting/xUbuntu_19.10/ /" | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-syntax-highlighting.list
-  curl -fsSL https://download.opensuse.org/repositories/shells:zsh-users:zsh-syntax-highlighting/xUbuntu_19.10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-syntax-highlighting.gpg > /dev/null
-
   sudo apt-get update
   sudo apt-get -y install bash-completion
   sudo apt-get -y install git
   sudo apt-get -y install zsh
-  sudo apt-get -y install zsh-completions
-  sudo apt-get -y install zsh-autosuggestions
-  sudo apt-get -y install zsh-syntax-highlighting
   sudo apt-get -y install keychain
 
   # clone repository
