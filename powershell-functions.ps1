@@ -240,6 +240,14 @@ function Install-NuGet {
     -DestinationPath "${HOME}\.bin\nuget.exe"
 }
 
+# install bombardier
+function Install-Bombardier {
+  Install-PortableApp `
+    -URL "https://github.com/codesenberg/bombardier/releases/download/v1.2.5/bombardier-windows-amd64.exe" `
+    -OutFile "setup-bombardier.exe" `
+    -DestinationPath "${HOME}\.bin\bombardier.exe"
+}
+
 # install youtube-dl
 function Install-YouTubeDL {
   Install-PortableApp `
