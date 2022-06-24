@@ -1,5 +1,4 @@
-bodil.file-browser
-DotJoshJohnson.xml
+daylerees.rainglow
 eamodio.gitlens
 EditorConfig.EditorConfig
 PKief.material-icon-theme

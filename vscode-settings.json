@@ -6,9 +6,9 @@
     "editor.fontFamily": "Iosevka",
     "editor.fontLigatures": true,
     "editor.fontSize": 16,
+    "editor.formatOnPaste": true,
     "editor.insertSpaces": true,
     "editor.minimap.enabled": false,
-    "editor.multiCursorModifier": "ctrlCmd",
     "editor.renderWhitespace": "all",
     "editor.tabSize": 2,
     "editor.wordWrap": "off",
@@ -29,7 +29,7 @@
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "window.restoreWindows": "none",
     "workbench.colorCustomizations": {},
+    "workbench.colorTheme": "Absent Contrast (rainglow)",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Visual Studio Dark"
+    "workbench.startupEditor": "newUntitledFile"
 }
