@@ -264,6 +264,14 @@ function Install-SublimeText {
     --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""contextentry"""
 }
 
+# install sql server management studio
+function Install-SQLServerManagementStudio {
+  winget install `
+    --id Microsoft.SQLServerManagementStudio `
+    --exact `
+    --override "DoNotInstallAzureDataStudio=1"
+}
+
 # configure git
 function Configure-Git {
   New-SymbolicLink `
