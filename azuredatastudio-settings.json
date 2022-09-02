@@ -37,5 +37,5 @@
   "editor.tabSize": 4,
   "editor.wordWrap": "off",
   "workbench.enablePreviewFeatures": true,
-  "workbench.startupEditor": "welcomePage"
+  "workbench.startupEditor": "newUntitledFile"
 }
