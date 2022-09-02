@@ -58,6 +58,23 @@ function Kill-Process ($Name) {
   taskkill /IM $Name /F
 }
 
+# remove us keyboard
+function Remove-UsKeyboard {
+  $List = Get-WinUserLanguageList
+
+  $List `
+    | Where-Object -Property LanguageTag -eq "en-US" `
+    | ForEach-Object { $_.InputMethodTips.Add("0409:00000409") }
+
+  Set-WinUserLanguageList $List -Force
+
+  $List `
+    | Where-Object -Property LanguageTag -eq "en-US" `
+    | ForEach-Object { $_.InputMethodTips.Remove("0409:00000409") }
+
+  Set-WinUserLanguageList $List -Force
+}
+
 # alias
 New-Alias -Name "~" -Value Home -Force
 New-Alias -Name ".." -Value MoveUp -Force
