@@ -5,7 +5,7 @@
     "editor.dragAndDrop": true,
     "editor.fontFamily": "Iosevka",
     "editor.fontLigatures": true,
-    "editor.fontSize": 16,
+    "editor.fontSize": 15,
     "editor.formatOnPaste": true,
     "editor.insertSpaces": true,
     "editor.minimap.enabled": false,
@@ -17,9 +17,9 @@
     "git.autofetch": true,
     "git.confirmSync": false,
     "gitlens.hovers.currentLine.over": "line",
-    "markdown.preview.fontSize": 18,
+    "markdown.preview.fontSize": 15,
     "terminal.integrated.fontFamily": "Iosevka Term",
-    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontSize": 15,
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
             "path": "pwsh.exe",
@@ -29,7 +29,7 @@
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "window.restoreWindows": "none",
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Absent Contrast (rainglow)",
+    "workbench.colorTheme": "Visual Studio Light",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile"
 }
