@@ -19,6 +19,7 @@
 	unco   = reset --mixed HEAD~
 	wip    = !git add --all && git commit --message "🕕"
 	up     = !git checkout master && git pull --rebase && git checkout - && git rebase master
+	upm    = !git checkout master && git pull --rebase && git checkout - && git merge master
 [winUpdater]
 	recentlySeenVersion = 2.25.0.windows.1
 [filter "lfs"]
