@@ -18,13 +18,10 @@
   brew install bash
   brew install bash-completion@2
   brew install git
-  brew install node
   brew install vim
-  brew install youtube-dl
   brew install zsh
   brew install zsh-autosuggestions
   brew install zsh-syntax-highlighting
-  brew install --cask 1password
   brew install --cask caffeine
   brew install --cask firefox
   brew install --cask font-fira-code
@@ -34,7 +31,6 @@
   brew install --cask iterm2
   brew install --cask microsoft-edge
   brew install --cask the-unarchiver
-  brew install --cask tuxera-ntfs
   brew install --cask visual-studio-code
   brew cleanup
 
