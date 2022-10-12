@@ -20,6 +20,8 @@
 	wip    = !git add --all && git commit --message "🕕"
 	up     = !git checkout master && git pull --rebase && git checkout - && git rebase master
 	upm    = !git checkout master && git pull --rebase && git checkout - && git merge master
+	sup    = !git stash push --include-untracked && git checkout master && git pull --rebase && git checkout - && git rebase master && git stash pop
+	supm   = !git stash push --include-untracked && git checkout master && git pull --rebase && git checkout - && git merge master && git stash pop
 [winUpdater]
 	recentlySeenVersion = 2.25.0.windows.1
 [filter "lfs"]
