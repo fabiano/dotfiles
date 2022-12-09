@@ -1,6 +1,9 @@
 # brew
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+# go
+export PATH=/usr/local/go/bin:$PATH
+
 # pure
 fpath=("$HOME/.pure" $fpath)
 
