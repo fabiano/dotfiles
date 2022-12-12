@@ -41,7 +41,15 @@ alias g="git"
 bindkey "^[[1;5C" forward-word  # ctrl + right arrow
 bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
-# keychain
-if [ -t 1 ] && [ -f "/usr/bin/keychain" ] ; then
-  eval `keychain --eval --agents ssh id_ed25519 --quiet`
+# configure ssh forwarding
+export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+
+ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
+
+if [[ $ALREADY_RUNNING != "0" ]]; then
+    if [[ -S $SSH_AUTH_SOCK ]]; then
+        rm $SSH_AUTH_SOCK
+    fi
+
+    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
