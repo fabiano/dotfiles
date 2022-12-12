@@ -3,10 +3,10 @@
 	"caret_extra_top": 0,
 	"caret_extra_width": 1,
 	"caret_style": "phase",
-	"color_scheme": "Mariana.sublime-color-scheme",
+	"color_scheme": "Breakers.sublime-color-scheme",
 	"draw_white_space": "all",
 	"font_face": "Iosevka",
-	"font_size": 13,
+	"font_size": 11,
 	"highlight_line": true,
 	"ignored_packages":
 	[
@@ -17,6 +17,6 @@
 	"line_padding_bottom": 3,
 	"line_padding_top": 3,
 	"tab_size": 2,
-	"theme": "Default Dark.sublime-theme",
+	"theme": "Default.sublime-theme",
 	"translate_tabs_to_spaces": false,
 }
