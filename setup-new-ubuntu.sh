@@ -8,7 +8,7 @@
   sudo apt-get -y install bash-completion
   sudo apt-get -y install git
   sudo apt-get -y install zsh
-  sudo apt-get -y install keychain
+  sudo apt-get -y install socat
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
