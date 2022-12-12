@@ -219,7 +219,9 @@ function Install-VSCommunity {
 
 # install oh my posh
 function Install-OhMyPosh {
-  winget install oh-my-posh
+  winget install `
+    --id JanDeDobbeleer.OhMyPosh `
+    --exact
 }
 
 # install screen to gif
@@ -270,6 +272,13 @@ function Install-SQLServerManagementStudio {
     --id Microsoft.SQLServerManagementStudio `
     --exact `
     --override "DoNotInstallAzureDataStudio=1"
+}
+
+# install azure data studio
+function Install-AzureDataStudio {
+  winget install `
+    --id Microsoft.AzureDataStudio `
+    --exact `
 }
 
 # configure git
@@ -367,6 +376,7 @@ function Install-DevTools {
   Install-NuGet
   Install-ScreenToGif
   Install-SublimeText
+  Install-AzureDataStudio
 
   Reload-Path
 
