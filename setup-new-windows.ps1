@@ -22,18 +22,8 @@ if (-Not (Test-Path -Path "${$env:PROGRAMFILES}\Git\bin\git.exe")) {
 # reload path
 Reload-Path
 
-# set environment variables
-[Environment]::SetEnvironmentVariable("GIT_SSH", "C:\Windows\System32\OpenSSH\ssh.exe", "User")
-
-# start ssh-agent service
-Set-Service -Name ssh-agent -StartupType Automatic -Status Running
-
-# add private key to the ssh-agent
-$PrivateKeyFileName = "${HOME}\.ssh\id_ed25519"
-
-if (Test-Path -Path $PrivateKeyFileName) {
-  ssh-add $PrivateKeyFileName
-}
+# set Microsoft OpenSSH to default Git ssh command
+[Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
 
 # clone repository
 if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
@@ -55,7 +45,7 @@ $ErrorActionPreference = "Continue"
 # add .bin folder to user path
 Add-FolderToUserPath -Folder "${HOME}\.bin"
 
-# remove windows 10 built-in apps
+# remove windows built-in apps
 Remove-BuiltInApps
 
 # disable bing search results from start menu
