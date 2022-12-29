@@ -17,7 +17,7 @@
 	st     = status
 	t      = tag
 	unco   = reset --mixed HEAD~
-	wip    = !git add --all && git commit --message "🕕"
+	wip    = !git add --all && git commit --message "⌐■_■"
 	up     = !git checkout master && git pull --rebase && git checkout - && git rebase master
 	upm    = !git checkout master && git pull --rebase && git checkout - && git merge master
 	sup    = !git stash push --include-untracked && git checkout master && git pull --rebase && git checkout - && git rebase master && git stash pop
