@@ -14,6 +14,7 @@
         "authenticationType": "Integrated",
         "user": "",
         "password": "",
+        "trustServerCertificate": true,
         "applicationName": "azdata",
         "originalDatabase": "master",
         "groupId": "C777F06B-202E-4480-B475-FA416154D458",
@@ -22,7 +23,7 @@
       "groupId": "C777F06B-202E-4480-B475-FA416154D458",
       "providerName": "MSSQL",
       "savePassword": true,
-      "id": "5cadbf46-1439-484b-a6d5-543d1f4045e6"
+      "id": "f6852cbb-7334-40c4-b988-5d4b669dcd3a"
     }
   ],
   "editor.accessibilitySupport": "off",
