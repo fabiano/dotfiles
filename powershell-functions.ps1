@@ -431,7 +431,7 @@ function Remove-BuiltInApps {
 function Update-CommandPrompt {
   Remove-ItemProperty -Path HKCU:\Console -Name *
 
-  Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "Iosevka Term"
+  Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "Iosevka NF"
   Set-ItemProperty -Path "HKCU:\Console" -Name "FontFamily" -Value "54" -Type "DWord"
   Set-ItemProperty -Path "HKCU:\Console" -Name "FontSize" -Value "1179648" -Type "DWord"
   Set-ItemProperty -Path "HKCU:\Console" -Name "ScreenBufferSize" -Value "589889696" -Type "DWord"
