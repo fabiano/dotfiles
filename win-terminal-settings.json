@@ -61,75 +61,44 @@
     "launchMode": "maximized",
     "profiles": 
     {
-        "defaults": {},
+        "defaults": 
+        {
+            "colorScheme": "Snazzy",
+            "cursorShape": "emptyBox",
+            "font": {
+                "face": "Iosevka Term",
+                "size": 14.0
+            },
+            "padding": "10, 10, 10, 10"
+        },
         "list": 
         [
             {
-                "colorScheme": "Snazzy",
-                "cursorShape": "emptyBox",
-                "font": 
-                {
-                    "face": "Iosevka Term",
-                    "size": 14
-                },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "name": "Command Prompt",
-                "padding": "10, 10, 10, 10"
+                "name": "Command Prompt"
             },
             {
-                "colorScheme": "Snazzy",
                 "commandline": "pwsh.exe -nologo",
-                "cursorShape": "emptyBox",
-                "font": 
-                {
-                    "face": "Iosevka Term",
-                    "size": 14
-                },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell Core",
-                "padding": "10, 10, 10, 10",
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "colorScheme": "Snazzy",
                 "commandline": "wsl -d Ubuntu-22.04",
-                "cursorShape": "emptyBox",
-                "font": 
-                {
-                    "face": "Iosevka Term",
-                    "size": 14
-                },
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "name": "Ubuntu",
-                "padding": "10, 10, 10, 10",
                 "startingDirectory": "/home/fabiano"
             },
             {
-                "colorScheme": "Snazzy",
-                "cursorShape": "emptyBox",
-                "font": 
-                {
-                    "face": "Iosevka Term",
-                    "size": 14
-                },
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": true,
-                "name": "Windows PowerShell",
-                "padding": "10, 10, 10, 10"
+                "name": "Windows PowerShell"
             },
             {
-                "colorScheme": "Snazzy",
-                "cursorShape": "emptyBox",
-                "font": 
-                {
-                    "face": "Iosevka Term",
-                    "size": 14
-                },
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
                 "hidden": true,
                 "name": "Azure Cloud Shell",
-                "padding": "10, 10, 10, 10",
                 "source": "Windows.Terminal.Azure"
             }
         ]
@@ -159,5 +128,6 @@
             "white": "#F1F1F0",
             "yellow": "#F3F99D"
         }
-    ]
+    ],
+    "themes": []
 }
