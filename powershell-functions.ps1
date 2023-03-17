@@ -379,7 +379,6 @@ function Install-DevTools {
   Install-GVim
   Install-Insomnia
   Install-VSCode
-  Install-VSCommunity
 
   Reload-Path
 
@@ -393,6 +392,7 @@ function Install-WorkDevTools {
   Install-Node
   Install-NuGet
   Install-ScreenToGif
+  Install-VSCommunity
 
   Reload-Path
 
