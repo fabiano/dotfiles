@@ -234,6 +234,14 @@ function Install-ScreenToGif {
   Create-Shortcut -Name "Screen To Gif" -Path "${HOME}\.bin\ScreenToGif.exe"
 }
 
+# install npiperelay
+function Install-npiperelay {
+  Install-PortableApp `
+    -URL "https://github.com/jstarks/npiperelay/releases/download/v0.1.0/npiperelay_windows_amd64.zip" `
+    -OutFile "setup-npiperelay.zip" `
+    -DestinationPath "${HOME}\.bin"
+}
+
 # install nuget
 function Install-NuGet {
   Install-PortableApp `
@@ -368,22 +376,29 @@ function Install-Apps {
 
 # install dev tools
 function Install-DevTools {
-  Install-Node
   Install-GVim
+  Install-Insomnia
   Install-VSCode
   Install-VSCommunity
-  Install-Insomnia
-  Install-NuGet
-  Install-ScreenToGif
-  Install-SublimeText
-  Install-AzureDataStudio
 
   Reload-Path
 
   Configure-Vim
   Configure-VSCode
+}
+
+# install work dev tools
+function Install-WorkDevTools {
+  Install-AzureDataStudio
+  Install-Node
+  Install-NuGet
+  Install-ScreenToGif
+
+  Reload-Path
+
   Configure-AzureDataStudio
-  Configure-SublimeText
+  Configure-Vim
+  Configure-VSCode
 }
 
 # remove built-in windows 10/11 apps
