@@ -278,8 +278,7 @@ function Install-SublimeText {
 function Install-SQLServerManagementStudio {
   winget install `
     --id Microsoft.SQLServerManagementStudio `
-    --exact `
-    --override "DoNotInstallAzureDataStudio=1"
+    --exact
 }
 
 # install azure data studio
@@ -388,17 +387,15 @@ function Install-DevTools {
 
 # install work dev tools
 function Install-WorkDevTools {
-  Install-AzureDataStudio
   Install-Node
   Install-NuGet
   Install-ScreenToGif
+  Install-SQLServerManagementStudio
   Install-VSCommunity
 
   Reload-Path
 
   Configure-AzureDataStudio
-  Configure-Vim
-  Configure-VSCode
 }
 
 # remove built-in windows 10/11 apps
