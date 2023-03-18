@@ -7,8 +7,8 @@
   sudo apt-get update
   sudo apt-get -y install bash-completion
   sudo apt-get -y install git
+  sudo apt-get -y install vim
   sudo apt-get -y install zsh
-  sudo apt-get -y install socat
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
