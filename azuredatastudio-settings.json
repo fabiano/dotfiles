@@ -30,16 +30,16 @@
   "editor.dragAndDrop": true,
   "editor.fontFamily": "Iosevka",
   "editor.fontLigatures": true,
-  "editor.fontSize": 16,
+  "editor.fontSize": 14,
   "editor.insertSpaces": true,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderWhitespace": "all",
   "editor.tabSize": 4,
   "editor.wordWrap": "off",
+  "workbench.enablePreviewFeatures": true,
+  "workbench.startupEditor": "none",
   "workbench.editorAssociations": {
     "*.{sqlplan}": "workbench.editor.executionplan"
-  },
-  "workbench.enablePreviewFeatures": true,
-  "workbench.startupEditor": "newUntitledFile"
+  }
 }
