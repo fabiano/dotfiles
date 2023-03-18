@@ -6,18 +6,10 @@
 	"installed_packages":
 	[
 		"A File Icon",
-		"Babel",
 		"BracketHighlighter",
 		"EditorConfig",
-		"Fmt",
 		"Git",
 		"Package Control",
-		"PowerShell",
-		"Sass",
 		"SideBarEnhancements",
-		"SublimeLinter",
-		"SublimeLinter-eslint",
-		"SublimeLinter-golangcilint",
-		"Vue Syntax Highlight",
 	],
 }
