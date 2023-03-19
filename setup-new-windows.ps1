@@ -8,7 +8,6 @@ $ErrorActionPreference = "Stop"
 
 # dotfiles settings
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
-$DOTFILES_REPOSITORY_HTTP = "https://github.com/fabiano/dotfiles.git"
 $DOTFILES_INSTALL_DIR = "${HOME}\.dotfiles"
 
 # import functions module
