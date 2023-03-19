@@ -226,12 +226,9 @@ function Install-OhMyPosh {
 
 # install screen to gif
 function Install-ScreenToGif {
-  Install-PortableApp `
-    -URL "https://github.com/NickeManarin/ScreenToGif/releases/download/2.37/ScreenToGif.2.37.Portable.x64.zip" `
-    -OutFile "setup-screentogif.zip" `
-    -DestinationPath "${HOME}\.bin"
-
-  Create-Shortcut -Name "Screen To Gif" -Path "${HOME}\.bin\ScreenToGif.exe"
+  winget install `
+    --id NickeManarin.ScreenToGif `
+    --exact
 }
 
 # install npiperelay
