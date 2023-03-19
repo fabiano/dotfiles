@@ -20,7 +20,7 @@ if (-Not (Test-Path -Path "${$env:PROGRAMFILES}\Git\bin\git.exe")) {
 }
 
 # reload path
-Reload-Path
+# Reload-Path
 
 # set Microsoft OpenSSH to default Git ssh command
 [Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
