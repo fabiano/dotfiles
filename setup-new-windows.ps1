@@ -30,11 +30,7 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
   Remove-Item -Path $DOTFILES_INSTALL_DIR -Recurse
 }
 
-if (Test-Path -Path $PrivateKeyFileName) {
-  git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
-} else {
-  git clone $DOTFILES_REPOSITORY_HTTP $DOTFILES_INSTALL_DIR
-}
+git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
 # configure git
 Configure-Git
