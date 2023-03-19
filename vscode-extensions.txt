@@ -1,4 +1,3 @@
-daylerees.rainglow
 eamodio.gitlens
 EditorConfig.EditorConfig
 PKief.material-icon-theme
