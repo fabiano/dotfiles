@@ -23,6 +23,8 @@
       (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
   fi
 
+  ssh -T git@github.com
+
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
   git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
