@@ -12,7 +12,10 @@
   sudo apt-get -y install socat
 
   # configure ssh forwarding
-  SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+  mkdir -p $HOME/.ssh
+
+  export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+
   ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
 
   if [[ $ALREADY_RUNNING != "0" ]]; then
