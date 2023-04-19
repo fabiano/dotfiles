@@ -42,7 +42,7 @@ bindkey "^[[1;5C" forward-word  # ctrl + right arrow
 bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
 # configure wls ssh forwarding
-if [[ $(uname -r) == (#s)*[mM]icrosoft*(#e) ]]; then
+if [[ $(grep -i Microsoft /proc/version) ]]; then
   export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 
   ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
