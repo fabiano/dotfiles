@@ -198,8 +198,12 @@ function Install-Office365 {
     --id Microsoft.OfficeDeploymentTool `
     --exact
 
-  & "C:\Program Files\OfficeDeploymentTool\setup.exe" /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
-  & "C:\Program Files\OfficeDeploymentTool\setup.exe" /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+  $SetupPath = "${env:PROGRAMFILES}\OfficeDeploymentTool\setup.exe"
+
+  if (Test-Path -Path $SetupPath) {
+    & $SetupPath /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+    & $SetupPath /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+  }
 }
 
 # install typora
