@@ -20,3 +20,11 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-macos.sh)"
 ```
+
+## Ubuntu (WSL)
+
+```bash
+curl -O https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-wsl-ubuntu.sh
+chmod +x setup-new-wsl-ubuntu.sh
+./setup-new-wsl-ubuntu.sh
+```
