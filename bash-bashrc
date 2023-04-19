@@ -16,7 +16,7 @@ alias ls="ls -G"
 PS1="\n\w\n\033[0;35m❯❯\033[0m "
 
 # configure wls ssh forwarding
-if [[ $(uname -r) == (#s)*[mM]icrosoft*(#e) ]]; then
+if [[ $(grep -i Microsoft /proc/version) ]]; then
   export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 
   ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
