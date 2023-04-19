@@ -1,7 +1,7 @@
 <Configuration>
   <Add OfficeClientEdition="64" Channel="Monthly">
     <Product ID="O365ProPlusRetail">
-      <Language ID="en-us" />
+      <Language ID="pt-pt" />
 
       <ExcludeApp ID="Access" />
       <ExcludeApp ID="Groove" />
