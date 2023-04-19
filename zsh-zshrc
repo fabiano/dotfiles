@@ -41,15 +41,17 @@ alias g="git"
 bindkey "^[[1;5C" forward-word  # ctrl + right arrow
 bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
-# configure ssh forwarding
-export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+# configure wls ssh forwarding
+if [[ $(uname -r) == (#s)*[mM]icrosoft*(#e) ]]; then
+  export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 
-ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
+  ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
 
-if [[ $ALREADY_RUNNING != "0" ]]; then
-    if [[ -S $SSH_AUTH_SOCK ]]; then
-        rm $SSH_AUTH_SOCK
-    fi
+  if [[ $ALREADY_RUNNING != "0" ]]; then
+      if [[ -S $SSH_AUTH_SOCK ]]; then
+          rm $SSH_AUTH_SOCK
+      fi
 
-    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+      (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+  fi
 fi
