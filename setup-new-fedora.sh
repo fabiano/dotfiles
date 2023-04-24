@@ -62,4 +62,8 @@
 <dead_acute> <c>     : "ç"
 <dead_acute> <C>     : "Ç"
 EOF
+
+  # configure login screen scale
+  sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
+  chown gdm:gdm /var/lib/gdm/.config/monitors.xml
 }
