@@ -30,7 +30,7 @@
     "terminal.integrated.env.windows": {},
     "window.restoreWindows": "none",
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.colorTheme": "Default Light+ Experimental",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile"
 }
