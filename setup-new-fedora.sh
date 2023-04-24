@@ -9,6 +9,8 @@
   sudo dnf -y install git
   sudo dnf -y install vim-enhanced
   sudo dnf -y install zsh
+  sudo dnf -y install zsh-autosuggestions
+  sudo dnf -y install zsh-syntax-highlighting
   sudo dnf -y install util-linux-user
 
   # clone repository
@@ -53,4 +55,11 @@
   sudo dnf copr enable peterwu/iosevka
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
+
+  # configure cedilha in gnome
+  rm $HOME/.XCompose
+  cat > $HOME/.XCompose << EOF
+<dead_acute> <c>     : "ç"
+<dead_acute> <C>     : "Ç"
+EOF
 }
