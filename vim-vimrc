@@ -14,8 +14,9 @@ set nowrap
 set nowritebackup
 set number
 set numberwidth=3
+set previewheight=5
 set showtabline=2
-set textwidth=256
+set textwidth=80
 
 " tabs
 set autoindent
@@ -27,6 +28,10 @@ set tabstop=2
 " whitespace characters
 set listchars=space:·,tab:»\ ,trail:·
 set list
+
+" complete popup
+set completeopt=menuone,popuphidden,noinsert,noselect
+set completepopup=highlight:Pmenu,border:on,width:30,height:15
 
 " syntax highlighting
 syntax on
@@ -47,14 +52,35 @@ call plug#begin('~/.vim/plug-plugins')
 
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'connorholyday/vim-snazzy'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mhinz/vim-startify'
-Plug 'scrooloose/nerdtree'
+
+" Language packs
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-syntastic/syntastic'
+
+" OmniSharp
+Plug 'omnisharp/omnisharp-vim'
+
+" OmniSharp code-actions
+Plug 'nickspoons/vim-sharpenup'
+
+" Vim FZF integration
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
+
+" Linting/error highlighting
+Plug 'dense-analysis/ale'
+
+" Autocompletion
+Plug 'prabirshrestha/asyncomplete.vim'
+
+" Snippet support
+Plug 'sirver/ultisnips'
+
+" Debugger
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -66,10 +92,6 @@ autocmd VimEnter *
 " theme
 colorscheme snazzy
 
-" ctrlp.vim
-let g:ctrlp_custom_ignore='\v[\/](\.git|node_modules)$'
-let g:ctrlp_show_hidden=1
-
 " lightline
 let g:lightline={}
 let g:lightline.colorscheme='snazzy'
@@ -78,28 +100,41 @@ let g:lightline.tabline={'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand={'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type={'buffers': 'tabsel'}
 
-" nerdtree
-autocmd BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
+" asyncomplete
+let g:asyncomplete_auto_popup=1
+let g:asyncomplete_auto_completeopt=0
 
-let NERDTreeShowHidden=1
+" sharpenup
+let g:sharpenup_map_prefix='<Space>os'
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<Enter>"
+let g:UltiSnipsJumpForwardTrigger = "<C-n>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-p>"
 
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_loc_list_height=5
-let g:syntastic_python_python_exec='python3'
+" omnisharp
+let g:OmniSharp_server_use_mono=0
+let g:OmniSharp_server_use_net6=1
+let g:OmniSharp_want_snippet=1
+let g:OmniSharp_popup_position='peek'
+let g:OmniSharp_popup_options={
+\ 'highlight': 'Normal',
+\ 'padding': [1],
+\ 'border': [1],
+\ 'borderchars': ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
+\ 'borderhighlight': ['Special'],
+\ 'maxwidth': 64,
+\ 'maxheight': 16,
+\}
 
 " remaps
-noremap <Tab> :bn<CR>
-noremap <S-Tab> :bp<CR>
-noremap <C-W> :bd<CR>
-noremap <C-S> :w!<CR>
-noremap <C-n> :NERDTreeFocus<CR>
-noremap <C-n><C-n> :NERDTreeToggle<CR>
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
+nnoremap <C-W> :bd<CR>
+nnoremap <C-S> :w!<CR>
+nnoremap <C-F> :FZF<CR>
+nnoremap <C-\> <Plug>(omnisharp_code_actions)
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+imap <C-@> <Plug>(asyncomplete_force_refresh)
