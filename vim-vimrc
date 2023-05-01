@@ -126,6 +126,7 @@ let g:OmniSharp_popup_options={
 \ 'maxwidth': 64,
 \ 'maxheight': 16,
 \}
+let g:OmniSharp_selector_ui = 'fzf'
 
 " remaps
 nnoremap <Tab> :bn<CR>
