@@ -56,6 +56,27 @@
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
 
+  # use iosevka as gnome default font
+  gsettings set org.gnome.desktop.interface document-font-name 'Iosevka 10'
+  gsettings set org.gnome.desktop.interface font-name 'Iosevka 10'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Iosevka 10'
+  
+  # change gnome interface settings
+  gsettings set org.gnome.desktop.interface clock-format '24h'
+  gsettings set org.gnome.desktop.interface clock-show-date true
+  gsettings set org.gnome.desktop.interface clock-show-seconds false
+  gsettings set org.gnome.desktop.interface clock-show-weekday true
+  gsettings set org.gnome.desktop.interface show-battery-percentage true
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
+  gsettings set org.gnome.mutter center-new-windows true
+
+  # set the locale and keyboard layout
+  gsettings set org.gnome.desktop.input-sources sources [('xkb', 'us+intl')]
+
+  sudo localectl set-locale LANG=en_US.UTF-8
+  sudo localectl set-keymap us-alt-intl
+
   # configure cedilha in gnome
   rm $HOME/.XCompose
   cat > $HOME/.XCompose << EOF
