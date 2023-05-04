@@ -57,17 +57,21 @@
   mkdir -p $HOME/.config/kitty
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
 
+  # install sf pro display font
+  mkdir -p $HOME/.local/share/fonts
+  cp $DOTFILES_INSTALL_DIR/font-sf-pro-display-regular.otf $HOME/.local/share/fonts/sf-pro-display-regular.otf
+
   # install iosevka font
   sudo dnf copr enable peterwu/iosevka
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
 
   # use iosevka as gnome default font
-  gsettings set org.gnome.desktop.interface document-font-name 'Iosevka 10'
-  gsettings set org.gnome.desktop.interface font-name 'Iosevka 10'
+  gsettings set org.gnome.desktop.interface document-font-name 'SF Pro Display 10'
+  gsettings set org.gnome.desktop.interface font-name 'SF Pro Display 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
   gsettings set org.gnome.desktop.interface font-hinting 'none'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Iosevka 10'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'SF Pro Display 10'
 
   # change gnome interface settings
   gsettings set org.gnome.desktop.interface clock-format '24h'
