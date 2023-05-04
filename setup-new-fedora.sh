@@ -12,6 +12,7 @@
   sudo dnf -y install zsh-autosuggestions
   sudo dnf -y install zsh-syntax-highlighting
   sudo dnf -y install util-linux-user
+  sudo dnf -y install kitty
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
@@ -60,8 +61,9 @@
   gsettings set org.gnome.desktop.interface document-font-name 'Iosevka 10'
   gsettings set org.gnome.desktop.interface font-name 'Iosevka 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
+  gsettings set org.gnome.desktop.interface font-hinting 'none'
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Iosevka 10'
-  
+
   # change gnome interface settings
   gsettings set org.gnome.desktop.interface clock-format '24h'
   gsettings set org.gnome.desktop.interface clock-show-date true
@@ -72,7 +74,7 @@
   gsettings set org.gnome.mutter center-new-windows true
 
   # set the locale and keyboard layout
-  gsettings set org.gnome.desktop.input-sources sources [('xkb', 'us+intl')]
+  gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+intl')]"
 
   sudo localectl set-locale LANG=en_US.UTF-8
   sudo localectl set-keymap us-alt-intl
