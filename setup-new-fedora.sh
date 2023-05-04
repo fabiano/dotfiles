@@ -52,6 +52,11 @@
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
   IFS=$'\r\n'; for line in `cat $DOTFILES_INSTALL_DIR/vscode-extensions.txt`; do code --install-extension ${line}; done
 
+  # configure kitty
+  rm -rf $HOME/.config/kitty
+  mkdir -p $HOME/.config/kitty
+  ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
+
   # install iosevka font
   sudo dnf copr enable peterwu/iosevka
   sudo dnf -y install iosevka-fonts
