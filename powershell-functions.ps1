@@ -117,11 +117,11 @@ function Install-Firefox {
 # install vim
 function Install-GVim {
   Install-PortableApp `
-    -URL "https://github.com/vim/vim-win32-installer/releases/download/v8.2.4868/gvim_8.2.4868_x64.zip" `
+    -URL "https://github.com/vim/vim-win32-installer/releases/download/v9.0.1507/gvim_9.0.1507_x64.zip" `
     -OutFile "setup-gvim.zip" `
     -DestinationPath "${HOME}\.bin"
 
-  Add-FolderToUserPath -Folder "${HOME}\.bin\vim\vim82"
+  Add-FolderToUserPath -Folder "${HOME}\.bin\vim\vim90"
 }
 
 # install git
@@ -287,6 +287,14 @@ function Install-AzureDataStudio {
   winget install `
     --id Microsoft.AzureDataStudio `
     --exact `
+}
+
+# install python 3
+function Install-Python3 {
+  winget install `
+    --id Python.Python.3.11 `
+    --exact `
+    --override "/passive InstallAllUsers=1 PrependPath=1 AssociateFiles=0 Include_doc=0 Include_tcltk=0"
 }
 
 # configure git
