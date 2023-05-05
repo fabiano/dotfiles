@@ -39,7 +39,7 @@ filetype plugin indent on
 
 " gvim
 if has('gui_running')
-  set guifont=Iosevka:h16
+  set guifont=Iosevka:h11
   set guioptions-=e
   set lines=25
   set columns=100
@@ -131,7 +131,7 @@ let g:OmniSharp_selector_ui = 'fzf'
 " remaps
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
-nnoremap <C-W> :bd<CR>
+nnoremap <C-F4> :bd<CR>
 nnoremap <C-S> :w!<CR>
 nnoremap <C-F> :FZF<CR>
 nnoremap <C-\> <Plug>(omnisharp_code_actions)

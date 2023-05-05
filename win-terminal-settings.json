@@ -67,7 +67,7 @@
             "cursorShape": "emptyBox",
             "font": {
                 "face": "Iosevka Term",
-                "size": 13.0
+                "size": 10.0
             },
             "padding": "10, 10, 10, 10"
         },
@@ -107,7 +107,7 @@
     "schemes": 
     [
         {
-            "background": "#20212B",
+            "background": "#282A36",
             "black": "#20212B",
             "blue": "#57C7FF",
             "brightBlack": "#686868",
