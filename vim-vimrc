@@ -47,40 +47,30 @@ if has('gui_running')
 endif
 
 " vim-plug
-" https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plug-plugins')
 
+" Show trailing whitespace
 Plug 'bronson/vim-trailing-whitespace'
+
+" Theme
 Plug 'connorholyday/vim-snazzy'
+
+" EditorConfig support
 Plug 'editorconfig/editorconfig-vim'
+
+" Custom statusline
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+
+" Start screen
 Plug 'mhinz/vim-startify'
 
 " Language packs
 Plug 'sheerun/vim-polyglot'
 
-" OmniSharp
-Plug 'omnisharp/omnisharp-vim'
-
-" OmniSharp code-actions
-Plug 'nickspoons/vim-sharpenup'
-
 " Vim FZF integration
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
-
-" Linting/error highlighting
-Plug 'dense-analysis/ale'
-
-" Autocompletion
-Plug 'prabirshrestha/asyncomplete.vim'
-
-" Snippet support
-Plug 'sirver/ultisnips'
-
-" Debugger
-Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -100,42 +90,20 @@ let g:lightline.tabline={'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand={'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type={'buffers': 'tabsel'}
 
-" asyncomplete
-let g:asyncomplete_auto_popup=1
-let g:asyncomplete_auto_completeopt=0
-
-" sharpenup
-let g:sharpenup_map_prefix='<Space>os'
-
-" ultisnips
-let g:UltiSnipsExpandTrigger = "<Enter>"
-let g:UltiSnipsJumpForwardTrigger = "<C-n>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-p>"
-
-" omnisharp
-let g:OmniSharp_server_use_mono=0
-let g:OmniSharp_server_use_net6=1
-let g:OmniSharp_want_snippet=1
-let g:OmniSharp_popup_position='peek'
-let g:OmniSharp_popup_options={
-\ 'highlight': 'Normal',
-\ 'padding': [1],
-\ 'border': [1],
-\ 'borderchars': ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
-\ 'borderhighlight': ['Special'],
-\ 'maxwidth': 64,
-\ 'maxheight': 16,
-\}
-let g:OmniSharp_selector_ui = 'fzf'
-
-" remaps
-nnoremap <Tab> :bn<CR>
+" buffer keymaps
+nnoremap <Tab>   :bn<CR>
 nnoremap <S-Tab> :bp<CR>
-nnoremap <C-F4> :bd<CR>
-nnoremap <C-S> :w!<CR>
-nnoremap <C-F> :FZF<CR>
-nnoremap <C-\> <Plug>(omnisharp_code_actions)
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
-imap <C-@> <Plug>(asyncomplete_force_refresh)
+nnoremap <C-c>   :bd<CR>
+
+" window keymaps
+nnoremap <Space> <C-w><C-w>
+nnoremap <C-w>c  <C-w>c
+nnoremap <C-w>h  :<C-u>split<CR>
+nnoremap <C-w>v  :<C-u>vsplit<CR>
+
+" write keymap
+nnoremap <C-s> :w!<CR>
+
+" fzf keymap
+nnoremap <C-f> :FZF<CR>
+
