@@ -34,7 +34,7 @@ fi
 # alias
 alias ..="cd .."
 alias ~="cd ~"
-alias ls="ls -G"
+alias ls="exa"
 alias g="git"
 
 # keys
