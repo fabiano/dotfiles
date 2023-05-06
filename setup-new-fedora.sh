@@ -13,6 +13,9 @@
   sudo dnf -y install zsh-syntax-highlighting
   sudo dnf -y install util-linux-user
   sudo dnf -y install kitty
+  sudo dnf -y install fzf
+  sudo dnf -y install exa
+  sudo dnf -y install bat
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
