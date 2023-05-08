@@ -9,7 +9,12 @@
   sudo apt-get -y install git
   sudo apt-get -y install vim
   sudo apt-get -y install zsh
+  sudo apt-get -y install zsh-autosuggestions
+  sudo apt-get -y install zsh-syntax-highlighting
   sudo apt-get -y install socat
+  sudo apt-get -y install fzf
+  sudo apt-get -y install exa
+  sudo apt-get -y install bat
 
   # configure ssh forwarding
   mkdir -p $HOME/.ssh
