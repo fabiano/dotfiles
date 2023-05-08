@@ -10,7 +10,21 @@ fi
 # alias
 alias ..="cd .."
 alias ~="cd ~"
-alias ls="ls -G"
+
+if [ -f "/usr/bin/exa" ] ; then
+  alias ls="exa"
+fi
+
+if [ -f "/usr/bin/bat" ] ; then
+  alias cat="bat"
+fi
+
+if [ -f "/usr/bin/batcat" ] ; then
+  alias cat="batcat"
+fi
+
+alias g="git"
+alias v="vim"
 
 # prompt
 PS1="\n\w\n\033[0;35m❯❯\033[0m "
