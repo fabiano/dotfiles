@@ -31,6 +31,7 @@
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "terminal.integrated.env.windows": {},
     "window.restoreWindows": "none",
+    "window.titleBarStyle": "custom",
     "workbench.colorCustomizations": {},
     "workbench.colorTheme": "Default Light+ Experimental",
     "workbench.iconTheme": "material-icon-theme",
