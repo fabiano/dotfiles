@@ -297,6 +297,20 @@ function Install-Python3 {
     --override "/passive InstallAllUsers=1 PrependPath=1 AssociateFiles=0 Include_doc=0 Include_tcltk=0"
 }
 
+# install fzf
+function Install-Fzf {
+  winget install `
+    --id junegunn.fzf `
+    --exact
+}
+
+# install bat
+function Install-Bat {
+  winget install `
+    --id sharkdp.bat `
+    --exact
+}
+
 # configure git
 function Configure-Git {
   New-SymbolicLink `
@@ -387,6 +401,8 @@ function Install-DevTools {
   Install-GVim
   Install-Insomnia
   Install-VSCode
+  Install-Fzf
+  Install-Bat
 
   Reload-Path
 
