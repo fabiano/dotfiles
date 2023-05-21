@@ -24,7 +24,7 @@ function Home {
 }
 
 # move to parent folder
-function MoveUp {
+function Move-Up {
   Set-Location -Path ..
 }
 
@@ -75,11 +75,21 @@ function Remove-UsKeyboard {
   Set-WinUserLanguageList $List -Force
 }
 
+# fzf
+function Run-Fzf {
+  fzf.exe --preview "bat --number --color=always {}" $args
+}
+
 # alias
 New-Alias -Name "~" -Value Home -Force
-New-Alias -Name ".." -Value MoveUp -Force
+New-Alias -Name ".." -Value Move-Up -Force
 New-Alias -Name "g" -Value git -Force
 New-Alias -Name "d" -Value dotnet -Force
+New-Alias -Name "fzf" -Value Run-Fzf -Force
+New-Alias -Name "f" -Value Run-Fzf -Force
+
+# set directory background color
+$PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue
 
 # enable psreadline
 # https://github.com/lzybkr/PSReadLine
