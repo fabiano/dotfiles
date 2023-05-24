@@ -7,7 +7,7 @@
     "editor.dragAndDrop": true,
     "editor.fontFamily": "Iosevka",
     "editor.fontLigatures": true,
-    "editor.fontSize": 13,
+    "editor.fontSize": 12,
     "editor.formatOnPaste": true,
     "editor.insertSpaces": true,
     "editor.minimap.enabled": false,
@@ -18,10 +18,11 @@
     "files.defaultLanguage": "markdown",
     "git.autofetch": true,
     "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "always",
     "gitlens.hovers.currentLine.over": "line",
-    "markdown.preview.fontSize": 13,
+    "markdown.preview.fontSize": 12,
     "terminal.integrated.fontFamily": "Iosevka Term",
-    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontSize": 12,
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
             "path": "pwsh.exe",
