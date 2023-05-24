@@ -67,7 +67,7 @@
             "cursorShape": "emptyBox",
             "font": {
                 "face": "Iosevka Term",
-                "size": 11.0
+                "size": 10
             },
             "padding": "10, 10, 10, 10"
         },
