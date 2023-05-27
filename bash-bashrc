@@ -1,3 +1,7 @@
+# dotfiles settings
+DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
+DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
+
 # bash-completions@2
 if [ -f "/usr/local/etc/profile.d/bash_completion.sh" ] ; then
   source /usr/local/etc/profile.d/bash_completion.sh
@@ -43,3 +47,6 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
       (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
   fi
 fi
+
+# start starship
+eval "$(starship init bash)"

@@ -1,11 +1,6 @@
-# pure
-fpath=("$HOME/.pure" $fpath)
-
-autoload -U promptinit; promptinit
-
-PURE_PROMPT_SYMBOL=❯❯
-
-prompt pure
+# dotfiles settings
+DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
+DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
 # zsh-syntax-highlighting
 if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] ; then
@@ -62,3 +57,6 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
       (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
   fi
 fi
+
+# start starship
+eval "$(starship init zsh)"
