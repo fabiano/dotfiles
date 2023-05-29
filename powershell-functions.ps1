@@ -93,28 +93,28 @@ function Create-Shortcut ($Name, $Path) {
   $Shortcut.Save()
 }
 
-# install 7-zip
+# 7-zip
 function Install-7Zip {
   winget install  `
     --id 7zip.7zip `
     --exact
 }
 
-# install chrome
+# chrome
 function Install-Chrome {
   winget install  `
     --id Google.Chrome `
     --exact
 }
 
-# install firefox
+# firefox
 function Install-Firefox {
   winget install `
     --id Mozilla.Firefox `
     --exact
 }
 
-# install vim
+# vim
 function Install-GVim {
   Install-PortableApp `
     -URL "https://github.com/vim/vim-win32-installer/releases/download/v9.0.1507/gvim_9.0.1507_x64.zip" `
@@ -124,213 +124,7 @@ function Install-GVim {
   Add-FolderToUserPath -Folder "${HOME}\.bin\vim\vim90"
 }
 
-# install git
-function Install-Git {
-  winget install `
-    --id Git.Git `
-    --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
-}
-
-# install insomnia
-function Install-Insomnia {
-  winget install `
-    --id Insomnia.Insomnia `
-    --exact
-}
-
-# install jabra direct
-function Install-JabraDirect {
-   winget install `
-    --id Jabra.Direct `
-    --exact
-}
-
-# install logitech capture
-function Install-LogitechCapture {
-  Install-App `
-    -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_2.00.226.exe" `
-    -OutFile "setup-logitech-capture.exe" `
-    -Arguments @()
-}
-
-# install logitech options
-function Install-LogitechOptions {
-  winget install `
-    --id Logitech.Options `
-    --exact
-}
-
-# install node
-function Install-Node {
-  winget install `
-    --id OpenJS.NodeJS `
-    --exact
-}
-
-# install powershell
-function Install-PowerShell {
-  winget install `
-    --id Microsoft.PowerShell `
-    --exact `
-    --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
-}
-
-# install svg explorer extension
-function Install-SvgExplorerExtension {
-  winget install `
-    --id SVGExplorerExtension.SVGExplorerExtension `
-    --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""""
-}
-
-# install visual studio code
-function Install-VSCode {
-  winget install `
-    --id Microsoft.VisualStudioCode `
-    --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
-}
-
-# install office 365
-function Install-Office365 {
-  winget install `
-    --id Microsoft.OfficeDeploymentTool `
-    --exact
-
-  $SetupPath = "${env:PROGRAMFILES}\OfficeDeploymentTool\setup.exe"
-
-  if (Test-Path -Path $SetupPath) {
-    & $SetupPath /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
-    & $SetupPath /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
-  }
-}
-
-# install typora
-function Install-Typora {
-  winget install `
-    --id Typora.Typora `
-    --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""""
-}
-
-# install visual studio community
-function Install-VSCommunity {
-  winget install `
-    --id Microsoft.VisualStudio.2022.Community `
-    --exact
-}
-
-# install oh my posh
-function Install-OhMyPosh {
-  winget install `
-    --id JanDeDobbeleer.OhMyPosh `
-    --exact
-}
-
-# install screen to gif
-function Install-ScreenToGif {
-  winget install `
-    --id NickeManarin.ScreenToGif `
-    --exact
-}
-
-# install npiperelay
-function Install-npiperelay {
-  Install-PortableApp `
-    -URL "https://github.com/jstarks/npiperelay/releases/download/v0.1.0/npiperelay_windows_amd64.zip" `
-    -OutFile "setup-npiperelay.zip" `
-    -DestinationPath "${HOME}\.bin"
-}
-
-# install nuget
-function Install-NuGet {
-  Install-PortableApp `
-    -URL "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" `
-    -OutFile "setup-nuget.exe" `
-    -DestinationPath "${HOME}\.bin\nuget.exe"
-}
-
-# install bombardier
-function Install-Bombardier {
-  Install-PortableApp `
-    -URL "https://github.com/codesenberg/bombardier/releases/download/v1.2.5/bombardier-windows-amd64.exe" `
-    -OutFile "setup-bombardier.exe" `
-    -DestinationPath "${HOME}\.bin\bombardier.exe"
-}
-
-# install youtube-dl
-function Install-YouTubeDL {
-  Install-PortableApp `
-    -URL "https://youtube-dl.org/downloads/latest/youtube-dl.exe" `
-    -OutFile "setup-youtube-dl.exe" `
-    -DestinationPath "${HOME}\.bin\youtube-dl.exe"
-}
-
-# install sublime text
-function Install-SublimeText {
-  winget install `
-    --id SublimeHQ.SublimeText.4 `
-    --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""contextentry"""
-}
-
-# install sql server management studio
-function Install-SQLServerManagementStudio {
-  winget install `
-    --id Microsoft.SQLServerManagementStudio `
-    --exact
-}
-
-# install azure data studio
-function Install-AzureDataStudio {
-  winget install `
-    --id Microsoft.AzureDataStudio `
-    --exact `
-}
-
-# install python 3
-function Install-Python3 {
-  winget install `
-    --id Python.Python.3.11 `
-    --exact `
-    --override "/passive InstallAllUsers=1 PrependPath=1 AssociateFiles=0 Include_doc=0 Include_tcltk=0"
-}
-
-# install fzf
-function Install-Fzf {
-  winget install `
-    --id junegunn.fzf `
-    --exact
-}
-
-# install bat
-function Install-Bat {
-  winget install `
-    --id sharkdp.bat `
-    --exact
-}
-
-# configure git
-function Configure-Git {
-  New-SymbolicLink `
-    -Path "${HOME}\.gitconfig" `
-    -Value "${DOTFILES_INSTALL_DIR}\git-gitconfig"
-}
-
-# configure powershell
-function Configure-PowerShell {
-  New-SymbolicLink `
-    -Path "${HOME}\Documents\PowerShell\Profile.ps1" `
-    -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
-
-  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
-  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
-  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
-}
-
-# configure vim
-function Configure-Vim {
+function Configure-GVim {
   New-SymbolicLink `
     -Path "${HOME}\.vimrc" `
     -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
@@ -344,7 +138,83 @@ function Configure-Vim {
     -OutFile "${HOME}\.vim\autoload\plug.vim"
 }
 
-# configure visual studio code
+# git
+function Install-Git {
+  winget install `
+    --id Git.Git `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
+}
+
+function Configure-Git {
+  New-SymbolicLink `
+    -Path "${HOME}\.gitconfig" `
+    -Value "${DOTFILES_INSTALL_DIR}\git-gitconfig"
+}
+
+# insomnia
+function Install-Insomnia {
+  winget install `
+    --id Insomnia.Insomnia `
+    --exact
+}
+
+# logitech capture
+function Install-LogitechCapture {
+  Install-App `
+    -URL "https://download01.logi.com/web/ftp/pub/techsupport/capture/Capture_2.00.226.exe" `
+    -OutFile "setup-logitech-capture.exe" `
+    -Arguments @()
+}
+
+# logitech options
+function Install-LogitechOptions {
+  winget install `
+    --id Logitech.Options `
+    --exact
+}
+
+# node
+function Install-Node {
+  winget install `
+    --id OpenJS.NodeJS `
+    --exact
+}
+
+# powershell
+function Install-PowerShell {
+  winget install `
+    --id Microsoft.PowerShell `
+    --exact `
+    --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+}
+
+function Configure-PowerShell {
+  New-SymbolicLink `
+    -Path "${HOME}\Documents\PowerShell\Profile.ps1" `
+    -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
+
+  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+  & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
+}
+
+# svg explorer extension
+function Install-SvgExplorerExtension {
+  winget install `
+    --id SVGExplorerExtension.SVGExplorerExtension `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""""
+}
+
+# visual studio code
+function Install-VSCode {
+  winget install `
+    --id Microsoft.VisualStudioCode `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
+}
+
 function Configure-VSCode {
   New-SymbolicLink `
     -Path "${HOME}\AppData\Roaming\Code\User\settings.json" `
@@ -353,21 +223,89 @@ function Configure-VSCode {
   Get-Content -Path "${DOTFILES_INSTALL_DIR}\vscode-extensions.txt" | ForEach-Object { code --install-extension $_ }
 }
 
-# configure azure data studio
-function Configure-AzureDataStudio {
-  New-SymbolicLink `
-    -Path "${HOME}\AppData\Roaming\azuredatastudio\User\settings.json" `
-    -Value "${DOTFILES_INSTALL_DIR}\azuredatastudio-settings.json"
+# office 365
+function Install-Office365 {
+  winget install `
+    --id Microsoft.OfficeDeploymentTool `
+    --exact
+
+  $SetupPath = "${env:PROGRAMFILES}\OfficeDeploymentTool\setup.exe"
+
+  if (Test-Path -Path $SetupPath) {
+    & $SetupPath /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+    & $SetupPath /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
+  }
 }
 
-# configure windows terminal
-function Configure-WindowsTerminal {
-  New-SymbolicLink `
-    -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" `
-    -Value "${DOTFILES_INSTALL_DIR}\win-terminal-settings.json"
+# typora
+function Install-Typora {
+  winget install `
+    --id Typora.Typora `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS="""""
 }
 
-# configure sublime text
+# visual studio community
+function Install-VSCommunity {
+  winget install `
+    --id Microsoft.VisualStudio.2022.Community `
+    --exact
+}
+
+# oh my posh
+function Install-OhMyPosh {
+  winget install `
+    --id JanDeDobbeleer.OhMyPosh `
+    --exact
+}
+
+# screen to gif
+function Install-ScreenToGif {
+  winget install `
+    --id NickeManarin.ScreenToGif `
+    --exact
+}
+
+# npiperelay
+function Install-npiperelay {
+  Install-PortableApp `
+    -URL "https://github.com/jstarks/npiperelay/releases/download/v0.1.0/npiperelay_windows_amd64.zip" `
+    -OutFile "setup-npiperelay.zip" `
+    -DestinationPath "${HOME}\.bin"
+}
+
+# nuget
+function Install-NuGet {
+  Install-PortableApp `
+    -URL "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" `
+    -OutFile "setup-nuget.exe" `
+    -DestinationPath "${HOME}\.bin\nuget.exe"
+}
+
+# bombardier
+function Install-Bombardier {
+  Install-PortableApp `
+    -URL "https://github.com/codesenberg/bombardier/releases/download/v1.2.5/bombardier-windows-amd64.exe" `
+    -OutFile "setup-bombardier.exe" `
+    -DestinationPath "${HOME}\.bin\bombardier.exe"
+}
+
+# youtube-dl
+function Install-YouTubeDL {
+  Install-PortableApp `
+    -URL "https://youtube-dl.org/downloads/latest/youtube-dl.exe" `
+    -OutFile "setup-youtube-dl.exe" `
+    -DestinationPath "${HOME}\.bin\youtube-dl.exe"
+}
+
+# sublime text
+function Install-SublimeText {
+  winget install `
+    --id SublimeHQ.SublimeText.4 `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""contextentry"""
+}
+
 function Configure-SublimeText {
   New-SymbolicLink `
     -Path "${HOME}\AppData\Roaming\Sublime Text\Packages\User\Preferences.sublime-settings" `
@@ -384,6 +322,61 @@ function Configure-SublimeText {
   Invoke-WebRequest `
     -Uri "https://packagecontrol.io/Package%20Control.sublime-package" `
     -Outfile "${HOME}\AppData\Roaming\Sublime Text\Installed Packages\Package Control.sublime-package"
+}
+
+# sql server management studio
+function Install-SQLServerManagementStudio {
+  winget install `
+    --id Microsoft.SQLServerManagementStudio `
+    --exact
+}
+
+# azure data studio
+function Install-AzureDataStudio {
+  winget install `
+    --id Microsoft.AzureDataStudio `
+    --exact `
+}
+
+function Configure-AzureDataStudio {
+  New-SymbolicLink `
+    -Path "${HOME}\AppData\Roaming\azuredatastudio\User\settings.json" `
+    -Value "${DOTFILES_INSTALL_DIR}\azuredatastudio-settings.json"
+}
+
+# python 3
+function Install-Python3 {
+  winget install `
+    --id Python.Python.3.11 `
+    --exact `
+    --override "/passive InstallAllUsers=1 PrependPath=1 AssociateFiles=0 Include_doc=0 Include_tcltk=0"
+}
+
+# fzf
+function Install-Fzf {
+  winget install `
+    --id junegunn.fzf `
+    --exact
+}
+
+# bat
+function Install-Bat {
+  winget install `
+    --id sharkdp.bat `
+    --exact
+}
+
+# starship
+function Install-Starship {
+  winget install `
+    --id Starship.Starship `
+    --exact
+}
+
+function Configure-Starship {
+  New-SymbolicLink `
+    -Path "${HOME}\starship.toml" `
+    -Value "${DOTFILES_INSTALL_DIR}\starship.toml"
 }
 
 # install essential apps
@@ -406,7 +399,7 @@ function Install-DevTools {
 
   Reload-Path
 
-  Configure-Vim
+  Configure-GVim
   Configure-VSCode
 }
 
