@@ -51,12 +51,12 @@ Set-ItemProperty `
 # install fonts
 Install-Fonts
 
-# install powershell
-Install-PowerShell
-Install-OhMyPosh
-
 # configure powershell and windows terminal
+Install-PowerShell
+Install-Starship
+
 Configure-PowerShell
+Configure-Starship
 Configure-WindowsTerminal
 
 # update command prompt
