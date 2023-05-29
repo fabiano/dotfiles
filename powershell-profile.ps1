@@ -105,6 +105,13 @@ Import-Module PSReadLine
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-# set oh my posh theme
-# https://ohmyposh.dev
-oh-my-posh init pwsh --config "${DOTFILES_INSTALL_DIR}\ohmyposh-theme.json" | Invoke-Expression
+# start starship
+$ENV:STARSHIP_CONFIG = "${HOME}\starship.toml"
+
+function Invoke-Starship-PreCommand {
+  $Path = $PWD.path.replace($HOME, "~")
+
+  $Host.UI.Write("`e]0;${Path}`a")
+}
+
+Invoke-Expression (&starship init powershell)
