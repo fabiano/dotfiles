@@ -84,7 +84,6 @@ function Install-Apps {
   winget install --id Google.Chrome --exact
   winget install --id junegunn.fzf --exact
   winget install --id Microsoft.Edge --exact
-  winget install --id Microsoft.OfficeDeploymentTool --exact
   winget install --id Microsoft.PowerShell --exact --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
   winget install --id Microsoft.WindowsTerminal --exact
   winget install --id Mozilla.Firefox --exact
@@ -102,17 +101,12 @@ function Install-Apps {
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
-
-  # install office
-  & "${env:PROGRAMFILES}\OfficeDeploymentTool\setup.exe" /download "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
-  & "${env:PROGRAMFILES}\OfficeDeploymentTool\setup.exe" /configure "${HOME}\.dotfiles\office-deployment-tool-office365.xml"
 }
 
 # install dev tools
 function Install-DevTools {
   winget install --id Microsoft.VisualStudioCode --exact --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
   winget install --id Insomnia.Insomnia --exact
-  winget install --id jstarks.npiperelay --exact
   winget install --id vim.vim --exact
 
   # create symbolic links
@@ -131,6 +125,7 @@ function Install-DevTools {
 function Install-WorkDevTools {
   winget install --id Microsoft.AzureDataStudio --exact
   winget install --id Microsoft.NuGet --exact
+  winget install --id Microsoft.Office --exact --override "/configure ${HOME}\.dotfiles\office365.xml"
   winget install --id Microsoft.SQLServerManagementStudio --exact
   winget install --id Microsoft.VisualStudio.2022.Community --exact
   winget install --id NickeManarin.ScreenToGif --exact
