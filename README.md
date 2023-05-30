@@ -3,7 +3,6 @@
 ## Windows 10/11
 
 - Install 1Password and enable the SSH agent
-- Install Terminal
 - Install winget
 
 ```powershell
