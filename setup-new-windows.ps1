@@ -15,11 +15,13 @@ iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercon
 
 # install git
 if (-Not (Test-Path -Path "${$env:PROGRAMFILES}\Git\bin\git.exe")) {
-  Install-Git
-}
+  winget install `
+    --id Git.Git `
+    --exact `
+    --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
 
-# reload path
-Reload-Path
+  Reload-Path
+}
 
 # set Microsoft OpenSSH to default Git ssh command
 [Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
@@ -31,8 +33,8 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
 
 git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
-# configure git
-Configure-Git
+# create gitconfig symbolic link
+New-SymbolicLink -Path "${HOME}\.gitconfig" -Value "${DOTFILES_INSTALL_DIR}\git-gitconfig"
 
 # disable stop on first error
 $ErrorActionPreference = "Continue"
@@ -51,13 +53,17 @@ Set-ItemProperty `
 # install fonts
 Install-Fonts
 
-# configure powershell and windows terminal
-Install-PowerShell
-Install-Starship
+# configure command prompt
+Remove-ItemProperty -Path HKCU:\Console -Name *
 
-Configure-PowerShell
-Configure-Starship
-Configure-WindowsTerminal
+Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "IosevkaTerm NF"
+Set-ItemProperty -Path "HKCU:\Console" -Name "FontFamily" -Value "54" -Type "DWord"
+Set-ItemProperty -Path "HKCU:\Console" -Name "FontSize" -Value "1179648" -Type "DWord"
+Set-ItemProperty -Path "HKCU:\Console" -Name "ScreenBufferSize" -Value "589889696" -Type "DWord"
+Set-ItemProperty -Path "HKCU:\Console" -Name "WindowSize" -Value "1966240" -Type "DWord"
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" -Name "000" -Value "IosevkaTerm NF"
 
-# update command prompt
-Update-CommandPrompt
+& $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
+
+# install essential apps
+Install-Apps
