@@ -1,7 +1,5 @@
 {
     "breadcrumbs.enabled": false,
-    "dev.containers.dockerPath": "podman",
-    "dev.containers.dockerComposePath": "podman-compose",
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.accessibilitySupport": "off",
     "editor.dragAndDrop": true,
