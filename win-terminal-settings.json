@@ -41,17 +41,17 @@
             "command": 
             {
                 "action": "moveFocus",
-                "direction": "left"
+                "direction": "right"
             },
-            "keys": "ctrl+alt+left"
+            "keys": "ctrl+alt+right"
         },
         {
             "command": 
             {
                 "action": "moveFocus",
-                "direction": "right"
+                "direction": "left"
             },
-            "keys": "ctrl+alt+right"
+            "keys": "ctrl+alt+left"
         }
     ],
     "copyOnSelect": true,
@@ -76,7 +76,8 @@
         [
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "name": "Command Prompt"
+                "name": "Command Prompt",
+                "hidden": true
             },
             {
                 "commandline": "pwsh.exe -nologo",
@@ -84,14 +85,6 @@
                 "hidden": false,
                 "name": "PowerShell Core",
                 "source": "Windows.Terminal.PowershellCore"
-            },
-            {
-                "commandline": "wsl -d Ubuntu",
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc",
-                "startingDirectory": "/home/fabiano"
             },
             {
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -109,6 +102,12 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": true,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
