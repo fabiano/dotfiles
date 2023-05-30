@@ -22,6 +22,8 @@
   git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
   # configure dot files
+  mkdir -p $HOME/.config
+  
   rm -rf $HOME/.bash_profile
   rm -rf $HOME/.bashrc
   rm -rf $HOME/.config/starship.toml
