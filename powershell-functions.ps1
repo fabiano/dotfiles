@@ -85,6 +85,7 @@ function Install-Apps {
   winget install --id junegunn.fzf --exact
   winget install --id Microsoft.Edge --exact
   winget install --id Microsoft.PowerShell --exact --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+  winget install --id Microsoft.VCRedist.2015+.x64 --exact # required for bat
   winget install --id Microsoft.WindowsTerminal --exact
   winget install --id Mozilla.Firefox --exact
   winget install --id sharkdp.bat --exact
