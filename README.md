@@ -2,7 +2,7 @@
 
 ## Windows 10/11
 
-- Install 1Password and enable the SSH agent
+- Generate a new SSH key and add to the GitHub account
 - Install winget
 
 ```powershell
@@ -11,7 +11,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 
 ## Ubuntu
 
-- Install 1Password and enable the SSH agent
+- Generate a new SSH key and add to the GitHub account
 
 ```bash
 curl -O https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-ubuntu.sh
@@ -21,7 +21,7 @@ chmod +x setup-new-ubuntu.sh
 
 ## Fedora
 
-- Install 1Password and enable the SSH agent
+- Generate a new SSH key and add to the GitHub account
 
 ```bash
 curl -O https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-fedora.sh
