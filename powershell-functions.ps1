@@ -33,6 +33,7 @@ function Add-FolderToUserPath ($Folder) {
 function Remove-BuiltInApps {
   Get-AppxPackage 5A894077.McAfeeSecurity | Remove-AppxPackage
   Get-AppxPackage C27EB4BA.DropboxOEM | Remove-AppxPackage
+  Get-AppxPackage Clipchamp.Clipchamp | Remove-AppxPackage
   Get-AppxPackage DellInc.DellCustomerConnect | Remove-AppxPackage
   Get-AppxPackage DellInc.DellDigitalDelivery | Remove-AppxPackage
   Get-AppxPackage DellInc.PartnerPromo | Remove-AppxPackage
@@ -65,6 +66,9 @@ function Remove-BuiltInApps {
   Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
   Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
   Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
+  Get-AppxPackage MicrosoftCorporationII.MicrosoftFamily | Remove-AppxPackage
+  Get-AppxPackage MicrosoftCorporationII.QuickAssist | Remove-AppxPackage
+  Get-AppxPackage MicrosoftTeams | Remove-AppxPackage
   Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
   Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
   Get-AppxPackage SpotifyAB.SpotifyMusic | Remove-AppxPackage
