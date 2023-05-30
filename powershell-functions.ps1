@@ -90,6 +90,8 @@ function Install-Apps {
   winget install --id Mozilla.Firefox --exact
   winget install --id sharkdp.bat --exact
   winget install --id Starship.Starship --exact
+  
+  Reload-Path
 
   # create symbolic links
   New-SymbolicLink -Path "${HOME}\Documents\PowerShell\Profile.ps1" ` -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
