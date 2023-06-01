@@ -59,14 +59,17 @@ Set-ItemProperty `
 Install-Fonts
 
 # configure command prompt
-Remove-ItemProperty -Path HKCU:\Console -Name *
+# https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978575(v=technet.10)
+# https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978583(v=technet.10)
+# https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978585(v=technet.10)
+Remove-Item -Path HKCU:\Console\* -Recurse
 
-Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "IosevkaTerm NF"
+Set-ItemProperty -Path "HKCU:\Console" -Name "FaceName" -Value "Iosevka Term"
 Set-ItemProperty -Path "HKCU:\Console" -Name "FontFamily" -Value "54" -Type "DWord"
-Set-ItemProperty -Path "HKCU:\Console" -Name "FontSize" -Value "1179648" -Type "DWord"
-Set-ItemProperty -Path "HKCU:\Console" -Name "ScreenBufferSize" -Value "589889696" -Type "DWord"
-Set-ItemProperty -Path "HKCU:\Console" -Name "WindowSize" -Value "1966240" -Type "DWord"
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" -Name "000" -Value "IosevkaTerm NF"
+Set-ItemProperty -Path "HKCU:\Console" -Name "FontSize" -Value "1114112" -Type "DWord" # 11 = 0011 0000 = 1114112
+Set-ItemProperty -Path "HKCU:\Console" -Name "ScreenBufferSize" -Value "589889696" -Type "DWord" # 9001x160 = 2329 00A0 = 589889696
+Set-ItemProperty -Path "HKCU:\Console" -Name "WindowSize" -Value "1966240" -Type "DWord" # 30x160 = 001E 00A0 = 1966240
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" -Name "000" -Value "Iosevka Term"
 
 & $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
 
