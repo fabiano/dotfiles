@@ -2,7 +2,8 @@
 
 ## Windows 10/11
 
-- Generate a new SSH key and add to the GitHub account
+- Disable the SSH agent service: `Get-Service ssh-agent | Set-Service -StartupType Disabled -PassThru | Stop-Service`
+- Install 1Password and enable the SSH agent
 - Install winget
 
 ```powershell
@@ -11,7 +12,8 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 
 ## Ubuntu
 
-- Generate a new SSH key and add to the GitHub account
+- Install 1Password and enable the SSH agent
+- Install npiperelay: `winget install --id jstarks.npiperelay --exact`
 
 ```bash
 curl -O https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-ubuntu.sh
@@ -21,7 +23,7 @@ chmod +x setup-new-ubuntu.sh
 
 ## Fedora
 
-- Generate a new SSH key and add to the GitHub account
+- Install 1Password and enable the SSH agent
 
 ```bash
 curl -O https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-fedora.sh
