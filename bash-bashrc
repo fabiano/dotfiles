@@ -29,6 +29,7 @@ fi
 
 alias g="git"
 alias v="vim"
+alias update-time="sudo ntpdate time.windows.com" # update time inside the wsl distro
 
 # prompt
 PS1="\n\w\n\033[0;35m❯❯\033[0m "
