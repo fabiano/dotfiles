@@ -6,11 +6,6 @@ $ErrorActionPreference = "Stop"
 # set tls version to 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# enable and start ssh agent service
-Get-Service ssh-agent `
-  | Set-Service -StartupType Automatic -PassThru `
-  | Start-Service
-
 # dotfiles settings
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
 $DOTFILES_INSTALL_DIR = "${HOME}\.dotfiles"
