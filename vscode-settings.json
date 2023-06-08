@@ -19,20 +19,15 @@
     "git.openRepositoryInParentFolders": "always",
     "gitlens.hovers.currentLine.over": "line",
     "markdown.preview.fontSize": 12.5,
-    "terminal.integrated.fontFamily": "Iosevka Term",
+    "terminal.integrated.fontFamily": "IosevkaTerm Nerd Font",
     "terminal.integrated.fontSize": 12.5,
-    "terminal.integrated.profiles.windows": {
-        "PowerShell": {
-            "path": "pwsh.exe",
-            "args": [ "-nologo", "-noexit" ]
-        }
-    },
+    "terminal.integrated.profiles.windows": { "PowerShell": { "path": "pwsh.exe", "args": [ "-nologo", "-noexit" ] } },
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "terminal.integrated.env.windows": {},
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "Default Light Modern",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile"
 }
