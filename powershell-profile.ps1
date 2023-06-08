@@ -82,7 +82,7 @@ function Run-Fzf {
 
 # bat
 function Run-Bat {
-  bat.exe --number --color=always $args
+  bat.exe --color=always --decorations=always $args
 }
 
 # alias
