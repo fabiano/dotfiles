@@ -6,6 +6,7 @@ set backspace=indent,eol,start
 set colorcolumn=+1
 set encoding=utf8
 set laststatus=2
+set mouse=a
 set nobackup
 set nocompatible
 set noshowmode
@@ -80,7 +81,10 @@ autocmd VimEnter *
   \| endif
 
 " theme
-colorscheme snazzy
+try
+  colorscheme snazzy
+catch
+endtry
 
 " lightline
 let g:lightline={}
@@ -106,4 +110,3 @@ nnoremap <C-s> :w!<CR>
 
 " fzf keymap
 nnoremap <C-f> :FZF<CR>
-
