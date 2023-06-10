@@ -17,23 +17,6 @@
   sudo apt-get -y install zsh-syntax-highlighting
   curl -sS https://starship.rs/install.sh | sh
 
-  # configure wls ssh forwarding
-  if [[ $(grep -i Microsoft /proc/version) ]]; then
-    sudo apt-get -y install socat
-
-    export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
-
-    ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
-
-    if [[ $ALREADY_RUNNING != "0" ]]; then
-        if [[ -S $SSH_AUTH_SOCK ]]; then
-            rm -rf $SSH_AUTH_SOCK
-        fi
-
-        (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
-    fi
-  fi
-
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
   git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR

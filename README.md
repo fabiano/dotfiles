@@ -13,7 +13,6 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 ## Ubuntu
 
 - Install 1Password and enable the SSH agent
-- Install npiperelay: `winget install --id jstarks.npiperelay --exact`
 
 ```bash
 curl -O https://raw.githubusercontent.com/fabiano/dotfiles/master/setup-new-ubuntu.sh
