@@ -17,7 +17,6 @@
     "git.autofetch": true,
     "git.confirmSync": false,
     "git.openRepositoryInParentFolders": "always",
-    "gitlens.hovers.currentLine.over": "line",
     "markdown.preview.fontSize": 12.5,
     "terminal.integrated.fontFamily": "IosevkaTerm Nerd Font",
     "terminal.integrated.fontSize": 12.5,
