@@ -23,6 +23,12 @@
   sudo dnf -y install zsh-autosuggestions
   sudo dnf -y install zsh-syntax-highlighting
 
+  # install visual studio code
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+  dnf check-update
+  sudo dnf install -y code
+
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
   git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
@@ -72,6 +78,7 @@
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'SF Pro Display 10'
 
   # change gnome interface settings
+  gsettings set org.gnome.desktop.interface cursor-size 32
   gsettings set org.gnome.desktop.interface clock-format '24h'
   gsettings set org.gnome.desktop.interface clock-show-date true
   gsettings set org.gnome.desktop.interface clock-show-seconds false
@@ -79,8 +86,8 @@
   gsettings set org.gnome.desktop.interface show-battery-percentage true
   gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward '[]'
-  gsettings set org.gnome.desktop.wm.keybindings switch-windows ['<Alt>Tab']
-  gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward ['<Shift><Alt>Tab']
+  gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
   gsettings set org.gnome.mutter center-new-windows true
 
@@ -99,5 +106,5 @@ EOF
 
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
-  chown gdm:gdm /var/lib/gdm/.config/monitors.xml
+  sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
 }
