@@ -26,6 +26,7 @@ alias ~="cd ~"
 
 if [ -f "/usr/bin/exa" ] ; then
   alias ls="exa"
+  alias ll="exa --long --header --git"
 fi
 
 if [ -f "/usr/bin/bat" ] ; then
