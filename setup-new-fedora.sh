@@ -66,9 +66,11 @@
   # install visual studio code extensions
   IFS=$'\r\n'; for line in `cat $DOTFILES_INSTALL_DIR/vscode-extensions.txt`; do code --install-extension ${line}; done
 
-  # install sf pro display font
+  # install fonts
   mkdir -p $HOME/.local/share/fonts
   cp $DOTFILES_INSTALL_DIR/font-sf-pro-display-regular.otf $HOME/.local/share/fonts/sf-pro-display-regular.otf
+  cp $DOTFILES_INSTALL_DIR/font-iosevka-nerd-font.ttf $HOME/.local/share/fonts/iosevka-nerd-font.ttf
+  cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font.ttf
 
   # use iosevka as gnome default font
   gsettings set org.gnome.desktop.interface document-font-name 'SF Pro Display 10'
