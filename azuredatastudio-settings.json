@@ -14,8 +14,8 @@
         "authenticationType": "Integrated",
         "user": "",
         "password": "",
-        "trustServerCertificate": true,
         "applicationName": "azdata",
+        "trustServerCertificate": true,
         "originalDatabase": "master",
         "groupId": "C777F06B-202E-4480-B475-FA416154D458",
         "databaseDisplayName": "master"
