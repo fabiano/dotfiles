@@ -117,6 +117,7 @@ function Install-DevTools {
   Reload-Path
 
   # create symbolic links
+  New-SymbolicLink -Path "${HOME}\AppData\Roaming\azuredatastudio\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\azuredatastudio-settings.json"
   New-SymbolicLink -Path "${HOME}\AppData\Roaming\Code\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\vscode-settings.json"
   New-SymbolicLink -Path "${HOME}\.vimrc" -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
   
@@ -126,20 +127,4 @@ function Install-DevTools {
 
   # install vscode extensions
   Get-Content -Path "${DOTFILES_INSTALL_DIR}\vscode-extensions.txt" | ForEach-Object { code --install-extension $_ }
-}
-
-# install work dev tools
-function Install-WorkDevTools {
-  winget install --id Microsoft.AzureDataStudio --exact
-  winget install --id Microsoft.NuGet --exact
-  winget install --id Microsoft.Office --exact --override "/configure ${DOTFILES_INSTALL_DIR}\office365.xml"
-  winget install --id Microsoft.SQLServerManagementStudio --exact
-  winget install --id Microsoft.VisualStudio.2022.Community --exact
-  winget install --id NickeManarin.ScreenToGif --exact
-  winget install --id OpenJS.NodeJS --exact
-
-  Reload-Path
-
-  # create symbolic links
-  New-SymbolicLink -Path "${HOME}\AppData\Roaming\azuredatastudio\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\azuredatastudio-settings.json"
 }
