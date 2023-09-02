@@ -1,3 +1,5 @@
+command_timeout = 5000
+
 [directory]
 style             = "blue"
 truncate_to_repo  = false
