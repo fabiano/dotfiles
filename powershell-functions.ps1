@@ -110,9 +110,11 @@ function Install-Apps {
 
 # install dev tools
 function Install-DevTools {
+  winget install --id Microsoft.Office --exact --override "/configure ${DOTFILES_INSTALL_DIR}\office365.xml"
   winget install --id Microsoft.VisualStudioCode --exact --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
   winget install --id Insomnia.Insomnia --exact
   winget install --id vim.vim --exact
+  winget install --id Mozilla.Firefox.DeveloperEdition --exact
 
   Reload-Path
 
