@@ -84,49 +84,35 @@ function Install-Fonts {
 
 # install essential apps
 function Install-Apps {
-  winget install --id 7zip.7zip --exact
-  winget install --id Google.Chrome --exact
   winget install --id junegunn.fzf --exact
-  winget install --id Microsoft.Edge --exact
+  winget install --id Microsoft.Office --exact --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
   winget install --id Microsoft.PowerShell --exact --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
   winget install --id Microsoft.VCRedist.2015+.x64 --exact # required for bat
+  winget install --id Microsoft.VisualStudioCode --exact --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
   winget install --id Microsoft.WindowsTerminal --exact
   winget install --id Mozilla.Firefox --exact
   winget install --id sharkdp.bat --exact
   winget install --id Starship.Starship --exact
+  winget install --id vim.vim --exact
 
   Reload-Path
 
   # create symbolic links
-  New-SymbolicLink -Path "${HOME}\Documents\PowerShell\Profile.ps1" ` -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
+  New-SymbolicLink -Path "${HOME}\.vimrc" -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
   New-SymbolicLink -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Value "${DOTFILES_INSTALL_DIR}\win-terminal-settings.json"
+  New-SymbolicLink -Path "${HOME}\AppData\Roaming\Code\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\vscode-settings.json"
+  New-SymbolicLink -Path "${HOME}\Documents\PowerShell\Profile.ps1" ` -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
   New-SymbolicLink -Path "${HOME}\starship.toml" -Value "${DOTFILES_INSTALL_DIR}\starship.toml"
 
   # configure powershell
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
   & $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
-}
-
-# install dev tools
-function Install-DevTools {
-  winget install --id Microsoft.Office --exact --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
-  winget install --id Microsoft.VisualStudioCode --exact --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
-  winget install --id Insomnia.Insomnia --exact
-  winget install --id vim.vim --exact
-  winget install --id Mozilla.Firefox.DeveloperEdition --exact
-
-  Reload-Path
-
-  # create symbolic links
-  New-SymbolicLink -Path "${HOME}\AppData\Roaming\azuredatastudio\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\azuredatastudio-settings.json"
-  New-SymbolicLink -Path "${HOME}\AppData\Roaming\Code\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\vscode-settings.json"
-  New-SymbolicLink -Path "${HOME}\.vimrc" -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
-  
-  # install plug
-  New-Item -ItemType Directory -Path "${HOME}\.vim\autoload" -Force
-  Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -OutFile "${HOME}\.vim\autoload\plug.vim"
 
   # install vscode extensions
   Get-Content -Path "${DOTFILES_INSTALL_DIR}\vscode-extensions.txt" | ForEach-Object { code --install-extension $_ }
+
+  # install plug
+  New-Item -ItemType Directory -Path "${HOME}\.vim\autoload" -Force
+  Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -OutFile "${HOME}\.vim\autoload\plug.vim"
 }
