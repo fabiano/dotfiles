@@ -85,6 +85,17 @@ function Run-Bat {
   bat.exe --color=always --decorations=always $args
 }
 
+# calculate completed (hours)
+function Calculate-Completed ($StartTime, $EndTime) {
+  $StartDate    = [DateTime]::Parse("2023-01-01T${StartTime}:00.000Z")
+  $EndDate      = [DateTime]::Parse("2023-01-01T${EndTime}:00.000Z")
+  $Milliseconds = $EndDate.Subtract($StartDate).TotalMilliseconds
+  $Hours        = [Math]::Round($Milliseconds / (1000 * 60 * 60), 2)
+
+  Write-Host
+  Write-Host "${EndTime} - ${StartTime} = ${Hours}"
+}
+
 # alias
 New-Alias -Name "~" -Value Home -Force
 New-Alias -Name ".." -Value Move-Up -Force
