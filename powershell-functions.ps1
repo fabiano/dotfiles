@@ -84,6 +84,7 @@ function Install-Fonts {
 
 # install essential apps
 function Install-Apps {
+  winget install --id Helix.Helix --exact
   winget install --id junegunn.fzf --exact
   winget install --id Microsoft.Office --exact --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
   winget install --id Microsoft.PowerShell --exact --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
@@ -93,7 +94,7 @@ function Install-Apps {
   winget install --id Mozilla.Firefox --exact
   winget install --id sharkdp.bat --exact
   winget install --id Starship.Starship --exact
-  winget install --id vim.vim --exact
+  # winget install --id vim.vim --exact
 
   Reload-Path
 
