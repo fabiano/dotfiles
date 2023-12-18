@@ -87,6 +87,10 @@ function Run-Bat {
 
 # calculate completed (hours)
 function Calculate-Completed ($StartTime, $EndTime) {
+  if ($EndTime -eq $null) {
+    $EndTime = [DateTime]::Now.ToString("HH:mm")
+  }
+
   $StartDate    = [DateTime]::Parse("2023-01-01T${StartTime}:00.000Z")
   $EndDate      = [DateTime]::Parse("2023-01-01T${EndTime}:00.000Z")
   $Milliseconds = $EndDate.Subtract($StartDate).TotalMilliseconds
