@@ -1,11 +1,4 @@
-﻿# dotfiles settings
-$DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
-$DOTFILES_INSTALL_DIR = "${HOME}\.dotfiles"
-
-# import helper functions module
-Import-Module -Name "${DOTFILES_INSTALL_DIR}\powershell-functions.ps1"
-
-# clear history
+﻿# clear history
 function Clear-History {
   # https://blogs.msdn.microsoft.com/stevelasker/2016/03/25/clear-history-powershell-doesnt-clear-the-history-3/
   Remove-Item (Get-PSReadlineOption).HistorySavePath
@@ -35,44 +28,12 @@ function Start-HttpServer ($Port) {
 
 # reload profile
 function Reload-Profile {
-  . "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
-}
-
-# caffeine
-function Start-Caffeine {
-  Add-Type -AssemblyName System.Windows.Forms
-
-  while (1 -eq 1 ) {
-    $message = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
-
-    Write-Host ${message}: Pressing F16
-
-    [System.Windows.Forms.SendKeys]::SendWait("{F16}")
-
-    Start-Sleep -Seconds 59
-  }
+  . "${PROFILE}"
 }
 
 # kill process
 function Kill-Process ($Name) {
   taskkill /IM $Name /F
-}
-
-# remove us keyboard
-function Remove-UsKeyboard {
-  $List = Get-WinUserLanguageList
-
-  $List `
-    | Where-Object -Property LanguageTag -eq "en-US" `
-    | ForEach-Object { $_.InputMethodTips.Add("0409:00000409") }
-
-  Set-WinUserLanguageList $List -Force
-
-  $List `
-    | Where-Object -Property LanguageTag -eq "en-US" `
-    | ForEach-Object { $_.InputMethodTips.Remove("0409:00000409") }
-
-  Set-WinUserLanguageList $List -Force
 }
 
 # fzf
@@ -83,21 +44,6 @@ function Run-Fzf {
 # bat
 function Run-Bat {
   bat.exe --color=always --decorations=always $args
-}
-
-# calculate completed (hours)
-function Calculate-Completed ($StartTime, $EndTime) {
-  if ($EndTime -eq $null) {
-    $EndTime = [DateTime]::Now.ToString("HH:mm")
-  }
-
-  $StartDate    = [DateTime]::Parse("2023-01-01T${StartTime}:00.000Z")
-  $EndDate      = [DateTime]::Parse("2023-01-01T${EndTime}:00.000Z")
-  $Milliseconds = $EndDate.Subtract($StartDate).TotalMilliseconds
-  $Hours        = [Math]::Round($Milliseconds / (1000 * 60 * 60), 2)
-
-  Write-Host
-  Write-Host "${EndTime} - ${StartTime} = ${Hours}"
 }
 
 # alias
