@@ -1,35 +1,35 @@
 [user]
 	name = Fabiano França
 	useConfigOnly = true
+[core]
+	editor = hx
+[init]
+	defaultBranch = main
 [alias]
 	aco  = !git add --all && git commit --message
 	boom = !git reset --hard HEAD && git clean -fd
 	br   = "!f() { if [ -z ${1+x} ]; then git branch --sort=-committerdate; else git branch $@; fi }; f"
-	ch   = "!f() { if [ -z ${1+x} ]; then git checkout master; else git checkout $@; fi }; f"
+	ch   = "!f() { if [ -z ${1+x} ]; then git checkout main; else git checkout $@; fi }; f"
 	co   = commit
 	ls   = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-	lsb  = log master.. --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	lsb  = log main.. --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	me   = merge
 	pusu = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
 	pur  = pull --rebase
-	re   = "!f() { if [ -z ${1+x} ]; then git rebase master; else git rebase $@; fi }; f"
+	re   = "!f() { if [ -z ${1+x} ]; then git rebase main; else git rebase $@; fi }; f"
 	sq   = "!f() { if [ -z ${1+x} ]; then git rebase --interactive; else git rebase --interactive HEAD~$@; fi }; f"
 	st   = status
 	t    = tag
 	unco = reset --mixed HEAD~
 	wip  = !git add --all && git commit --message "⌐■_■"
-	up   = !git checkout master && git pull --rebase && git checkout - && git rebase master
-	upm  = !git checkout master && git pull --rebase && git checkout - && git merge master
-	sup  = !git stash push --include-untracked && git checkout master && git pull --rebase && git checkout - && git rebase master && git stash pop
-	supm = !git stash push --include-untracked && git checkout master && git pull --rebase && git checkout - && git merge master && git stash pop
-[winUpdater]
-	recentlySeenVersion = 2.25.0.windows.1
+	up   = !git checkout main && git pull --rebase && git checkout - && git rebase main
+	upm  = !git checkout main && git pull --rebase && git checkout - && git merge main
+	sup  = !git stash push --include-untracked && git checkout main && git pull --rebase && git checkout - && git rebase main && git stash pop
+	supm = !git stash push --include-untracked && git checkout main && git pull --rebase && git checkout - && git merge main && git stash pop
 [filter "lfs"]
 	clean    = git-lfs clean -- %f
 	smudge   = git-lfs smudge -- %f
 	process  = git-lfs filter-process
 	required = true
-[init]
-	defaultBranch = main
 [safe]
 	directory = C:/Users/Fabiano/.dotfiles

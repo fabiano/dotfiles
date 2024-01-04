@@ -3,27 +3,86 @@
 # set to stop on first error
 $ErrorActionPreference = "Stop"
 
-# set tls version to 1.2
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
 # dotfiles settings
 $DOTFILES_REPOSITORY = "git@github.com:fabiano/dotfiles.git"
 $DOTFILES_INSTALL_DIR = "${HOME}\.dotfiles"
 
-# import functions module
-iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/fabiano/dotfiles/master/powershell-functions.ps1"))
+# new symbolic link function
+function New-SymbolicLink ($Path, $Value) {
+  $Parent = Split-Path -Path $Path
 
-# install git
-if (-Not (Test-Path -Path "${$env:PROGRAMFILES}\Git\bin\git.exe")) {
-  winget install `
-    --id Git.Git `
-    --exact `
-    --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
+  if (-Not (Test-Path -Path $Parent)) {
+    New-Item -ItemType Directory -Path $Parent
+  }
 
-  Reload-Path
+  if (Test-Path -Path $Path) {
+    Remove-Item -Path $Path
+  }
+
+  New-Item -ItemType SymbolicLink -Path $Path -Value $Value
 }
 
-# set Microsoft OpenSSH to default Git ssh command
+# remove bloatware
+Get-AppxPackage 5A894077.McAfeeSecurity | Remove-AppxPackage
+Get-AppxPackage C27EB4BA.DropboxOEM | Remove-AppxPackage
+Get-AppxPackage Clipchamp.Clipchamp | Remove-AppxPackage
+Get-AppxPackage DellInc.DellCustomerConnect | Remove-AppxPackage
+Get-AppxPackage DellInc.DellDigitalDelivery | Remove-AppxPackage
+Get-AppxPackage DellInc.PartnerPromo | Remove-AppxPackage
+Get-AppxPackage Disney.37853FC22B2CE | Remove-AppxPackage
+Get-AppxPackage DolbyLaboratories.DolbyAccess | Remove-AppxPackage
+Get-AppxPackage DolbyLaboratories.DolbyVisionAccess | Remove-AppxPackage
+Get-AppxPackage FACEBOOK.FACEBOOK | Remove-AppxPackage
+Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
+Get-AppxPackage Microsoft.BingNews | Remove-AppxPackage
+Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
+Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
+Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
+Get-AppxPackage Microsoft.Microsoft.BingWeather | Remove-AppxPackage
+Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage
+Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage
+Get-AppxPackage Microsoft.MSPaint | Remove-AppxPackage
+Get-AppxPackage Microsoft.Office.OneNote | Remove-AppxPackage
+Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
+Get-AppxPackage Microsoft.SkypeApp | Remove-AppxPackage
+Get-AppxPackage Microsoft.Todos | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsSoundRecorder | Remove-AppxPackage
+Get-AppxPackage Microsoft.XboxApp | Remove-AppxPackage
+Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
+Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
+Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
+Get-AppxPackage MicrosoftCorporationII.MicrosoftFamily | Remove-AppxPackage
+Get-AppxPackage MicrosoftCorporationII.QuickAssist | Remove-AppxPackage
+Get-AppxPackage MicrosoftTeams | Remove-AppxPackage
+Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
+Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
+Get-AppxPackage SpotifyAB.SpotifyMusic | Remove-AppxPackage
+
+# install apps
+winget install --exact --id Git.Git --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
+winget install --exact --id Helix.Helix
+winget install --exact --id junegunn.fzf
+winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
+winget install --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+winget install --exact --id Microsoft.PowerToys
+winget install --exact --id Microsoft.VCRedist.2015+.x64 # required for bat
+winget install --exact --id Microsoft.VisualStudioCode --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
+winget install --exact --id Microsoft.WindowsTerminal
+winget install --exact --id Mozilla.Firefox
+winget install --exact --id sharkdp.bat
+winget install --exact --id Starship.Starship
+
+# reload path
+$env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
+
+# configure Microsoft OpenSSH as default Git ssh command
 [Environment]::SetEnvironmentVariable("GIT_SSH_COMMAND", "C:/Windows/System32/OpenSSH/ssh.exe", "User")
 
 # clone repository
@@ -33,25 +92,30 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
 
 git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
-# create gitconfig symbolic link
+# create dotfiles
 New-SymbolicLink -Path "${HOME}\.gitconfig" -Value "${DOTFILES_INSTALL_DIR}\git-gitconfig"
+New-SymbolicLink -Path "${HOME}\.vimrc" -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
+New-SymbolicLink -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Value "${DOTFILES_INSTALL_DIR}\win-terminal-settings.json"
+New-SymbolicLink -Path "${HOME}\AppData\Roaming\Code\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\vscode-settings.json"
+New-SymbolicLink -Path "${HOME}\Documents\PowerShell\Profile.ps1" ` -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
+New-SymbolicLink -Path "${HOME}\starship.toml" -Value "${DOTFILES_INSTALL_DIR}\starship.toml"
 
-# disable stop on first error
-$ErrorActionPreference = "Continue"
+# configure powershell
+& $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
+& $env:PROGRAMFILES\PowerShell\7\pwsh.exe -Command "PowerShellGet\Install-Module -Name PSReadLine -Scope CurrentUser -AllowPrerelease -Force -SkipPublisherCheck"
 
-# add .bin folder to user path
-Add-FolderToUserPath -Folder "${HOME}\.bin"
+# install plug
+New-Item -ItemType Directory -Path "${HOME}\.vim\autoload" -Force
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -OutFile "${HOME}\.vim\autoload\plug.vim"
 
-# remove windows built-in apps
-Remove-BuiltInApps
-
-# disable bing search results from start menu
-Set-ItemProperty `
-  -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" `
-  -Name "BingSearchEnabled" -Type DWord -Value 0
+# install visual studio code extensions
+Get-Content -Path "${DOTFILES_INSTALL_DIR}\vscode-extensions.txt" | ForEach-Object { code --install-extension $_ }
 
 # install fonts
-Install-Fonts
+$SA = New-Object -ComObject Shell.Application
+$Fonts = $SA.NameSpace(0x14)
+
+Get-ChildItem -Path "${DOTFILES_INSTALL_DIR}\*" -Include @("*.ttf", "*.ttc") | ForEach-Object { $Fonts.CopyHere($_.FullName) }
 
 # configure command prompt
 # https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978575(v=technet.10)
@@ -68,5 +132,5 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Conso
 
 & $DOTFILES_INSTALL_DIR\colortool.exe --both $DOTFILES_INSTALL_DIR\colortool-snazzy.ini
 
-# install essential apps
-Install-Apps
+# disable stop on first error
+$ErrorActionPreference = "Continue"

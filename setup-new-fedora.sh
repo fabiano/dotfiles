@@ -3,7 +3,7 @@
   DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
-  # install dependencies
+  # install apps
   sudo dnf -y upgrade
   sudo dnf -y copr enable atim/starship
   sudo dnf -y copr enable peterwu/iosevka
@@ -33,7 +33,7 @@
   rm -rf $DOTFILES_INSTALL_DIR
   git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
-  # configure dot files
+  # create dotfiles
   rm -rf $HOME/.bash_profile
   rm -rf $HOME/.bashrc
   rm -rf $HOME/.config/Code
@@ -58,10 +58,9 @@
   # set zsh as default shell
   chsh -s /usr/bin/zsh
 
-  # install vim plugins
+  # install plug
   rm -rf $HOME/.vim
   curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  vim -c 'PlugInstall' -c 'qa!'
 
   # install visual studio code extensions
   IFS=$'\r\n'; for line in `cat $DOTFILES_INSTALL_DIR/vscode-extensions.txt`; do code --install-extension ${line}; done
