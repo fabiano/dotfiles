@@ -1,0 +1,19 @@
+theme = "snazzy"
+
+[editor]
+bufferline  = "multiple"
+cursorline  = true
+line-number = "relative"
+true-color  = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+
+[editor.whitespace.render]
+space = "all"
+tab   = "all"
