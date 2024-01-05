@@ -66,11 +66,13 @@ Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
 Get-AppxPackage SpotifyAB.SpotifyMusic | Remove-AppxPackage
 
 # install apps
+winget install --exact --id AgileBits.1Password
 winget install --exact --id Git.Git --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
 winget install --exact --id Helix.Helix
 winget install --exact --id junegunn.fzf
 winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
 winget install --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+winget install --exact --id Microsoft.PowerToys
 winget install --exact --id Microsoft.PowerToys
 winget install --exact --id Microsoft.VCRedist.2015+.x64 # required for bat
 winget install --exact --id Microsoft.VisualStudioCode --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
@@ -97,6 +99,7 @@ New-SymbolicLink -Path "${HOME}\.gitconfig" -Value "${DOTFILES_INSTALL_DIR}\git-
 New-SymbolicLink -Path "${HOME}\.vimrc" -Value "${DOTFILES_INSTALL_DIR}\vim-vimrc"
 New-SymbolicLink -Path "${HOME}\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Value "${DOTFILES_INSTALL_DIR}\win-terminal-settings.json"
 New-SymbolicLink -Path "${HOME}\AppData\Roaming\Code\User\settings.json" -Value "${DOTFILES_INSTALL_DIR}\vscode-settings.json"
+New-SymbolicLink -Path "${HOME}\AppData\Roaming\helix\config.toml" -Value "${DOTFILES_INSTALL_DIR}\helix-config.toml"
 New-SymbolicLink -Path "${HOME}\Documents\PowerShell\Profile.ps1" ` -Value "${DOTFILES_INSTALL_DIR}\powershell-profile.ps1"
 New-SymbolicLink -Path "${HOME}\starship.toml" -Value "${DOTFILES_INSTALL_DIR}\starship.toml"
 
@@ -112,10 +115,7 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/maste
 Get-Content -Path "${DOTFILES_INSTALL_DIR}\vscode-extensions.txt" | ForEach-Object { code --install-extension $_ }
 
 # install fonts
-$SA = New-Object -ComObject Shell.Application
-$Fonts = $SA.NameSpace(0x14)
-
-Get-ChildItem -Path "${DOTFILES_INSTALL_DIR}\*" -Include @("*.ttf", "*.ttc") | ForEach-Object { $Fonts.CopyHere($_.FullName) }
+Get-ChildItem -Path "${DOTFILES_INSTALL_DIR}" -Filter "*.ttf" | ForEach-Object { (New-Object -ComObject Shell.Application).NameSpace(0x14).CopyHere($_.FullName) }
 
 # configure command prompt
 # https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978575(v=technet.10)
