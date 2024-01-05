@@ -16,19 +16,19 @@
     "files.defaultLanguage": "markdown",
     "git.autofetch": true,
     "git.confirmSync": false,
+    "git.enableSmartCommit": true,
     "git.openRepositoryInParentFolders": "always",
     "markdown.preview.fontSize": 15,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.env.windows": {},
     "terminal.integrated.fontFamily": "IosevkaTerm Nerd Font",
     "terminal.integrated.fontSize": 15,
     "terminal.integrated.profiles.windows": { "PowerShell": { "path": "pwsh.exe", "args": [ "-nologo", "-noexit" ] } },
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
-    "terminal.integrated.env.windows": {},
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
     "workbench.colorCustomizations": {},
     "workbench.colorTheme": "Default Dark+",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.layoutControl.enabled": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "git.enableSmartCommit": true
+    "workbench.startupEditor": "newUntitledFile"
 }
