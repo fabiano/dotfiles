@@ -27,7 +27,6 @@
     "window.restoreWindows": "none",
     "window.titleBarStyle": "custom",
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Default Dark+",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.layoutControl.enabled": false,
     "workbench.startupEditor": "newUntitledFile"
