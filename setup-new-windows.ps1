@@ -65,17 +65,9 @@ Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
 Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
 Get-AppxPackage SpotifyAB.SpotifyMusic | Remove-AppxPackage
 
-# install apps
+# install git
 winget update --accept-package-agreements --accept-source-agreements
-winget install --exact --id AgileBits.1Password
 winget install --exact --id Git.Git --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
-winget install --exact --id Helix.Helix
-winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
-winget install --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
-winget install --exact --id Microsoft.PowerToys
-winget install --exact --id Microsoft.VisualStudioCode --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
-winget install --exact --id Mozilla.Firefox
-winget install --exact --id Starship.Starship
 
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
@@ -89,6 +81,19 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
 }
 
 git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
+
+# install apps
+winget install --exact --id Git.Git --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
+winget install --exact --id Helix.Helix
+winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
+winget install --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+winget install --exact --id Microsoft.PowerToys
+winget install --exact --id Microsoft.VisualStudioCode --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
+winget install --exact --id Mozilla.Firefox
+winget install --exact --id Starship.Starship
+
+# reload path
+$env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 
 # create dotfiles
 New-SymbolicLink -Path "${HOME}\.gitconfig" -Value "${DOTFILES_INSTALL_DIR}\git-gitconfig"
