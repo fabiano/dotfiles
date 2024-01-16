@@ -36,25 +36,11 @@ function Kill-Process ($Name) {
   taskkill /IM $Name /F
 }
 
-# fzf
-function Run-Fzf {
-  fzf.exe --preview "bat --number --color=always {}" $args
-}
-
-# bat
-function Run-Bat {
-  bat.exe --color=always --decorations=always $args
-}
-
 # alias
 New-Alias -Name "~" -Value Home -Force
 New-Alias -Name ".." -Value Move-Up -Force
 New-Alias -Name "g" -Value git -Force
 New-Alias -Name "d" -Value dotnet -Force
-New-Alias -Name "fzf" -Value Run-Fzf -Force
-New-Alias -Name "f" -Value Run-Fzf -Force
-New-Alias -Name "bat" -Value Run-Bat -Force
-New-Alias -Name "cat" -Value Run-Bat -Force
 
 # set directory background color
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue

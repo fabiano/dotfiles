@@ -66,17 +66,16 @@ Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
 Get-AppxPackage SpotifyAB.SpotifyMusic | Remove-AppxPackage
 
 # install apps
-winget install --scope machine --exact --id AgileBits.1Password
-winget install --scope machine --exact --id Git.Git --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
-winget install --scope machine --exact --id Helix.Helix
-winget install --scope machine --exact --id junegunn.fzf
-winget install --scope machine --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
-winget install --scope machine --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
-winget install --scope machine --exact --id Microsoft.PowerToys
-winget install --scope machine --exact --id Microsoft.VisualStudioCode --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
-winget install --scope machine --exact --id Mozilla.Firefox
-winget install --scope machine --exact --id sharkdp.bat
-winget install --scope machine --exact --id Starship.Starship
+winget update --accept-package-agreements --accept-source-agreements
+winget install --exact --id AgileBits.1Password
+winget install --exact --id Git.Git --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
+winget install --exact --id Helix.Helix
+winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
+winget install --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
+winget install --exact --id Microsoft.PowerToys
+winget install --exact --id Microsoft.VisualStudioCode --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
+winget install --exact --id Mozilla.Firefox
+winget install --exact --id Starship.Starship
 
 # reload path
 $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
