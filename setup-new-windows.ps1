@@ -87,7 +87,7 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
 git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
 # install apps
-winget install --exact --id Git.Git --override "/SP- /SILENT /SUPPRESSMSGBOXES /COMPONENTS=""gitlfs,autoupdate"""
+winget install --exact --id Google.GoogleDrive
 winget install --exact --id Helix.Helix
 winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
 winget install --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
