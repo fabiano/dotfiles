@@ -3,7 +3,7 @@ theme = "snazzy"
 [editor]
 bufferline  = "multiple"
 cursorline  = true
-line-number = "relative"
+line-number = "absolute"
 true-color  = true
 
 [editor.cursor-shape]
