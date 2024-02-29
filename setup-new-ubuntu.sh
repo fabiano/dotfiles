@@ -8,7 +8,6 @@
   sudo apt-get -y install bash-completion
   sudo apt-get -y install bat
   sudo apt-get -y install exa
-  sudo apt-get -y install fzf
   sudo apt-get -y install git
   sudo apt-get -y install neofetch
   sudo apt-get -y install vim
