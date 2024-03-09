@@ -45,5 +45,8 @@ alias update-time="sudo ntpdate time.windows.com" # update time inside the wsl d
 bindkey "^[[1;5C" forward-word  # ctrl + right arrow
 bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
+# path
+export PATH="$PATH:$HOME/.dotnet/tools"
+
 # start starship
 eval "$(starship init zsh)"
