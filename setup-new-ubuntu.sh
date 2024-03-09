@@ -4,11 +4,13 @@
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install apps
+  sudo add-apt-repository ppa:maveonair/helix-editor
   sudo apt-get update
   sudo apt-get -y install bash-completion
   sudo apt-get -y install bat
   sudo apt-get -y install exa
   sudo apt-get -y install git
+  sudo apt-get -y install helix
   sudo apt-get -y install neofetch
   sudo apt-get -y install vim
   sudo apt-get -y install zsh
