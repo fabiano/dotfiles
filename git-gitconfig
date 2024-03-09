@@ -3,6 +3,7 @@
 	useConfigOnly = true
 [core]
 	editor = hx
+	sshCommand = ssh.exe
 [init]
 	defaultBranch = main
 [alias]
