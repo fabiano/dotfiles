@@ -1,7 +1,7 @@
 theme = "snazzy"
 
 [editor]
-bufferline  = "multiple"
+bufferline  = "never"
 cursorline  = true
 line-number = "absolute"
 true-color  = true
@@ -11,9 +11,23 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
+[editor.lsp]
+display-messages = true
+
 [editor.statusline]
-left = ["mode", "spinner", "version-control", "file-name"]
+left   = ["spinner", "mode", "spacer", "spacer", "version-control", "spacer", "spacer", "file-name", "spacer", "spacer", "file-encoding", "file-line-ending"]
+center = ["diagnostics", "workspace-diagnostics"]
+right  = ["selections", "register", "position"]
+mode.insert = "INSERT"
+mode.normal = "NORMAL"
+mode.select = "SELECT"
 
 [editor.whitespace.render]
 space = "all"
 tab   = "all"
+
+[keys.normal]
+tab     = ":bn"
+"S-tab" = ":bp"
+"C-o"   = "file_picker"
+"C-w"   = ":write"
