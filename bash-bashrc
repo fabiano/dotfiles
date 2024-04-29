@@ -17,7 +17,7 @@ alias ~="cd ~"
 
 if [ -f "/usr/bin/exa" ] ; then
   alias ls="exa"
-  alias ll="exa --long --header --git"
+  alias ll="exa --long --header"
 fi
 
 if [ -f "/usr/bin/bat" ] ; then
@@ -32,11 +32,27 @@ alias g="git"
 alias v="vim"
 alias update-time="sudo ntpdate time.windows.com" # update time inside the wsl distro
 
-# prompt
-PS1="\n\w\n\033[0;35m❯❯\033[0m "
+# dotnet tools
+if [ -d "$HOME/.dotnet/tools" ] ; then
+  export PATH="$PATH:$HOME/.dotnet/tools"
+fi
 
-# path
-export PATH="$PATH:$HOME/.dotnet/tools"
+# omnisharp
+if [ -d "$HOME/omnisharp" ] ; then
+  export PATH="$PATH:$HOME/omnisharp"
+fi
+
+# cargo
+if [ -f "$HOME/.cargo/env" ] ; then
+  . "$HOME/.cargo/env"
+fi
+
+# set window title to current directory
+function startship_set_win_title(){
+  echo -ne "\033]0; $(dirs -p | head -1) \007"
+}
+
+starship_precmd_user_func="startship_set_win_title"
 
 # start starship
 eval "$(starship init bash)"
