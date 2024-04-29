@@ -26,7 +26,7 @@ alias ~="cd ~"
 
 if [ -f "/usr/bin/exa" ] ; then
   alias ls="exa"
-  alias ll="exa --long --header --git"
+  alias ll="exa --long --header"
 fi
 
 if [ -f "/usr/bin/bat" ] ; then
@@ -45,8 +45,27 @@ alias update-time="sudo ntpdate time.windows.com" # update time inside the wsl d
 bindkey "^[[1;5C" forward-word  # ctrl + right arrow
 bindkey "^[[1;5D" backward-word # ctrl + left arrow
 
-# path
-export PATH="$PATH:$HOME/.dotnet/tools:$HOME/omnisharp"
+# dotnet tools
+if [ -d "$HOME/.dotnet/tools" ] ; then
+  export PATH="$PATH:$HOME/.dotnet/tools"
+fi
+
+# omnisharp
+if [ -d "$HOME/omnisharp" ] ; then
+  export PATH="$PATH:$HOME/omnisharp"
+fi
+
+# cargo
+if [ -f "$HOME/.cargo/env" ] ; then
+  . "$HOME/.cargo/env"
+fi
+
+# set window title to current directory
+function startship_set_win_title(){
+  echo -ne "\033]0; $(dirs -p | head -1) \007"
+}
+
+precmd_functions+=(startship_set_win_title)
 
 # start starship
 eval "$(starship init zsh)"
