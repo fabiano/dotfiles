@@ -11,6 +11,7 @@
   sudo dnf -y install bat
   sudo dnf -y install exa
   sudo dnf -y install git
+  sudo dnf -y install helix
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
   sudo dnf -y install kitty
@@ -36,6 +37,7 @@
   rm -rf $HOME/.bash_profile
   rm -rf $HOME/.bashrc
   rm -rf $HOME/.config/Code
+  rm -rf $HOME/.config/helix
   rm -rf $HOME/.config/kitty
   rm -rf $HOME/.config/starship.toml
   rm -rf $HOME/.gitconfig
@@ -43,11 +45,13 @@
   rm -rf $HOME/.zshrc
 
   mkdir -p $HOME/.config/Code/User
+  mkdir -p $HOME/.config/helix
   mkdir -p $HOME/.config/kitty
 
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
+  ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
@@ -91,6 +95,17 @@
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
   gsettings set org.gnome.mutter center-new-windows true
 
+  # change power settings
+  gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+  gsettings set org.gnome.settings-daemon.plugins.power idle-brightness 30
+  gsettings set org.gnome.settings-daemon.plugins.power idle-dim true
+  gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
+  gsettings set org.gnome.settings-daemon.plugins.power power-saver-profile-on-low-battery false
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 1800
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'suspend'
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 900
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
+
   # set the locale and keyboard layout
   gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+intl')]"
 
@@ -98,7 +113,7 @@
   sudo localectl set-keymap us-alt-intl
 
   # configure cedilha in gnome
-  rm $HOME/.XCompose
+  rm -rf $HOME/.XCompose
   cat > $HOME/.XCompose << EOF
 <dead_acute> <c>     : "ç"
 <dead_acute> <C>     : "Ç"
