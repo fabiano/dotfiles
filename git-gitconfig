@@ -3,7 +3,6 @@
 	useConfigOnly = true
 [core]
 	editor = hx
-	sshCommand = ssh.exe
 [init]
 	defaultBranch = main
 [alias]
@@ -32,5 +31,3 @@
 	smudge   = git-lfs smudge -- %f
 	process  = git-lfs filter-process
 	required = true
-[safe]
-	directory = C:/Users/Fabiano/.dotfiles
