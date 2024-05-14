@@ -29,6 +29,21 @@
   dnf check-update
   sudo dnf install -y code
 
+  # remove unused apps
+  sudo dnf -y remove gnome-boxes
+  sudo dnf -y remove gnome-calendar
+  sudo dnf -y remove gnome-clocks
+  sudo dnf -y remove gnome-connections
+  sudo dnf -y remove gnome-contacts
+  sudo dnf -y remove gnome-maps
+  sudo dnf -y remove gnome-tour
+  sudo dnf -y remove gnome-weather
+  sudo dnf -y remove mediawriter
+  sudo dnf -y remove rhythmbox
+  sudo dnf -y remove simple-scan
+  sudo dnf -y remove totem
+  sudo dnf -y autoremove
+
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
   git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
@@ -94,6 +109,7 @@
   gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
   gsettings set org.gnome.mutter center-new-windows true
+  gsettings set org.gnome.shell app-picker-layout "[]"
 
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
