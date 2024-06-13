@@ -10,8 +10,6 @@
   fi
 
   # install dependencies
-  brew tap homebrew/cask-fonts
-  brew tap homebrew/cask-versions
   brew update
   brew upgrade
   brew install bash
