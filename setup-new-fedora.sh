@@ -16,6 +16,7 @@
   sudo dnf -y install iosevka-term-fonts
   sudo dnf -y install kitty
   sudo dnf -y install neofetch
+  sudo dnf -y install rsms-inter-fonts
   sudo dnf -y install starship
   sudo dnf -y install util-linux-user
   sudo dnf -y install vim-enhanced
@@ -85,16 +86,15 @@
 
   # install fonts
   mkdir -p $HOME/.local/share/fonts
-  cp $DOTFILES_INSTALL_DIR/font-sf-pro-display-regular.otf $HOME/.local/share/fonts/sf-pro-display-regular.otf
   cp $DOTFILES_INSTALL_DIR/font-iosevka-nerd-font.ttf $HOME/.local/share/fonts/iosevka-nerd-font.ttf
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font.ttf
 
-  # use iosevka as gnome default font
-  gsettings set org.gnome.desktop.interface document-font-name 'SF Pro Display 10'
-  gsettings set org.gnome.desktop.interface font-name 'SF Pro Display 10'
+  # use inter and iosevka as gnome default fonts
+  gsettings set org.gnome.desktop.interface document-font-name 'Inter Display 10'
+  gsettings set org.gnome.desktop.interface font-name 'Inter Display 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
   gsettings set org.gnome.desktop.interface font-hinting 'none'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'SF Pro Display 10'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Inter Display 10'
 
   # change gnome interface settings
   gsettings set org.gnome.desktop.interface cursor-size 32
