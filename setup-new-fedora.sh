@@ -97,7 +97,7 @@
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Inter Display 10'
 
   # change gnome interface settings
-  gsettings set org.gnome.desktop.interface cursor-size 32
+  gsettings set org.gnome.desktop.interface cursor-size 24
   gsettings set org.gnome.desktop.interface clock-format '24h'
   gsettings set org.gnome.desktop.interface clock-show-date true
   gsettings set org.gnome.desktop.interface clock-show-seconds false
