@@ -9,7 +9,7 @@
   sudo dnf -y copr enable peterwu/iosevka
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
-  sudo dnf -y install exa
+  sudo dnf -y install eza
   sudo dnf -y install git
   sudo dnf -y install helix
   sudo dnf -y install iosevka-fonts
