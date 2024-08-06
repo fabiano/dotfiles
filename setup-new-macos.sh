@@ -25,6 +25,8 @@
   brew install zsh-autosuggestions
   brew install zsh-syntax-highlighting
   brew install --cask font-iosevka
+  brew install --cask font-iosevka-nerd-font
+  brew install --cask font-iosevka-term-nerd-font
   brew install --cask visual-studio-code
   brew cleanup
 
