@@ -20,12 +20,26 @@ if [ -f "/usr/bin/exa" ] ; then
   alias ll="exa --long --header"
 fi
 
+if [ -f "/usr/bin/eza" ] ; then
+  alias ls="eza"
+  alias ll="eza --long --header --icons"
+fi
+
+if [ -f "/usr/local/bin/eza" ] ; then
+  alias ls="eza"
+  alias ll="eza --long --header --icons"
+fi
+
 if [ -f "/usr/bin/bat" ] ; then
   alias cat="bat"
 fi
 
 if [ -f "/usr/bin/batcat" ] ; then
   alias cat="batcat"
+fi
+
+if [ -f "/usr/local/bin/bat" ] ; then
+  alias cat="bat"
 fi
 
 alias g="git"
