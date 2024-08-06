@@ -8,7 +8,7 @@
   sudo apt-get update
   sudo apt-get -y install bash-completion
   sudo apt-get -y install bat
-  sudo apt-get -y install exa
+  sudo apt-get -y install eza
   sudo apt-get -y install git
   sudo apt-get -y install helix
   sudo apt-get -y install neofetch

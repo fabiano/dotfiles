@@ -15,7 +15,7 @@
   brew install bat
   brew install bash
   brew install bash-completion@2
-  brew install exa
+  brew install eza
   brew install git
   brew install helix
   brew install kitty
