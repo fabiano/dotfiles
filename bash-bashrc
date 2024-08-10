@@ -15,19 +15,14 @@ fi
 alias ..="cd .."
 alias ~="cd ~"
 
-if [ -f "/usr/bin/exa" ] ; then
-  alias ls="exa"
-  alias ll="exa --long --header"
-fi
-
 if [ -f "/usr/bin/eza" ] ; then
-  alias ls="eza"
-  alias ll="eza --long --header --icons"
+  alias ls="eza --group-directories-first"
+  alias ll="eza --group-directories-first --long --header --icons"
 fi
 
 if [ -f "/usr/local/bin/eza" ] ; then
-  alias ls="eza"
-  alias ll="eza --long --header --icons"
+  alias ls="eza --group-directories-first"
+  alias ll="eza --group-directories-first --long --header --icons"
 fi
 
 if [ -f "/usr/bin/bat" ] ; then
