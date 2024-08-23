@@ -90,11 +90,11 @@
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font.ttf
 
   # use inter and iosevka as gnome default fonts
-  gsettings set org.gnome.desktop.interface document-font-name 'Inter Display 11'
-  gsettings set org.gnome.desktop.interface font-name 'Inter Display 11'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 11'
+  gsettings set org.gnome.desktop.interface document-font-name 'Inter Display 10'
+  gsettings set org.gnome.desktop.interface font-name 'Inter Display 10'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
   gsettings set org.gnome.desktop.interface font-hinting 'none'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Inter Display 11'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Inter Display 10'
 
   # change gnome interface settings
   gsettings set org.gnome.desktop.interface cursor-size 24
