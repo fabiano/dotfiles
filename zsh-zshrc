@@ -26,12 +26,12 @@ alias ~="cd ~"
 
 if [ -f "/usr/bin/eza" ] ; then
   alias ls="eza --group-directories-first"
-  alias ll="eza --group-directories-first --long --header --icons"
+  alias ll="eza --group-directories-first --long --header"
 fi
 
 if [ -f "/usr/local/bin/eza" ] ; then
   alias ls="eza --group-directories-first"
-  alias ll="eza --group-directories-first --long --header --icons"
+  alias ll="eza --group-directories-first --long --header"
 fi
 
 if [ -f "/usr/bin/bat" ] ; then
