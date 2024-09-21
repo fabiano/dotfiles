@@ -2,7 +2,7 @@
 	name = Fabiano França
 	useConfigOnly = true
 [core]
-	editor = hx
+	editor = vim
 [init]
 	defaultBranch = main
 [alias]
