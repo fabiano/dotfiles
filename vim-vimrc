@@ -19,6 +19,9 @@ set previewheight=5
 set showtabline=2
 set textwidth=1024
 
+" leader key
+let mapleader = "\<Space>"
+
 " tabs
 set autoindent
 set expandtab
@@ -73,6 +76,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 
+" Omnisharp
+Plug 'OmniSharp/omnisharp-vim'
+
+" ale
+Plug 'dense-analysis/ale'
+
 call plug#end()
 
 autocmd VimEnter *
@@ -110,3 +119,18 @@ nnoremap <C-s> :w!<CR>
 
 " fzf keymap
 nnoremap <C-f> :FZF<CR>
+nnoremap <C-o> :FZF<CR>
+
+" ale
+let g:ale_linters={'cs': ['omnisharp']}
+let g:ale_linters_explicit=1
+
+" omnisharp
+let g:OmniSharp_server_use_net6=1
+autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+autocmd FileType cs nmap <silent> <buffer> <Leader>gd <Plug>(omnisharp_go_to_definition)
+autocmd FileType cs nmap <silent> <buffer> <Leader>fu <Plug>(omnisharp_find_usages)
+autocmd FileType cs nmap <silent> <buffer> <Leader>ca <Plug>(omnisharp_code_actions)
+autocmd FileType cs nmap <silent> <buffer> <Leader>.  <Plug>(omnisharp_code_action_repeat)
+autocmd FileType cs nmap <silent> <buffer> <Leader>rn <Plug>(omnisharp_rename)
