@@ -50,6 +50,18 @@ if has('gui_running')
   set renderoptions=type:directx
 endif
 
+" ale
+let g:ale_linters={'cs': ['OmniSharp'], 'javascript': ['tsserver']}
+let g:ale_linters_explicit=1
+let g:ale_virtualtext_cursor='current'
+
+" omnisharp
+let g:OmniSharp_server_use_net6=1
+let g:OmniSharp_server_stdio=1
+
+" asynccomplete
+let g:asyncomplete_auto_popup=1
+
 " vim-plug
 call plug#begin('~/.vim/plug-plugins')
 
@@ -79,8 +91,11 @@ Plug 'junegunn/fzf.vim'
 " Omnisharp
 Plug 'OmniSharp/omnisharp-vim'
 
-" ale
+" ALE
 Plug 'dense-analysis/ale'
+
+" asyncomplete.vim
+Plug 'prabirshrestha/asyncomplete.vim'
 
 call plug#end()
 
@@ -121,16 +136,18 @@ nnoremap <C-s> :w!<CR>
 nnoremap <C-f> :FZF<CR>
 nnoremap <C-o> :FZF<CR>
 
-" ale
-let g:ale_linters={'cs': ['omnisharp']}
-let g:ale_linters_explicit=1
+" ale keymaps
+autocmd FileType javascript nmap <silent> <buffer> <Leader>gd <Plug>(ale_go_to_definition)
+autocmd FileType javascript nmap <silent> <buffer> <Leader>fr <Plug>(ale_find_references)
+autocmd FileType javascript nmap <silent> <buffer> <Leader>r  <Plug>(ale_rename)
 
-" omnisharp
-let g:OmniSharp_server_use_net6=1
+" omnisharp keymaps
 autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
 autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
 autocmd FileType cs nmap <silent> <buffer> <Leader>gd <Plug>(omnisharp_go_to_definition)
 autocmd FileType cs nmap <silent> <buffer> <Leader>fu <Plug>(omnisharp_find_usages)
+autocmd FileType cs nmap <silent> <buffer> <Leader>fs <Plug>(omnisharp_find_symbol)
 autocmd FileType cs nmap <silent> <buffer> <Leader>ca <Plug>(omnisharp_code_actions)
 autocmd FileType cs nmap <silent> <buffer> <Leader>.  <Plug>(omnisharp_code_action_repeat)
-autocmd FileType cs nmap <silent> <buffer> <Leader>rn <Plug>(omnisharp_rename)
+autocmd FileType cs nmap <silent> <buffer> <Leader>r  <Plug>(omnisharp_rename)
+autocmd FileType cs nmap <silent> <buffer> <Leader>d  <Plug>(omnisharp_documentation)
