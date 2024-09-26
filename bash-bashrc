@@ -11,6 +11,10 @@ if [ -f "/etc/profile.d/bash_completion.sh" ] ; then
   source /etc/profile.d/bash_completion.sh
 fi
 
+if [ -f "$PREFIX/share/bash-completion/bash_completion" ] ; then
+  source $PREFIX/share/bash-completion/bash_completion
+fi
+
 # alias
 alias ..="cd .."
 alias ~="cd ~"
@@ -25,6 +29,11 @@ if [ -f "/usr/local/bin/eza" ] ; then
   alias ll="eza --group-directories-first --long --header"
 fi
 
+if [ -f "$PREFIX/bin/eza" ] ; then
+  alias ls="eza --group-directories-first"
+  alias ll="eza --group-directories-first --long --header"
+fi
+
 if [ -f "/usr/bin/bat" ] ; then
   alias cat="bat"
 fi
@@ -34,6 +43,10 @@ if [ -f "/usr/bin/batcat" ] ; then
 fi
 
 if [ -f "/usr/local/bin/bat" ] ; then
+  alias cat="bat"
+fi
+
+if [ -f "$PREFIX/bin/bat" ] ; then
   alias cat="bat"
 fi
 
