@@ -11,43 +11,25 @@ if [ -f "/etc/profile.d/bash_completion.sh" ] ; then
   source /etc/profile.d/bash_completion.sh
 fi
 
-if [ -f "$PREFIX/share/bash-completion/bash_completion" ] ; then
-  source $PREFIX/share/bash-completion/bash_completion
+if [ -f "/data/data/com.termux/files/usr/share/bash-completion/bash_completion" ] ; then
+  source /data/data/com.termux/files/usr/share/bash-completion/bash_completion
 fi
 
 # alias
 alias ..="cd .."
 alias ~="cd ~"
 
-if [ -f "/usr/bin/eza" ] ; then
+if [ -f "/usr/bin/eza" ] || [ -f "/usr/local/bin/eza" ] || [ -f "/data/data/com.termux/files/usr/bin/eza" ] ; then
   alias ls="eza --group-directories-first"
   alias ll="eza --group-directories-first --long --header"
 fi
 
-if [ -f "/usr/local/bin/eza" ] ; then
-  alias ls="eza --group-directories-first"
-  alias ll="eza --group-directories-first --long --header"
-fi
-
-if [ -f "$PREFIX/bin/eza" ] ; then
-  alias ls="eza --group-directories-first"
-  alias ll="eza --group-directories-first --long --header"
-fi
-
-if [ -f "/usr/bin/bat" ] ; then
+if [ -f "/usr/bin/bat" ] || [ -f "/usr/local/bin/bat" ] || [ -f "/data/data/com.termux/files/usr/bin/bat" ] ; then
   alias cat="bat"
 fi
 
 if [ -f "/usr/bin/batcat" ] ; then
   alias cat="batcat"
-fi
-
-if [ -f "/usr/local/bin/bat" ] ; then
-  alias cat="bat"
-fi
-
-if [ -f "$PREFIX/bin/bat" ] ; then
-  alias cat="bat"
 fi
 
 alias g="git"
