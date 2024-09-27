@@ -1,6 +1,6 @@
 {
   # dotfiles settings
-  DOTFILES_REPOSITORY="https://github.com/fabiano/dotfiles.git"
+  DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install apps
