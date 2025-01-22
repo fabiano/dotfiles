@@ -123,19 +123,6 @@
   # set rpm as preferred format
   gsettings set org.gnome.software packaging-format-preference "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
 
-  # set the locale and keyboard layout to english (us, intl., with dead keys)
-  gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+intl')]"
-
-  sudo localectl set-locale LANG=en_US.UTF-8
-  sudo localectl set-keymap us-alt-intl
-
-  # configure cedilha in gnome
-  rm -rf $HOME/.XCompose
-  cat > $HOME/.XCompose << EOF
-<dead_acute> <c>     : "ç"
-<dead_acute> <C>     : "Ç"
-EOF
-
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
   sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
