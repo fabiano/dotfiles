@@ -1,64 +1,46 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "down",
-                "splitMode": "duplicate"
-            },
-            "keys": "ctrl+shift+h"
-        },
-        {
-            "command": 
-            {
-                "action": "moveFocus",
-                "direction": "down"
-            },
-            "keys": "ctrl+alt+down"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "right",
-                "splitMode": "duplicate"
-            },
-            "keys": "ctrl+shift+v"
-        },
-        {
-            "command": 
-            {
-                "action": "moveFocus",
-                "direction": "up"
-            },
-            "keys": "ctrl+alt+up"
-        },
-        {
-            "command": 
-            {
-                "action": "moveFocus",
-                "direction": "right"
-            },
-            "keys": "ctrl+alt+right"
-        },
-        {
-            "command": 
-            {
-                "action": "moveFocus",
-                "direction": "left"
-            },
-            "keys": "ctrl+alt+left"
-        }
-    ],
+    "actions": [],
+    "centerOnLaunch": true,
     "copyOnSelect": true,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "initialCols": 180,
-    "initialRows": 35,
-    "launchMode": "maximized",
+    "initialRows": 45,
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.MoveFocusRight",
+            "keys": "ctrl+alt+right"
+        },
+        {
+            "id": "Terminal.MoveFocusUp",
+            "keys": "ctrl+alt+up"
+        },
+        {
+            "id": "Terminal.DuplicatePaneDown",
+            "keys": "ctrl+shift+h"
+        },
+        {
+            "id": "Terminal.MoveFocusDown",
+            "keys": "ctrl+alt+down"
+        },
+        {
+            "id": "Terminal.DuplicatePaneRight",
+            "keys": "ctrl+shift+v"
+        },
+        {
+            "id": "Terminal.MoveFocusLeft",
+            "keys": "ctrl+alt+left"
+        }
+    ],
+    "launchMode": "default",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": 
     {
         "defaults": 
@@ -76,8 +58,8 @@
         [
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "name": "Command Prompt",
-                "hidden": true
+                "hidden": true,
+                "name": "Command Prompt"
             },
             {
                 "commandline": "pwsh.exe -nologo",
