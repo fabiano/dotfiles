@@ -23,6 +23,7 @@ function New-SymbolicLink ($Path, $Value) {
 }
 
 # remove bloatware
+# Get-AppxPackage | Where-Object { $_.Name -like "*NAME*" }
 Get-AppxPackage 5A894077.McAfeeSecurity | Remove-AppxPackage
 Get-AppxPackage C27EB4BA.DropboxOEM | Remove-AppxPackage
 Get-AppxPackage Clipchamp.Clipchamp | Remove-AppxPackage
@@ -37,6 +38,7 @@ Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
 Get-AppxPackage Microsoft.549981C3F5F10 | Remove-AppxPackage
 Get-AppxPackage Microsoft.BingNews | Remove-AppxPackage
 Get-AppxPackage Microsoft.BingWeather | Remove-AppxPackage
+Get-AppxPackage Microsoft.Copilot | Remove-AppxPackage
 Get-AppxPackage Microsoft.GamingApp | Remove-AppxPackage
 Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
 Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
@@ -65,6 +67,7 @@ Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
 Get-AppxPackage MicrosoftCorporationII.MicrosoftFamily | Remove-AppxPackage
 Get-AppxPackage MicrosoftCorporationII.QuickAssist | Remove-AppxPackage
 Get-AppxPackage MicrosoftTeams | Remove-AppxPackage
+Get-AppxPackage MSTeams | Remove-AppxPackage
 Get-AppxPackage PortraitDisplays.DellCinemaColor | Remove-AppxPackage
 Get-AppxPackage ScreenovateTechnologies.DellMobileConnect | Remove-AppxPackage
 Get-AppxPackage SpotifyAB.SpotifyMusic | Remove-AppxPackage
@@ -87,11 +90,10 @@ if (Test-Path -Path $DOTFILES_INSTALL_DIR) {
 git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
 # install apps
-winget install --exact --id Google.GoogleDrive
+# winget install --exact --id Google.GoogleDrive
 winget install --exact --id Helix.Helix
-winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
+# winget install --exact --id Microsoft.Office --override "/configure ${DOTFILES_INSTALL_DIR}\office-pro-plus.xml"
 winget install --exact --id Microsoft.PowerShell --override "/passive /norestart ADD_PATH=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=0 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1"
-winget install --exact --id Microsoft.PowerToys
 winget install --exact --id Microsoft.VisualStudioCode --override "/SP- /SILENT /SUPPRESSMSGBOXES /TASKS=""addcontextmenufiles,addcontextmenufolders,addtopath"""
 winget install --exact --id Mozilla.Firefox
 winget install --exact --id Starship.Starship
