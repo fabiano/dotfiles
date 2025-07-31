@@ -9,7 +9,6 @@
   sudo dnf -y copr enable peterwu/iosevka
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
-  sudo dnf -y install eza
   sudo dnf -y install git
   sudo dnf -y install helix
   sudo dnf -y install iosevka-fonts
@@ -128,6 +127,13 @@
 
   # set rpm as preferred format
   gsettings set org.gnome.software packaging-format-preference "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
+
+  # configure cedilha in gnome
+  rm -rf $HOME/.XCompose
+  cat > $HOME/.XCompose << EOF
+<dead_acute> <c>     : "ç"
+<dead_acute> <C>     : "Ç"
+EOF
 
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
