@@ -40,6 +40,7 @@ fi
 alias g="git"
 alias v="vim"
 alias update-time="sudo ntpdate time.windows.com" # update time inside the wsl distro
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # keys
 bindkey "^[[1;5C" forward-word  # ctrl + right arrow
