@@ -4,13 +4,12 @@
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install apps
-  sudo add-apt-repository ppa:maveonair/helix-editor
   sudo apt update
   sudo apt -y install bash-completion
   sudo apt -y install bat
   sudo apt -y install eza
+  sudo apt -y install fonts-roboto
   sudo apt -y install git
-  sudo apt -y install helix
   sudo apt -y install kitty
   sudo apt -y install vim
   sudo apt -y install zsh
@@ -19,22 +18,32 @@
   curl -sS https://starship.rs/install.sh | sh
 
   # remove unused apps
-  sudo apt -y remove gnome-games
+  sudo apt -y remove atril
+  sudo apt -y remove cheese
+  sudo apt -y remove evolution
+  sudo apt -y remove exfalso
   sudo apt -y remove gnome-boxes
   sudo apt -y remove gnome-calendar
   sudo apt -y remove gnome-clocks
   sudo apt -y remove gnome-connections
   sudo apt -y remove gnome-contacts
+  sudo apt -y remove gnome-games
   sudo apt -y remove gnome-maps
+  sudo apt -y remove gnome-music
+  sudo apt -y remove gnome-sound-recorder
   sudo apt -y remove gnome-tour
   sudo apt -y remove gnome-weather
   sudo apt -y remove mediawriter
+  sudo apt -y remove mousepad
+  sudo apt -y remove parole
+  sudo apt -y remove quodlibet
   sudo apt -y remove rhythmbox
+  sudo apt -y remove shotwell
   sudo apt -y remove simple-scan
   sudo apt -y remove totem
-  sudo apt -y remove libreoffice-calc
-  sudo apt -y remove libreoffice-impress
-  sudo apt -y remove libreoffice-writer
+  sudo apt -y remove transmission-gtk
+  sudo apt -y remove "libreoffice-*"
+  sudo apt -y remove xsane
   sudo apt -y autoremove
 
   # clone repository
@@ -81,11 +90,11 @@
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-regular.ttf $HOME/.local/share/fonts/iosevka-term-regular.ttf
 
   # use roboto and iosevka as gnome default fonts
-  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
-  gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
+  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 9'
+  gsettings set org.gnome.desktop.interface font-name 'Roboto 9'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 9'
   gsettings set org.gnome.desktop.interface font-hinting 'none'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 9'
 
   # change gnome interface settings
   gsettings set org.gnome.desktop.interface cursor-size 24
