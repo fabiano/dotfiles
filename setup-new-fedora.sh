@@ -44,6 +44,9 @@
   sudo dnf -y remove rhythmbox
   sudo dnf -y remove simple-scan
   sudo dnf -y remove totem
+  sudo dnf -y remove libreoffice-calc
+  sudo dnf -y remove libreoffice-impress
+  sudo dnf -y remove libreoffice-writer
   sudo dnf -y autoremove
 
   # clone repository
