@@ -19,30 +19,37 @@
 
   # remove unused apps
   sudo apt -y remove atril
+  sudo apt -y remove baobab
   sudo apt -y remove cheese
   sudo apt -y remove evolution
   sudo apt -y remove exfalso
   sudo apt -y remove gnome-boxes
   sudo apt -y remove gnome-calendar
+  sudo apt -y remove gnome-characters
   sudo apt -y remove gnome-clocks
   sudo apt -y remove gnome-connections
   sudo apt -y remove gnome-contacts
+  sudo apt -y remove gnome-font-viewer
   sudo apt -y remove gnome-games
   sudo apt -y remove gnome-maps
   sudo apt -y remove gnome-music
+  sudo apt -y remove gnome-shell-extensions
   sudo apt -y remove gnome-sound-recorder
   sudo apt -y remove gnome-tour
+  sudo apt -y remove gnome-tweaks
   sudo apt -y remove gnome-weather
+  sudo apt -y remove "libreoffice-*"
   sudo apt -y remove mediawriter
   sudo apt -y remove mousepad
   sudo apt -y remove parole
   sudo apt -y remove quodlibet
   sudo apt -y remove rhythmbox
+  sudo apt -y remove seahorse
   sudo apt -y remove shotwell
   sudo apt -y remove simple-scan
+  sudo apt -y remove system-config-printer
   sudo apt -y remove totem
   sudo apt -y remove transmission-gtk
-  sudo apt -y remove "libreoffice-*"
   sudo apt -y remove xsane
   sudo apt -y autoremove
 
@@ -109,7 +116,7 @@
   gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
   gsettings set org.gnome.mutter center-new-windows true
-  gsettings set org.gnome.shell app-picker-layout "[]"
+  gsettings set org.gnome.shell app-picker-layout '[]'
 
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
