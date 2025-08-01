@@ -1,0 +1,42 @@
+* {
+  background: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+  text-shadow: none;
+  transition-duration: 0s;
+  transition: none;
+}
+
+window {
+  background: #20212B;
+}
+
+#workspaces button {
+  padding: 0 10px;
+}
+
+#workspaces button.visible {
+  background-color: #282A36;
+}
+
+#workspaces button:hover {
+  font-weight: bold;
+}
+
+#network {
+  margin-right: 20px;
+}
+
+#battery {
+  margin-right: 20px;
+}
+
+#clock {
+  margin-right: 10px;
+}
