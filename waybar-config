@@ -1,0 +1,34 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["network", "battery", "clock"],
+
+  "network": {
+    "format-wifi": "{essid} ",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-disconnected": "Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "tooltip": false
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+
+    "format": "{capacity}% {icon}",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": "{:%I:%M}",
+    "format-alt": "{:%d-%m-%Y}",
+    "tooltip": false
+  }
+}
