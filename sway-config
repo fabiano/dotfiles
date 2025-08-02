@@ -3,12 +3,22 @@ set $term kitty
 set $rofi_cmd rofi -terminal '$term'
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
-# remove title bar
-default_border none
-default_floating_border none
-font pango:iosevka regular 0.001
-titlebar_border_thickness 0
-titlebar_padding 1
+# font
+font pango:roboto regular 10
+
+# gaps
+gaps inner 5
+
+# borders
+default_border normal 2
+default_floating_border normal 2
+titlebar_border_thickness 2
+
+client.focused            #4C7899 #282A36 #FFFFFF #4C7899 #4C7899
+client.focused_inactive   #333333 #282A36 #FFFFFF #333333 #333333
+client.focused_tab_title  #333333 #282A36 #FFFFFF #333333 #333333
+client.unfocused          #333333 #282A36 #888888 #333333 #333333
+client.urgent             #2F343A #282A36 #FFFFFF #2F343A #2F343A
 
 # shortcuts
 bindsym $mod+Return exec $term
