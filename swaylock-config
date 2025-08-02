@@ -1,0 +1,49 @@
+# font
+font=Roboto
+font-size=42
+
+# background
+image=solid_color
+scaling=fill
+color=20212B
+
+# indicator
+indicator-radius=100
+indicator-thickness=5
+separator-color=20212B
+
+# typing/idle
+ring-color=282A36
+inside-color=20212B
+line-color=20212B
+text-color=FFFFFF
+
+# verifying
+ring-ver-color=20212B
+inside-ver-color=0087BD
+line-ver-color=20212B
+text-ver-color=FFFFFF
+
+# wrong
+ring-wrong-color=20212B
+inside-wrong-color=FF5C57
+line-wrong-color=20212B
+text-wrong-color=FFFFFF
+
+# clearing
+ring-clear-color=282A36
+inside-clear-color=20212B
+line-clear-color=20212B
+text-clear-color=FFFFFF
+
+# caps lock
+ring-caps-lock-color=282A36
+inside-caps-lock-color=F3F99D
+line-caps-lock-color=20212B
+text-caps-lock-color=FFFFFF
+
+# highlight segment
+key-hl-color=0087BD
+bs-hl-color=FF5C57
+caps-lock-key-hl-color=F3F99D
+caps-lock-bs-hl-color=FF5C57
