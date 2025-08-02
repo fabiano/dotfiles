@@ -88,4 +88,17 @@
   gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
   gsettings set org.gnome.desktop.interface font-hinting 'none'
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
+
+  # configure cedilha
+  rm -rf $HOME/.XCompose
+  cat > $HOME/.XCompose << EOF
+<dead_acute> <c>     : "ç"
+<dead_acute> <C>     : "Ç"
+EOF
+
+  # fix electron blurriness on wayland
+  rm -rf $HOME/.zprofile
+  cat > $HOME/.zprofile << EOF
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+EOF
 }
