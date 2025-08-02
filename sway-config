@@ -14,11 +14,11 @@ default_border normal 2
 default_floating_border normal 2
 titlebar_border_thickness 2
 
-client.focused           #4C7899 #282A36 #FFFFFF #4C7899 #4C7899
+client.focused           #0087BD #282A36 #FFFFFF #0087BD #0087BD
 client.focused_inactive  #333333 #282A36 #FFFFFF #333333 #333333
 client.focused_tab_title #333333 #282A36 #FFFFFF #333333 #333333
-client.unfocused         #333333 #282A36 #888888 #333333 #333333
-client.urgent            #2F343A #282A36 #FFFFFF #2F343A #2F343A
+client.unfocused         #333333 #282A36 #686868 #333333 #333333
+client.urgent            #FF5C57 #282A36 #FFFFFF #FF5C57 #FF5C57
 
 # shortcuts
 bindsym $mod+f4 kill
@@ -81,7 +81,7 @@ output eDP-1 pos 0    0 res 2560x1600 scale 2
 output DP-2  pos 1280 0 res 3840x2160 scale 2
 
 # background
-output "*" bg ~/.dotfiles/wallpaper.png fill
+output "*" bg $HOME/.dotfiles/wallpaper.png fill
 
 # default config
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
