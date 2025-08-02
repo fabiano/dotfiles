@@ -43,6 +43,7 @@
   rm -rf $HOME/.config/kitty
   rm -rf $HOME/.config/starship.toml
   rm -rf $HOME/.config/sway
+  rm -rf $HOME/.config/swaylock
   rm -rf $HOME/.config/waybar
   rm -rf $HOME/.gitconfig
   rm -rf $HOME/.vimrc
@@ -52,6 +53,7 @@
   mkdir -p $HOME/.config/helix
   mkdir -p $HOME/.config/kitty
   mkdir -p $HOME/.config/sway
+  mkdir -p $HOME/.config/swaylock
   mkdir -p $HOME/.config/waybar
 
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
@@ -61,6 +63,7 @@
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
   ln -s $DOTFILES_INSTALL_DIR/sway-config $HOME/.config/sway/config
+  ln -s $DOTFILES_INSTALL_DIR/swaylock-config $HOME/.config/swaylock/config
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
   ln -s $DOTFILES_INSTALL_DIR/waybar-config $HOME/.config/waybar/config
