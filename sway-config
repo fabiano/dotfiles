@@ -21,6 +21,7 @@ client.unfocused         #333333 #282A36 #888888 #333333 #333333
 client.urgent            #2F343A #282A36 #FFFFFF #2F343A #2F343A
 
 # shortcuts
+bindsym $mod+f4 kill
 bindsym $mod+f5 reload
 bindsym $mod+space exec $menu
 bindsym $mod+return exec $term
