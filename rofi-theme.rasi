@@ -1,0 +1,83 @@
+* {
+  black:   #20212B;
+  blue:    #57C7FF;
+  cyan:    #9AEDFE;
+  green:   #5AF78E;
+  magenta: #FF6AC1;
+  red:     #FF5C57;
+  white:   #F1F1F0;
+  yellow:  #F3F99D;
+
+  light-black:   #686868;
+  light-blue:    #57C7FF;
+  light-cyan:    #9AEDFE;
+  light-green:   #5AF78E;
+  light-magenta: #FF6AC1;
+  light-red:     #FF5C57;
+  light-white:   #EFF0EB;
+  light-yellow:  #F3F99D;
+
+  background: #282A36;
+  foreground: #EFF0EB;
+
+  background-color: transparent;
+  border: 0;
+  font: "roboto 9";
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+  text-color: var(foreground);
+}
+
+window {
+  background-color: var(black);
+  children: [ mainbox ];
+  height: 100%;
+  padding: 42;
+  width: 100%;
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  spacing: 4;
+}
+
+inputbar {
+  background-color: var(background);
+  children: [ entry ];
+  padding: 10;
+}
+
+entry {
+  cursor: text;
+  placeholder-color: var(light-black);
+  placeholder: "Type to filter";
+}
+
+listview {
+  columns: 4;
+  layout: vertical;
+  spacing: 4;
+}
+
+element {
+  background-color: var(background);
+  border-color: var(background);
+  children: [ element-icon, element-text ];
+  cursor: pointer;
+  padding: 10;
+  spacing: 4;
+  border: 2;
+}
+
+element selected {
+  border-color: var(blue);
+}
+
+element urgent {
+  border-color: var(red);
+}
+
+element-text {
+  text-transform: lowercase;
+}
