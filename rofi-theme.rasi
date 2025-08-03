@@ -75,7 +75,7 @@ element selected {
 }
 
 element urgent {
-  border-color: var(red);
+  border-color: var(yellow);
 }
 
 element-text {
