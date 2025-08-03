@@ -40,6 +40,7 @@
   rm -rf $HOME/.bashrc
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
+  rm -rf $HOME/.config/kanshi
   rm -rf $HOME/.config/kitty
   rm -rf $HOME/.config/rofi
   rm -rf $HOME/.config/starship.toml
@@ -52,6 +53,7 @@
 
   mkdir -p $HOME/.config/Code/User
   mkdir -p $HOME/.config/helix
+  mkdir -p $HOME/.config/kanshi
   mkdir -p $HOME/.config/kitty
   mkdir -p $HOME/.config/rofi
   mkdir -p $HOME/.config/sway
@@ -62,6 +64,7 @@
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
+  ln -s $DOTFILES_INSTALL_DIR/kanshi-config $HOME/.config/kanshi/config
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
   ln -s $DOTFILES_INSTALL_DIR/rofi-config.rasi $HOME/.config/rofi/config.rasi
   ln -s $DOTFILES_INSTALL_DIR/rofi-theme.rasi $HOME/.config/rofi/theme.rasi
@@ -96,16 +99,12 @@
   gsettings set org.gnome.desktop.interface font-hinting 'none'
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
 
-  # configure cedilha
-  rm -rf $HOME/.XCompose
-  cat > $HOME/.XCompose << EOF
-<dead_acute> <c>     : "ç"
-<dead_acute> <C>     : "Ç"
-EOF
-
   # fix electron blurriness on wayland
   rm -rf $HOME/.zprofile
   cat > $HOME/.zprofile << EOF
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 EOF
+
+  # enable kanshi service
+  systemctl --user enable --now kanshi.service
 }
