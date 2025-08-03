@@ -41,6 +41,7 @@
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
   rm -rf $HOME/.config/kitty
+  rm -rf $HOME/.config/rofi
   rm -rf $HOME/.config/starship.toml
   rm -rf $HOME/.config/sway
   rm -rf $HOME/.config/swaylock
@@ -52,6 +53,7 @@
   mkdir -p $HOME/.config/Code/User
   mkdir -p $HOME/.config/helix
   mkdir -p $HOME/.config/kitty
+  mkdir -p $HOME/.config/rofi
   mkdir -p $HOME/.config/sway
   mkdir -p $HOME/.config/swaylock
   mkdir -p $HOME/.config/waybar
@@ -61,6 +63,8 @@
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
+  ln -s $DOTFILES_INSTALL_DIR/rofi-config.rasi $HOME/.config/rofi/config.rasi
+  ln -s $DOTFILES_INSTALL_DIR/rofi-theme.rasi $HOME/.config/rofi/theme.rasi
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
   ln -s $DOTFILES_INSTALL_DIR/sway-config $HOME/.config/sway/config
   ln -s $DOTFILES_INSTALL_DIR/swaylock-config $HOME/.config/swaylock/config
