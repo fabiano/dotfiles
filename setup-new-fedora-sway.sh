@@ -100,11 +100,19 @@
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
 
   # fix electron blurriness on wayland
-  rm -rf $HOME/.zprofile
   cat > $HOME/.zprofile << EOF
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 EOF
 
   # enable kanshi service
   systemctl --user enable --now kanshi.service
+
+  # change power key to suspend by default (requires restart)
+  sudo mkdir -p /etc/systemd/logind.conf.d
+
+  sudo bash -c 'cat > /etc/systemd/logind.conf.d/power-key.conf' << EOF
+[Login]
+HandlePowerKey=suspend
+HandlePowerKeyLongPress=poweroff
+EOF
 }
