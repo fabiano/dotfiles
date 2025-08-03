@@ -79,15 +79,8 @@ input "1452:591:Keychron_Keychron_C1" {
     xkb_layout us_intl
 }
 
-# monitors
-set $laptop eDP-1
-set $monitor DP-2
-
-output $laptop  pos 0    0 res 2560x1600 scale 2
-output $monitor pos 1280 0 res 3840x2160 scale 2
-
 # background
-output "*" bg $HOME/.dotfiles/wallpaper.png fill
+output * bg $HOME/.dotfiles/wallpaper.png fill
 
 # default config
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
