@@ -8,13 +8,15 @@ font pango:roboto regular 9
 
 # gaps
 gaps inner 5
+smart_gaps on
 
 # borders
 default_border normal 2
 default_floating_border normal 2
 titlebar_border_thickness 2
+smart_borders on
 
-client.focused           #0087BD #282A36 #FFFFFF #0087BD #0087BD
+client.focused           #0087BD #0087BD #FFFFFF #0087BD #0087BD
 client.focused_inactive  #333333 #282A36 #FFFFFF #333333 #333333
 client.focused_tab_title #333333 #282A36 #FFFFFF #333333 #333333
 client.unfocused         #333333 #282A36 #686868 #333333 #333333
