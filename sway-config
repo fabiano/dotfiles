@@ -20,7 +20,7 @@ client.focused           #0087BD #0087BD #FFFFFF #0087BD #0087BD
 client.focused_inactive  #333333 #282A36 #FFFFFF #333333 #333333
 client.focused_tab_title #333333 #282A36 #FFFFFF #333333 #333333
 client.unfocused         #333333 #282A36 #686868 #333333 #333333
-client.urgent            #FF5C57 #282A36 #FFFFFF #FF5C57 #FF5C57
+client.urgent            #F3F99D #282A36 #FFFFFF #F3F99D #F3F99D
 
 # shortcuts
 bindsym $mod+f4 kill
