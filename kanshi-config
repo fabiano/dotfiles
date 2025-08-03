@@ -1,8 +1,8 @@
 profile laptop {
-  output eDP-1 enable
+  output "HKC OVERSEAS LIMITED 0x9122 Unknown" enable mode 2560x1600 scale 2
 }
 
 profile monitor {
-  output eDP-1 disable
-  output DP-2 enable
+  output "HKC OVERSEAS LIMITED 0x9122 Unknown" disable
+  output "HP Inc. HP U28 4K HDR 1CR32200DW" enable mode 3840x2160 scale 2
 }
