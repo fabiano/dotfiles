@@ -125,4 +125,19 @@ EOF
 HandlePowerKey=suspend
 HandlePowerKeyLongPress=poweroff
 EOF
+
+  # set sddm theme
+  sudo mkdir -p /usr/share/sddm/themes/00-custom-theme
+  sudo cp -r $DOTFILES_INSTALL_DIR/sddm-theme/* /usr/share/sddm/themes/00-custom-theme
+
+  sudo bash -c 'cat > /etc/sddm.conf.d/custom-theme.conf' << EOF
+[General]
+GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2;1,QT_FONT_DPI=192
+
+[Wayland]
+EnableHiDPI=true
+
+[Theme]
+Current=00-custom-theme
+EOF
 }
