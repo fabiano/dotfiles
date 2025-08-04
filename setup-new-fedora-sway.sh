@@ -15,6 +15,7 @@
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
   sudo dnf -y install kitty
+  sudo dnf -y install nautilus
   sudo dnf -y install starship
   sudo dnf -y install util-linux-user
   sudo dnf -y install vim-enhanced
@@ -30,6 +31,15 @@
   sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
   dnf check-update
   sudo dnf install -y code
+
+  # remove unused apps
+  sudo dnf -y remove foot
+  sudo dnf -y remove mpv
+  sudo dnf -y remove system-config-language
+  sudo dnf -y remove system-config-printer
+  sudo dnf -y remove Thunar
+  sudo dnf -y remove xarchiver
+  sudo dnf -y autoremove
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
@@ -105,7 +115,7 @@ export ELECTRON_OZONE_PLATFORM_HINT=auto
 EOF
 
   # enable kanshi service
-  systemctl --user enable --now kanshi.service
+  systemctl --user enable kanshi.service
 
   # change power key to suspend by default (requires restart)
   sudo mkdir -p /etc/systemd/logind.conf.d
