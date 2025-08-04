@@ -27,8 +27,8 @@
   },
 
   "clock": {
-    "format": "{:%I:%M}",
-    "format-alt": "{:%d-%m-%Y}",
+    "format": "{:%H:%M}",
+    "format-alt": "{:%d/%m/%Y}",
     "tooltip": false
   }
 }
