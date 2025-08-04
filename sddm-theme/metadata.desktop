@@ -1,0 +1,15 @@
+[SddmGreeterTheme]
+Name=CustomTheme
+Description=
+Author=
+Copyright=
+License=
+Type=sddm-theme
+Version=0.1
+Website=
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Theme-Id=00-custom-theme
+Theme-API=2.0
+QtVersion=6
