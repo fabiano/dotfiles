@@ -2,6 +2,15 @@
 DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
 DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
+# history
+SAVEHIST=1000
+HISTSIZE=1000
+HISTFILE=$HOME/.zsh_history
+
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+
 # zsh-syntax-highlighting
 if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] ; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
