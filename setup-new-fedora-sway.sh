@@ -109,6 +109,19 @@
   gsettings set org.gnome.desktop.interface font-hinting 'none'
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
 
+  # prefer dark mode
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+  bash -c 'cat > $HOME/.config/gtk-3.0/settings.ini' << EOF
+[Settings]
+gtk-application-prefer-dark-theme=1
+EOF
+
+  bash -c 'cat > $HOME/.config/gtk-4.0/settings.ini' << EOF
+[Settings]
+gtk-application-prefer-dark-theme=1
+EOF
+
   # fix electron blurriness on wayland
   cat > $HOME/.zprofile << EOF
 export ELECTRON_OZONE_PLATFORM_HINT=auto
