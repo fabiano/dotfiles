@@ -34,7 +34,7 @@ Rectangle {
 
     Rectangle {
         anchors.fill: parent
-        color: colorConstants.black
+        color: colorConstants.background
 
         Column {
             id: mainColumn

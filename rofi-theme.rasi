@@ -17,9 +17,9 @@
   light-white:   #EFF0EB;
   light-yellow:  #F3F99D;
 
-  background: #20212B;
+  background: #282A36;
   foreground: #EFF0EB;
-  input-background: #282A36;
+  input-background: #333545;
 
   background-color: transparent;
   border: 0;
