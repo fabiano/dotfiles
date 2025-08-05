@@ -19,5 +19,6 @@ QtObject {
     readonly property string lightWhite:        "#EFF0EB"
     readonly property string lightYellow:       "#F3F99D"
 
-    readonly property string textBoxBackground: "#282A36"
+    readonly property string background: "#282A36"
+    readonly property string textBoxBackground: "#333545"
 }

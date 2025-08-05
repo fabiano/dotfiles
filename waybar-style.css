@@ -14,7 +14,7 @@
 }
 
 window {
-  background: #20212B;
+  background: #282A36;
 }
 
 #workspaces button {
@@ -22,7 +22,7 @@ window {
 }
 
 #workspaces button.visible {
-  background-color: #282A36;
+  background-color: #333545;
 }
 
 #workspaces button:hover {

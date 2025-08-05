@@ -5,43 +5,43 @@ font-size=42
 # background
 image=solid_color
 scaling=fill
-color=20212B
+color=282A36
 
 # indicator
 indicator-caps-lock
 indicator-idle-visible
 indicator-radius=100
 indicator-thickness=5
-separator-color=20212B
+separator-color=282A36
 
 # typing/idle
-ring-color=282A36
-inside-color=20212B
-line-color=20212B
+ring-color=333545
+inside-color=282A36
+line-color=282A36
 text-color=FFFFFF
 
 # verifying
-ring-ver-color=20212B
+ring-ver-color=282A36
 inside-ver-color=0087BD
-line-ver-color=20212B
+line-ver-color=282A36
 text-ver-color=FFFFFF
 
 # wrong
-ring-wrong-color=20212B
+ring-wrong-color=282A36
 inside-wrong-color=FF5C57
-line-wrong-color=20212B
+line-wrong-color=282A36
 text-wrong-color=FFFFFF
 
 # clearing
-ring-clear-color=282A36
-inside-clear-color=20212B
-line-clear-color=20212B
+ring-clear-color=333545
+inside-clear-color=282A36
+line-clear-color=282A36
 text-clear-color=FFFFFF
 
 # caps lock
-ring-caps-lock-color=282A36
-inside-caps-lock-color=20212B
-line-caps-lock-color=20212B
+ring-caps-lock-color=333545
+inside-caps-lock-color=282A36
+line-caps-lock-color=282A36
 text-caps-lock-color=FFFFFF
 
 # highlight segment
