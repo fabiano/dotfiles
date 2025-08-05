@@ -132,10 +132,7 @@ EOF
 
   sudo bash -c 'cat > /etc/sddm.conf.d/custom-theme.conf' << EOF
 [General]
-GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2;1,QT_FONT_DPI=192
-
-[Wayland]
-EnableHiDPI=true
+GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=DP-1=2;DP-2=2
 
 [Theme]
 Current=00-custom-theme
