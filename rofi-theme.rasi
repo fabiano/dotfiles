@@ -17,8 +17,9 @@
   light-white:   #EFF0EB;
   light-yellow:  #F3F99D;
 
-  background: #282A36;
+  background: #20212B;
   foreground: #EFF0EB;
+  input-background: #282A36;
 
   background-color: transparent;
   border: 0;
@@ -30,7 +31,7 @@
 }
 
 window {
-  background-color: var(black);
+  background-color: var(background);
   children: [ mainbox ];
   height: 100%;
   padding: 42;
@@ -43,7 +44,7 @@ mainbox {
 }
 
 inputbar {
-  background-color: var(background);
+  background-color: var(input-background);
   children: [ entry ];
   padding: 10;
 }
@@ -61,8 +62,8 @@ listview {
 }
 
 element {
-  background-color: var(background);
-  border-color: var(background);
+  background-color: var(input-background);
+  border-color: var(input-background);
   children: [ element-icon, element-text ];
   cursor: pointer;
   padding: 10;
