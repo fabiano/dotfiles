@@ -97,27 +97,38 @@
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-regular.ttf $HOME/.local/share/fonts/iosevka-term-regular.ttf
 
   # use roboto and iosevka as gnome default fonts
-  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
   gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
-  gsettings set org.gnome.desktop.interface font-hinting 'none'
+  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
 
+  # set font antialiasing and hinting
+  gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+  gsettings set org.gnome.desktop.interface font-hinting 'full'
+
   # change gnome interface settings
-  gsettings set org.gnome.desktop.interface cursor-size 24
   gsettings set org.gnome.desktop.interface clock-format '24h'
   gsettings set org.gnome.desktop.interface clock-show-date true
   gsettings set org.gnome.desktop.interface clock-show-seconds false
   gsettings set org.gnome.desktop.interface clock-show-weekday true
+  gsettings set org.gnome.desktop.interface cursor-size 24
+  gsettings set org.gnome.desktop.interface enable-hot-corners false
   gsettings set org.gnome.desktop.interface show-battery-percentage true
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
+  gsettings set org.gnome.mutter center-new-windows true
+  gsettings set org.gnome.mutter edge-tiling false
+
+  # change gnome shortcuts
+  gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Super>Left']"
+  gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "['<Super>Right']"
   gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
   gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
-  gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
-  gsettings set org.gnome.mutter center-new-windows true
+  gsettings set org.gnome.mutter.keybindings toggle-tiled-left '[]'
+  gsettings set org.gnome.mutter.keybindings toggle-tiled-right '[]'
   gsettings set org.gnome.shell app-picker-layout '[]'
-
+  
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
   gsettings set org.gnome.settings-daemon.plugins.power idle-brightness 30
@@ -131,8 +142,5 @@
 
   # configure cedilha in gnome
   rm -rf $HOME/.XCompose
-  cat > $HOME/.XCompose << EOF
-<dead_acute> <c>     : "ç"
-<dead_acute> <C>     : "Ç"
-EOF
+  echo -e "<dead_acute> <c> : \"ç\"\n<dead_acute> <C> : \"Ç\"" > $HOME/.XCompose
 }
