@@ -22,7 +22,7 @@
   sudo dnf -y install zsh-syntax-highlighting
 
   # install eza
-  curl -L https://github.com/eza-community/eza/releases/download/v0.21.5/eza_x86_64-unknown-linux-gnu.zip -o eza.zip && unzip eza.zip && sudo mv eza /usr/local/bin/ && sudo chmod +x /usr/local/bin/eza && rm eza.zip
+  curl -L https://github.com/eza-community/eza/releases/download/v0.23.0//eza_x86_64-unknown-linux-gnu.zip -o eza.zip && unzip eza.zip && sudo mv eza /usr/local/bin/ && sudo chmod +x /usr/local/bin/eza && rm eza.zip
 
   # install visual studio code
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -31,22 +31,38 @@
   sudo dnf install -y code
 
   # remove unused apps
+  sudo dnf -y remove baobab
   sudo dnf -y remove gnome-boxes
   sudo dnf -y remove gnome-calendar
+  sudo dnf -y remove gnome-characters
   sudo dnf -y remove gnome-clocks
   sudo dnf -y remove gnome-connections
   sudo dnf -y remove gnome-contacts
+  sudo dnf -y remove gnome-font-viewer
   sudo dnf -y remove gnome-maps
   sudo dnf -y remove gnome-tour
   sudo dnf -y remove gnome-weather
-  sudo dnf -y remove mediawriter
-  sudo dnf -y remove rhythmbox
-  sudo dnf -y remove simple-scan
-  sudo dnf -y remove totem
   sudo dnf -y remove libreoffice-calc
   sudo dnf -y remove libreoffice-impress
   sudo dnf -y remove libreoffice-writer
+  sudo dnf -y remove malcontent
+  sudo dnf -y remove mediawriter
+  sudo dnf -y remove ptyxis
+  sudo dnf -y remove rhythmbox
+  sudo dnf -y remove simple-scan
+  sudo dnf -y remove snapshot
+  sudo dnf -y remove totem
   sudo dnf -y autoremove
+
+  # hide apps that cannot be removed
+  rm -rf $HOME/.local/share/applications
+  mkdir -p $HOME/.local/share/applications
+
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/Helix.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.MalcontentControl.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.problems.applet.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/yelp.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.GnomeAbrt.desktop
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
@@ -93,27 +109,38 @@
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font.ttf
 
   # use roboto and iosevka as gnome default fonts
-  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
   gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
-  gsettings set org.gnome.desktop.interface font-hinting 'none'
+  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
 
+  # set font antialiasing and hinting
+  gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+  gsettings set org.gnome.desktop.interface font-hinting 'full'
+
   # change gnome interface settings
-  gsettings set org.gnome.desktop.interface cursor-size 24
   gsettings set org.gnome.desktop.interface clock-format '24h'
   gsettings set org.gnome.desktop.interface clock-show-date true
   gsettings set org.gnome.desktop.interface clock-show-seconds false
   gsettings set org.gnome.desktop.interface clock-show-weekday true
+  gsettings set org.gnome.desktop.interface cursor-size 24
+  gsettings set org.gnome.desktop.interface enable-hot-corners false
   gsettings set org.gnome.desktop.interface show-battery-percentage true
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
+  gsettings set org.gnome.mutter center-new-windows true
+  gsettings set org.gnome.mutter edge-tiling false
+
+  # change gnome shortcuts
+  gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Super>Left']"
+  gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "['<Super>Right']"
   gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
   gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
-  gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
-  gsettings set org.gnome.mutter center-new-windows true
-  gsettings set org.gnome.shell app-picker-layout "[]"
-
+  gsettings set org.gnome.mutter.keybindings toggle-tiled-left '[]'
+  gsettings set org.gnome.mutter.keybindings toggle-tiled-right '[]'
+  gsettings set org.gnome.shell app-picker-layout '[]'
+  
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
   gsettings set org.gnome.settings-daemon.plugins.power idle-brightness 30
@@ -130,10 +157,7 @@
 
   # configure cedilha in gnome
   rm -rf $HOME/.XCompose
-  cat > $HOME/.XCompose << EOF
-<dead_acute> <c>     : "ç"
-<dead_acute> <C>     : "Ç"
-EOF
+  echo -e "<dead_acute> <c> : \"ç\"\n<dead_acute> <C> : \"Ç\"" > $HOME/.XCompose
 
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
