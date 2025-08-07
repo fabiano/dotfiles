@@ -45,7 +45,6 @@
   sudo dnf -y remove libreoffice-calc
   sudo dnf -y remove libreoffice-impress
   sudo dnf -y remove libreoffice-writer
-  sudo dnf -y remove malcontent
   sudo dnf -y remove mediawriter
   sudo dnf -y remove ptyxis
   sudo dnf -y remove rhythmbox
@@ -119,6 +118,7 @@
   gsettings set org.gnome.desktop.interface font-hinting 'full'
 
   # change gnome interface settings
+  gsettings set org.gnome.desktop.app-folders folder-children "['YaST', 'Pardus']" 
   gsettings set org.gnome.desktop.interface clock-format '24h'
   gsettings set org.gnome.desktop.interface clock-show-date true
   gsettings set org.gnome.desktop.interface clock-show-seconds false
@@ -128,7 +128,9 @@
   gsettings set org.gnome.desktop.interface show-battery-percentage true
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
   gsettings set org.gnome.mutter center-new-windows true
+  gsettings set org.gnome.mutter dynamic-workspaces false
   gsettings set org.gnome.mutter edge-tiling false
+  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', '1password.desktop', 'org.mozilla.firefox.desktop', 'kitty.desktop', 'code.desktop']"
 
   # change gnome shortcuts
   gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Super>Left']"
