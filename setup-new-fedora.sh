@@ -58,10 +58,10 @@
   mkdir -p $HOME/.local/share/applications
 
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/Helix.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.GnomeAbrt.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.MalcontentControl.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.problems.applet.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/yelp.desktop
-  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.GnomeAbrt.desktop
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
@@ -131,6 +131,11 @@
   gsettings set org.gnome.mutter dynamic-workspaces false
   gsettings set org.gnome.mutter edge-tiling false
   gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', '1password.desktop', 'org.mozilla.firefox.desktop', 'kitty.desktop', 'code.desktop']"
+
+  # set wallpaper
+  gsettings set org.gnome.desktop.background picture-uri "'file://$DOTFILES_INSTALL_DIR/wallpaper.png'"
+  gsettings set org.gnome.desktop.background picture-uri-dark "'file://$DOTFILES_INSTALL_DIR/wallpaper.png'"
+  gsettings set org.gnome.desktop.screensaver picture-uri "'file://$DOTFILES_INSTALL_DIR/wallpaper.png'"
 
   # change gnome shortcuts
   gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Super>Left']"
