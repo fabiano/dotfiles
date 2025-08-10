@@ -109,10 +109,10 @@
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font.ttf
 
   # use roboto and iosevka as gnome default fonts
-  gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
-  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
+  gsettings set org.gnome.desktop.interface font-name 'Roboto 9'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 9'
+  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 9'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 9'
 
   # set font antialiasing and hinting
   gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
