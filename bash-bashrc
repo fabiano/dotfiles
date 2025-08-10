@@ -95,6 +95,10 @@ if [ -d "$HOME/.dotnet" ] ; then
   export DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER=1
 fi
 
+if [ -d "$HOME/.aspnet/dev-certs/trust" ] ; then
+  export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust:/etc/pki/tls/certs
+fi
+
 if [ -d "$HOME/.dotnet/tools" ] ; then
   export PATH="$PATH:$HOME/.dotnet/tools"
 fi
