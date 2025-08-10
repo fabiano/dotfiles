@@ -2,17 +2,56 @@
 DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
 DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
-# bash-completions@2
-if [ -f "/usr/local/etc/profile.d/bash_completion.sh" ] ; then
-  source /usr/local/etc/profile.d/bash_completion.sh
+# history settings
+if [ -n "$BASH_VERSION" ]; then
+  HISTSIZE=1000
+  HISTFILE=$HOME/.bash_history
+
+  shopt -s histappend
 fi
 
-if [ -f "/etc/profile.d/bash_completion.sh" ] ; then
-  source /etc/profile.d/bash_completion.sh
+if [ -n "$ZSH_VERSION" ]; then
+  SAVEHIST=1000
+  HISTSIZE=1000
+  HISTFILE=$HOME/.zsh_history
+
+  setopt appendhistory
+  setopt sharehistory
+  setopt incappendhistory
 fi
 
-if [ -f "/data/data/com.termux/files/usr/share/bash-completion/bash_completion" ] ; then
-  source /data/data/com.termux/files/usr/share/bash-completion/bash_completion
+# bash plugins
+if [ -n "$BASH_VERSION" ]; then
+  if [ -f "/usr/local/etc/profile.d/bash_completion.sh" ] ; then
+    . /usr/local/etc/profile.d/bash_completion.sh
+  fi
+
+  if [ -f "/etc/profile.d/bash_completion.sh" ] ; then
+    . /etc/profile.d/bash_completion.sh
+  fi
+
+  if [ -f "/data/data/com.termux/files/usr/share/bash-completion/bash_completion" ] ; then
+    . /data/data/com.termux/files/usr/share/bash-completion/bash_completion
+  fi
+fi
+
+# zsh plugins
+if [ -n "$ZSH_VERSION" ]; then
+  if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] ; then
+    . /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
+
+  if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] ; then
+    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
+
+  if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] ; then
+    . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  fi
+
+  if [ -f "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] ; then
+    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  fi
 fi
 
 # alias
@@ -37,7 +76,25 @@ alias v="vim"
 alias update-time="sudo ntpdate time.windows.com" # update time inside the wsl distro
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
-# dotnet tools
+# keys
+if [ -n "$ZSH_VERSION" ]; then
+  bindkey "^[[1;5C" forward-word  # ctrl + right arrow
+  bindkey "^[[1;5D" backward-word # ctrl + left arrow
+  bindkey "^[[H"    beginning-of-line # home
+  bindkey "^[[F"    end-of-line # end
+  bindkey "^[[3~"   delete-char # delete
+fi
+
+# dotnet
+if [ -d "$HOME/.dotnet" ] ; then
+  export PATH="$PATH:$HOME/.dotnet"
+  export DOTNET_ROOT="$HOME/.dotnet"
+  export DOTNET_CLI_TELEMETRY_OPTOUT=1
+  export DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION=1
+  export DOTNET_WATCH_RESTART_ON_RUDE_EDIT=1
+  export DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER=1
+fi
+
 if [ -d "$HOME/.dotnet/tools" ] ; then
   export PATH="$PATH:$HOME/.dotnet/tools"
 fi
@@ -60,4 +117,10 @@ function startship_set_win_title(){
 starship_precmd_user_func="startship_set_win_title"
 
 # start starship
-eval "$(starship init bash)"
+if [ -n "$BASH_VERSION" ]; then
+  eval "$(starship init bash)"
+fi
+
+if [ -n "$ZSH_VERSION" ]; then
+  eval "$(starship init zsh)"
+fi
