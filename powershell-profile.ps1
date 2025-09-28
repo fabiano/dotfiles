@@ -36,11 +36,24 @@ function Kill-Process ($Name) {
   taskkill /IM $Name /F
 }
 
+# bat
+function Run-Bat {
+  bat.exe --color=always --decorations=always $args
+}
+
+# eza
+function Run-Eza {
+  eza $args
+}
+
 # alias
 New-Alias -Name "~" -Value Home -Force
 New-Alias -Name ".." -Value Move-Up -Force
 New-Alias -Name "g" -Value git -Force
 New-Alias -Name "d" -Value dotnet -Force
+New-Alias -Name "bat" -Value Run-Bat -Force
+New-Alias -Name "cat" -Value Run-Bat -Force
+New-Alias -Name "ls" -Value Run-Eza -Force
 
 # set directory background color
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue
