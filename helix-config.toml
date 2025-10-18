@@ -23,10 +23,11 @@ mode.normal = "NORMAL"
 mode.select = "SELECT"
 
 [editor.whitespace.render]
-space = "all"
-tab   = "all"
+space = "none"
+tab   = "none"
 
 [keys.normal]
 tab     = ":bn"
 "S-tab" = ":bp"
 "C-o"   = "file_picker"
+"C-w"   = ":bc"
