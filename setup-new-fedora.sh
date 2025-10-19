@@ -143,12 +143,31 @@
   gsettings set org.gnome.desktop.wm.keybindings cycle-windows-backward "['<Super>Right']"
   gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward '[]'
+  gsettings set org.gnome.desktop.wm.keybindings switch-input-source '[]'
+  gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
   gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
+  gsettings set org.gnome.mutter overlay-key 'Super_R'
   gsettings set org.gnome.mutter.keybindings toggle-tiled-left '[]'
   gsettings set org.gnome.mutter.keybindings toggle-tiled-right '[]'
   gsettings set org.gnome.shell app-picker-layout '[]'
-  
+  gsettings set org.gnome.shell.keybindings toggle-application-view "['<Super>space']"
+
+  # add custom shortcuts paths
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+  # add kitty custom shortcut
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kitty'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ enable-in-lockscreen false
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open kitty'
+
+  # add rofi custom shortcut
+  # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>space'
+  # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'rofi -show combi -modes combi -combi-modes "window,drun" -combi-display-format "{text}" -normal-window'
+  # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ enable-in-lockscreen false
+  # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Open rofi'
+
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
   gsettings set org.gnome.settings-daemon.plugins.power idle-brightness 30
