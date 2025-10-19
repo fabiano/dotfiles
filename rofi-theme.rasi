@@ -23,7 +23,7 @@
 
   background-color: transparent;
   border: 0;
-  font: "roboto 9";
+  font: "roboto 11";
   margin: 0;
   padding: 0;
   spacing: 0;
@@ -77,6 +77,11 @@ element selected {
 
 element urgent {
   border-color: var(yellow);
+}
+
+element-icon {
+  size: 2ch ;
+  margin: 0 10 0 0;
 }
 
 element-text {
