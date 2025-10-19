@@ -147,7 +147,7 @@
   gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward '[]'
   gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
   gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
-  gsettings set org.gnome.mutter overlay-key 'Super_R'
+  gsettings set org.gnome.mutter overlay-key 'Super_L'
   gsettings set org.gnome.mutter.keybindings toggle-tiled-left '[]'
   gsettings set org.gnome.mutter.keybindings toggle-tiled-right '[]'
   gsettings set org.gnome.shell app-picker-layout '[]'
