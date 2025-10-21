@@ -1,12 +1,21 @@
 {
   "layer": "bottom",
   "position": "top",
-  "modules-left": ["sway/workspaces"],
-  "modules-center": ["sway/window"],
-  "modules-right": ["network", "battery", "clock"],
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["niri/window"],
+  "modules-right": ["niri/language", "network", "battery", "clock", "custom/quit"],
+
+  "niri/workspaces": {
+    "format": ""
+  },
+
+  "niri/language": {
+    "format": "  {long}",
+    "on-click": "niri msg action switch-layout next"
+  },
 
   "network": {
-    "format-wifi": "{essid} ",
+    "format-wifi": "    {essid}",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
     "format-disconnected": "Disconnected",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
@@ -20,8 +29,8 @@
       "critical": 15
     },
 
-    "format": "{capacity}% {icon}",
-    "format-alt": "{time} {icon}",
+    "format": "{icon}    {capacity}%",
+    "format-alt": "{time}",
     "format-icons": ["", "", "", "", ""],
     "tooltip": false
   },
@@ -29,6 +38,12 @@
   "clock": {
     "format": "{:%H:%M}",
     "format-alt": "{:%d/%m/%Y}",
+    "tooltip": false
+  },
+
+  "custom/quit": {
+    "format": "",
+    "on-click": "niri msg action quit",
     "tooltip": false
   }
 }
