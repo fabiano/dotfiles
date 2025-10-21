@@ -1,6 +1,7 @@
 input {
     keyboard {
         xkb {
+            layout "pt,us_intl"
         }
 
         numlock
@@ -19,12 +20,19 @@ output "eDP-1" {
     position x=0 y=0
 }
 
+output "DP-2" {
+    mode "3840x2160@59.997"
+    scale 2
+    transform "normal"
+    position x=0 y=0
+}
+
 layout {
-    background-color "#282A36"
+    background-color "transparent"
     center-focused-column "never"
     default-column-width { proportion 0.5; }
     gaps 4
-
+    
     border {
         width 2
         active-color "#0087BD"
@@ -42,35 +50,44 @@ layout {
     }
 }
 
+// disable overview shadow
 overview {
-    backdrop-color "#333545"
-
     workspace-shadow {
         off
     }
 }
 
+// show wallpaper in overview
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+// disable hotkey overlay
 hotkey-overlay {
     skip-at-startup
 }
 
+// disable client-side decorations/make windows rectangular
 prefer-no-csd
-screenshot-path "~/Pictures/Screenshots/screenshot-%Y-%m-%d %H-%M-%S.png"
-spawn-at-startup "waybar"
 
+// set screenshot folder
+screenshot-path "~/Pictures/Screenshots/screenshot-%Y-%m-%d %H-%M-%S.png"
+
+// open the Firefox picture-in-picture window as floating
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
 }
 
+// shortcuts
 binds {
     Ctrl+Alt+Delete { quit; }
     Print { screenshot; }
 
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Return hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
-    Mod+Space hotkey-overlay-title="Open fuzzel" { spawn "fuzzel"; }
-    Mod+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+Space hotkey-overlay-title="Open rofi" { spawn "rofi" "-show" "combi" "-modes" "combi" "-combi-modes" "drun" "-combi-display-format" "{text}"; }
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
     Mod+F { maximize-column; }
@@ -84,10 +101,10 @@ binds {
     Mod+Home  { focus-column-first; }
     Mod+End   { focus-column-last; }
 
-    Mod+Ctrl+Left  { move-column-left; }
-    Mod+Ctrl+Right { move-column-right; }
-    Mod+Ctrl+Home  { move-column-to-first; }
-    Mod+Ctrl+End   { move-column-to-last; }
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Home  { move-column-to-first; }
+    Mod+Shift+End   { move-column-to-last; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
@@ -116,3 +133,8 @@ binds {
     XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 }
+
+// startup
+spawn-at-startup "waybar"
+spawn-sh-at-startup "swaybg --mode fill --image ~/.dotfiles/wallpaper.jpg"
+spawn-sh-at-startup "swayidle -w timeout 601 'niri msg action power-off-monitors' timeout 600 'swaylock --daemonize' before-sleep 'swaylock --daemonize'"
