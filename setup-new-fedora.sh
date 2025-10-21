@@ -14,10 +14,16 @@
   sudo dnf -y install helix
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
+  sudo dnf -y install kanshi
   sudo dnf -y install kitty
+  sudo dnf -y install niri --setopt=install_weak_deps=False
   sudo dnf -y install starship
+  sudo dnf -y install swaybg
+  sudo dnf -y install swayidle
+  sudo dnf -y install swaylock
   sudo dnf -y install util-linux-user
   sudo dnf -y install vim-enhanced
+  sudo dnf -y install waybar
   sudo dnf -y install zsh
   sudo dnf -y install zsh-autosuggestions
   sudo dnf -y install zsh-syntax-highlighting
@@ -73,24 +79,36 @@
   rm -rf $HOME/.bashrc
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
+  rm -rf $HOME/.config/kanshi
   rm -rf $HOME/.config/kitty
+  rm -rf $HOME/.config/niri
   rm -rf $HOME/.config/starship.toml
+  rm -rf $HOME/.config/swaylock
+  rm -rf $HOME/.config/waybar
   rm -rf $HOME/.gitconfig
   rm -rf $HOME/.vimrc
   rm -rf $HOME/.zshrc
 
   mkdir -p $HOME/.config/Code/User
   mkdir -p $HOME/.config/helix
+  mkdir -p $HOME/.config/kanshi
   mkdir -p $HOME/.config/kitty
+  mkdir -p $HOME/.config/niri
+  mkdir -p $HOME/.config/swaylock
+  mkdir -p $HOME/.config/waybar
 
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
+  ln -s $DOTFILES_INSTALL_DIR/niri.kdl $HOME/.config/niri/config.kdl
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
+  ln -s $DOTFILES_INSTALL_DIR/swaylock-config $HOME/.config/swaylock/config
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
+  ln -s $DOTFILES_INSTALL_DIR/waybar-config $HOME/.config/waybar/config
+  ln -s $DOTFILES_INSTALL_DIR/waybar-style.css $HOME/.config/waybar/style.css
   ln -s $DOTFILES_INSTALL_DIR/zsh-zshrc $HOME/.zshrc
 
   # set zsh as default shell
@@ -183,4 +201,12 @@
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
   sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
+
+  # enable kanshi service
+  systemctl --user enable kanshi.service
+
+  # fix electron blurriness on wayland
+  cat > $HOME/.zprofile << EOF
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+EOF
 }
