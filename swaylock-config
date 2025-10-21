@@ -3,49 +3,51 @@ font=Roboto
 font-size=42
 
 # background
-image=solid_color
+image=~/.dotfiles/wallpaper.jpg
 scaling=fill
-color=282A36
+
+# keyboard
+hide-keyboard-layout
 
 # indicator
 indicator-caps-lock
 indicator-idle-visible
 indicator-radius=100
 indicator-thickness=5
-separator-color=282A36
+separator-color=#00000000
 
 # typing/idle
-ring-color=333545
-inside-color=282A36
-line-color=282A36
-text-color=FFFFFF
+ring-color=#00000040
+inside-color=#00000040
+line-color=#00000000
+text-color=#00000040
 
 # verifying
-ring-ver-color=282A36
-inside-ver-color=0087BD
-line-ver-color=282A36
-text-ver-color=FFFFFF
+ring-ver-color=#0087BD
+inside-ver-color=#0087BD
+line-ver-color=#0087BD
+text-ver-color=#EFF0EB
 
 # wrong
-ring-wrong-color=282A36
-inside-wrong-color=FF5C57
-line-wrong-color=282A36
-text-wrong-color=FFFFFF
+ring-wrong-color=#FF5C57
+inside-wrong-color=#FF5C57
+line-wrong-color=#FF5C57
+text-wrong-color=#EFF0EB
 
 # clearing
-ring-clear-color=333545
-inside-clear-color=282A36
-line-clear-color=282A36
-text-clear-color=FFFFFF
+ring-clear-color=#00000040
+inside-clear-color=#00000040
+line-clear-color=#00000000
+text-clear-color=#EFF0EB
 
 # caps lock
-ring-caps-lock-color=333545
-inside-caps-lock-color=282A36
-line-caps-lock-color=282A36
-text-caps-lock-color=FFFFFF
+ring-caps-lock-color=#00000040
+inside-caps-lock-color=#00000040
+line-caps-lock-color=#00000000
+text-caps-lock-color=#EFF0EB
 
 # highlight segment
-key-hl-color=0087BD
-bs-hl-color=FF5C57
-caps-lock-key-hl-color=F3F99D
-caps-lock-bs-hl-color=FF5C57
+key-hl-color=#0087BD
+bs-hl-color=#0087BD
+caps-lock-key-hl-color=#0087BD
+caps-lock-bs-hl-color=#0087BD
