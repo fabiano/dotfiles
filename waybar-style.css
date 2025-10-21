@@ -4,9 +4,8 @@
   border: none;
   box-shadow: none;
   color: #EFF0EB;
-  font-family: Roboto;
-  font-size: 11px;
-  margin: 3 0 1 0;
+  font-size: 10px;
+  margin: 0;
   padding: 0;
   text-shadow: none;
   transition-duration: 0s;
@@ -14,29 +13,66 @@
 }
 
 window {
-  background: #282A36;
+  background-color: transparent;
 }
 
 #workspaces button {
-  padding: 0 10px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 0 0 5px;
+  padding: 0 5px;
 }
 
-#workspaces button.visible {
-  background-color: #333545;
+#workspaces button.focused {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 15px;
 }
 
-#workspaces button:hover {
-  font-weight: bold;
+#window {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 0 0 0;
+  padding: 2px 10px;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#language {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 5px 0 0;
+  padding: 2px 10px;
 }
 
 #network {
-  margin-right: 20px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 5px 0 0;
+  padding: 2px 10px;
 }
 
 #battery {
-  margin-right: 20px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 5px 0 0;
+  padding: 2px 10px;
 }
 
 #clock {
-  margin-right: 5px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 5px 0 0;
+  padding: 2px 10px;
+}
+
+#custom-quit {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 5px 0 0;
+  padding: 2px 10px;
 }
