@@ -50,13 +50,6 @@ layout {
     }
 }
 
-// disable overview shadow
-overview {
-    workspace-shadow {
-        off
-    }
-}
-
 // show wallpaper in overview
 layer-rule {
     match namespace="^wallpaper$"
@@ -77,17 +70,18 @@ screenshot-path "~/Pictures/Screenshots/screenshot-%Y-%m-%d %H-%M-%S.png"
 // open the Firefox picture-in-picture window as floating
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+
     open-floating true
 }
 
 // shortcuts
 binds {
-    Ctrl+Alt+Delete { quit; }
+    Ctrl+Alt+Delete { quit skip-confirmation=true; }
     Print { screenshot; }
 
-    Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Return hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
-    Mod+Space hotkey-overlay-title="Open rofi" { spawn "rofi" "-show" "combi" "-modes" "combi" "-combi-modes" "drun" "-combi-display-format" "{text}"; }
+    Mod+L hotkey-overlay-title="Lock the screen" { spawn-sh "niri msg action power-off-monitors ; swaylock --daemonize"; }
+    Mod+Return hotkey-overlay-title="Open kitty" { spawn "kitty"; }
+    Mod+Space hotkey-overlay-title="Open rofi" { spawn-sh "rofi -show drun -normal-window"; }
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
     Mod+F { maximize-column; }
@@ -126,15 +120,17 @@ binds {
     Mod+Ctrl+8 { move-column-to-workspace 8; }
     Mod+Ctrl+9 { move-column-to-workspace 9; }
 
-    XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-    XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute         allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute      allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ && notify-send --app-name=volume --expire-time=5000 \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@)\""; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && notify-send --app-name=volume --expire-time=5000 \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@)\""; }
+    XF86AudioMute         allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send --app-name=volume --expire-time=5000 \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@)\""; }
+    XF86AudioMicMute      allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && notify-send --app-name=volume --expire-time=5000 \"$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@)\""; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set +10% && notify-send --app-name=brightness --expire-time=5000 \"Brightness: $(brightnessctl --machine-readable | cut --delimiter=, --fields=4)\""; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set 10%- && notify-send --app-name=brightness --expire-time=5000 \"Brightness: $(brightnessctl --machine-readable | cut --delimiter=, --fields=4)\""; }
 }
 
 // startup
+spawn-at-startup "brightnessctl" "--class=leds" "set" "0"
+spawn-at-startup "mako"
 spawn-at-startup "waybar"
 spawn-sh-at-startup "swaybg --mode fill --image ~/.dotfiles/wallpaper.jpg"
 spawn-sh-at-startup "swayidle -w timeout 601 'niri msg action power-off-monitors' timeout 600 'swaylock --daemonize' before-sleep 'swaylock --daemonize'"
