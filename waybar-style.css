@@ -31,8 +31,8 @@ window {
 #window {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  margin: 4px 0 0 0;
-  padding: 2px 10px;
+  margin: 4px 0 0 5px;
+  padding: 0 10px;
 }
 
 window#waybar.empty #window {
@@ -46,33 +46,33 @@ window#waybar.empty #window {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 2px 10px;
+  padding: 0 10px;
 }
 
 #network {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 2px 10px;
+  padding: 0 10px;
 }
 
 #battery {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 2px 10px;
+  padding: 0 10px;
 }
 
 #clock {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 2px 10px;
+  padding: 0 10px;
 }
 
 #custom-quit {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 2px 10px;
+  padding: 0 10px;
 }

@@ -1,4 +1,5 @@
 {
+  "reload_style_on_change": true,
   "layer": "bottom",
   "position": "top",
   "modules-left": ["niri/workspaces"],
@@ -43,7 +44,7 @@
 
   "custom/quit": {
     "format": "",
-    "on-click": "niri msg action quit",
+    "on-click": "niri msg action quit --skip-confirmation",
     "tooltip": false
   }
 }
