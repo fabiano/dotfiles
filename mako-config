@@ -1,0 +1,59 @@
+anchor=top-right
+background-color=#20212BCC
+border-color=#20212BCC
+border-radius=5
+border-size=2
+default-timeout=5000
+font=roboto 8
+format=<span text_transform="uppercase">%a</span> <span font_weight="bold">%s</span>\n\n%b
+group-by=app-name
+height=128
+history=0
+icons=0
+ignore-timeout=1
+margin=0
+outer-margin=0
+padding=10
+text-color=#EFF0EB
+width=266
+
+[grouped]
+format=<span text_transform="uppercase">%a</span> <span font_weight="bold">%s (%g)</span>\n\n%b
+
+[app-name=brightness]
+anchor=center
+background-color=#20212BCC
+border-radius=0
+border-size=0
+font=roboto 32
+format=<span font_weight="ultralight" text_transform="uppercase">%s</span>
+group-by=app-name
+history=0
+margin=0
+outer-margin=20
+padding=20
+text-alignment=center
+text-color=#EFF0EB
+width=420
+
+[app-name=brightness group-index=0]
+invisible=0
+
+[app-name=volume]
+anchor=center
+background-color=#20212BCC
+border-radius=0
+border-size=0
+font=roboto 32
+format=<span font_weight="ultralight" text_transform="uppercase">%s</span>
+group-by=app-name
+history=0
+margin=0
+outer-margin=20
+padding=20
+text-alignment=center
+text-color=#EFF0EB
+width=480
+
+[app-name=volume group-index=0]
+invisible=0
