@@ -23,7 +23,7 @@
 
   background-color: transparent;
   border: 0;
-  font: "roboto 11";
+  font: "roboto 8";
   margin: 0;
   padding: 0;
   spacing: 0;
@@ -33,14 +33,14 @@
 window {
   background-color: var(background);
   children: [ mainbox ];
-  height: 100%;
-  padding: 42;
-  width: 100%;
+  padding: 10;
+  border-color: var(input-background);
+  border: 4;
 }
 
 mainbox {
   children: [ inputbar, listview ];
-  spacing: 4;
+  spacing: 8;
 }
 
 inputbar {
@@ -58,17 +58,17 @@ entry {
 listview {
   columns: 4;
   layout: vertical;
-  spacing: 4;
+  spacing: 8;
 }
 
 element {
   background-color: var(input-background);
   border-color: var(input-background);
+  border: 2;
   children: [ element-icon, element-text ];
   cursor: pointer;
   padding: 10;
-  spacing: 4;
-  border: 2;
+  spacing: 8;
 }
 
 element selected {
@@ -80,8 +80,8 @@ element urgent {
 }
 
 element-icon {
-  size: 2ch ;
   margin: 0 10 0 0;
+  size: 2ch;
 }
 
 element-text {
