@@ -74,6 +74,14 @@ window-rule {
     open-floating true
 }
 
+// open rofi as floating window
+window-rule {
+    match app-id=r#"Rofi"#
+
+    open-floating true
+    open-focused true
+}
+
 // shortcuts
 binds {
     Ctrl+Alt+Delete { quit skip-confirmation=true; }
