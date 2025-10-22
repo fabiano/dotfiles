@@ -50,6 +50,16 @@ layout {
     }
 }
 
+window-rule {
+    match is-floating=true
+
+    border {
+        width 0
+        active-color "transparent"
+        inactive-color "transparent"
+    }
+}
+
 // show wallpaper in overview
 layer-rule {
     match namespace="^wallpaper$"
@@ -59,6 +69,11 @@ layer-rule {
 // disable hotkey overlay
 hotkey-overlay {
     skip-at-startup
+}
+
+// disable middle click paste
+clipboard {
+    disable-primary
 }
 
 // disable client-side decorations/make windows rectangular
