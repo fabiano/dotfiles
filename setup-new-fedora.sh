@@ -128,8 +128,9 @@
 
   # install fonts
   mkdir -p $HOME/.local/share/fonts
-  cp $DOTFILES_INSTALL_DIR/font-iosevka-regular-nerd-font.ttf $HOME/.local/share/fonts/iosevka-regular-nerd-font.ttf
-  cp $DOTFILES_INSTALL_DIR/font-iosevka-term-regular-nerd-font.ttf $HOME/.local/share/fonts/iosevka-term-regular-nerd-font.ttf
+  cp $DOTFILES_INSTALL_DIR/font-iosevka-nerd-font-regular.ttf $HOME/.local/share/fonts/iosevka-nerd-font-regular.ttf
+  cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font-regular.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font-regular.ttf
+  cp $DOTFILES_INSTALL_DIR/font-symbols-nerd-font-regular.ttf $HOME/.local/share/fonts/symbols-nerd-font-regular.ttf
 
   # use roboto and iosevka as gnome default fonts
   gsettings set org.gnome.desktop.interface font-name 'Roboto 11'
