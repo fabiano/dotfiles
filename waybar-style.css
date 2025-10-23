@@ -4,8 +4,10 @@
   border: none;
   box-shadow: none;
   color: #EFF0EB;
-  font-size: 10px;
+  font-family: 'Symbols Nerd Font', 'Roboto', sans-serif;
+  font-size: 9px;
   margin: 0;
+  min-height: 0;
   padding: 0;
   text-shadow: none;
   transition-duration: 0s;
@@ -20,19 +22,19 @@ window {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 0 0 5px;
-  padding: 0 5px;
+  padding: 3px 5px;
 }
 
 #workspaces button.focused {
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 15px;
+  padding: 3px 15px;
 }
 
 #window {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  margin: 4px 0 0 5px;
-  padding: 0 10px;
+  margin: 4px 0 0 0;
+  padding: 3px 6px;
 }
 
 window#waybar.empty #window {
@@ -46,33 +48,47 @@ window#waybar.empty #window {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 0 10px;
+  padding: 3px 6px;
+}
+
+#pulseaudio {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 5px 0 0;
+  padding: 3px 6px;
+}
+
+#backlight {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 4px 5px 0 0;
+  padding: 3px 6px;
 }
 
 #network {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 0 10px;
+  padding: 3px 6px;
 }
 
 #battery {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 0 10px;
+  padding: 3px 6px;
 }
 
 #clock {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 0 10px;
+  padding: 3px 6px;
 }
 
 #custom-quit {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 4px 5px 0 0;
-  padding: 0 10px;
+  padding: 3px 6px;
 }
