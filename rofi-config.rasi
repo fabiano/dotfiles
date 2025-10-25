@@ -1,6 +1,8 @@
 @theme "theme.rasi"
 
 configuration {
-    click-to-exit: true;
     dpi: 200;
+    window-format: "window: {t}";
+    combi-display-format: "{text}";
 }
+
