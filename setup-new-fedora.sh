@@ -9,23 +9,16 @@
   sudo dnf -y copr enable peterwu/iosevka
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
-  sudo dnf -y install brightnessctl
   sudo dnf -y install git
   sudo dnf -y install google-roboto-fonts
   sudo dnf -y install helix
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
-  sudo dnf -y install kanshi
   sudo dnf -y install kitty
-  sudo dnf -y install mako
-  sudo dnf -y install niri --setopt=install_weak_deps=False
+  sudo dnf -y install rofi
   sudo dnf -y install starship
-  sudo dnf -y install swaybg
-  sudo dnf -y install swayidle
-  sudo dnf -y install swaylock
   sudo dnf -y install util-linux-user
   sudo dnf -y install vim-enhanced
-  sudo dnf -y install waybar
   sudo dnf -y install zsh
   sudo dnf -y install zsh-autosuggestions
   sudo dnf -y install zsh-syntax-highlighting
@@ -70,6 +63,8 @@
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.GnomeAbrt.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.MalcontentControl.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.problems.applet.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/rofi-theme-selector.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/rofi.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/yelp.desktop
 
   # clone repository
@@ -81,39 +76,27 @@
   rm -rf $HOME/.bashrc
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
-  rm -rf $HOME/.config/kanshi
   rm -rf $HOME/.config/kitty
-  rm -rf $HOME/.config/mako
   rm -rf $HOME/.config/niri
   rm -rf $HOME/.config/starship.toml
-  rm -rf $HOME/.config/swaylock
-  rm -rf $HOME/.config/waybar
   rm -rf $HOME/.gitconfig
   rm -rf $HOME/.vimrc
   rm -rf $HOME/.zshrc
 
   mkdir -p $HOME/.config/Code/User
   mkdir -p $HOME/.config/helix
-  mkdir -p $HOME/.config/kanshi
   mkdir -p $HOME/.config/kitty
-  mkdir -p $HOME/.config/mako
-  mkdir -p $HOME/.config/niri
-  mkdir -p $HOME/.config/swaylock
-  mkdir -p $HOME/.config/waybar
-
+  
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
-  ln -s $DOTFILES_INSTALL_DIR/mako-config $HOME/.config/mako/config
-  ln -s $DOTFILES_INSTALL_DIR/niri.kdl $HOME/.config/niri/config.kdl
+  ln -s $DOTFILES_INSTALL_DIR/rofi-config.rasi $HOME/.config/rofi/config.rasi
+  ln -s $DOTFILES_INSTALL_DIR/rofi-theme.rasi $HOME/.config/rofi/theme.rasi
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
-  ln -s $DOTFILES_INSTALL_DIR/swaylock-config $HOME/.config/swaylock/config
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
-  ln -s $DOTFILES_INSTALL_DIR/waybar-config $HOME/.config/waybar/config
-  ln -s $DOTFILES_INSTALL_DIR/waybar-style.css $HOME/.config/waybar/style.css
   ln -s $DOTFILES_INSTALL_DIR/zsh-zshrc $HOME/.zshrc
 
   # set zsh as default shell
@@ -133,10 +116,10 @@
   cp $DOTFILES_INSTALL_DIR/font-symbols-nerd-font-regular.ttf $HOME/.local/share/fonts/symbols-nerd-font-regular.ttf
 
   # use roboto and iosevka as gnome default fonts
-  gsettings set org.gnome.desktop.interface font-name 'Roboto 11'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 11'
-  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 11'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 11'
+  gsettings set org.gnome.desktop.interface font-name 'Roboto 9'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 9'
+  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 9'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 9'
 
   # set font antialiasing and hinting
   gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
@@ -149,13 +132,13 @@
   gsettings set org.gnome.desktop.interface clock-show-seconds false
   gsettings set org.gnome.desktop.interface clock-show-weekday true
   gsettings set org.gnome.desktop.interface cursor-size 24
-  gsettings set org.gnome.desktop.interface enable-hot-corners false
+  gsettings set org.gnome.desktop.interface enable-hot-corners true
   gsettings set org.gnome.desktop.interface show-battery-percentage true
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
   gsettings set org.gnome.mutter center-new-windows true
   gsettings set org.gnome.mutter dynamic-workspaces false
   gsettings set org.gnome.mutter edge-tiling false
-  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', '1password.desktop', 'org.mozilla.firefox.desktop', 'kitty.desktop', 'code.desktop']"
+  gsettings set org.gnome.shell favorite-apps "[]"
 
   # set wallpaper
   gsettings set org.gnome.desktop.background picture-uri "'file://$DOTFILES_INSTALL_DIR/wallpaper.png'"
@@ -175,16 +158,21 @@
   gsettings set org.gnome.mutter.keybindings toggle-tiled-left '[]'
   gsettings set org.gnome.mutter.keybindings toggle-tiled-right '[]'
   gsettings set org.gnome.shell app-picker-layout '[]'
-  gsettings set org.gnome.shell.keybindings toggle-application-view "['<Super>space']"
 
   # add custom shortcuts paths
-  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 
   # add kitty custom shortcut
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kitty'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ enable-in-lockscreen false
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open kitty'
+
+  # add rofi custom shortcut
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>Space'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'rofi -show combi -modes combi -combi-modes "window,drun" -normal-window -steal-focus'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ enable-in-lockscreen false
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Open rofi'
 
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
@@ -207,12 +195,4 @@
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
   sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
-
-  # enable kanshi service
-  systemctl --user enable kanshi.service
-
-  # fix electron blurriness on wayland
-  cat > $HOME/.zprofile << EOF
-export ELECTRON_OZONE_PLATFORM_HINT=auto
-EOF
 }
