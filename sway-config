@@ -80,7 +80,7 @@ input "1452:591:Keychron_Keychron_C1" {
 }
 
 # background
-output * bg $HOME/.dotfiles/wallpaper.png fill
+output * bg $HOME/.dotfiles/wallpaper.jpg fill
 
 # default config
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

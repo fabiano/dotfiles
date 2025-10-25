@@ -23,7 +23,7 @@
 
   background-color: transparent;
   border: 0;
-  font: "roboto 8";
+  font: "Iosevka Medium 9";
   margin: 0;
   padding: 0;
   spacing: 0;
