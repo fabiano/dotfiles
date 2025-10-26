@@ -15,7 +15,6 @@
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
   sudo dnf -y install kitty
-  sudo dnf -y install rofi
   sudo dnf -y install starship
   sudo dnf -y install util-linux-user
   sudo dnf -y install vim-enhanced
@@ -63,8 +62,6 @@
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.GnomeAbrt.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.MalcontentControl.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.problems.applet.desktop
-  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/rofi-theme-selector.desktop
-  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/rofi.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/yelp.desktop
 
   # clone repository
@@ -77,7 +74,6 @@
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
   rm -rf $HOME/.config/kitty
-  rm -rf $HOME/.config/niri
   rm -rf $HOME/.config/starship.toml
   rm -rf $HOME/.gitconfig
   rm -rf $HOME/.vimrc
@@ -92,8 +88,6 @@
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
-  ln -s $DOTFILES_INSTALL_DIR/rofi-config.rasi $HOME/.config/rofi/config.rasi
-  ln -s $DOTFILES_INSTALL_DIR/rofi-theme.rasi $HOME/.config/rofi/theme.rasi
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
@@ -160,19 +154,13 @@
   gsettings set org.gnome.shell app-picker-layout '[]'
 
   # add custom shortcuts paths
-  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 
   # add kitty custom shortcut
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kitty'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ enable-in-lockscreen false
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open kitty'
-
-  # add rofi custom shortcut
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>Space'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'rofi -show combi -modes combi -combi-modes "window,drun" -normal-window -steal-focus'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ enable-in-lockscreen false
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Open rofi'
 
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
