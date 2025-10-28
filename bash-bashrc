@@ -20,6 +20,11 @@ if [ -n "$ZSH_VERSION" ]; then
   setopt incappendhistory
 fi
 
+# start compinit
+if [ -n "$ZSH_VERSION" ]; then
+  autoload -U compinit && compinit 
+fi
+
 # bash plugins
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "/usr/local/etc/profile.d/bash_completion.sh" ] ; then
@@ -44,6 +49,8 @@ if [ -n "$ZSH_VERSION" ]; then
   if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] ; then
     . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   fi
+
+  ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
   if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] ; then
     . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
