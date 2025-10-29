@@ -178,7 +178,7 @@
 
   # configure cedilha in gnome
   rm -rf $HOME/.XCompose
-  echo -e "<dead_acute> <c> : \"ç\"\n<dead_acute> <C> : \"Ç\"" > $HOME/.XCompose
+  echo -e "include \"%L\"\n\n<dead_acute> <c> : \"ç\"\n<dead_acute> <C> : \"Ç\"" > $HOME/.XCompose
 
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
