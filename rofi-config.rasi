@@ -1,7 +1,6 @@
 @theme "theme.rasi"
 
 configuration {
-    dpi: 200;
     window-format: "window: {t}";
     combi-display-format: "{text}";
 }

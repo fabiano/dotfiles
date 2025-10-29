@@ -23,7 +23,7 @@
 
   background-color: transparent;
   border: 0;
-  font: "Iosevka Medium 9";
+  font: "Iosevka Medium 10";
   margin: 0;
   padding: 0;
   spacing: 0;
@@ -33,7 +33,7 @@
 window {
   background-color: var(background);
   children: [ mainbox ];
-  padding: 10;
+  padding: 5;
   border-color: var(input-background);
   border: 4;
 }
@@ -46,7 +46,7 @@ mainbox {
 inputbar {
   background-color: var(input-background);
   children: [ entry ];
-  padding: 10;
+  padding: 5;
 }
 
 entry {
@@ -67,7 +67,7 @@ element {
   border: 2;
   children: [ element-icon, element-text ];
   cursor: pointer;
-  padding: 10;
+  padding: 5;
   spacing: 8;
 }
 
@@ -80,7 +80,6 @@ element urgent {
 }
 
 element-icon {
-  margin: 0 10 0 0;
   size: 2ch;
 }
 
