@@ -1,11 +1,13 @@
 {
+  set -e
+  
   # dotfiles settings
-  DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
+  DOTFILES_REPOSITORY="dotfiles"
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install apps
-  pkg update
-  pkg upgrade
+  pkg update -y
+  pkg upgrade -y
   pkg install -y bash-completion
   pkg install -y bat
   pkg install -y curl
@@ -24,7 +26,7 @@
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
-  git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
+  gh repo clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
   # create dotfiles
   rm -rf $HOME/.bash_profile
