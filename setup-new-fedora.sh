@@ -62,6 +62,7 @@
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.GnomeAbrt.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.MalcontentControl.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.problems.applet.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.gnome.Yelp.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/yelp.desktop
 
   # clone repository
@@ -110,10 +111,10 @@
   cp $DOTFILES_INSTALL_DIR/font-symbols-nerd-font-regular.ttf $HOME/.local/share/fonts/symbols-nerd-font-regular.ttf
 
   # use roboto and iosevka as gnome default fonts
-  gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
+  gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
-  gsettings set org.gnome.desktop.interface document-font-name 'Cantarell 10'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Cantarell 10'
+  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
 
   # set font antialiasing and hinting
   gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
@@ -135,9 +136,9 @@
   gsettings set org.gnome.shell favorite-apps "[]"
 
   # set wallpaper
-  gsettings set org.gnome.desktop.background picture-uri "'file://$DOTFILES_INSTALL_DIR/wallpaper.jpg'"
-  gsettings set org.gnome.desktop.background picture-uri-dark "'file://$DOTFILES_INSTALL_DIR/wallpaper.jpg'"
-  gsettings set org.gnome.desktop.screensaver picture-uri "'file://$DOTFILES_INSTALL_DIR/wallpaper.jpg'"
+  gsettings set org.gnome.desktop.background picture-uri "'file://$DOTFILES_INSTALL_DIR/wallpaper.png'"
+  gsettings set org.gnome.desktop.background picture-uri-dark "'file://$DOTFILES_INSTALL_DIR/wallpaper.png'"
+  gsettings set org.gnome.desktop.screensaver picture-uri "'file://$DOTFILES_INSTALL_DIR/wallpaper.png'"
 
   # change gnome shortcuts
   gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Super>Left']"
