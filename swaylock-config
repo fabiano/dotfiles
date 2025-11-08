@@ -3,7 +3,7 @@ font=Roboto
 font-size=42
 
 # background
-image=~/.dotfiles/wallpaper.jpg
+image=~/.dotfiles/wallpaper.png
 scaling=fill
 
 # keyboard
