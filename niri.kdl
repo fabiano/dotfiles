@@ -22,7 +22,7 @@ layout {
     background-color "transparent"
     center-focused-column "never"
     default-column-width { proportion 0.5; }
-    gaps 8
+    gaps 2
     
     border {
         width 2
@@ -87,7 +87,7 @@ window-rule {
     match app-id=r#"firefox$"#
     match app-id=r#"librewolf"#
 
-    default-column-width { proportion 1.0; }
+    open-maximized true
 }
 
 // shortcuts
