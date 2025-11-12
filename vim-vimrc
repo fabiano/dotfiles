@@ -32,6 +32,7 @@ set tabstop=2
 " whitespace characters
 set listchars=space:·,tab:»\ ,trail:·
 set list
+set nolist
 
 " complete popup
 set completeopt=menuone,popuphidden,noinsert,noselect
@@ -88,14 +89,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 
-" Omnisharp
-Plug 'OmniSharp/omnisharp-vim'
-
-" ALE
-Plug 'dense-analysis/ale'
-
 " asyncomplete.vim
 Plug 'prabirshrestha/asyncomplete.vim'
+
+" lsp
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 call plug#end()
 
@@ -136,10 +136,16 @@ nnoremap <C-s> :w!<CR>
 nnoremap <C-f> :FZF<CR>
 nnoremap <C-o> :FZF<CR>
 
-" ale keymaps
-autocmd FileType javascript nmap <silent> <buffer> <Leader>gd <Plug>(ale_go_to_definition)
-autocmd FileType javascript nmap <silent> <buffer> <Leader>fr <Plug>(ale_find_references)
-autocmd FileType javascript nmap <silent> <buffer> <Leader>r  <Plug>(ale_rename)
+" vim-lsp keymaps
+autocmd FileType * nmap <silent> <buffer> [[ <Plug>(lsp-previous-reference)
+autocmd FileType * nmap <silent> <buffer> ]] <Plug>(lsp-next-reference)
+autocmd FileType * nmap <silent> <buffer> <Leader>gd <Plug>(lsp-definition)
+autocmd FileType * nmap <silent> <buffer> <Leader>fs <Plug>(lsp-document-symbol-search)
+autocmd FileType * nmap <silent> <buffer> <Leader>fS <Plug>(lsp-workspace-symbol-search)
+autocmd FileType * nmap <silent> <buffer> <Leader>fu <Plug>(lsp-references)
+autocmd FileType * nmap <silent> <buffer> <Leader>ca <Plug>(lsp-code-action)
+autocmd FileType * nmap <silent> <buffer> <Leader>r  <Plug>(lsp-rename)
+autocmd FileType * nmap <silent> <buffer> <Leader>d  <Plug>(lsp-hover)
 
 " omnisharp keymaps
 autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
@@ -151,3 +157,4 @@ autocmd FileType cs nmap <silent> <buffer> <Leader>ca <Plug>(omnisharp_code_acti
 autocmd FileType cs nmap <silent> <buffer> <Leader>.  <Plug>(omnisharp_code_action_repeat)
 autocmd FileType cs nmap <silent> <buffer> <Leader>r  <Plug>(omnisharp_rename)
 autocmd FileType cs nmap <silent> <buffer> <Leader>d  <Plug>(omnisharp_documentation)
+
