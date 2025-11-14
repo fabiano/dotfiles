@@ -5,6 +5,7 @@ endif
 set backspace=indent,eol,start
 set colorcolumn=+1
 set encoding=utf8
+set keymodel=startsel
 set laststatus=2
 set mouse=a
 set nobackup
