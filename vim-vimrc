@@ -133,6 +133,9 @@ nnoremap <C-w>v  :<C-u>vsplit<CR>
 " write keymap
 nnoremap <C-s> :w!<CR>
 
+" clear last search highlighting
+nnoremap <CR> :noh<CR><CR>
+
 " fzf keymap
 nnoremap <C-f> :FZF<CR>
 nnoremap <C-o> :FZF<CR>
@@ -158,4 +161,8 @@ autocmd FileType cs nmap <silent> <buffer> <Leader>ca <Plug>(omnisharp_code_acti
 autocmd FileType cs nmap <silent> <buffer> <Leader>.  <Plug>(omnisharp_code_action_repeat)
 autocmd FileType cs nmap <silent> <buffer> <Leader>r  <Plug>(omnisharp_rename)
 autocmd FileType cs nmap <silent> <buffer> <Leader>d  <Plug>(omnisharp_documentation)
+
+" reset kitty padding
+autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
+autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
 
