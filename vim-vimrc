@@ -90,12 +90,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 
-" asyncomplete.vim
-Plug 'prabirshrestha/asyncomplete.vim'
-
 " lsp
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+
+" asyncomplete.vim
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 call plug#end()
@@ -150,17 +150,6 @@ autocmd FileType * nmap <silent> <buffer> <Leader>fu <Plug>(lsp-references)
 autocmd FileType * nmap <silent> <buffer> <Leader>ca <Plug>(lsp-code-action)
 autocmd FileType * nmap <silent> <buffer> <Leader>r  <Plug>(lsp-rename)
 autocmd FileType * nmap <silent> <buffer> <Leader>d  <Plug>(lsp-hover)
-
-" omnisharp keymaps
-autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
-autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
-autocmd FileType cs nmap <silent> <buffer> <Leader>gd <Plug>(omnisharp_go_to_definition)
-autocmd FileType cs nmap <silent> <buffer> <Leader>fu <Plug>(omnisharp_find_usages)
-autocmd FileType cs nmap <silent> <buffer> <Leader>fs <Plug>(omnisharp_find_symbol)
-autocmd FileType cs nmap <silent> <buffer> <Leader>ca <Plug>(omnisharp_code_actions)
-autocmd FileType cs nmap <silent> <buffer> <Leader>.  <Plug>(omnisharp_code_action_repeat)
-autocmd FileType cs nmap <silent> <buffer> <Leader>r  <Plug>(omnisharp_rename)
-autocmd FileType cs nmap <silent> <buffer> <Leader>d  <Plug>(omnisharp_documentation)
 
 " reset kitty padding
 autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
