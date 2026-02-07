@@ -111,8 +111,13 @@ if [ -d "$HOME/.dotnet/tools" ] ; then
 fi
 
 # omnisharp
-if [ -d "$HOME/omnisharp" ] ; then
-  export PATH="$PATH:$HOME/omnisharp"
+if [ -d "$HOME/.omnisharp" ] ; then
+  export PATH="$PATH:$HOME/.omnisharp"
+fi
+
+# netcoredbg
+if [ -d "$HOME/.netcoredbg" ] ; then
+  export PATH="$PATH:$HOME/.netcoredbg"
 fi
 
 # cargo
