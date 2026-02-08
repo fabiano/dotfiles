@@ -109,6 +109,8 @@
   cp $DOTFILES_INSTALL_DIR/font-iosevka-nerd-font-regular.ttf $HOME/.local/share/fonts/iosevka-nerd-font-regular.ttf
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font-regular.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font-regular.ttf
   cp $DOTFILES_INSTALL_DIR/font-symbols-nerd-font-regular.ttf $HOME/.local/share/fonts/symbols-nerd-font-regular.ttf
+	cp $DOTFILES_INSTALL_DIR/font-maple-mono-regular.ttf $HOME/.local/share/fonts/maple-mono-regular.ttf
+  cp $DOTFILES_INSTALL_DIR/font-maple-mono-nerd-font-regular.ttf $HOME/.local/share/fonts/maple-mono-nerd-font-regular.ttf
 
   # use roboto and iosevka as gnome default fonts
   gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
