@@ -5,6 +5,7 @@ bufferline  = "never"
 cursorline  = true
 line-number = "absolute"
 true-color  = true
+color-modes = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -15,9 +16,9 @@ select = "underline"
 display-messages = true
 
 [editor.statusline]
-left   = ["spinner", "mode", "spacer", "spacer", "version-control", "spacer", "spacer", "file-name", "spacer", "spacer", "file-encoding", "file-line-ending"]
-center = ["diagnostics", "workspace-diagnostics"]
-right  = ["selections", "register", "position"]
+left   = ["mode", "file-name", "spinner"]
+center = ["version-control"]
+right  = ["diagnostics", "workspace-diagnostics", "position"]
 mode.insert = "INSERT"
 mode.normal = "NORMAL"
 mode.select = "SELECT"
@@ -29,5 +30,10 @@ tab   = "none"
 [keys.normal]
 tab     = ":bn"
 "S-tab" = ":bp"
-"C-o"   = "file_picker"
-"C-w"   = ":bc"
+"esc"   = ["collapse_selection", ":w"]
+
+[keys.select]
+"esc" = ["collapse_selection", "normal_mode", ":w"]
+
+[keys.insert]
+"esc" = ["normal_mode", ":w"]
