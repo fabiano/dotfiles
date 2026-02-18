@@ -1,8 +1,5 @@
-if has('win32')
-  set runtimepath+=~/.vim
-endif
-
 set backspace=indent,eol,start
+set cursorline
 set colorcolumn=+1
 set encoding=utf8
 set keymodel=startsel
@@ -17,11 +14,15 @@ set nowritebackup
 set number
 set numberwidth=3
 set previewheight=5
-set showtabline=2
+set showtabline=0
 set textwidth=1024
 
+" cursor shape
+let &t_SI="\<Esc>[4 q"
+let &t_EI="\<Esc>[2 q"
+
 " leader key
-let mapleader = "\<Space>"
+let mapleader="\<Space>"
 
 " tabs
 set autoindent
@@ -39,23 +40,12 @@ set nolist
 set completeopt=menuone,popuphidden,noinsert,noselect
 set completepopup=highlight:Pmenu,border:on,width:30,height:15
 
+" enable reading .vimrc from the current directory
+set exrc
+
 " syntax highlighting
 syntax on
 filetype plugin indent on
-
-" gvim
-if has('gui_running')
-  set guifont=Iosevka:h11
-  set guioptions-=e
-  set lines=25
-  set columns=100
-  set renderoptions=type:directx
-endif
-
-" ale
-let g:ale_linters={'cs': ['OmniSharp'], 'javascript': ['tsserver']}
-let g:ale_linters_explicit=1
-let g:ale_virtualtext_cursor='current'
 
 " omnisharp
 let g:OmniSharp_server_use_net6=1
@@ -64,29 +54,44 @@ let g:OmniSharp_server_stdio=1
 " asynccomplete
 let g:asyncomplete_auto_popup=1
 
+" vim-lsp-settings
+let g:lsp_document_code_action_signs_enabled=0
+
+" fzf
+let g:fzf_vim={}
+let g:fzf_vim.command_prefix='Fzf'
+
+" lightline
+let g:lightline={
+      \ 'colorscheme': 'snazzy',
+      \ 'active': {
+      \   'left': [ [ 'mode' ], [ 'filename' ] ],
+      \   'right': [ [ 'lineinfo' ] ]
+      \ },
+      \ 'component': {
+      \   'charvaluehex': '0x%B'
+      \ },
+      \ }
+
 " vim-plug
 call plug#begin('~/.vim/plug-plugins')
 
-" Show trailing whitespace
+" show trailing whitespace
 Plug 'bronson/vim-trailing-whitespace'
 
-" Theme
+" theme
 Plug 'connorholyday/vim-snazzy'
 
-" EditorConfig support
+" editorconfig support
 Plug 'editorconfig/editorconfig-vim'
 
-" Custom statusline
+" custom statusline
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
 
-" Start screen
-Plug 'mhinz/vim-startify'
-
-" Language packs
+" language packs
 Plug 'sheerun/vim-polyglot'
 
-" Vim FZF integration
+" fzf integration
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 
@@ -98,12 +103,15 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+" code formatting
+Plug 'vim-autoformat/vim-autoformat'
+
 call plug#end()
 
 autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+      \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+      \|   PlugInstall --sync | q
+      \| endif
 
 " theme
 try
@@ -111,45 +119,43 @@ try
 catch
 endtry
 
-" lightline
-let g:lightline={}
-let g:lightline.colorscheme='snazzy'
-let g:lightline.enable={'statusline': 1, 'tabline': 1}
-let g:lightline.tabline={'left': [['buffers']], 'right': [[]]}
-let g:lightline.component_expand={'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type={'buffers': 'tabsel'}
-
 " buffer keymaps
-nnoremap <Tab>   :bn<CR>
-nnoremap <S-Tab> :bp<CR>
-nnoremap <C-c>   :bd<CR>
+nnoremap <silent> <Tab>      :bn<CR>
+nnoremap <silent> <S-Tab>    :bp<CR>
+nnoremap <silent> <Leader>bd :bd<CR>
 
 " window keymaps
-nnoremap <Space> <C-w><C-w>
-nnoremap <C-w>c  <C-w>c
-nnoremap <C-w>h  :<C-u>split<CR>
-nnoremap <C-w>v  :<C-u>vsplit<CR>
+nnoremap <silent> <Space> <C-w><C-w>
+nnoremap <silent> <C-w>c  <C-w>c
+nnoremap <silent> <C-w>h  :<C-u>split<CR>
+nnoremap <silent> <C-w>v  :<C-u>vsplit<CR>
 
-" write keymap
-nnoremap <C-s> :w!<CR>
-
-" clear last search highlighting
-nnoremap <CR> :noh<CR><CR>
+" use enter to clear last search highlighting
+nnoremap <silent> <CR> :noh<CR><CR>
 
 " fzf keymap
-nnoremap <C-f> :FZF<CR>
-nnoremap <C-o> :FZF<CR>
+nnoremap <silent> <Leader>f :FzfFiles<CR>
+nnoremap <silent> <Leader>F :call fzf#vim#files(expand('%:p:h'))<CR>
+nnoremap <silent> <Leader><tab> <plug>(fzf-maps-n)
+xnoremap <silent> <Leader><tab> <plug>(fzf-maps-x)
+onoremap <silent> <Leader><tab> <plug>(fzf-maps-o)
 
 " vim-lsp keymaps
-autocmd FileType * nmap <silent> <buffer> [[ <Plug>(lsp-previous-reference)
-autocmd FileType * nmap <silent> <buffer> ]] <Plug>(lsp-next-reference)
-autocmd FileType * nmap <silent> <buffer> <Leader>gd <Plug>(lsp-definition)
-autocmd FileType * nmap <silent> <buffer> <Leader>fs <Plug>(lsp-document-symbol-search)
-autocmd FileType * nmap <silent> <buffer> <Leader>fS <Plug>(lsp-workspace-symbol-search)
-autocmd FileType * nmap <silent> <buffer> <Leader>fu <Plug>(lsp-references)
-autocmd FileType * nmap <silent> <buffer> <Leader>ca <Plug>(lsp-code-action)
-autocmd FileType * nmap <silent> <buffer> <Leader>r  <Plug>(lsp-rename)
-autocmd FileType * nmap <silent> <buffer> <Leader>d  <Plug>(lsp-hover)
+nnoremap <silent> [[ <plug>(lsp-previous-reference)
+nnoremap <silent> ]] <plug>(lsp-next-reference)
+nnoremap <silent> <Leader>gd <plug>(lsp-definition)
+nnoremap <silent> <Leader>fs <plug>(lsp-document-symbol-search)
+nnoremap <silent> <Leader>fS <plug>(lsp-workspace-symbol-search)
+nnoremap <silent> <Leader>fu <plug>(lsp-references)
+nnoremap <silent> <Leader>ca <plug>(lsp-code-action)
+nnoremap <silent> <Leader>r  <plug>(lsp-rename)
+nnoremap <silent> <Leader>d  <plug>(lsp-hover)
+
+" format and save after leaving insert mode
+autocmd InsertLeave * Autoformat | :write
+
+" format code before saving
+autocmd BufWritePre * Autoformat
 
 " reset kitty padding
 autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
