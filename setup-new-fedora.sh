@@ -73,6 +73,7 @@
   # create dotfiles
   rm -rf $HOME/.bash_profile
   rm -rf $HOME/.bashrc
+  rm -rf $HOME/.config/bat
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
   rm -rf $HOME/.config/kitty
@@ -81,12 +82,14 @@
   rm -rf $HOME/.vimrc
   rm -rf $HOME/.zshrc
 
+  mkdir -p $HOME/.config/bat
   mkdir -p $HOME/.config/Code/User
   mkdir -p $HOME/.config/helix
   mkdir -p $HOME/.config/kitty
-  
+
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
+  ln -s $DOTFILES_INSTALL_DIR/bat-config $HOME/.config/bat/config
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
