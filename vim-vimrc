@@ -43,6 +43,9 @@ set completepopup=highlight:Pmenu,border:on,width:30,height:15
 " enable reading .vimrc from the current directory
 set exrc
 
+" disable bell sounds
+set belloff=all
+
 " syntax highlighting
 syntax on
 filetype plugin indent on
@@ -63,15 +66,15 @@ let g:fzf_vim.command_prefix='Fzf'
 
 " lightline
 let g:lightline={
-      \ 'colorscheme': 'snazzy',
-      \ 'active': {
-      \   'left': [ [ 'mode' ], [ 'filename' ] ],
-      \   'right': [ [ 'lineinfo' ] ]
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%B'
-      \ },
-      \ }
+                  \ 'colorscheme': 'snazzy',
+                  \ 'active': {
+                  \   'left': [ [ 'mode' ], [ 'filename' ] ],
+                  \   'right': [ [ 'lineinfo' ] ]
+                  \ },
+                  \ 'component': {
+                  \   'charvaluehex': '0x%B'
+                  \ },
+                  \ }
 
 " vim-plug
 call plug#begin('~/.vim/plug-plugins')
@@ -109,13 +112,13 @@ Plug 'vim-autoformat/vim-autoformat'
 call plug#end()
 
 autocmd VimEnter *
-      \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-      \|   PlugInstall --sync | q
-      \| endif
+                  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+                  \|   PlugInstall --sync | q
+                  \| endif
 
 " theme
 try
-  colorscheme snazzy
+      colorscheme snazzy
 catch
 endtry
 
@@ -125,7 +128,6 @@ nnoremap <silent> <S-Tab>    :bp<CR>
 nnoremap <silent> <Leader>bd :bd<CR>
 
 " window keymaps
-nnoremap <silent> <Space> <C-w><C-w>
 nnoremap <silent> <C-w>c  <C-w>c
 nnoremap <silent> <C-w>h  :<C-u>split<CR>
 nnoremap <silent> <C-w>v  :<C-u>vsplit<CR>
@@ -134,28 +136,30 @@ nnoremap <silent> <C-w>v  :<C-u>vsplit<CR>
 nnoremap <silent> <CR> :noh<CR><CR>
 
 " fzf keymap
-nnoremap <silent> <Leader>f :FzfFiles<CR>
-nnoremap <silent> <Leader>F :call fzf#vim#files(expand('%:p:h'))<CR>
-nnoremap <silent> <Leader><tab> <plug>(fzf-maps-n)
-xnoremap <silent> <Leader><tab> <plug>(fzf-maps-x)
-onoremap <silent> <Leader><tab> <plug>(fzf-maps-o)
+nnoremap <silent> <Leader>f  :call fzf#vim#files('')<CR>
+nnoremap <silent> <Leader>F  :call fzf#vim#files(expand('%:p:h'))<CR>
+nnoremap <silent> <Leader>gf :call fzf#vim#gitfiles('')<CR>
+nnoremap <silent> <Leader>gs :call fzf#vim#gitfiles('?')<CR>
+nnoremap <silent> <Leader><tab> <Plug>(fzf-maps-n)
+xnoremap <silent> <Leader><tab> <Plug>(fzf-maps-x)
+onoremap <silent> <Leader><tab> <Plug>(fzf-maps-o)
 
 " vim-lsp keymaps
-nnoremap <silent> [[ <plug>(lsp-previous-reference)
-nnoremap <silent> ]] <plug>(lsp-next-reference)
-nnoremap <silent> <Leader>gd <plug>(lsp-definition)
-nnoremap <silent> <Leader>fs <plug>(lsp-document-symbol-search)
-nnoremap <silent> <Leader>fS <plug>(lsp-workspace-symbol-search)
-nnoremap <silent> <Leader>fu <plug>(lsp-references)
-nnoremap <silent> <Leader>ca <plug>(lsp-code-action)
-nnoremap <silent> <Leader>r  <plug>(lsp-rename)
-nnoremap <silent> <Leader>d  <plug>(lsp-hover)
+nnoremap <silent> [[ <Plug>(lsp-previous-reference)
+nnoremap <silent> ]] <Plug>(lsp-next-reference)
+nnoremap <silent> <Leader>gd <Plug>(lsp-definition)
+nnoremap <silent> <Leader>fs <Plug>(lsp-document-symbol-search)
+nnoremap <silent> <Leader>fS <Plug>(lsp-workspace-symbol-search)
+nnoremap <silent> <Leader>fu <Plug>(lsp-references)
+nnoremap <silent> <Leader>ca <Plug>(lsp-code-action)
+nnoremap <silent> <Leader>r  <Plug>(lsp-rename)
+nnoremap <silent> <Leader>d  <Plug>(lsp-hover)
 
-" format and save after leaving insert mode
-autocmd InsertLeave * Autoformat | :write
-
-" format code before saving
-autocmd BufWritePre * Autoformat
+" save after leaving insert mode
+autocmd InsertLeave *
+                  \ if &buftype ==# '' || &buftype == 'acwrite'
+                  \|     silent write
+                  \| endif
 
 " reset kitty padding
 autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
