@@ -1,10 +1,14 @@
 [user]
 	name = Fabiano França
 	useConfigOnly = true
+
 [core]
 	editor = vim
+	pager = delta
+
 [init]
 	defaultBranch = main
+
 [alias]
 	aco  = !git add --all && git commit --message
 	boom = !git reset --hard HEAD && git clean -fd
@@ -26,8 +30,21 @@
 	upm  = !git checkout main && git pull --rebase && git checkout - && git merge main
 	sup  = !git stash push --include-untracked && git checkout main && git pull --rebase && git checkout - && git rebase main && git stash pop
 	supm = !git stash push --include-untracked && git checkout main && git pull --rebase && git checkout - && git merge main && git stash pop
+
 [filter "lfs"]
 	clean    = git-lfs clean -- %f
 	smudge   = git-lfs smudge -- %f
 	process  = git-lfs filter-process
 	required = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = Sublime Snazzy
+
+[merge]
+	conflictStyle = zdiff3
