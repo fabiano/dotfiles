@@ -136,10 +136,11 @@ nnoremap <silent> <C-w>v  :<C-u>vsplit<CR>
 nnoremap <silent> <CR> :noh<CR><CR>
 
 " fzf keymap
-nnoremap <silent> <Leader>f  :call fzf#vim#files('', fzf#vim#with_preview({ 'options': [ '--layout', 'reverse', '--border', '--style', 'full', '--border-label', ' Files ', '--preview-window', 'right,75%' ] }), 1)<CR>
-nnoremap <silent> <Leader>F  :call fzf#vim#files(expand('%:p:h'), fzf#vim#with_preview({ 'options': [ '--layout', 'reverse', '--border', '--style', 'full', '--border-label', ' Files ', '--preview-window', 'right,75%' ] }), 1)<CR>
-nnoremap <silent> <Leader>gf :call fzf#vim#gitfiles('', fzf#vim#with_preview({ 'options': [ '--layout', 'reverse', '--border', '--style', 'full', '--border-label', ' Tracked files ', '--preview-window', 'right,75%' ] }), 1)<CR>
-nnoremap <silent> <Leader>gs :call fzf#vim#gitfiles('?', { 'options': [ '--layout', 'reverse', '--border', '--style', 'full', '--border-label', ' Changes ', '--preview-window', 'right,75%' ] }, 1)<CR>
+nnoremap <silent> <Leader>f  :call fzf#vim#files('', fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
+nnoremap <silent> <Leader>F  :call fzf#vim#files(expand('%:p:h'), fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
+nnoremap <silent> <Leader>gf :call fzf#vim#gitfiles('', fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' Tracked files ' ] }), 1)<CR>
+nnoremap <silent> <Leader>gs :call fzf#vim#gitfiles('?', { 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'bottom,75%', '--border-label', ' Changes ' ] }, 1)<CR>
+nnoremap <silent> <Leader>b  :call fzf#vim#buffers('', fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' Buffers ' ] }), 0)<CR>
 
 nnoremap <silent> <Leader><tab> <Plug>(fzf-maps-n)
 xnoremap <silent> <Leader><tab> <Plug>(fzf-maps-x)
