@@ -23,6 +23,9 @@ set numberwidth=5
 " hide filename on tab bar
 set showtabline=0
 
+" always show the status bar
+set laststatus=2
+
 " show diagnostics and code actions icons over the line number
 set signcolumn=number
 
@@ -81,22 +84,31 @@ let g:lsp_diagnostics_virtual_text_enabled=1
 let g:lsp_diagnostics_virtual_text_wrap='truncate'
 let g:lsp_document_code_action_signs_enabled=0
 let g:lsp_document_code_action_signs_hint={ 'text': '' }
+let g:lsp_semantic_enabled=1
 
 " fzf
 let g:fzf_vim={}
 let g:fzf_vim.command_prefix='Fzf'
 
 " lightline
-let g:lightline={
-                  \ 'colorscheme': 'snazzy',
-                  \ 'active': {
-                  \   'left': [ [ 'mode' ], [ 'filename' ] ],
-                  \   'right': [ [ 'lineinfo' ] ]
-                  \ },
-                  \ 'component': {
-                  \   'charvaluehex': '0x%B'
-                  \ },
-                  \ }
+let g:lightline={}
+let g:lightline.colorscheme='snazzy'
+let g:lightline.active={}
+let g:lightline.active.left=[ [ 'mode' ], [ 'filename' ] ]
+let g:lightline.active.right=[ [ 'lineinfo' ] ]
+let g:lightline.separator={ 'left': '', 'right': '' }
+let g:lightline.subseparator={ 'left': '', 'right': '' }
+let g:lightline.tabline_separator={ 'left': '', 'right': '' }
+let g:lightline.tabline_subseparator={ 'left': '', 'right': '' }
+let g:lightline.component_function={}
+let g:lightline.component_function.filename='LightlineFilename'
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' 󰜥 ' : ''
+
+  return filename . modified
+endfunction
 
 " vim-plug
 call plug#begin('~/.vim/plug-plugins')
