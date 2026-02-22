@@ -10,7 +10,6 @@
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
   sudo dnf -y install git
-  sudo dnf -y install git-delta
   sudo dnf -y install google-roboto-fonts
   sudo dnf -y install helix
   sudo dnf -y install iosevka-fonts
