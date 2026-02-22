@@ -4,7 +4,6 @@
 
 [core]
 	editor = vim
-	pager = delta
 
 [init]
 	defaultBranch = main
@@ -31,20 +30,3 @@
 	sup  = !git stash push --include-untracked && git checkout main && git pull --rebase && git checkout - && git rebase main && git stash pop
 	supm = !git stash push --include-untracked && git checkout main && git pull --rebase && git checkout - && git merge main && git stash pop
 
-[filter "lfs"]
-	clean    = git-lfs clean -- %f
-	smudge   = git-lfs smudge -- %f
-	process  = git-lfs filter-process
-	required = true
-
-[interactive]
-	diffFilter = delta --color-only
-
-[delta]
-	navigate = true
-	side-by-side = false
-	line-numbers = true
-	syntax-theme = Sublime Snazzy
-
-[merge]
-	conflictStyle = zdiff3
