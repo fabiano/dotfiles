@@ -1,21 +1,33 @@
 set backspace=indent,eol,start
-set cursorline
-set colorcolumn=+1
 set encoding=utf8
-set keymodel=startsel
-set laststatus=2
-set mouse=a
 set nobackup
 set nocompatible
 set noshowmode
 set noswapfile
 set nowrap
 set nowritebackup
+
+" enable mouse in all modes
+set mouse=a
+
+" use shift + arrows to start visual mode
+set keymodel=startsel
+
+" highlight current line
+set cursorline
+
+" show line numbers
 set number
-set numberwidth=3
-set previewheight=5
+set numberwidth=5
+
+" hide filename on tab bar
 set showtabline=0
-set textwidth=1024
+
+" show diagnostics and code actions icons over the line number
+set signcolumn=number
+
+" allow to keep the buffer unsaved in the background
+set hidden
 
 " cursor shape
 let &t_SI="\<Esc>[4 q"
@@ -33,12 +45,13 @@ set tabstop=2
 
 " whitespace characters
 set listchars=space:·,tab:»\ ,trail:·
-set list
 set nolist
 
-" complete popup
-set completeopt=menuone,popuphidden,noinsert,noselect
-set completepopup=highlight:Pmenu,border:on,width:30,height:15
+" auto-complete popup
+set completeopt=menu,preview,noinsert,noselect
+set pumheight=8
+set pumwidth=8
+set pummaxwidth=64
 
 " enable reading .vimrc from the current directory
 set exrc
@@ -56,9 +69,18 @@ let g:OmniSharp_server_stdio=1
 
 " asynccomplete
 let g:asyncomplete_auto_popup=1
+let g:asyncomplete_auto_completeopt=0
 
 " vim-lsp-settings
+let g:lsp_diagnostics_signs_delay=1000
+let g:lsp_diagnostics_signs_error={ 'text': '' }
+let g:lsp_diagnostics_signs_hint={ 'text': '' }
+let g:lsp_diagnostics_signs_warning={ 'text': '' }
+let g:lsp_diagnostics_virtual_text_align='right'
+let g:lsp_diagnostics_virtual_text_enabled=1
+let g:lsp_diagnostics_virtual_text_wrap='truncate'
 let g:lsp_document_code_action_signs_enabled=0
+let g:lsp_document_code_action_signs_hint={ 'text': '' }
 
 " fzf
 let g:fzf_vim={}
@@ -157,11 +179,8 @@ nnoremap <silent> <Leader>ca <Plug>(lsp-code-action)
 nnoremap <silent> <Leader>r  <Plug>(lsp-rename)
 nnoremap <silent> <Leader>d  <Plug>(lsp-hover)
 
-" save after leaving insert mode
-autocmd InsertLeave *
-                  \ if &buftype ==# '' || &buftype == 'acwrite'
-                  \|     silent write
-                  \| endif
+" remove trailing whitespace before saving
+autocmd! BufWritePre * silent FixWhitespace
 
 " reset kitty padding
 autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
