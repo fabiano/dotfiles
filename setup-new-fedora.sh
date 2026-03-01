@@ -11,10 +11,10 @@
   sudo dnf -y install bat
   sudo dnf -y install git
   sudo dnf -y install google-roboto-fonts
-  sudo dnf -y install helix
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
   sudo dnf -y install kitty
+  sudo dnf -y install neovim
   sudo dnf -y install starship
   sudo dnf -y install util-linux-user
   sudo dnf -y install vim-enhanced
