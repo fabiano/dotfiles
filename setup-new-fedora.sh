@@ -76,6 +76,7 @@
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
   rm -rf $HOME/.config/kitty
+  rm -rf $HOME/.config/nvim
   rm -rf $HOME/.config/starship.toml
   rm -rf $HOME/.gitconfig
   rm -rf $HOME/.vimrc
@@ -85,6 +86,7 @@
   mkdir -p $HOME/.config/Code/User
   mkdir -p $HOME/.config/helix
   mkdir -p $HOME/.config/kitty
+  mkdir -p $HOME/.config/nvim
 
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
@@ -92,6 +94,7 @@
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
+  ln -s $DOTFILES_INSTALL_DIR/nvim-init.lua $HOME/.config/nvim/init.lua
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
@@ -126,7 +129,7 @@
   gsettings set org.gnome.desktop.interface font-hinting 'full'
 
   # change gnome interface settings
-  gsettings set org.gnome.desktop.app-folders folder-children "['YaST', 'Pardus']" 
+  gsettings set org.gnome.desktop.app-folders folder-children "['YaST', 'Pardus']"
   gsettings set org.gnome.desktop.interface clock-format '24h'
   gsettings set org.gnome.desktop.interface clock-show-date true
   gsettings set org.gnome.desktop.interface clock-show-seconds false
