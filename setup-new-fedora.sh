@@ -120,7 +120,7 @@
 
   # use roboto and iosevka as gnome default fonts
   gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 10'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Maple Mono 10'
   gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
   gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
 
