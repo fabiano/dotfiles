@@ -1,3 +1,37 @@
+-- install mini.deps
+local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
+
+if not vim.loop.fs_stat(mini_path) then
+  vim.cmd('echo "Installing `mini.nvim`" | redraw')
+
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    '--branch',
+    'stable',
+    'https://github.com/nvim-mini/mini.nvim',
+    mini_path,
+  })
+
+  vim.cmd('packadd mini.nvim | helptags ALL')
+  vim.cmd('echo "Installed `mini.nvim`" | redraw')
+end
+
+-- add plugins
+local MiniDeps  = require('mini.deps')
+
+MiniDeps.setup()
+MiniDeps.add('junegunn/fzf')
+MiniDeps.add('junegunn/fzf.vim')
+MiniDeps.add('neovim/nvim-lspconfig')
+MiniDeps.add('stevearc/conform.nvim')
+MiniDeps.add('nvim-mini/mini.pairs')
+
+local MiniPairs = require('mini.pairs')
+
+MiniPairs.setup()
+
 -- enable backspace
 vim.o.backspace = 'indent,eol,start'
 
@@ -72,9 +106,9 @@ end
 vim.o.statusline = statusline()
 
 vim.api.nvim_create_autocmd("ModeChanged", {
-callback = function()
-  vim.opt.statusline = statusline()
-end,
+  callback = function()
+    vim.opt.statusline = statusline()
+  end,
 })
 
 -- hide line and column number in the command line
@@ -231,27 +265,4 @@ vim.cmd [[
   autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
   autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
 ]]
-
--- install vim-plug and add plugins
-local data_dir = vim.fn.stdpath('data')
-
-if vim.fn.empty(vim.fn.glob(data_dir .. '/site/autoload/plug.vim')) == 1 then
-  vim.cmd('silent !curl -fLo ' .. data_dir .. '/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-
-  vim.o.runtimepath = vim.o.runtimepath
-
-  vim.cmd('autocmd VimEnter * PlugInstall --sync | source $MYVIMRC')
-end
-
-local vim = vim
-local Plug = vim.fn['plug#']
-
-vim.call('plug#begin')
-
-Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install()'] })
-Plug('junegunn/fzf.vim')
-Plug('neovim/nvim-lspconfig')
-Plug('stevearc/conform.nvim')
-
-vim.call('plug#end')
 
