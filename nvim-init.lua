@@ -204,6 +204,9 @@ end, { noremap = true, silent = true })
 
 -- lsp keymaps
 vim.keymap.set('i', '<C-Space>',  function() vim.lsp.completion.get()       end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gd',         function() vim.lsp.buf.type_definition()  end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gi',         function() vim.lsp.buf.implementation()   end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gr',         function() vim.lsp.buf.references()       end, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>gd', function() vim.lsp.buf.type_definition()  end, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>gi', function() vim.lsp.buf.implementation()   end, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>gr', function() vim.lsp.buf.references()       end, { noremap = true, silent = true })
@@ -212,6 +215,16 @@ vim.keymap.set('n', '<Leader>r',  function() vim.lsp.buf.rename()           end,
 vim.keymap.set('n', '<Leader>t',  function() vim.lsp.buf.document_symbol()  end, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>T',  function() vim.lsp.buf.workspace_symbol() end, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>d',  function() vim.lsp.buf.hover()            end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>f',  function() require("conform").format()    end, { noremap = true, silent = true })
+
+-- use esc to close the quickfix window
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+
+  callback = function(args)
+    vim.keymap.set('n', '<Esc>', '<C-w>c', { noremap = true, silent = true })
+  end,
+})
 
 -- reset kitty padding
 vim.cmd [[
