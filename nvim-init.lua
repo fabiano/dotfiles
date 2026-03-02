@@ -1,37 +1,3 @@
--- install mini.deps
-local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
-
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-
-  vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    '--branch',
-    'stable',
-    'https://github.com/nvim-mini/mini.nvim',
-    mini_path,
-  })
-
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
-
--- add plugins
-local MiniDeps  = require('mini.deps')
-
-MiniDeps.setup()
-MiniDeps.add('junegunn/fzf')
-MiniDeps.add('junegunn/fzf.vim')
-MiniDeps.add('neovim/nvim-lspconfig')
-MiniDeps.add('stevearc/conform.nvim')
-MiniDeps.add('nvim-mini/mini.pairs')
-
-local MiniPairs = require('mini.pairs')
-
-MiniPairs.setup()
-
 -- enable backspace
 vim.o.backspace = 'indent,eol,start'
 
@@ -265,4 +231,43 @@ vim.cmd [[
   autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
   autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
 ]]
+
+-- fzf configuration
+vim.g.fzf_vim = {
+  command_prefix = 'Fzf',
+}
+
+-- install mini.deps
+local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
+
+if not vim.loop.fs_stat(mini_path) then
+  vim.cmd('echo "Installing `mini.nvim`" | redraw')
+
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    '--branch',
+    'stable',
+    'https://github.com/nvim-mini/mini.nvim',
+    mini_path,
+  })
+
+  vim.cmd('packadd mini.nvim | helptags ALL')
+  vim.cmd('echo "Installed `mini.nvim`" | redraw')
+end
+
+-- add plugins
+local MiniDeps  = require('mini.deps')
+
+MiniDeps.setup()
+MiniDeps.add('junegunn/fzf')
+MiniDeps.add('junegunn/fzf.vim')
+MiniDeps.add('neovim/nvim-lspconfig')
+MiniDeps.add('stevearc/conform.nvim')
+MiniDeps.add('nvim-mini/mini.pairs')
+
+local MiniPairs = require('mini.pairs')
+
+MiniPairs.setup()
 
