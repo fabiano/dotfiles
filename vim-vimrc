@@ -1,11 +1,24 @@
+" enable backspace
 set backspace=indent,eol,start
+
+" set default encoding
 set encoding=utf8
+
+" disable create backup file on save
 set nobackup
-set nocompatible
-set noshowmode
-set noswapfile
-set nowrap
 set nowritebackup
+
+" disable vi compatibility
+set nocompatible
+
+" hide current mode in the command line
+set noshowmode
+
+" disable swap file creation
+set noswapfile
+
+" disable line wrap
+set nowrap
 
 " enable mouse in all modes
 set mouse=a
@@ -99,8 +112,8 @@ set tabstop=2
 set listchars=space:·,tab:»\ ,trail:·
 set nolist
 
-" auto-complete popup
-set completeopt=menu,preview,noinsert,noselect
+" customize auto-complete popup
+set completeopt=menuone,noinsert,noselect,popup
 set pumheight=8
 set pumwidth=8
 set pummaxwidth=64
@@ -129,22 +142,6 @@ set titlestring=vim:\ %t
 " theme
 colorscheme habamax
 
-" vim-lsp-settings
-let g:lsp_diagnostics_signs_delay=1000
-let g:lsp_diagnostics_signs_error={ 'text': '' }
-let g:lsp_diagnostics_signs_hint={ 'text': '' }
-let g:lsp_diagnostics_signs_warning={ 'text': '' }
-let g:lsp_diagnostics_virtual_text_align='right'
-let g:lsp_diagnostics_virtual_text_enabled=1
-let g:lsp_diagnostics_virtual_text_wrap='truncate'
-let g:lsp_document_code_action_signs_enabled=0
-let g:lsp_document_code_action_signs_hint={ 'text': '' }
-let g:lsp_semantic_enabled=1
-
-" fzf
-let g:fzf_vim={}
-let g:fzf_vim.command_prefix='Fzf'
-
 " buffer keymaps
 nnoremap <silent> <Tab>      :bn<CR>
 nnoremap <silent> <S-Tab>    :bp<CR>
@@ -165,22 +162,15 @@ nnoremap <silent> <Leader>p  :call fzf#vim#files('', fzf#vim#with_preview({ 'opt
 nnoremap <silent> <Leader>P  :call fzf#vim#files(expand('%:p:h'), fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
 nnoremap <silent> <Leader>gs :call fzf#vim#gitfiles('?', { 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'bottom,75%', '--border-label', ' Changes ' ] }, 1)<CR>
 
-" vim-lsp keymaps
-nnoremap <silent> [[ <Plug>(lsp-previous-reference)
-nnoremap <silent> ]] <Plug>(lsp-next-reference)
-nnoremap <silent> gd <Plug>(lsp-definition)
-nnoremap <silent> <Leader>t  <Plug>(lsp-document-symbol-search)
-nnoremap <silent> <Leader>T  <Plug>(lsp-workspace-symbol-search)
-nnoremap <silent> <Leader>gr <Plug>(lsp-references)
-nnoremap <silent> <Leader>.  <Plug>(lsp-code-action)
-nnoremap <silent> <Leader>r  <Plug>(lsp-rename)
-nnoremap <silent> <Leader>d  <Plug>(lsp-hover)
-
 " reset kitty padding
 autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
 autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
 
-" vim-plug
+" fzf configuration
+let g:fzf_vim={}
+let g:fzf_vim.command_prefix='Fzf'
+
+" add plugins
 call plug#begin('~/.vim/plug-plugins')
 
 " editorconfig support
@@ -193,15 +183,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 
-" lsp
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-
-" code formatting
-Plug 'vim-autoformat/vim-autoformat'
-
 call plug#end()
 
+" install missing plugins when opening vim
 autocmd VimEnter *
             \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \|   PlugInstall --sync | source $MYVIMRC | q
