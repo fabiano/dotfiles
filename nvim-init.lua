@@ -32,41 +32,41 @@ vim.o.laststatus = 2
 
 -- configure status line
 local modes = {
-['n']   = 'NORMAL',
-['no']  = 'NORMAL,OP',
-['v']   = 'VISUAL',
-['V']   = 'V-LINE',
-['\22'] = 'V-BLOCK',
-['s']   = 'SELECT',
-['S']   = 'S-LINE',
-['^S']  = 'S-BLOCK',
-['i']   = 'INSERT',
-['R']   = 'REPLACE',
-['Rv']  = 'V-REPLACE',
-['c']   = 'COMMAND',
-['cv']  = 'VIM EX',
-['ce']  = 'EX',
-['r']   = 'PROMPT',
-['rm']  = 'MORE',
-['r?']  = 'CONFIRM',
-['!']   = 'SHELL',
-['t']   = 'TERMINAL',
+  ['n']   = 'NORMAL',
+  ['no']  = 'NORMAL,OP',
+  ['v']   = 'VISUAL',
+  ['V']   = 'V-LINE',
+  ['\22'] = 'V-BLOCK',
+  ['s']   = 'SELECT',
+  ['S']   = 'S-LINE',
+  ['^S']  = 'S-BLOCK',
+  ['i']   = 'INSERT',
+  ['R']   = 'REPLACE',
+  ['Rv']  = 'V-REPLACE',
+  ['c']   = 'COMMAND',
+  ['cv']  = 'VIM EX',
+  ['ce']  = 'EX',
+  ['r']   = 'PROMPT',
+  ['rm']  = 'MORE',
+  ['r?']  = 'CONFIRM',
+  ['!']   = 'SHELL',
+  ['t']   = 'TERMINAL',
 }
 
 local function statusline()
-return ''
-  .. ' '                  -- space
-  .. ' '                  -- space
-  .. modes[vim.fn.mode()] -- mode
-  .. ' '                  -- space
-  .. ' '                  -- space
-  .. '%F'                 -- file name
-  .. '%='                 -- align right
-  .. '%l'                 -- current line number
-  .. ':'                  -- separator
-  .. '%L'                 -- total line number
-  .. ' '                  -- space
-  .. ' '                  -- space
+  return ''
+    .. ' '                  -- space
+    .. ' '                  -- space
+    .. modes[vim.fn.mode()] -- mode
+    .. ' '                  -- space
+    .. ' '                  -- space
+    .. '%F'                 -- file name
+    .. '%='                 -- align right
+    .. '%l'                 -- current line number
+    .. ':'                  -- separator
+    .. '%L'                 -- total line number
+    .. ' '                  -- space
+    .. ' '                  -- space
 end
 
 vim.o.statusline = statusline()
@@ -232,7 +232,7 @@ vim.cmd [[
   autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
 ]]
 
--- fzf configuration
+-- configure fzf
 vim.g.fzf_vim = {
   command_prefix = 'Fzf',
 }
@@ -247,8 +247,6 @@ if not vim.loop.fs_stat(mini_path) then
     'git',
     'clone',
     '--filter=blob:none',
-    '--branch',
-    'stable',
     'https://github.com/nvim-mini/mini.nvim',
     mini_path,
   })
@@ -267,6 +265,7 @@ MiniDeps.add('neovim/nvim-lspconfig')
 MiniDeps.add('stevearc/conform.nvim')
 MiniDeps.add('nvim-mini/mini.pairs')
 
+-- configure mini.pairs
 local MiniPairs = require('mini.pairs')
 
 MiniPairs.setup()
