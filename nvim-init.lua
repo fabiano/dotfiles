@@ -139,62 +139,55 @@ vim.o.title = true
 vim.o.titlestring = 'nv: %t'
 
 -- set the border style for all floating windows
-vim.o.winborder = 'none'
+vim.o.winborder = 'solid'
 
 -- theme
 vim.cmd.colorscheme('habamax')
 
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "Pmenu" })
+
 -- buffer keymaps
 vim.keymap.set('n', '<Tab>',      ':bn<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<S-Tab>',    ':bp<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>bd', ':bd<CR>', { noremap = true, silent = true })
-
--- window keymaps
-vim.keymap.set('n', '<Leader><Leader>', '<C-w>w',           { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>ww',       '<C-w>w',           { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>wc',       '<C-w>c',           { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>wh',       ':<C-u>split<CR>',  { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>wv',       ':<C-u>vsplit<CR>', { noremap = true, silent = true })
 
 -- use enter to clear last search highlighting
 vim.keymap.set('n', '<CR>', ':noh<CR><CR>', { noremap = true, silent = true })
 
 -- fzf keymaps
-vim.keymap.set('n', '<Leader>p', function()
+vim.keymap.set('n', '<C-p>', function()
   local options = vim.call('fzf#vim#with_preview', {
     options = {
+      '--style', 'full',
       '--prompt', '> ',
       '--layout', 'reverse',
       '--border',
-      '--style', 'full',
-      '--preview-window', 'right,70%',
-      '--border-label', ' ' .. vim.fn.expand('%:p:h') .. ' '
+      '--border-label', ' ' .. vim.fn.expand('%:p:h') .. ' ',
+      '--preview-window', 'right,70%'
     }
   })
 
   vim.call('fzf#vim#files', '', options, 1)
 end, { noremap = true, silent = true })
 
-vim.keymap.set('n', '<Leader>P', function()
+vim.keymap.set('n', '<C-S-p>', function()
   local options = vim.call('fzf#vim#with_preview', {
     options = {
+      '--style', 'full',
       '--prompt', '> ',
       '--layout', 'reverse',
       '--border',
-      '--style', 'full',
-      '--preview-window', 'right,70%',
-      '--border-label', ' ' .. vim.fn.expand('%:p:h') .. ' '
+      '--border-label', ' ' .. vim.fn.expand('%:p:h') .. ' ',
+      '--preview-window', 'right,70%'
     }
   })
 
   vim.call('fzf#vim#files', vim.fn.expand('%:p:h'), options, 1)
 end, { noremap = true, silent = true })
 
-vim.keymap.set('n', '<Leader>gs', function()
+vim.keymap.set('n', '<C-g>', function()
   local options = {
     options = {
       '--prompt', '> ',
-      '--layout', 'reverse',
       '--border',
       '--style', 'full',
       '--preview-window', 'bottom,75%',
@@ -218,12 +211,11 @@ vim.keymap.set('n', 'gd',        function() vim.lsp.buf.type_definition()       
 vim.keymap.set('n', 'gi',        function() vim.lsp.buf.implementation()                end, { noremap = true, silent = true })
 vim.keymap.set('n', 'gr',        function() vim.lsp.buf.references()                    end, { noremap = true, silent = true })
 vim.keymap.set('n', 'K',         function() vim.lsp.buf.hover(preview_options)          end, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>k', function() vim.lsp.buf.hover(preview_options)          end, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>.', function() vim.lsp.buf.code_action()                   end, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>r', function() vim.lsp.buf.rename()                        end, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>t', function() vim.lsp.buf.document_symbol()               end, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>T', function() vim.lsp.buf.workspace_symbol()              end, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>f', function() require("conform").format()                 end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gh',        function() vim.lsp.buf.hover(preview_options)          end, { noremap = true, silent = true })
+vim.keymap.set('n', 'g.',        function() vim.lsp.buf.code_action()                   end, { noremap = true, silent = true })
+vim.keymap.set('n', 'cd',        function() vim.lsp.buf.rename()                        end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gs',        function() vim.lsp.buf.document_symbol()               end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gS',        function() vim.lsp.buf.workspace_symbol()              end, { noremap = true, silent = true })
 
 -- use esc to close the quickfix window
 vim.api.nvim_create_autocmd('FileType', {
@@ -244,6 +236,8 @@ vim.cmd [[
 vim.g.fzf_vim = {
   command_prefix = 'Fzf',
 }
+
+vim.env.FZF_DEFAULT_COMMAND = "find . -type d \\( -name node_modules -o -name .git -o -name bin -o -name obj \\) -prune -o -type f -printf '%P\n'"
 
 -- install mini.deps
 local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
