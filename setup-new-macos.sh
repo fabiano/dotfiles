@@ -74,4 +74,8 @@
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/Library/Application\ Support/Code/User/settings.json
   ln -s $DOTFILES_INSTALL_DIR/zsh-zshrc $HOME/.zshrc
+
+  # install plug
+  rm -rf $HOME/.vim
+  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
