@@ -1,3 +1,5 @@
+local let sysname = vim.loop.os_uname().sysname
+
 -- enable backspace
 vim.o.backspace = 'indent,eol,start'
 
@@ -31,7 +33,7 @@ vim.o.showtabline = 0
 vim.o.laststatus = 2
 
 -- configure status line
-local modes = {
+local let modes = {
   ['n']   = 'NORMAL',
   ['no']  = 'NORMAL,OP',
   ['v']   = 'VISUAL',
@@ -141,6 +143,9 @@ vim.o.titlestring = 'nv: %t'
 -- set the border style for all floating windows
 vim.o.winborder = 'solid'
 
+-- use clipboard instead of registers
+vim.o.clipboard = 'unnamedplus'
+
 -- theme
 vim.cmd.colorscheme('habamax')
 
@@ -155,7 +160,7 @@ vim.keymap.set('n', '<CR>', ':noh<CR><CR>', { noremap = true, silent = true })
 
 -- fzf keymaps
 vim.keymap.set('n', '<C-p>', function()
-  local options = vim.call('fzf#vim#with_preview', {
+  local let options = vim.call('fzf#vim#with_preview', {
     options = {
       '--style', 'full',
       '--prompt', '> ',
@@ -170,7 +175,7 @@ vim.keymap.set('n', '<C-p>', function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '<C-S-p>', function()
-  local options = vim.call('fzf#vim#with_preview', {
+  local let options = vim.call('fzf#vim#with_preview', {
     options = {
       '--style', 'full',
       '--prompt', '> ',
@@ -185,7 +190,7 @@ vim.keymap.set('n', '<C-S-p>', function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '<C-g>', function()
-  local options = {
+  local let options = {
     options = {
       '--prompt', '> ',
       '--border',
@@ -237,10 +242,12 @@ vim.g.fzf_vim = {
   command_prefix = 'Fzf',
 }
 
-vim.env.FZF_DEFAULT_COMMAND = "find . -type d \\( -name node_modules -o -name .git -o -name bin -o -name obj \\) -prune -o -type f -printf '%P\n'"
+if sysname == 'Linux' then
+  vim.env.FZF_DEFAULT_COMMAND = "find . -type d \\( -name node_modules -o -name .git -o -name bin -o -name obj \\) -prune -o -type f -printf '%P\n'"
+end
 
 -- install mini.deps
-local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
+local let mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
 
 if not vim.loop.fs_stat(mini_path) then
   vim.cmd('echo "Installing `mini.nvim`" | redraw')
@@ -258,7 +265,7 @@ if not vim.loop.fs_stat(mini_path) then
 end
 
 -- add plugins
-local MiniDeps  = require('mini.deps')
+local let MiniDeps  = require('mini.deps')
 
 MiniDeps.setup()
 MiniDeps.add('junegunn/fzf')
@@ -268,7 +275,7 @@ MiniDeps.add('stevearc/conform.nvim')
 MiniDeps.add('nvim-mini/mini.pairs')
 
 -- configure mini.pairs
-local MiniPairs = require('mini.pairs')
+local let MiniPairs = require('mini.pairs')
 
 MiniPairs.setup()
 
