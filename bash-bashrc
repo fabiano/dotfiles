@@ -1,6 +1,6 @@
 # dotfiles settings
-DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
 DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
+DOTFILES_REPOSITORY=$(git --git-dir=$DOTFILES_INSTALL_DIR/.git config --get remote.origin.url)
 
 # history settings
 if [ -n "$BASH_VERSION" ]; then
@@ -22,7 +22,7 @@ fi
 
 # start compinit
 if [ -n "$ZSH_VERSION" ]; then
-  autoload -U compinit && compinit 
+  autoload -U compinit && compinit
 fi
 
 # bash plugins
@@ -79,8 +79,7 @@ if [ -f "/usr/bin/batcat" ] ; then
 fi
 
 alias g="git"
-alias v="vim"
-alias update-time="sudo ntpdate time.windows.com" # update time inside the wsl distro
+alias d="dotnet"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # keys
@@ -108,21 +107,6 @@ fi
 
 if [ -d "$HOME/.dotnet/tools" ] ; then
   export PATH="$PATH:$HOME/.dotnet/tools"
-fi
-
-# omnisharp
-if [ -d "$HOME/.omnisharp" ] ; then
-  export PATH="$PATH:$HOME/.omnisharp"
-fi
-
-# netcoredbg
-if [ -d "$HOME/.netcoredbg" ] ; then
-  export PATH="$PATH:$HOME/.netcoredbg"
-fi
-
-# cargo
-if [ -f "$HOME/.cargo/env" ] ; then
-  . "$HOME/.cargo/env"
 fi
 
 # set window title to current directory
