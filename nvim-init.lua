@@ -212,7 +212,7 @@ local let preview_options = {
 vim.keymap.set('i', 'jj',        '<Esc>',                                                    { noremap = true, silent = true })
 vim.keymap.set('i', '<C-Space>', function() vim.lsp.completion.get()                    end, { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>',     function() vim.lsp.buf.signature_help(preview_options) end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gd',        function() vim.lsp.buf.type_definition()               end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gd',        function() vim.lsp.buf.definition()                    end, { noremap = true, silent = true })
 vim.keymap.set('n', 'gi',        function() vim.lsp.buf.implementation()                end, { noremap = true, silent = true })
 vim.keymap.set('n', 'gr',        function() vim.lsp.buf.references()                    end, { noremap = true, silent = true })
 vim.keymap.set('n', 'K',         function() vim.lsp.buf.hover(preview_options)          end, { noremap = true, silent = true })
@@ -221,6 +221,8 @@ vim.keymap.set('n', 'g.',        function() vim.lsp.buf.code_action()           
 vim.keymap.set('n', 'cd',        function() vim.lsp.buf.rename()                        end, { noremap = true, silent = true })
 vim.keymap.set('n', 'gs',        function() vim.lsp.buf.document_symbol()               end, { noremap = true, silent = true })
 vim.keymap.set('n', 'gS',        function() vim.lsp.buf.workspace_symbol()              end, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-t>',     function() vim.lsp.buf.document_symbol()               end, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-S-t>',   function() vim.lsp.buf.workspace_symbol()              end, { noremap = true, silent = true })
 
 -- use esc to close the quickfix window
 vim.api.nvim_create_autocmd('FileType', {
