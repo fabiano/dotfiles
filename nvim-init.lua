@@ -172,101 +172,12 @@ vim.cmd.colorscheme('habamax')
 
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "Pmenu" })
 
--- buffer keymaps
-vim.keymap.set('n', '<Tab>',      ':bn<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<S-Tab>',    ':bp<CR>', { noremap = true, silent = true })
-
--- use enter to clear last search highlighting
-vim.keymap.set('n', '<CR>', ':noh<CR><CR>', { noremap = true, silent = true })
-
--- fzf keymaps
-vim.keymap.set('n', '<C-p>', function()
-  local let options = vim.call('fzf#vim#with_preview', {
-    options = {
-      '--style', 'full',
-      '--prompt', '> ',
-      '--layout', 'reverse',
-      '--border',
-      '--border-label', ' ' .. vim.fn.expand('%:p:h') .. ' ',
-      '--preview-window', 'right,70%'
-    }
-  })
-
-  vim.call('fzf#vim#files', '', options, 1)
-end, { noremap = true, silent = true })
-
-vim.keymap.set('n', '<C-S-p>', function()
-  local let options = vim.call('fzf#vim#with_preview', {
-    options = {
-      '--style', 'full',
-      '--prompt', '> ',
-      '--layout', 'reverse',
-      '--border',
-      '--border-label', ' ' .. vim.fn.expand('%:p:h') .. ' ',
-      '--preview-window', 'right,70%'
-    }
-  })
-
-  vim.call('fzf#vim#files', vim.fn.expand('%:p:h'), options, 1)
-end, { noremap = true, silent = true })
-
-vim.keymap.set('n', '<C-g>', function()
-  local let options = {
-    options = {
-      '--prompt', '> ',
-      '--border',
-      '--style', 'full',
-      '--preview-window', 'bottom,75%',
-      '--border-label', ' Changes '
-    }
-  }
-
-  vim.call('fzf#vim#gitfiles', '?', options, 1)
-end, { noremap = true, silent = true })
-
--- lsp keymaps
-local let preview_options = {
-  max_width  = 80,
-  max_height = 10,
-}
-
-vim.keymap.set('i', 'jj',        '<Esc>',                                                    { noremap = true, silent = true })
-vim.keymap.set('i', '<C-Space>', function() vim.lsp.completion.get()                    end, { noremap = true, silent = true })
-vim.keymap.set('i', '<C-s>',     function() vim.lsp.buf.signature_help(preview_options) end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gd',        function() vim.lsp.buf.definition()                    end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gi',        function() vim.lsp.buf.implementation()                end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gr',        function() vim.lsp.buf.references()                    end, { noremap = true, silent = true })
-vim.keymap.set('n', 'K',         function() vim.lsp.buf.hover(preview_options)          end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gh',        function() vim.lsp.buf.hover(preview_options)          end, { noremap = true, silent = true })
-vim.keymap.set('n', 'g.',        function() vim.lsp.buf.code_action()                   end, { noremap = true, silent = true })
-vim.keymap.set('n', 'cd',        function() vim.lsp.buf.rename()                        end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gs',        function() vim.lsp.buf.document_symbol()               end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gS',        function() vim.lsp.buf.workspace_symbol()              end, { noremap = true, silent = true })
-vim.keymap.set('n', '<C-t>',     function() vim.lsp.buf.document_symbol()               end, { noremap = true, silent = true })
-vim.keymap.set('n', '<C-S-t>',   function() vim.lsp.buf.workspace_symbol()              end, { noremap = true, silent = true })
-
--- use esc to close the quickfix window
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'qf',
-
-  callback = function(args)
-    vim.keymap.set('n', '<Esc>', '<C-w>c', { noremap = true, silent = true })
-  end,
-})
-
 -- reset kitty padding
-vim.cmd [[
-  autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
-  autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
-]]
-
--- configure fzf
-vim.g.fzf_vim = {
-  command_prefix = 'Fzf',
-}
-
-if sysname == 'Linux' then
-  vim.env.FZF_DEFAULT_COMMAND = "find . -type d \\( -name node_modules -o -name .git -o -name bin -o -name obj \\) -prune -o -type f -printf '%P\n'"
+if os.getenv('TERM') == 'xterm-kitty' then
+  vim.cmd [[
+    autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
+    autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
+  ]]
 end
 
 -- install mini.deps
@@ -291,14 +202,73 @@ end
 local let MiniDeps  = require('mini.deps')
 
 MiniDeps.setup()
-MiniDeps.add('junegunn/fzf')
-MiniDeps.add('junegunn/fzf.vim')
 MiniDeps.add('neovim/nvim-lspconfig')
-MiniDeps.add('stevearc/conform.nvim')
+MiniDeps.add('nvim-lua/plenary.nvim')
 MiniDeps.add('nvim-mini/mini.pairs')
+MiniDeps.add('nvim-telescope/telescope.nvim')
+MiniDeps.add('stevearc/conform.nvim')
 
 -- configure mini.pairs
 local let MiniPairs = require('mini.pairs')
 
 MiniPairs.setup()
+
+-- configure telescope
+local let Telescope = require('telescope')
+
+Telescope.setup({
+  defaults = {
+    sorting_strategy = 'ascending',
+
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width   = 0.7,
+        width           = { padding = 0 },
+        height          = { padding = 0 },
+      },
+
+      vertical = {
+        prompt_position = "top",
+        preview_width   = 0.75,
+        width           = { padding = 0 },
+        height          = { padding = 0 },
+      },
+    },
+  },
+})
+
+-- keymaps
+local let builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<Tab><Tab>', builtin.buffers, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-S-p>', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-g>', builtin.git_status, { noremap = true, silent = true })
+vim.keymap.set('n', 'gd', builtin.lsp_definitions, { noremap = true, silent = true })
+vim.keymap.set('n', 'gi', builtin.lsp_implementations, { noremap = true, silent = true })
+vim.keymap.set('n', 'gr', builtin.lsp_references, { noremap = true, silent = true })
+vim.keymap.set('n', 'K',  function() vim.lsp.buf.hover({ max_width = 80, max_height = 10 }) end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gh', function() vim.lsp.buf.hover({ max_width = 80, max_height = 10 }) end, { noremap = true, silent = true })
+vim.keymap.set('n', 'g.', vim.lsp.buf.code_action, { noremap = true, silent = true })
+vim.keymap.set('n', 'cd', vim.lsp.buf.rename, { noremap = true, silent = true })
+vim.keymap.set('n', 'gs', builtin.lsp_document_symbols, { noremap = true, silent = true })
+vim.keymap.set('n', 'gS', builtin.lsp_dynamic_workspace_symbols, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-t>', builtin.lsp_document_symbols, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-S-t>', builtin.lsp_workspace_symbols, { noremap = true, silent = true })
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-Space>', vim.lsp.completion.get, { noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', function() vim.lsp.buf.signature_help({ max_width = 80, max_height = 10 }) end, { noremap = true, silent = true })
+
+-- use enter to clear last search highlighting
+vim.keymap.set('n', '<CR>', ':noh<CR><CR>', { noremap = true, silent = true })
+
+-- use esc to close the quickfix window
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+
+  callback = function(args)
+    vim.keymap.set('n', '<Esc>', '<C-w>c', { noremap = true, silent = true })
+  end,
+})
 
