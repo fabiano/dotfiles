@@ -91,6 +91,27 @@ vim.o.shortmess = 'FW'
 -- show diagnostics and code actions icons over the line number
 vim.o.signcolumn = 'number'
 
+-- set diagnostics to show as a virtual text after the end of the line
+vim.diagnostic.config({
+  underline = false,
+  update_in_insert = true,
+  severity_sort = true,
+
+  virtual_text = {
+    spacing = 1,
+    prefix = "●",
+  },
+
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN]  = " ",
+      [vim.diagnostic.severity.HINT]  = " ",
+      [vim.diagnostic.severity.INFO]  = " ",
+    },
+  },
+})
+
 -- allow to keep the buffer unsaved in the background
 vim.o.hidden = true
 
