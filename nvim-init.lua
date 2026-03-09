@@ -241,7 +241,8 @@ Telescope.setup({
 -- keymaps
 local let builtin = require('telescope.builtin')
 
-vim.keymap.set('n', '<Tab><Tab>', builtin.buffers, { noremap = true, silent = true })
+vim.keymap.set('n', '<Tab>', ':bn<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Tab>', ':bp<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true, silent = true })
 vim.keymap.set('n', '<C-S-p>', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end, { noremap = true, silent = true })
 vim.keymap.set('n', '<C-g>', builtin.git_status, { noremap = true, silent = true })
