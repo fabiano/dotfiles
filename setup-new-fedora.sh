@@ -10,6 +10,7 @@
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
   sudo dnf -y install git
+  sudo dnf -y install gitg
   sudo dnf -y install google-roboto-fonts
   sudo dnf -y install iosevka-fonts
   sudo dnf -y install iosevka-term-fonts
@@ -23,13 +24,7 @@
   sudo dnf -y install zsh-syntax-highlighting
 
   # install eza
-  curl -L https://github.com/eza-community/eza/releases/download/v0.23.0//eza_x86_64-unknown-linux-gnu.zip -o eza.zip && unzip eza.zip && sudo mv eza /usr/local/bin/ && sudo chmod +x /usr/local/bin/eza && rm eza.zip
-
-  # install visual studio code
-  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-  dnf check-update
-  sudo dnf install -y code
+  curl -L https://github.com/eza-community/eza/releases/download/v0.23.0/eza_x86_64-unknown-linux-gnu.zip -o eza.zip && unzip eza.zip && sudo mv eza /usr/local/bin/ && sudo chmod +x /usr/local/bin/eza && rm eza.zip
 
   # remove unused apps
   sudo dnf -y remove baobab
@@ -64,6 +59,7 @@
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.problems.applet.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.gnome.Yelp.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/yelp.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/nvim.desktop
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
@@ -103,10 +99,6 @@
   # set zsh as default shell
   chsh -s /usr/bin/zsh
 
-  # install plug
-  rm -rf $HOME/.vim
-  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
   # install fonts
   mkdir -p $HOME/.local/share/fonts
   cp $DOTFILES_INSTALL_DIR/font-iosevka-nerd-font-regular.ttf $HOME/.local/share/fonts/iosevka-nerd-font-regular.ttf
@@ -115,7 +107,7 @@
 	cp $DOTFILES_INSTALL_DIR/font-maple-mono-regular.ttf $HOME/.local/share/fonts/maple-mono-regular.ttf
   cp $DOTFILES_INSTALL_DIR/font-maple-mono-nerd-font-regular.ttf $HOME/.local/share/fonts/maple-mono-nerd-font-regular.ttf
 
-  # use roboto and iosevka as gnome default fonts
+  # use roboto and maple as gnome default fonts
   gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Maple Mono 10'
   gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
@@ -189,4 +181,8 @@
   # configure login screen scale
   sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
   sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
+
+  # install plug
+  rm -rf $HOME/.vim
+  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
