@@ -204,14 +204,26 @@ local let MiniDeps  = require('mini.deps')
 MiniDeps.setup()
 MiniDeps.add('neovim/nvim-lspconfig')
 MiniDeps.add('nvim-lua/plenary.nvim')
+MiniDeps.add('nvim-mini/mini.bracketed')
 MiniDeps.add('nvim-mini/mini.pairs')
+MiniDeps.add('nvim-mini/mini.tabline')
 MiniDeps.add('nvim-telescope/telescope.nvim')
 MiniDeps.add('stevearc/conform.nvim')
+
+-- configure mini.bracketed
+local let MiniBracketed = require('mini.bracketed')
+
+MiniBracketed.setup()
 
 -- configure mini.pairs
 local let MiniPairs = require('mini.pairs')
 
 MiniPairs.setup()
+
+-- configure mini.tabline
+local let MiniTabLine = require('mini.tabline')
+
+MiniTabLine.setup()
 
 -- configure telescope
 local let Telescope = require('telescope')
