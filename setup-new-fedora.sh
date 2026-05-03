@@ -130,6 +130,7 @@
   gsettings set org.gnome.mutter center-new-windows true
   gsettings set org.gnome.mutter dynamic-workspaces false
   gsettings set org.gnome.mutter edge-tiling false
+  gsettings set org.gnome.shell app-picker-layout '[]'
   gsettings set org.gnome.shell favorite-apps "[]"
 
   # set wallpaper
@@ -149,7 +150,6 @@
   gsettings set org.gnome.mutter overlay-key 'Super_L'
   gsettings set org.gnome.mutter.keybindings toggle-tiled-left '[]'
   gsettings set org.gnome.mutter.keybindings toggle-tiled-right '[]'
-  gsettings set org.gnome.shell app-picker-layout '[]'
 
   # add custom shortcuts paths
   gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
