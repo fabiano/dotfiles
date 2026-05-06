@@ -1,3 +1,7 @@
+# override system default language
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # dotfiles settings
 DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 DOTFILES_REPOSITORY=$(git --git-dir=$DOTFILES_INSTALL_DIR/.git config --get remote.origin.url)
