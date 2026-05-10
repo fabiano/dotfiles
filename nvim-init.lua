@@ -205,6 +205,7 @@ MiniDeps.setup()
 MiniDeps.add('neovim/nvim-lspconfig')
 MiniDeps.add('nvim-lua/plenary.nvim')
 MiniDeps.add('nvim-mini/mini.bracketed')
+MiniDeps.add('nvim-mini/mini.hipatterns')
 MiniDeps.add('nvim-mini/mini.pairs')
 MiniDeps.add('nvim-mini/mini.tabline')
 MiniDeps.add('nvim-telescope/telescope.nvim')
@@ -214,6 +215,16 @@ MiniDeps.add('stevearc/conform.nvim')
 local let MiniBracketed = require('mini.bracketed')
 
 MiniBracketed.setup()
+
+-- configure mini.hipatterns
+local let MiniHiPatterns = require("mini.hipatterns")
+
+MiniHiPatterns.setup({
+  highlighters = {
+    -- highlight hex color strings (`#rrggbb`) using that color
+    hex_color = MiniHiPatterns.gen_highlighter.hex_color(),
+  },
+})
 
 -- configure mini.pairs
 local let MiniPairs = require('mini.pairs')
