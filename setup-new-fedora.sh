@@ -7,6 +7,7 @@
   sudo dnf -y upgrade
   sudo dnf -y copr enable atim/starship
   sudo dnf -y copr enable peterwu/iosevka
+  sudo dnf -y install atkinson-hyperlegible-next-fonts
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
   sudo dnf -y install git
@@ -107,11 +108,11 @@
 	cp $DOTFILES_INSTALL_DIR/font-maple-mono-regular.ttf $HOME/.local/share/fonts/maple-mono-regular.ttf
   cp $DOTFILES_INSTALL_DIR/font-maple-mono-nerd-font-regular.ttf $HOME/.local/share/fonts/maple-mono-nerd-font-regular.ttf
 
-  # use roboto and maple as gnome default fonts
-  gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
+  # use atkinson and maple as gnome default fonts
+  gsettings set org.gnome.desktop.interface font-name 'Atkinson Hyperlegible Next 10'
   gsettings set org.gnome.desktop.interface monospace-font-name 'Maple Mono 10'
-  gsettings set org.gnome.desktop.interface document-font-name 'Roboto 10'
-  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Roboto 10'
+  gsettings set org.gnome.desktop.interface document-font-name 'Atkinson Hyperlegible Next 10'
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Atkinson Hyperlegible Next 10'
 
   # set font antialiasing and hinting
   gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
