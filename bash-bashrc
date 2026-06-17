@@ -71,7 +71,7 @@ alias ~="cd ~"
 
 if [ -f "/usr/bin/eza" ] || [ -f "/usr/local/bin/eza" ] || [ -f "/data/data/com.termux/files/usr/bin/eza" ] ; then
   alias ls="eza --group-directories-first"
-  alias ll="eza --group-directories-first --long --header"
+  alias ll="eza --group-directories-first --long --header --icons=auto"
 fi
 
 if [ -f "/usr/bin/bat" ] || [ -f "/usr/local/bin/bat" ] || [ -f "/data/data/com.termux/files/usr/bin/bat" ] ; then
