@@ -1,10 +1,4 @@
-local let sysname = vim.loop.os_uname().sysname
-
--- enable backspace
-vim.o.backspace = 'indent,eol,start'
-
 -- disable create backup file on save
-vim.o.backup = false
 vim.o.writebackup = false
 
 -- hide current mode in the command line
@@ -29,11 +23,8 @@ vim.o.numberwidth = 5
 -- hide filename on tab bar
 vim.o.showtabline = 0
 
--- always show the status line
-vim.o.laststatus = 2
-
 -- configure status line
-local let modes = {
+local modes = {
   ['n']   = 'NORMAL',
   ['no']  = 'NORMAL,OP',
   ['v']   = 'VISUAL',
@@ -112,16 +103,12 @@ vim.diagnostic.config({
   },
 })
 
--- allow to keep the buffer unsaved in the background
-vim.o.hidden = true
-
 -- set space as the leader key
 vim.g.mapleader = ' '
 
 vim.keymap.set("n", " ", "<Nop>", { silent = true })
 
 -- tabs
-vim.o.autoindent = true
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
@@ -129,7 +116,6 @@ vim.o.tabstop = 2
 
 -- whitespace characters
 vim.o.listchars = 'space:·,tab:» ,trail:·'
-vim.o.list = false
 
 -- enable auto-complete
 vim.o.completeopt = 'menuone,noinsert,noselect,popup'
@@ -143,19 +129,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- enable reading .nvimrc from the current directory
 vim.o.exrc = true
 
--- disable bell sounds
-vim.o.belloff = 'all'
-
 -- change splits direction
 vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- change vertical separator
 vim.o.fillchars = 'vert:█'
-
--- syntax highlighting
-vim.o.syntax = 'on'
-vim.o.filetype = 'on'
 
 -- show opened filename in the console title
 vim.o.title = true
@@ -172,16 +151,27 @@ vim.cmd.colorscheme('habamax')
 
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "Pmenu" })
 
--- reset kitty padding
-if os.getenv('TERM') == 'xterm-kitty' then
-  vim.cmd [[
-    autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
-    autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
-  ]]
+-- reset kitty padding while nvim is open (needs allow_remote_control in kitty.conf)
+if vim.env.KITTY_WINDOW_ID then
+  local function kitty_padding(value)
+    vim.fn.system({ 'kitten', '@', 'set-spacing', 'padding=' .. value })
+  end
+
+  local group = vim.api.nvim_create_augroup('kitty_padding', { clear = true })
+
+  vim.api.nvim_create_autocmd('VimEnter', {
+    group = group,
+    callback = function() kitty_padding(0) end,
+  })
+
+  vim.api.nvim_create_autocmd('VimLeavePre', {
+    group = group,
+    callback = function() kitty_padding(5) end,
+  })
 end
 
 -- install mini.deps
-local let mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
+local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
 
 if not vim.loop.fs_stat(mini_path) then
   vim.cmd('echo "Installing `mini.nvim`" | redraw')
@@ -199,7 +189,7 @@ if not vim.loop.fs_stat(mini_path) then
 end
 
 -- add plugins
-local let MiniDeps  = require('mini.deps')
+local MiniDeps = require('mini.deps')
 
 MiniDeps.setup()
 MiniDeps.add('neovim/nvim-lspconfig')
@@ -212,12 +202,12 @@ MiniDeps.add('nvim-telescope/telescope.nvim')
 MiniDeps.add('stevearc/conform.nvim')
 
 -- configure mini.bracketed
-local let MiniBracketed = require('mini.bracketed')
+local MiniBracketed = require('mini.bracketed')
 
 MiniBracketed.setup()
 
 -- configure mini.hipatterns
-local let MiniHiPatterns = require("mini.hipatterns")
+local MiniHiPatterns = require("mini.hipatterns")
 
 MiniHiPatterns.setup({
   highlighters = {
@@ -227,17 +217,17 @@ MiniHiPatterns.setup({
 })
 
 -- configure mini.pairs
-local let MiniPairs = require('mini.pairs')
+local MiniPairs = require('mini.pairs')
 
 MiniPairs.setup()
 
 -- configure mini.tabline
-local let MiniTabLine = require('mini.tabline')
+-- local MiniTabLine = require('mini.tabline')
 
-MiniTabLine.setup()
+-- MiniTabLine.setup()
 
 -- configure telescope
-local let Telescope = require('telescope')
+local Telescope = require('telescope')
 
 Telescope.setup({
   defaults = {
@@ -262,7 +252,7 @@ Telescope.setup({
 })
 
 -- keymaps
-local let builtin = require('telescope.builtin')
+local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<Tab>', ':bn<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<S-Tab>', ':bp<CR>', { noremap = true, silent = true })
