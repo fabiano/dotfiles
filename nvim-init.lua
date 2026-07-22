@@ -20,8 +20,26 @@ vim.o.cursorline = true
 vim.o.number = true
 vim.o.numberwidth = 5
 
--- hide filename on tab bar
-vim.o.showtabline = 0
+-- always show the filename on tab bar
+vim.o.showtabline = 2
+
+-- configure tabline (show all listed buffers)
+function _G.render_tabline()
+  local parts = {}
+  local current = vim.api.nvim_get_current_buf()
+
+  for _, buf in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+    local name = buf.name ~= '' and vim.fn.fnamemodify(buf.name, ':t') or '[No Name]'
+    local hl = buf.bufnr == current and '%#TabLineSel#' or '%#TabLine#'
+    local modified = buf.changed == 1 and ' ●' or ''
+
+    table.insert(parts, hl .. '  ' .. name .. modified .. '  ')
+  end
+
+  return table.concat(parts) .. '%#TabLineFill#'
+end
+
+vim.o.tabline = '%!v:lua.render_tabline()'
 
 -- configure status line
 local modes = {
@@ -64,7 +82,7 @@ end
 
 vim.o.statusline = statusline()
 
-vim.api.nvim_create_autocmd("ModeChanged", {
+vim.api.nvim_create_autocmd('ModeChanged', {
   callback = function()
     vim.opt.statusline = statusline()
   end,
@@ -90,15 +108,15 @@ vim.diagnostic.config({
 
   virtual_text = {
     spacing = 1,
-    prefix = "●",
+    prefix = '●',
   },
 
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN]  = " ",
-      [vim.diagnostic.severity.HINT]  = " ",
-      [vim.diagnostic.severity.INFO]  = " ",
+      [vim.diagnostic.severity.ERROR] = ' ',
+      [vim.diagnostic.severity.WARN]  = ' ',
+      [vim.diagnostic.severity.HINT]  = ' ',
+      [vim.diagnostic.severity.INFO]  = ' ',
     },
   },
 })
@@ -106,7 +124,7 @@ vim.diagnostic.config({
 -- set space as the leader key
 vim.g.mapleader = ' '
 
-vim.keymap.set("n", " ", "<Nop>", { silent = true })
+vim.keymap.set('n', ' ', '<Nop>', { silent = true })
 
 -- tabs
 vim.o.expandtab = true
@@ -136,9 +154,9 @@ vim.o.splitright = true
 -- change vertical separator
 vim.o.fillchars = 'vert:█'
 
--- show opened filename in the console title
+-- show opened directory in the console title
 vim.o.title = true
-vim.o.titlestring = 'nv: %t'
+vim.o.titlestring = [[nv: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\').'/', '~/', '')}]]
 
 -- set the border style for all floating windows
 vim.o.winborder = 'solid'
@@ -149,7 +167,18 @@ vim.o.clipboard = 'unnamedplus'
 -- theme
 vim.cmd.colorscheme('habamax')
 
-vim.api.nvim_set_hl(0, "FloatBorder", { link = "Pmenu" })
+vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Pmenu' })
+
+-- darken the statusline, tabline and command-line
+vim.api.nvim_set_hl(0, 'StatusLine',   { fg = '#c7c7c7', bg = '#303030' })
+vim.api.nvim_set_hl(0, 'StatusLineNC', { fg = '#c7c7c7', bg = '#303030' })
+vim.api.nvim_set_hl(0, 'TabLine',      { fg = '#767676', bg = '#262626' })
+vim.api.nvim_set_hl(0, 'TabLineSel',   { fg = '#c7c7c7', bg = '#1c1c1c' })
+vim.api.nvim_set_hl(0, 'TabLineFill',  { bg = '#262626' })
+vim.api.nvim_set_hl(0, 'MsgArea',      { fg = '#c7c7c7', bg = '#262626' })
+
+-- hide the window vertical separator (blend it into the buffer background)
+vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#1c1c1c', bg = '#1c1c1c' })
 
 -- reset kitty padding while nvim is open (needs allow_remote_control in kitty.conf)
 if vim.env.KITTY_WINDOW_ID then
@@ -197,7 +226,6 @@ MiniDeps.add('nvim-lua/plenary.nvim')
 MiniDeps.add('nvim-mini/mini.bracketed')
 MiniDeps.add('nvim-mini/mini.hipatterns')
 MiniDeps.add('nvim-mini/mini.pairs')
-MiniDeps.add('nvim-mini/mini.tabline')
 MiniDeps.add('nvim-telescope/telescope.nvim')
 MiniDeps.add('stevearc/conform.nvim')
 
@@ -207,7 +235,7 @@ local MiniBracketed = require('mini.bracketed')
 MiniBracketed.setup()
 
 -- configure mini.hipatterns
-local MiniHiPatterns = require("mini.hipatterns")
+local MiniHiPatterns = require('mini.hipatterns')
 
 MiniHiPatterns.setup({
   highlighters = {
@@ -221,28 +249,24 @@ local MiniPairs = require('mini.pairs')
 
 MiniPairs.setup()
 
--- configure mini.tabline
--- local MiniTabLine = require('mini.tabline')
-
--- MiniTabLine.setup()
-
 -- configure telescope
 local Telescope = require('telescope')
 
 Telescope.setup({
   defaults = {
     sorting_strategy = 'ascending',
+    layout_strategy  = 'horizontal',
 
     layout_config = {
       horizontal = {
-        prompt_position = "top",
+        prompt_position = 'top',
         preview_width   = 0.7,
         width           = { padding = 0 },
         height          = { padding = 0 },
       },
 
       vertical = {
-        prompt_position = "top",
+        prompt_position = 'top',
         preview_width   = 0.75,
         width           = { padding = 0 },
         height          = { padding = 0 },
