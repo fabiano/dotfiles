@@ -193,7 +193,19 @@ if vim.env.KITTY_WINDOW_ID then
     callback = function() kitty_padding(0) end,
   })
 
+  -- resume from Ctrl+Z (VimEnter does not fire on resume)
+  vim.api.nvim_create_autocmd('VimResume', {
+    group = group,
+    callback = function() kitty_padding(0) end,
+  })
+
   vim.api.nvim_create_autocmd('VimLeavePre', {
+    group = group,
+    callback = function() kitty_padding(5) end,
+  })
+
+  -- suspend with Ctrl+Z (VimLeavePre does not fire on suspend)
+  vim.api.nvim_create_autocmd('VimSuspend', {
     group = group,
     callback = function() kitty_padding(5) end,
   })
