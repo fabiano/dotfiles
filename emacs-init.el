@@ -1,16 +1,27 @@
-;; hide title bar
-(add-to-list 'default-frame-alist '(undecorated . t))
-
 ;; maximize window at startup
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; don't show the splash screen
 (setq inhibit-startup-message t)
 
-;; turn off some unneeded UI elements
+;; turn off menu bar
 (menu-bar-mode -1)
+
+;; turn off toolbar
 (tool-bar-mode -1)
+
+;; turn off scrollbar
 (scroll-bar-mode -1)
+
+;; custom mode line
+(setq-default mode-line-format
+              '("%e" mode-line-front-space "%b" mode-line-format-right-align "%l:%c" "  "))
+
+;; increase the mode line height by padding it vertically
+(dolist (face '(mode-line mode-line-active mode-line-inactive))
+  (set-face-attribute face nil
+                      :box (list :line-width '(1 . 4)
+                                 :color (face-attribute 'mode-line :background nil t))))
 
 ;; turn off bell sound
 (setq ring-bell-function 'ignore)
@@ -38,8 +49,14 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-;; disable line wrapping
-(setq-default truncate-lines t)
+;; configure line wrapping
+(setq-default truncate-lines nil)
+
+(add-hook 'prog-mode-hook
+          (lambda () (setq truncate-lines t)))
+
+;; highlight the current line
+(global-hl-line-mode t)
 
 ;; automatically pair parentheses
 (electric-pair-mode t)
@@ -50,40 +67,6 @@
 ;; make C-x C-b act as C-x b everywhere
 (keymap-set key-translation-map "C-x C-b" "C-x b")
 
-;; built-in LSP client for code completion, navigation and diagnostics
-(use-package eglot
-  :ensure nil
-  :hook ((php-ts-mode . eglot-ensure)
-         (js-ts-mode  . eglot-ensure))
-  :bind (:map eglot-mode-map
-         ("C-c r"   . eglot-rename)
-         ("C-c C-a" . eglot-code-actions)
-         ("C-c f"   . eglot-format)
-         ("C-c d"   . eldoc)
-         ("M-."     . xref-find-definitions)
-         ("M-,"     . xref-go-back)
-         ("M-?"     . xref-find-references))
-  :config
-  (add-to-list 'eglot-server-programs '(php-ts-mode . ("npx" "intelephense" "--stdio")))
-  ;; increase timeout for slow servers
-  (setq eglot-connect-timeout 30))
-
-;; open php/js files in tree-sitter major modes
-(add-to-list 'auto-mode-alist '("\\.php\\'" . php-ts-mode))
-(add-to-list 'major-mode-remap-alist '(javascript-mode . js-ts-mode))
-
-;; auto-install php-ts-mode's grammars (php, phpdoc, html, javascript, jsdoc,
-;; css) when missing, using the mode's own pinned/compatible versions
-(with-eval-after-load 'php-ts-mode
-  (let ((treesit-language-source-alist php-ts-mode--language-source-alist))
-    (dolist (src php-ts-mode--language-source-alist)
-      (unless (treesit-language-available-p (car src))
-        (condition-case err
-            (progn
-              (message "Installing tree-sitter grammar: %s" (car src))
-              (treesit-install-language-grammar (car src)))
-          (error (message "Failed to install grammar %s: %s" (car src) err)))))))
-
 ;; set font
 (set-frame-font "Maple Mono NF 12" nil t)
 
@@ -91,21 +74,12 @@
 (setq modus-themes-common-palette-overrides
       '((fringe unspecified)))
 
-;; load theme
+;; set theme
 (load-theme 'modus-vivendi-tinted t)
 
-;; highlight the current line
-(global-hl-line-mode t)
-
-;; custom mode line
-(setq-default mode-line-format
-              '("%e" mode-line-front-space "%b" mode-line-format-right-align "%l:%c" "  "))
-
-;; increase the mode-line height by padding it vertically
-(dolist (face '(mode-line mode-line-active mode-line-inactive))
-  (set-face-attribute face nil
-                      :box (list :line-width '(1 . 4)
-                                 :color (face-attribute 'mode-line :background nil t))))
+;; interactive buffer/file selection in the minibuffer
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
 
 ;; install packages
 (require 'package)
@@ -140,15 +114,11 @@
      "~~" "~~>" "~>" "~-" "-~" "~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||" "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?"
      "::" ":::" ":=" "::=" ":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__")))
 
-;; vertical completion UI for the minibuffer
+;; vertical completion ui for the minibuffer
 (use-package vertico
   :ensure t
   :init
   (vertico-mode))
-
-;; interactive buffer/file selection in the minibuffer
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
 
 ;; show available keybindings in a popup as you type a prefix
 (use-package which-key
@@ -177,3 +147,62 @@
   :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode))
+
+;; markdown renderer used by eglot to fontify lsp hover/eldoc docs
+(use-package markdown-mode
+  :ensure t)
+
+;; terminal emulator
+(use-package ghostel
+  :ensure t
+  :init)
+
+;; php support (don't forget to run M-x php-ts-mode-install-parsers)
+(use-package php-ts-mode
+  :ensure t)
+
+;; clojure support
+(use-package clojure-ts-mode
+  :ensure t
+  :config
+  ;; recognize folders with a deps.edn file as a project
+  ;; so eglot analyzes the whole project (and returns docs)
+  (add-to-list 'project-vc-extra-root-markers
+               '"deps.edn"))
+
+(use-package cider
+  :ensure t
+  :hook ((clojure-ts-mode . cider-mode)))
+
+;; configure built-in lsp
+(use-package eglot
+  :ensure nil
+  :hook ((clojure-ts-mode . eglot-ensure)
+         (php-ts-mode     . eglot-ensure)
+         (js-ts-mode      . eglot-ensure))
+  :bind (:map eglot-mode-map
+              ("C-c r"   . eglot-rename)
+              ("C-c C-a" . eglot-code-actions)
+              ("C-c f"   . eglot-format)
+              ("C-c d"   . eldoc)
+              ("M-."     . xref-find-definitions)
+              ("M-,"     . xref-go-back)
+              ("M-?"     . xref-find-references))
+  :config
+  ;; increase timeout for slow servers
+  (setq eglot-connect-timeout 30)
+  ;; combine all eldoc sources instead of showing only the first one that answers
+  (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+  ;; use npx to start intelephense
+  (add-to-list 'eglot-server-programs
+               '(php-ts-mode . ("npx" "intelephense" "--stdio")))
+  ;; use npx to start the typescript language server
+  ;; NOTE: the (mode :language-id "javascript") form is required. Eglot would
+  ;; otherwise derive the language id "js" from the mode name, and the language
+  ;; server ignores files opened as "js"
+  (add-to-list 'eglot-server-programs
+               '((js-ts-mode :language-id "javascript") . ("npx" "@vtsls/language-server" "--stdio"))))
+
+;; open js files in tree-sitter major mode
+(add-to-list 'major-mode-remap-alist
+             '(javascript-mode . js-ts-mode))
