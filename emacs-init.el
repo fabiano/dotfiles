@@ -67,6 +67,9 @@
 ;; make C-x C-b act as C-x b everywhere
 (keymap-set key-translation-map "C-x C-b" "C-x b")
 
+;; make C-p act as C-x p f
+(keymap-set key-translation-map "C-p" "C-x p f")
+
 ;; set font
 (set-frame-font "Maple Mono NF 12" nil t)
 
