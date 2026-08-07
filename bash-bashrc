@@ -116,6 +116,9 @@ fi
 # opencode
 export PATH="$PATH:$HOME/.opencode/bin"
 
+# add .local/bin to path
+export PATH="$PATH:$HOME/.local/bin"
+
 # set window title to current directory
 function startship_set_win_title(){
   echo -ne "\033]0; $(dirs -p | head -1) \007"
