@@ -70,6 +70,17 @@
 ;; make C-p act as C-x p f
 (keymap-set key-translation-map "C-p" "C-x p f")
 
+;; when cycling buffers, only visit buffers that are visiting a real file
+;; (skips *Messages*, EGLOT, *scratch*, Dired, terminals, help, etc.)
+(setq switch-to-prev-buffer-skip
+      (lambda (_window buffer _bury-or-kill)
+        (not (buffer-file-name buffer))))
+
+;; cycle buffers with Ctrl+Tab / Ctrl+Shift+Tab
+(keymap-global-set "C-<tab>" #'next-buffer)
+(keymap-global-set "C-<iso-lefttab>" #'previous-buffer)
+(keymap-global-set "C-S-<iso-lefttab>" #'previous-buffer)
+
 ;; set font
 (set-frame-font "Maple Mono NF 12" nil t)
 
