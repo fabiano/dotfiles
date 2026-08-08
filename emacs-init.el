@@ -111,10 +111,7 @@
   (package-refresh-contents))
 
 ;; apply per-project coding styles from .editorconfig files
-(use-package editorconfig
-  :ensure t
-  :config
-  (editorconfig-mode t))
+(editorconfig-mode t)
 
 ;; render programming ligatures (e.g. =>, ->, !=) with the font
 (use-package ligature
