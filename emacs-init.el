@@ -169,7 +169,13 @@
 ;; terminal emulator
 (use-package ghostel
   :ensure t
-  :init)
+  :bind (("C-x m" . ghostel)
+         :map project-prefix-map
+         ("m" . ghostel-project)
+         ("M" . ghostel-project-list-buffers))
+  :config
+  (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
+  (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t))
 
 ;; php support (don't forget to run M-x php-ts-mode-install-parsers)
 (use-package php-ts-mode
