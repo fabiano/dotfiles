@@ -10,6 +10,7 @@
   sudo dnf -y install atkinson-hyperlegible-next-fonts
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
+  sudo dnf -y install emacs
   sudo dnf -y install git
   sudo dnf -y install gitg
   sudo dnf -y install google-roboto-fonts
@@ -69,6 +70,7 @@
   # create dotfiles
   rm -rf $HOME/.bash_profile
   rm -rf $HOME/.bashrc
+  rm -rf $HOME/.emacs.d
   rm -rf $HOME/.config/bat
   rm -rf $HOME/.config/Code
   rm -rf $HOME/.config/helix
@@ -84,10 +86,12 @@
   mkdir -p $HOME/.config/helix
   mkdir -p $HOME/.config/kitty
   mkdir -p $HOME/.config/nvim
+  mkdir -p $HOME/.emacs.d
 
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
   ln -s $DOTFILES_INSTALL_DIR/bat-config $HOME/.config/bat/config
+  ln -s $DOTFILES_INSTALL_DIR/emacs-init.el $HOME/.emacs.d/init.el
   ln -s $DOTFILES_INSTALL_DIR/git-gitconfig $HOME/.gitconfig
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
@@ -105,7 +109,7 @@
   cp $DOTFILES_INSTALL_DIR/font-iosevka-nerd-font-regular.ttf $HOME/.local/share/fonts/iosevka-nerd-font-regular.ttf
   cp $DOTFILES_INSTALL_DIR/font-iosevka-term-nerd-font-regular.ttf $HOME/.local/share/fonts/iosevka-term-nerd-font-regular.ttf
   cp $DOTFILES_INSTALL_DIR/font-symbols-nerd-font-regular.ttf $HOME/.local/share/fonts/symbols-nerd-font-regular.ttf
-	cp $DOTFILES_INSTALL_DIR/font-maple-mono-regular.ttf $HOME/.local/share/fonts/maple-mono-regular.ttf
+  cp $DOTFILES_INSTALL_DIR/font-maple-mono-regular.ttf $HOME/.local/share/fonts/maple-mono-regular.ttf
   cp $DOTFILES_INSTALL_DIR/font-maple-mono-nerd-font-regular.ttf $HOME/.local/share/fonts/maple-mono-nerd-font-regular.ttf
 
   # use atkinson and maple as gnome default fonts
@@ -153,13 +157,19 @@
   gsettings set org.gnome.mutter.keybindings toggle-tiled-right '[]'
 
   # add custom shortcuts paths
-  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 
   # add kitty custom shortcut
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kitty'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ enable-in-lockscreen false
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open kitty'
+
+  # add emacs custom shortcut
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>e'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'emacs'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ enable-in-lockscreen false
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Open Emacs'
 
   # change power settings
   gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
