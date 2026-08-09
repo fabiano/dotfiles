@@ -79,7 +79,7 @@
 (keymap-global-set "C-S-<iso-lefttab>" #'previous-buffer)
 
 ;; set font
-(set-frame-font "Maple Mono NF 12" nil t)
+(set-frame-font "Maple Mono NF 14" nil t)
 
 ;; make the fringes use the same background as the buffer
 (setq modus-themes-common-palette-overrides
