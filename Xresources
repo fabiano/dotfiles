@@ -1,0 +1,24 @@
+*.termName: xterm-256color
+*.vt100.faceName: Maple Mono NF
+*.vt100.faceSize: 12
+*.vt100.geometry: 80x20
+*.vt100.locale: false
+*.vt100.utf8: true
+*.vt100.background: #0d0e1c
+*.vt100.foreground: #ffffff
+*.vt100.color0: #0d0e1c
+*.vt100.color1: #ff5f59
+*.vt100.color2: #44bc44
+*.vt100.color3: #d0bc00
+*.vt100.color4: #2fafff
+*.vt100.color5: #feacd0
+*.vt100.color6: #00d3d0
+*.vt100.color7: #a6a6a6
+*.vt100.color8: #595959
+*.vt100.color9: #ff6b55
+*.vt100.color10: #00c06f
+*.vt100.color11: #fec43f
+*.vt100.color12: #79a8ff
+*.vt100.color13: #b6a0ff
+*.vt100.color14: #6ae4b9
+*.vt100.color15: #ffffff
