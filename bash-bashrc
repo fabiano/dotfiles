@@ -6,6 +6,18 @@ export LC_ALL=en_US.UTF-8
 DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 DOTFILES_REPOSITORY=$(git --git-dir=$DOTFILES_INSTALL_DIR/.git config --get remote.origin.url)
 
+# source the first file that exists from a list of candidates
+source_first() {
+  local _f
+  for _f in "$@"; do
+    if [ -f "$_f" ]; then
+      . "$_f"
+      return 0
+    fi
+  done
+  return 1
+}
+
 # history settings
 if [ -n "$BASH_VERSION" ]; then
   HISTSIZE=1000
@@ -24,61 +36,44 @@ if [ -n "$ZSH_VERSION" ]; then
   setopt incappendhistory
 fi
 
-# start compinit
-if [ -n "$ZSH_VERSION" ]; then
-  autoload -U compinit && compinit
-fi
-
 # bash plugins
 if [ -n "$BASH_VERSION" ]; then
-  if [ -f "/usr/local/etc/profile.d/bash_completion.sh" ] ; then
-    . /usr/local/etc/profile.d/bash_completion.sh
-  fi
-
-  if [ -f "/etc/profile.d/bash_completion.sh" ] ; then
-    . /etc/profile.d/bash_completion.sh
-  fi
-
-  if [ -f "/data/data/com.termux/files/usr/share/bash-completion/bash_completion" ] ; then
-    . /data/data/com.termux/files/usr/share/bash-completion/bash_completion
-  fi
+  source_first \
+    /usr/local/etc/profile.d/bash_completion.sh \
+    /etc/profile.d/bash_completion.sh \
+    /data/data/com.termux/files/usr/share/bash-completion/bash_completion \
+    /usr/pkg/share/bash-completion/bash_completion
 fi
 
 # zsh plugins
 if [ -n "$ZSH_VERSION" ]; then
-  if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] ; then
-    . /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  fi
+  autoload -U compinit && compinit
 
-  if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] ; then
-    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  fi
+  source_first \
+    /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    /usr/pkg/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
   ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-  if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] ; then
-    . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  fi
-
-  if [ -f "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] ; then
-    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  fi
+  source_first \
+    /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    /usr/pkg/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # alias
 alias ..="cd .."
 alias ~="cd ~"
 
-if [ -f "/usr/bin/eza" ] || [ -f "/usr/local/bin/eza" ] || [ -f "/data/data/com.termux/files/usr/bin/eza" ] ; then
+if command -v eza >/dev/null 2>&1; then
   alias ls="eza --group-directories-first"
   alias ll="eza --group-directories-first --long --header --icons=auto"
 fi
 
-if [ -f "/usr/bin/bat" ] || [ -f "/usr/local/bin/bat" ] || [ -f "/data/data/com.termux/files/usr/bin/bat" ] ; then
+if command -v bat >/dev/null 2>&1; then
   alias cat="bat"
-fi
-
-if [ -f "/usr/bin/batcat" ] ; then
+elif command -v batcat >/dev/null 2>&1; then
   alias cat="batcat"
 fi
 
