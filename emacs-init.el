@@ -1,6 +1,9 @@
 ;; hide title bar
 (add-to-list 'default-frame-alist '(undecorated . t))
 
+;; resize in pixels, not character cells (avoids gaps in ctwm)
+(setq frame-resize-pixelwise t)
+
 ;; maximize window at startup
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
