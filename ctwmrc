@@ -2,11 +2,11 @@ NoDefaults
 DontShowWelcomeWindow
 
 # set fonts
-# TitleFont        "xft:Atkinson Hyperlegible Next:pixelsize=10:style=Regular"
-# MenuFont         "xft:Atkinson Hyperlegible Next:pixelsize=10:style=Regular"
-# IconFont         "xft:Atkinson Hyperlegible Next:pixelsize=10:style=Regular"
-# IconManagerFont  "xft:Atkinson Hyperlegible Next:pixelsize=10:style=Regular"
-# ResizeFont       "fixed"
+TitleFont        "-misc-fixed-bold-r-normal-*-24-*-*-*-*-*-*-*"
+MenuFont         "-misc-fixed-medium-r-normal-*-24-*-*-*-*-*-*-*"
+IconFont         "-misc-fixed-medium-r-normal-*-24-*-*-*-*-*-*-*"
+IconManagerFont  "-misc-fixed-medium-r-normal-*-24-*-*-*-*-*-*-*"
+ResizeFont       "fixed"
 
 # hide window contents while altering windows for performance
 NoOpaqueMove
