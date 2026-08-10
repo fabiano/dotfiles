@@ -1,6 +1,6 @@
 *.termName: xterm-256color
 *.vt100.faceName: Maple Mono NF
-*.vt100.faceSize: 12
+*.vt100.faceSize: 14
 *.vt100.geometry: 80x20
 *.vt100.locale: false
 *.vt100.utf8: true
