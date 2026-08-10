@@ -59,69 +59,66 @@ Cursors
     Destroy  "pirate"
 }
 
+# add title bar buttons
+LeftTitleButton  ":xpm:dot"     = f.menu "WinIcon"
+RightTitleButton ":xpm:resize"  = f.resize
+RightTitleButton ":xpm:cross"   = f.delete
+
 # applications menu
 syscmd(/usr/X11R7/libexec/ctwm_app_menu)
 
 menu "PkgSrcApps"
 {
     "pkgsrc Applications"  f.title
-    " Accessories"         f.menu "Accessories"
-    " Games"               f.menu "Games"
-    " Graphics"            f.menu "Graphics"
-    " Internet"            f.menu "Internet"
-    " Multimedia"          f.menu "Multimedia"
-    " Office"              f.menu "Office"
-    " Programming"         f.menu "Programming"
-    " System"              f.menu "System"
-    " Misc"                f.menu "Misc"
+    " Accessories "        f.menu "Accessories"
+    " Games "              f.menu "Games"
+    " Graphics "           f.menu "Graphics"
+    " Internet "           f.menu "Internet"
+    " Multimedia "         f.menu "Multimedia"
+    " Office "             f.menu "Office"
+    " Programming "        f.menu "Programming"
+    " System "             f.menu "System"
+    " Misc "               f.menu "Misc"
 }
 
 menu "NetBSD"
 {
-    "NetBSD"         f.title
-    ""               f.separator
-    " Terminal"      !"uxterm &"
-    ""               f.separator
-    " Applications"  f.menu "PkgSrcApps"
-    ""               f.separator
-    " Restart CTWM"  f.twmrc
-    " Quit"          f.quit
+    "NetBSD"          f.title
+    ""                f.separator
+    " Terminal "      !"uxterm &"
+    ""                f.separator
+    " Applications "  f.menu "PkgSrcApps"
+    ""                f.separator
+    " Restart CTWM "  f.twmrc
+    " Quit "          f.quit
 }
 
-# window menu
-menu "WinTitle"
+# window icon menu
+menu "WinIcon"
 {
-    "Window"       f.title
-    ""             f.separator
-    " Resize"      f.resize
-    " Move"        f.move
-    ""             f.separator
-    " Raise"       f.raise
-    " Lower"       f.lower
-    ""             f.separator
-    " Zoom"        f.fullzoom
-    " Zoom-V"      f.zoom
-    " Zoom-H"      f.horizoom
-    ""             f.separator
-    " Kill"        f.destroy
-    " Close"       f.delete
+    "Window"     f.title
+    ""           f.separator
+    " Resize "   f.resize
+    " Move "     f.move
+    ""           f.separator
+    " Raise "    f.raise
+    " Lower "    f.lower
+    " Squeeze "  f.squeeze
+    ""           f.separator
+    " Zoom "     f.fullzoom
+    " Zoom-V "   f.zoom
+    " Zoom-H "   f.horizoom
+    ""           f.separator
+    " Kill "     f.destroy
+    " Close "    f.delete
 }
 
 Button1 = : root : f.menu "NetBSD"
 Button2 = : root : f.menu "TwmAllWindows"
 Button3 = : root : f.menu "NetBSD"
 
-# resize and move a window
-Function "raise-move"       { f.raise f.deltastop f.forcemove }
-Function "raise-and-resize" { f.raise f.deltastop f.resize }
-
-Button1 = : title : f.function "raise-move"
-Button2 = : title : f.function "raise-and-resize"
-Button1 = : frame : f.function "raise-and-resize"
-
 # window keyboard shortcuts
 "Tab"   = mod1     : all    : f.warpring "next"
 "Tab"   = mod1 | s : all    : f.warpring "prev"
-"space" = mod1     : window : f.menu "WinTitle"
+"space" = mod1     : window : f.menu "WinIcon"
 "F4"    = mod1     : window : f.delete
-Button3 =          : title  : f.menu "WinTitle"
