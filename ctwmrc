@@ -20,6 +20,9 @@ WarpToDefaultMenuEntry
 WindowRing
 WarpRingOnScreen
 
+# focus window on click
+RaiseOnClick
+
 # show resize cursor
 BorderResizeCursors
 
