@@ -2,6 +2,7 @@
 *.vt100.faceName: Maple Mono NF
 *.vt100.faceSize: 14
 *.vt100.geometry: 80x20
+*.vt100.internalBorder: 20
 *.vt100.locale: false
 *.vt100.utf8: true
 *.vt100.background: #0d0e1c
