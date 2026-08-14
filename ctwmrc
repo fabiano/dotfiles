@@ -116,9 +116,9 @@ menu "WinIcon"
     " Close "    f.delete
 }
 
-Button1 = : root : f.menu "NetBSD"
-Button2 = : root : f.menu "TwmAllWindows"
+"space" = mod4 : all : f.menu "NetBSD"
 Button3 = : root : f.menu "NetBSD"
+Button2 = : root : f.menu "TwmAllWindows"
 
 # window keyboard shortcuts
 "Tab"   = mod1     : all    : f.warpring "next"
