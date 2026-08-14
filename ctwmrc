@@ -120,6 +120,14 @@ menu "WinIcon"
 Button3 = : root : f.menu "NetBSD"
 Button2 = : root : f.menu "TwmAllWindows"
 
+# resize and move a window
+Function "raise-move"       { f.raise f.deltastop f.forcemove }
+Function "raise-and-resize" { f.raise f.deltastop f.resize }
+
+Button1 = : title : f.function "raise-move"
+Button2 = : title : f.function "raise-and-resize"
+Button1 = : frame : f.function "raise-and-resize"
+
 # window keyboard shortcuts
 "Tab"   = mod1     : all    : f.warpring "next"
 "Tab"   = mod1 | s : all    : f.warpring "prev"
