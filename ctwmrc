@@ -23,6 +23,9 @@ WarpRingOnScreen
 # focus window on click
 RaiseOnClick
 
+# increase window border size
+BorderWidth 4
+
 # show resize cursor
 BorderResizeCursors
 
