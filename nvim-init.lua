@@ -20,8 +20,8 @@ vim.o.cursorline = true
 vim.o.number = true
 vim.o.numberwidth = 5
 
--- always show the filename on tab bar
-vim.o.showtabline = 2
+-- hide the tab bar
+vim.o.showtabline = 0
 
 -- configure tabline (show all listed buffers)
 function _G.render_tabline()
