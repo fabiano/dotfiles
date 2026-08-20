@@ -91,10 +91,6 @@
 ;; set theme
 (load-theme 'modus-vivendi-tinted t)
 
-;; interactive buffer/file selection in the minibuffer
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-
 ;; install packages
 (require 'package)
 
