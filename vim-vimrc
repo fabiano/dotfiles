@@ -33,8 +33,26 @@ set cursorline
 set number
 set numberwidth=5
 
-" hide filename on tab bar
+" hide the tab bar
 set showtabline=0
+
+" configure tabline (show all listed buffers)
+function! Tabline() abort
+    let l:parts = []
+    let l:current = bufnr('%')
+
+    for l:buf in getbufinfo({'buflisted': 1})
+        let l:name = !empty(l:buf.name) ? fnamemodify(l:buf.name, ':t') : '[No Name]'
+        let l:hl = l:buf.bufnr == l:current ? '%#TabLineSel#' : '%#TabLine#'
+        let l:modified = l:buf.changed ? ' ●' : ''
+
+        call add(l:parts, l:hl . '  ' . l:name . l:modified . '  ')
+    endfor
+
+    return join(l:parts, '') . '%#TabLineFill#'
+endfunction
+
+set tabline=%!Tabline()
 
 " always show the status line
 set laststatus=2
@@ -68,9 +86,6 @@ set statusline+=\                    " space
 set statusline+=%{g:modes[mode()]}   " mode
 set statusline+=\                    " space
 set statusline+=\                    " space
-set statusline+=\                    " space
-set statusline+=\                    " space
-set statusline+=\                    " space
 set statusline+=%F                   " file name
 set statusline+=%=                   " align right
 set statusline+=%l                   " current line number
@@ -100,6 +115,8 @@ let &t_EI="\<Esc>[2 q"
 
 " leader key
 let mapleader="\<Space>"
+
+nnoremap <silent> <Space> <Nop>
 
 " tabs
 set autoindent
@@ -135,12 +152,22 @@ set fillchars+=vert:█
 syntax on
 filetype plugin indent on
 
-" show opened filename in the console title
+" show opened directory in the console title
 set title
-set titlestring=vim:\ %t
+let &titlestring = "vim: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\\').'/', '~/', '')}"
 
 " theme
 colorscheme habamax
+
+" darken the statusline and tabline
+highlight StatusLine   cterm=NONE gui=NONE ctermfg=251 ctermbg=236 guifg=#c7c7c7 guibg=#303030
+highlight StatusLineNC cterm=NONE gui=NONE ctermfg=251 ctermbg=236 guifg=#c7c7c7 guibg=#303030
+highlight TabLine      cterm=NONE gui=NONE ctermfg=243 ctermbg=235 guifg=#767676 guibg=#262626
+highlight TabLineSel   cterm=NONE gui=NONE ctermfg=251 ctermbg=234 guifg=#c7c7c7 guibg=#1c1c1c
+highlight TabLineFill  cterm=NONE gui=NONE ctermbg=235 guibg=#262626
+
+" hide the window vertical separator (blend it into the buffer background)
+highlight VertSplit    cterm=NONE gui=NONE ctermfg=234 ctermbg=234 guifg=#1c1c1c guibg=#1c1c1c
 
 " buffer keymaps
 nnoremap <silent> <Tab>      :bn<CR>
@@ -154,17 +181,41 @@ nnoremap <silent> <Leader>wc <C-w>c
 nnoremap <silent> <Leader>wh :<C-u>split<CR>
 nnoremap <silent> <Leader>wv :<C-u>vsplit<CR>
 
+" use jj to leave insert mode
+inoremap <silent> jj <Esc>
+
 " use enter to clear last search highlighting
 nnoremap <silent> <CR> :noh<CR><CR>
+
+" use esc to close the quickfix window
+autocmd FileType qf nnoremap <buffer><silent> <Esc> <C-w>c
 
 " fzf keymap
 nnoremap <silent> <Leader>p  :call fzf#vim#files('', fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
 nnoremap <silent> <Leader>P  :call fzf#vim#files(expand('%:p:h'), fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
 nnoremap <silent> <Leader>gs :call fzf#vim#gitfiles('?', { 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'bottom,75%', '--border-label', ' Changes ' ] }, 1)<CR>
 
-" reset kitty padding
-autocmd VimEnter * execute 'silent! !kitten @ set-spacing padding=0'
-autocmd VimLeave * execute 'silent! !kitten @ set-spacing padding=5'
+" reset kitty padding while vim is open (needs allow_remote_control in kitty.conf)
+if !empty($KITTY_WINDOW_ID)
+    " use SIGWINCH instead of kitty's in-band resize reports: changing the
+    " padding resizes the window, and on exit/suspend vim stops reading the
+    " tty before consuming the report, which then leaks into the shell
+    if exists('&termresize')
+        set termresize=sigwinch
+    endif
+
+    function! s:KittyPadding(value) abort
+        call system('kitten @ set-spacing padding=' . a:value)
+    endfunction
+
+    augroup kitty_padding
+        autocmd!
+        autocmd VimEnter    * call s:KittyPadding(0)
+        autocmd VimResume   * call s:KittyPadding(0) " resume from Ctrl+Z (VimEnter does not fire on resume)
+        autocmd VimLeavePre * call s:KittyPadding(5)
+        autocmd VimSuspend  * call s:KittyPadding(5) " suspend with Ctrl+Z (VimLeavePre does not fire on suspend)
+    augroup END
+endif
 
 " fzf configuration
 let g:fzf_vim={}
@@ -190,4 +241,3 @@ autocmd VimEnter *
             \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \|   PlugInstall --sync | source $MYVIMRC | q
             \| endif
-
