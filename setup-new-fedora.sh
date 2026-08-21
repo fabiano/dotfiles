@@ -1,21 +1,19 @@
 {
   # dotfiles settings
-  DOTFILES_REPOSITORY="git@github.com:fabiano/dotfiles.git"
+  DOTFILES_REPOSITORY="dotfiles"
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install apps
   sudo dnf -y upgrade
   sudo dnf -y copr enable atim/starship
-  sudo dnf -y copr enable peterwu/iosevka
   sudo dnf -y install atkinson-hyperlegible-next-fonts
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
   sudo dnf -y install emacs
+  sudo dnf -y install eza
   sudo dnf -y install git
-  sudo dnf -y install gitg
+  sudo dnf -y install gh
   sudo dnf -y install google-roboto-fonts
-  sudo dnf -y install iosevka-fonts
-  sudo dnf -y install iosevka-term-fonts
   sudo dnf -y install kitty
   sudo dnf -y install neovim
   sudo dnf -y install starship
@@ -24,9 +22,9 @@
   sudo dnf -y install zsh
   sudo dnf -y install zsh-autosuggestions
   sudo dnf -y install zsh-syntax-highlighting
-
-  # install eza
-  curl -L https://github.com/eza-community/eza/releases/download/v0.23.0/eza_x86_64-unknown-linux-gnu.zip -o eza.zip && unzip eza.zip && sudo mv eza /usr/local/bin/ && sudo chmod +x /usr/local/bin/eza && rm eza.zip
+  sudo flatpack install -y de.wwwtech.gitte
+  sudo flatpack install -y net.nokyan.Resources
+  sudo flatpack install -y org.gnome.gitlab.somas.Apostrophe
 
   # remove unused apps
   sudo dnf -y remove baobab
@@ -65,7 +63,9 @@
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
-  git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
+
+  gh auth login
+  gh repo clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
   # create dotfiles
   rm -rf $HOME/.bash_profile

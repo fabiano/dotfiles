@@ -9,6 +9,7 @@
   sudo dnf -y install bash-completion
   sudo dnf -y install bat
   sudo dnf -y install emacs
+  sudo dnf -y install eza
   sudo dnf -y install git
   sudo dnf -y install gh
   sudo dnf -y install neovim
@@ -19,14 +20,10 @@
   sudo dnf -y install zsh-autosuggestions
   sudo dnf -y install zsh-syntax-highlighting
 
-  # install eza
-  curl -L https://github.com/eza-community/eza/releases/download/v0.23.0/eza_x86_64-unknown-linux-gnu.zip -o eza.zip && unzip eza.zip && sudo mv eza /usr/local/bin/ && sudo chmod +x /usr/local/bin/eza && rm eza.zip
- 
-  # authenticate on github
-  gh auth login
- 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
+
+  gh auth login
   gh repo clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
   # create dotfiles
