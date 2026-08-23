@@ -170,10 +170,6 @@
   (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
   (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t))
 
-;; php support (don't forget to run M-x php-ts-mode-install-parsers)
-(use-package php-ts-mode
-  :ensure t)
-
 ;; clojure support
 (use-package clojure-ts-mode
   :ensure t
@@ -191,7 +187,6 @@
 (use-package eglot
   :ensure nil
   :hook ((clojure-ts-mode . eglot-ensure)
-         (php-ts-mode     . eglot-ensure)
          (js-ts-mode      . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-c r"   . eglot-rename)
@@ -206,9 +201,6 @@
   (setq eglot-connect-timeout 30)
   ;; combine all eldoc sources instead of showing only the first one that answers
   (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
-  ;; use npx to start intelephense
-  (add-to-list 'eglot-server-programs
-               '(php-ts-mode . ("npx" "intelephense" "--stdio")))
   ;; use npx to start the typescript language server
   ;; NOTE: the (mode :language-id "javascript") form is required. Eglot would
   ;; otherwise derive the language id "js" from the mode name, and the language
