@@ -80,6 +80,7 @@ fi
 alias g="git"
 alias d="dotnet"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+alias emacs="emacs -nw"
 
 # keys
 if [ -n "$ZSH_VERSION" ]; then
