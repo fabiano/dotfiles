@@ -1,6 +1,6 @@
 {
   # dotfiles settings
-  DOTFILES_REPOSITORY="https://github.com/fabiano/dotfiles.git"
+  DOTFILES_REPOSITORY="dotfiles"
   DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 
   # install apps
@@ -12,6 +12,7 @@
   su root -c "pkgin -y install emacs"
   su root -c "pkgin -y install eza"
   su root -c "pkgin -y install git"
+  su root -c "pkgin -y install gh"
   su root -c "pkgin -y install neovim"
   su root -c "pkgin -y install starship"
   su root -c "pkgin -y install vim"
@@ -21,7 +22,7 @@
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
-  git clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
+  gh repo clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
   # create dotfiles
   rm -rf $HOME/.bash_profile
