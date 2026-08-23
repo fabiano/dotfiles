@@ -22,6 +22,8 @@
 
   # clone repository
   rm -rf $DOTFILES_INSTALL_DIR
+
+  gh auth login
   gh repo clone $DOTFILES_REPOSITORY $DOTFILES_INSTALL_DIR
 
   # create dotfiles
