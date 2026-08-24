@@ -156,7 +156,7 @@ vim.o.fillchars = 'vert:█'
 
 -- show opened directory in the console title
 vim.o.title = true
---vim.o.titlestring = [[nv: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\').'/', '~/', '')}]]
+vim.o.titlestring = [[nv: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\').'/', '~/', '')}]]
 
 -- set the border style for all floating windows
 vim.o.winborder = 'solid'
