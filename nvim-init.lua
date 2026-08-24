@@ -159,7 +159,7 @@ vim.o.title = true
 vim.o.titlestring = [[nv: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\').'/', '~/', '')}]]
 
 -- set the border style for all floating windows
-vim.o.winborder = 'solid'
+vim.o.winborder = 'single'
 
 -- use clipboard instead of registers
 vim.o.clipboard = 'unnamedplus'
@@ -254,8 +254,8 @@ vim.keymap.set('n', '<C-g>', builtin.git_status, { noremap = true, silent = true
 vim.keymap.set('n', 'gd', builtin.lsp_definitions, { noremap = true, silent = true })
 vim.keymap.set('n', 'gi', builtin.lsp_implementations, { noremap = true, silent = true })
 vim.keymap.set('n', 'gr', builtin.lsp_references, { noremap = true, silent = true })
-vim.keymap.set('n', 'K',  function() vim.lsp.buf.hover({ border = 'single', max_width = 80, max_height = 15 }) end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gh', function() vim.lsp.buf.hover({ border = 'single', max_width = 80, max_height = 15 }) end, { noremap = true, silent = true })
+vim.keymap.set('n', 'K',  function() vim.lsp.buf.hover({ max_width = 80, max_height = 15 }) end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gh', function() vim.lsp.buf.hover({ max_width = 80, max_height = 15 }) end, { noremap = true, silent = true })
 vim.keymap.set('n', 'g.', vim.lsp.buf.code_action, { noremap = true, silent = true })
 vim.keymap.set('n', 'cd', vim.lsp.buf.rename, { noremap = true, silent = true })
 vim.keymap.set('n', 'gs', builtin.lsp_document_symbols, { noremap = true, silent = true })
@@ -264,7 +264,7 @@ vim.keymap.set('n', '<C-t>', builtin.lsp_document_symbols, { noremap = true, sil
 vim.keymap.set('n', '<C-S-t>', builtin.lsp_workspace_symbols, { noremap = true, silent = true })
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-Space>', vim.lsp.completion.get, { noremap = true, silent = true })
-vim.keymap.set('i', '<C-s>', function() vim.lsp.buf.signature_help({ border = 'single', max_width = 80, max_height = 15 }) end, { noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', function() vim.lsp.buf.signature_help({ max_width = 80, max_height = 15 }) end, { noremap = true, silent = true })
 
 -- use enter to clear last search highlighting
 vim.keymap.set('n', '<CR>', ':noh<CR><CR>', { noremap = true, silent = true })
