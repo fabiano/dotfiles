@@ -152,7 +152,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- change vertical separator
-vim.o.fillchars = 'vert:█'
+vim.o.fillchars = 'vert: '
 
 -- show opened directory in the console title
 vim.o.title = true
