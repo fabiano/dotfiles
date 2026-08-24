@@ -156,7 +156,7 @@ vim.o.fillchars = 'vert:█'
 
 -- show opened directory in the console title
 vim.o.title = true
-vim.o.titlestring = [[nv: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\').'/', '~/', '')}]]
+--vim.o.titlestring = [[nv: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\').'/', '~/', '')}]]
 
 -- set the border style for all floating windows
 vim.o.winborder = 'solid'
@@ -179,37 +179,6 @@ vim.api.nvim_set_hl(0, 'MsgArea',      { fg = '#c7c7c7', bg = '#262626' })
 
 -- hide the window vertical separator (blend it into the buffer background)
 vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#1c1c1c', bg = '#1c1c1c' })
-
--- reset kitty padding while nvim is open (needs allow_remote_control in kitty.conf)
-if vim.env.KITTY_WINDOW_ID then
-  local function kitty_padding(value)
-    vim.fn.system({ 'kitten', '@', 'set-spacing', 'padding=' .. value })
-  end
-
-  local group = vim.api.nvim_create_augroup('kitty_padding', { clear = true })
-
-  vim.api.nvim_create_autocmd('VimEnter', {
-    group = group,
-    callback = function() kitty_padding(0) end,
-  })
-
-  -- resume from Ctrl+Z (VimEnter does not fire on resume)
-  vim.api.nvim_create_autocmd('VimResume', {
-    group = group,
-    callback = function() kitty_padding(0) end,
-  })
-
-  vim.api.nvim_create_autocmd('VimLeavePre', {
-    group = group,
-    callback = function() kitty_padding(5) end,
-  })
-
-  -- suspend with Ctrl+Z (VimLeavePre does not fire on suspend)
-  vim.api.nvim_create_autocmd('VimSuspend', {
-    group = group,
-    callback = function() kitty_padding(5) end,
-  })
-end
 
 -- install mini.deps
 local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
