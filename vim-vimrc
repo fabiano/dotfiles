@@ -191,6 +191,9 @@ nnoremap <silent> <CR> :noh<CR><CR>
 autocmd FileType qf nnoremap <buffer><silent> <Esc> <C-w>c
 
 " fzf keymap
+nnoremap <silent> <C-p> :call fzf#vim#files('', fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
+nnoremap <silent> <C-P> :call fzf#vim#files(expand('%:p:h'), fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
+nnoremap <silent> <C-g> :call fzf#vim#gitfiles('?', { 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'bottom,75%', '--border-label', ' Changes ' ] }, 1)<CR>
 nnoremap <silent> <Leader>p  :call fzf#vim#files('', fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
 nnoremap <silent> <Leader>P  :call fzf#vim#files(expand('%:p:h'), fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
 nnoremap <silent> <Leader>gs :call fzf#vim#gitfiles('?', { 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'bottom,75%', '--border-label', ' Changes ' ] }, 1)<CR>
