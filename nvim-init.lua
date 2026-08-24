@@ -164,21 +164,8 @@ vim.o.winborder = 'solid'
 -- use clipboard instead of registers
 vim.o.clipboard = 'unnamedplus'
 
--- theme
-vim.cmd.colorscheme('habamax')
-
-vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Pmenu' })
-
--- darken the statusline, tabline and command-line
-vim.api.nvim_set_hl(0, 'StatusLine',   { fg = '#c7c7c7', bg = '#303030' })
-vim.api.nvim_set_hl(0, 'StatusLineNC', { fg = '#c7c7c7', bg = '#303030' })
-vim.api.nvim_set_hl(0, 'TabLine',      { fg = '#767676', bg = '#262626' })
-vim.api.nvim_set_hl(0, 'TabLineSel',   { fg = '#c7c7c7', bg = '#1c1c1c' })
-vim.api.nvim_set_hl(0, 'TabLineFill',  { bg = '#262626' })
-vim.api.nvim_set_hl(0, 'MsgArea',      { fg = '#c7c7c7', bg = '#262626' })
-
--- hide the window vertical separator (blend it into the buffer background)
-vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#1c1c1c', bg = '#1c1c1c' })
+-- use terminal's color palette
+vim.cmd.colorscheme('default')
 
 -- install mini.deps
 local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
