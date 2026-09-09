@@ -42,7 +42,6 @@
   sudo dnf -y remove libreoffice-impress
   sudo dnf -y remove libreoffice-writer
   sudo dnf -y remove mediawriter
-  sudo dnf -y remove ptyxis
   sudo dnf -y remove rhythmbox
   sudo dnf -y remove simple-scan
   sudo dnf -y remove snapshot
