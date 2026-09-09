@@ -53,6 +53,7 @@
   mkdir -p $HOME/.local/share/applications
 
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/Helix.desktop
+  echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/java-25-openjdk-jconsole.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.GnomeAbrt.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.MalcontentControl.desktop
   echo -e "[Desktop Entry]\nHidden=true" > $HOME/.local/share/applications/org.freedesktop.problems.applet.desktop
