@@ -189,10 +189,6 @@
   rm -rf $HOME/.XCompose
   echo -e "include \"%L\"\n\n<dead_acute> <c> : \"ç\"\n<dead_acute> <C> : \"Ç\"" > $HOME/.XCompose
 
-  # configure login screen scale
-  sudo cp $HOME/.config/monitors.xml /var/lib/gdm/.config/
-  sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
-
   # install plug
   rm -rf $HOME/.vim
   curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
