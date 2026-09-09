@@ -22,9 +22,13 @@
   sudo dnf -y install zsh
   sudo dnf -y install zsh-autosuggestions
   sudo dnf -y install zsh-syntax-highlighting
-  sudo flatpack install -y de.wwwtech.gitte
-  sudo flatpack install -y net.nokyan.Resources
-  sudo flatpack install -y org.gnome.gitlab.somas.Apostrophe
+
+  # install apps from flathub
+  sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  sudo flatpak remote-modify --enable flathub
+  sudo flatpak install -y flathub de.wwwtech.gitte
+  sudo flatpak install -y flathub net.nokyan.Resources
+  sudo flatpak install -y flathub org.gnome.gitlab.somas.Apostrophe
 
   # remove unused apps
   sudo dnf -y remove baobab
