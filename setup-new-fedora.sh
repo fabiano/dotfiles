@@ -82,6 +82,7 @@
   rm -rf $HOME/.config/nvim
   rm -rf $HOME/.config/starship.toml
   rm -rf $HOME/.gitconfig
+  rm -rf $HOME/.local/share/org.gnome.Ptyxis/palettes/habamax.palette
   rm -rf $HOME/.vimrc
   rm -rf $HOME/.zshrc
 
@@ -91,6 +92,7 @@
   mkdir -p $HOME/.config/kitty
   mkdir -p $HOME/.config/nvim
   mkdir -p $HOME/.emacs.d
+  mkdir -p $HOME/.local/share/org.gnome.Ptyxis/palettes
 
   ln -s $DOTFILES_INSTALL_DIR/bash-bashprofile $HOME/.bash_profile
   ln -s $DOTFILES_INSTALL_DIR/bash-bashrc $HOME/.bashrc
@@ -100,6 +102,7 @@
   ln -s $DOTFILES_INSTALL_DIR/helix-config.toml $HOME/.config/helix/config.toml
   ln -s $DOTFILES_INSTALL_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
   ln -s $DOTFILES_INSTALL_DIR/nvim-init.lua $HOME/.config/nvim/init.lua
+  ln -s $DOTFILES_INSTALL_DIR/ptyxis-habamax.palette $HOME/.local/share/org.gnome.Ptyxis/palettes/habamax.palette
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
@@ -165,9 +168,9 @@
 
   # add kitty custom shortcut
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kitty'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ptyxis --new-window'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ enable-in-lockscreen false
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open kitty'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open Terminal'
 
   # add emacs custom shortcut
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>e'
@@ -188,6 +191,16 @@
 
   # set rpm as preferred format
   gsettings set org.gnome.software packaging-format-preference "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
+
+  # change ptyxis settings
+  gsettings set org.gnome.Ptyxis audible-bell false
+  gsettings set org.gnome.Ptyxis default-columns 120
+  gsettings set org.gnome.Ptyxis default-rows 30
+  gsettings set org.gnome.Ptyxis font-name 'Maple Mono NF 12'
+  gsettings set org.gnome.Ptyxis restore-session false
+  gsettings set org.gnome.Ptyxis restore-window-size false
+  gsettings set org.gnome.Ptyxis use-system-font false
+  gsettings set org.gnome.Ptyxis window-size "(120, 30)"
 
   # configure cedilha in gnome
   rm -rf $HOME/.XCompose
