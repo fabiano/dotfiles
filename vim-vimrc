@@ -156,8 +156,8 @@ filetype plugin indent on
 set title
 let &titlestring = "vim: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\\').'/', '~/', '')}"
 
-" use terminal's color pallete
-colorscheme default
+" use habamax theme
+colorscheme habamax
 
 " buffer keymaps
 nnoremap <silent> <Tab>      :bn<CR>
