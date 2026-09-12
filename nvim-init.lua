@@ -164,8 +164,8 @@ vim.o.winborder = 'single'
 -- use clipboard instead of registers
 vim.o.clipboard = 'unnamedplus'
 
--- use terminal's color palette
-vim.cmd.colorscheme('default')
+-- use habamax theme
+vim.cmd.colorscheme('habamax')
 
 -- install mini.deps
 local mini_path = vim.fn.stdpath('data') .. '/site' .. '/pack/deps/start/mini.nvim'
