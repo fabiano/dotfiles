@@ -188,28 +188,6 @@ nnoremap <silent> <Leader>p  :call fzf#vim#files('', fzf#vim#with_preview({ 'opt
 nnoremap <silent> <Leader>P  :call fzf#vim#files(expand('%:p:h'), fzf#vim#with_preview({ 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'right,70%', '--border-label', ' ' . expand('%:p:h') . ' ' ] }), 1)<CR>
 nnoremap <silent> <Leader>gs :call fzf#vim#gitfiles('?', { 'options': [ '--prompt', '> ', '--layout', 'reverse', '--border', '--style', 'full', '--preview-window', 'bottom,75%', '--border-label', ' Changes ' ] }, 1)<CR>
 
-" reset kitty padding while vim is open (needs allow_remote_control in kitty.conf)
-if !empty($KITTY_WINDOW_ID)
-    " use SIGWINCH instead of kitty's in-band resize reports: changing the
-    " padding resizes the window, and on exit/suspend vim stops reading the
-    " tty before consuming the report, which then leaks into the shell
-    if exists('&termresize')
-        set termresize=sigwinch
-    endif
-
-    function! s:KittyPadding(value) abort
-        call system('kitten @ set-spacing padding=' . a:value)
-    endfunction
-
-    augroup kitty_padding
-        autocmd!
-        autocmd VimEnter    * call s:KittyPadding(0)
-        autocmd VimResume   * call s:KittyPadding(0) " resume from Ctrl+Z (VimEnter does not fire on resume)
-        autocmd VimLeavePre * call s:KittyPadding(5)
-        autocmd VimSuspend  * call s:KittyPadding(5) " suspend with Ctrl+Z (VimLeavePre does not fire on suspend)
-    augroup END
-endif
-
 " fzf configuration
 let g:fzf_vim={}
 let g:fzf_vim.command_prefix='Fzf'
