@@ -84,6 +84,7 @@
   rm -rf $HOME/.gitconfig
   rm -rf $HOME/.local/share/org.gnome.Ptyxis/palettes/habamax.palette
   rm -rf $HOME/.vimrc
+  rm -rf $HOME/.tmux.conf
   rm -rf $HOME/.zshrc
 
   mkdir -p $HOME/.config/bat
@@ -104,6 +105,7 @@
   ln -s $DOTFILES_INSTALL_DIR/nvim-init.lua $HOME/.config/nvim/init.lua
   ln -s $DOTFILES_INSTALL_DIR/ptyxis-habamax.palette $HOME/.local/share/org.gnome.Ptyxis/palettes/habamax.palette
   ln -s $DOTFILES_INSTALL_DIR/starship.toml $HOME/.config/starship.toml
+  ln -s $DOTFILES_INSTALL_DIR/tmux.conf $HOME/.tmux.conf
   ln -s $DOTFILES_INSTALL_DIR/vim-vimrc $HOME/.vimrc
   ln -s $DOTFILES_INSTALL_DIR/vscode-settings.json $HOME/.config/Code/User/settings.json
   ln -s $DOTFILES_INSTALL_DIR/zsh-zshrc $HOME/.zshrc
