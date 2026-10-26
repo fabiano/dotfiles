@@ -9,3 +9,6 @@ truncation_length = 42
 success_symbol = "[❯](purple)"
 error_symbol   = "[❯](red)"
 vimcmd_symbol  = "[❮](green)"
+
+[hostname]
+ssh_symbol = ""
