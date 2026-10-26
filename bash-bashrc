@@ -120,13 +120,15 @@ function startship_set_win_title(){
   echo -ne "\033]0; $(dirs -p | head -1) \007"
 }
 
-starship_precmd_user_func="startship_set_win_title"
-
 # start starship
 if [ -n "$BASH_VERSION" ]; then
+  starship_precmd_user_func="startship_set_win_title"
+
   eval "$(starship init bash)"
 fi
 
 if [ -n "$ZSH_VERSION" ]; then
+  precmd_functions+=(startship_set_win_title)
+
   eval "$(starship init zsh)"
 fi
