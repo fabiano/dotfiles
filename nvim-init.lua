@@ -154,9 +154,9 @@ vim.o.splitright = true
 -- change vertical separator
 vim.o.fillchars = 'vert: '
 
--- show opened directory in the console title
+-- show opened file in the console title
 vim.o.title = true
-vim.o.titlestring = [[nv: %{substitute(fnamemodify(bufname('%'),':p:h'), '^'.escape(expand('~'), '\').'/', '~/', '')}]]
+vim.o.titlestring = 'nv: %f'
 
 -- set the border style for all floating windows
 vim.o.winborder = 'single'
